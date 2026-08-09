@@ -1,0 +1,26 @@
+[project]
+name = "jo-image-pipeline"
+version = "0.1.0"
+description = "Journey Onward media metadata extraction and moment grouping pipeline"
+requires-python = ">=3.14"
+dependencies = [
+    "pillow>=11.0",
+    "pillow-heif>=0.21",
+    "opencv-python-headless>=4.10",
+    "numpy>=2.1",
+    "timezonefinder>=6.5",
+    "httpx>=0.27",
+    "pydantic>=2.9",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "pytest-asyncio>=0.24",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+asyncio_mode = "auto"
