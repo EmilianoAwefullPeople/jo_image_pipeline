@@ -1,12 +1,17 @@
 import logging
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+
+from timezonefinder import TimezoneFinder
 
 from jo_pipeline.extract import EXTRACTOR_VERSION, VISUAL_VERSION, RawExtraction
 
 LOGGER = logging.getLogger(__name__)
 
 NORMALIZER_VERSION = "normalize-1"
+TIMEZONE_VERSION = "timezone-1"
+TIMEZONE_CONFIDENCE = 0.7
 EXIF_TIMESTAMP_FORMAT = "%Y:%m:%d %H:%M:%S"
 CAPTURE_TIME_CANDIDATES = ("DateTimeOriginal", "DateTimeDigitized", "DateTime")
 SOUTHERN_REFERENCES = ("S", "W")
@@ -37,7 +42,21 @@ class MetadataObservation:
     unknown_reason: str | None = None
 
 
+class TimezoneResolver:
+    def __init__(self):
+        self.finder = None
+
+    def zone_for(self, latitude: float, longitude: float) -> str | None:
+        if self.finder is None:
+            LOGGER.debug("loading the timezonefinder dataset for offline zone lookup")
+            self.finder = TimezoneFinder()
+        return self.finder.timezone_at(lat=latitude, lng=longitude)
+
+
 class MetadataNormalizer:
+    def __init__(self):
+        self.timezones = TimezoneResolver()
+
     def normalize(self, extraction: RawExtraction) -> list[MetadataObservation]:
         if extraction.failures:
             LOGGER.debug(f"{extraction.relative_path}: normalizing an extraction that recorded {len(extraction.failures)} failures")
@@ -194,23 +213,90 @@ class MetadataNormalizer:
 
     def _computed_observations(self, observations: list[MetadataObservation]) -> list[MetadataObservation]:
         values = {observation.field: observation.value for observation in observations}
+        candidate = self._timezone_candidate(values)
+        return [candidate, self._capture_timestamp(values, candidate.value)]
+
+    def _timezone_candidate(self, values: dict) -> MetadataObservation:
+        latitude = values.get("gps_latitude")
+        longitude = values.get("gps_longitude")
+        if latitude is None or longitude is None:
+            return self._unknown("timezone_candidate", COMPUTED_CATEGORY, "timezonefinder", "no coordinate to derive a timezone from")
+
+        zone = self.timezones.zone_for(latitude, longitude)
+        if not zone:
+            return self._unknown("timezone_candidate", COMPUTED_CATEGORY, "timezonefinder", "no timezone published for these coordinates")
+
+        LOGGER.debug(f"timezone candidate {zone} derived from {latitude}, {longitude}")
+        return MetadataObservation(
+            field="timezone_candidate",
+            category=COMPUTED_CATEGORY,
+            value=zone,
+            raw_value=None,
+            source="timezonefinder",
+            method_version=TIMEZONE_VERSION,
+            confidence=TIMEZONE_CONFIDENCE,
+            evidence={"latitude": latitude, "longitude": longitude},
+        )
+
+    def _capture_timestamp(self, values: dict, zone: str | None) -> MetadataObservation:
         local_time = values.get("capture_local_time")
         offset = values.get("capture_utc_offset")
         if local_time and offset:
-            stamped = datetime.strptime(f"{local_time}{offset}", "%Y-%m-%dT%H:%M:%S%z")
-            return [MetadataObservation(
-                field="capture_timestamp_utc",
-                category=COMPUTED_CATEGORY,
-                value=stamped.astimezone(timezone.utc).isoformat(),
-                raw_value=None,
-                source="capture_local_time+capture_utc_offset",
-                method_version=NORMALIZER_VERSION,
-                confidence=1.0,
-                evidence={"local_time": local_time, "offset": offset},
-            )]
+            observation = self._timestamp_from_offset(local_time, offset, zone)
+        elif local_time and zone:
+            observation = self._timestamp_from_zone(local_time, zone)
+        else:
+            reason = "no capture timestamp" if not local_time else "no utc offset and no timezone candidate"
+            observation = self._unknown("capture_timestamp_utc", COMPUTED_CATEGORY, "capture_local_time+capture_utc_offset", reason)
+        return observation
 
-        reason = "no capture timestamp" if not local_time else "no utc offset, timezone candidate required"
-        return [self._unknown("capture_timestamp_utc", COMPUTED_CATEGORY, "capture_local_time+capture_utc_offset", reason)]
+    def _timestamp_from_offset(self, local_time: str, offset: str, zone: str | None) -> MetadataObservation:
+        stamped = datetime.strptime(f"{local_time}{offset}", "%Y-%m-%dT%H:%M:%S%z")
+        evidence = {"local_time": local_time, "offset": offset}
+        zone_offset = self._zone_offset(local_time, zone)
+        if zone_offset is not None:
+            evidence["timezone_candidate"] = zone
+            evidence["zone_offset_matches"] = zone_offset == stamped.utcoffset()
+            LOGGER.debug(f"exif offset {offset} against {zone} offset {zone_offset}, agreement {evidence['zone_offset_matches']}")
+
+        return MetadataObservation(
+            field="capture_timestamp_utc",
+            category=COMPUTED_CATEGORY,
+            value=stamped.astimezone(timezone.utc).isoformat(),
+            raw_value=None,
+            source="capture_local_time+capture_utc_offset",
+            method_version=NORMALIZER_VERSION,
+            confidence=1.0,
+            evidence=evidence,
+        )
+
+    def _timestamp_from_zone(self, local_time: str, zone: str) -> MetadataObservation:
+        zone_offset = self._zone_offset(local_time, zone)
+        if zone_offset is None:
+            return self._unknown("capture_timestamp_utc", COMPUTED_CATEGORY, "capture_local_time+timezone_candidate", f"timezone {zone} is not available on this system")
+
+        localised = datetime.fromisoformat(local_time).replace(tzinfo=ZoneInfo(zone))
+        LOGGER.info(f"capture time resolved through timezone candidate {zone} because no exif offset was present")
+        return MetadataObservation(
+            field="capture_timestamp_utc",
+            category=COMPUTED_CATEGORY,
+            value=localised.astimezone(timezone.utc).isoformat(),
+            raw_value=None,
+            source="capture_local_time+timezone_candidate",
+            method_version=TIMEZONE_VERSION,
+            confidence=TIMEZONE_CONFIDENCE,
+            evidence={"local_time": local_time, "timezone_candidate": zone, "derived_offset": str(zone_offset)},
+        )
+
+    def _zone_offset(self, local_time: str, zone: str | None):
+        if not zone:
+            return None
+
+        try:
+            return datetime.fromisoformat(local_time).replace(tzinfo=ZoneInfo(zone)).utcoffset()
+        except ZoneInfoNotFoundError:
+            LOGGER.warning(f"timezone {zone} was derived but is not available in the system database")
+            return None
 
     def _detected_observations(self, extraction: RawExtraction) -> list[MetadataObservation]:
         observations = []

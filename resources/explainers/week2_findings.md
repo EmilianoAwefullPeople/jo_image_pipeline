@@ -25,6 +25,7 @@ explicit reason whenever a value is absent.
 | Extraction method | extract-1 |
 | Visual signal method | opencv-1 |
 | Normalization method | normalize-1 |
+| Timezone method | timezone-1 |
 | Grouping method | group-1 |
 
 ## Datasets processed
@@ -49,6 +50,7 @@ reason rather than a null, so these rates are produced by the pipeline's own rec
 | capture_local_time | photo | 100% | 100% | 95% |
 | capture_utc_offset | photo | 100% | 100% | 92% |
 | capture_timestamp_utc | computed | 100% | 100% | 92% |
+| timezone_candidate | computed | 76% | 70% | 85% |
 | gps_latitude / gps_longitude | photo | 76% | 70% | 85% |
 | gps_altitude | photo | 76% | 66% | 85% |
 | orientation | photo | 100% | 99% | 23% |
@@ -118,6 +120,40 @@ numbers attached.
 - The visual signals are available on every image without exception, which makes them the only universally
   present evidence in the corpus. That makes them useful as a tiebreaker for the 22 percent of images without
   location, and it is the strongest argument so far for the visual model earning its place.
+
+## Offline timezone derivation and timestamp cross-check
+
+A timezone candidate is derived from coordinates using timezonefinder, which is a local dataset lookup with no
+network call and no third-party exposure. It resolves for every photo carrying GPS, so its presence rate is
+identical to the coordinate rate.
+
+Its designed purpose, recovering a UTC timestamp when EXIF carries no offset, is worth nothing on this corpus:
+the only 2 photos missing an offset also have no coordinates, so there is nothing to derive a zone from. The
+capability is retained because it costs nothing and the reliability matrix specifies it, but it should not be
+counted as a benefit until data arrives that needs it.
+
+The valuable outcome is different. Where both an EXIF offset and a derived zone exist, they can be compared,
+which is an independent check on the timestamp using a signal the file did not supply.
+
+| Dataset | Derived zones | Offset agrees | Offset disagrees | Not checkable |
+|---------|---------------|---------------|------------------|---------------|
+| Glenn_Pictures_Cruise_2024 | Europe/Athens 7, Europe/Rome 6, Europe/Zagreb 3 | 16 | 0 | 5 |
+| Glenn_London | Europe/London 78 | 78 | 0 | 33 |
+| Emiliano_s_Pictures_Shanghai 2026 | Asia/Shanghai 51, Europe/Berlin 1 | 52 | 0 | 9 |
+
+**All 146 checkable photos agree, with no disagreements anywhere.** Where an iPhone records both a coordinate
+and a UTC offset, the two are consistent, including across the cruise set where the traveler moved between
+three national timezones. That materially raises confidence in capture time as the primary grouping signal,
+because the confirmation comes from a signal independent of the timestamp itself. The 47 photos that cannot be
+checked are exactly those without coordinates.
+
+Two incidental results worth noting. The cruise itinerary falls out of the zone data alone, moving through
+Greece, Italy and Croatia, without any geocoding call or external service. And a single Shanghai photo resolves
+to Europe/Berlin, which is either a genuine transit photo or a coordinate error; it is surfaced as a candidate
+for review rather than treated as either.
+
+The comparison is stored as evidence on the capture timestamp rather than as a separate field, so a photo whose
+offset disagreed with its zone would remain usable while carrying the disagreement in its record.
 
 ## Moment grouping results
 
@@ -201,7 +237,7 @@ reference and every proposal with its evidence, so decisions can be recorded aga
 |-------------|--------|
 | Presence rate | Measured for all photo, computed and detected fields currently extracted |
 | Parse / processing success | Measured, 100 percent across 193 images |
-| Agreement / accuracy | Measured for grouping on Shanghai at 0.78 pair F1; source field accuracy still needs known trip facts |
+| Agreement / accuracy | Capture time cross-checked against derived timezone on 146 photos with no disagreement; grouping measured on Shanghai at 0.78 pair F1; remaining source fields still need known trip facts |
 | False positives / false negatives | Not measured, no inferred labels produced yet |
 | Grouping correction burden | Measured on Shanghai: 5 splits and 1 merge across 30 reference memories |
 | Regression coverage | Not started |

@@ -58,7 +58,7 @@ def test_utc_timestamp_stays_unknown_when_the_offset_is_missing():
 
     computed = observation_for(observations, "capture_timestamp_utc")
     assert computed.value is None
-    assert computed.unknown_reason == "no utc offset, timezone candidate required"
+    assert computed.unknown_reason == "no utc offset and no timezone candidate"
 
 
 def test_coordinates_convert_to_decimal_degrees():
@@ -93,6 +93,55 @@ def test_missing_coordinates_are_never_invented():
     latitude = observation_for(observations, "gps_latitude")
     assert latitude.value is None
     assert latitude.unknown_reason == "no gps coordinate present"
+
+
+GREEK_GPS = {
+    "GPSLatitude": [37.0, 38.0, 42.08],
+    "GPSLatitudeRef": "N",
+    "GPSLongitude": [21.0, 19.0, 10.24],
+    "GPSLongitudeRef": "E",
+}
+
+
+def test_a_timezone_candidate_is_derived_from_coordinates():
+    observations = MetadataNormalizer().normalize(build_extraction({}, GREEK_GPS))
+
+    candidate = observation_for(observations, "timezone_candidate")
+    assert candidate.value == "Europe/Athens"
+    assert candidate.source == "timezonefinder"
+
+
+def test_no_timezone_candidate_without_coordinates():
+    observations = MetadataNormalizer().normalize(build_extraction({}))
+
+    candidate = observation_for(observations, "timezone_candidate")
+    assert candidate.value is None
+    assert candidate.unknown_reason == "no coordinate to derive a timezone from"
+
+
+def test_the_timezone_candidate_resolves_utc_when_the_offset_is_missing():
+    observations = MetadataNormalizer().normalize(build_extraction({"DateTimeOriginal": "2024:07:23 15:10:19"}, GREEK_GPS))
+
+    computed = observation_for(observations, "capture_timestamp_utc")
+    assert computed.value == "2024-07-23T12:10:19+00:00"
+    assert computed.source == "capture_local_time+timezone_candidate"
+    assert computed.confidence == 0.7
+
+
+def test_an_exif_offset_agreeing_with_the_zone_is_recorded_as_evidence():
+    observations = MetadataNormalizer().normalize(build_extraction({"DateTimeOriginal": "2024:07:23 15:10:19", "OffsetTimeOriginal": "+03:00"}, GREEK_GPS))
+
+    computed = observation_for(observations, "capture_timestamp_utc")
+    assert computed.evidence["zone_offset_matches"] is True
+    assert computed.confidence == 1.0
+
+
+def test_an_exif_offset_disagreeing_with_the_zone_is_flagged_but_still_trusted():
+    observations = MetadataNormalizer().normalize(build_extraction({"DateTimeOriginal": "2024:07:23 15:10:19", "OffsetTimeOriginal": "+01:00"}, GREEK_GPS))
+
+    computed = observation_for(observations, "capture_timestamp_utc")
+    assert computed.evidence["zone_offset_matches"] is False
+    assert computed.value == "2024-07-23T14:10:19+00:00"
 
 
 def test_a_failed_extraction_normalizes_to_a_single_unknown():
