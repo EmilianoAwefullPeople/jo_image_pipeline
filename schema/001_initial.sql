@@ -4,9 +4,7 @@
 
 create table datasets (
     id                  text primary key,
-    dataset_version     text not null,
     source_root         text not null,
-    manifest_sha256     text not null,
     created_utc         text not null
 ) strict;
 
@@ -27,6 +25,7 @@ create table processing_runs (
     id                  integer primary key autoincrement,
     dataset_id          text not null references datasets (id),
     dataset_version     text not null,
+    manifest_sha256     text not null,
     schema_version      text not null,
     prompt_version      text not null,
     model_id            text,

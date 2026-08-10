@@ -22,6 +22,10 @@ UNKNOWN_MEDIA_TYPE = "unknown"
 HASH_CHUNK_BYTES = 1024 * 1024
 
 
+def manifest_digest(manifest: "DatasetManifest") -> str:
+    return hashlib.sha256(json.dumps(manifest.to_dict(), sort_keys=True).encode()).hexdigest()
+
+
 @dataclass(frozen=True)
 class ManifestEntry:
     relative_path: str
