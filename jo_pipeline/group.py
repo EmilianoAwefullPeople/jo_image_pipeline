@@ -5,6 +5,7 @@ from datetime import datetime
 from math import asin, cos, radians, sin, sqrt
 
 from jo_pipeline.assets import AssetSignals
+from jo_pipeline.extract import hamming_distance
 
 LOGGER = logging.getLogger(__name__)
 
@@ -229,10 +230,6 @@ class MomentGrouper:
             members=[GroupMember(asset.relative_path, MEMBER, {"reason": "no capture timestamp"}) for asset in unanchored],
             evidence={"member_count": len(unanchored), "reason": "no capture timestamp and no coordinate to place these assets"},
         )
-
-
-def hamming_distance(left: str, right: str) -> int:
-    return bin(int(left, 16) ^ int(right, 16)).count("1")
 
 
 def time_gap_seconds(earlier: datetime | None, later: datetime | None) -> float | None:

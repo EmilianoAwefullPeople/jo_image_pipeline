@@ -157,15 +157,53 @@ coordinates at 30 percent, and mean sharpness at 30 percent. The representative 
 Laplacian variance. Both are starting hypotheses with no traveler feedback behind them yet, and the component
 values are stored alongside each proposal so the weighting can be revised without rerunning extraction.
 
+## Comparison against the traveler's reference grouping
+
+The Shanghai dataset ships the traveler's own grouping as a Word document containing the photos themselves
+rather than filenames. The reference stage reconstructs it by reading the document structure, where each
+paragraph of images is one memory, and matching every embedded image back to a dataset photo using the same
+difference hash the pipeline already computes. The document yields 30 reference memories covering 49 photos,
+plus 8 photos under a heading marking them as intentionally left out.
+
+Matching recovered 51 of the 57 embedded images within the 6-bit threshold. The remaining 6 are recorded as
+unmatched with their closest candidate rather than being forced onto a photo, because their nearest neighbour
+sat between 7 and 18 bits away, which is consistent with the document holding a cropped or edited copy.
+
+| Measure | Result |
+|---------|--------|
+| Assets comparable in both | 44 |
+| Reference memories | 30 |
+| Proposed groups | 32 |
+| Pair precision | 0.89 |
+| Pair recall | 0.70 |
+| Pair F1 | 0.78 |
+| Reference memories split across proposals | 5 |
+| Proposals merging separate memories | 1 |
+| Intentionally excluded photos placed in a group | 7 of 7 |
+
+Precision materially exceeds recall, and splits outnumber merges five to one. The untuned baseline is
+consistently more conservative than the traveler: when it is wrong, it cuts a memory in two rather than fusing
+two memories together. Given that a traveler correcting a split needs only to merge, while an incorrect merge
+requires them to pick the photos apart, erring toward splitting is the cheaper failure. The time window is the
+obvious lever, since the traveler groups across wider gaps than 45 minutes allows.
+
+Every one of the 7 matched photos the traveler deliberately left out was placed into a group by the pipeline.
+Exclusion is a product concept the current system does not model at all: it has no notion that a photo might be
+part of a trip but not part of any memory worth keeping. That is a gap in the grouping model rather than a
+tuning error, and it is a decision for the team rather than something to infer from the data.
+
+The comparison is written to a local JSON artifact under `data/runs/` holding the comparison, the reconstructed
+reference and every proposal with its evidence, so decisions can be recorded against specific proposals.
+
 ## Coverage against the Week 2 validation plan
 
 | Measurement | Status |
 |-------------|--------|
 | Presence rate | Measured for all photo, computed and detected fields currently extracted |
 | Parse / processing success | Measured, 100 percent across 193 images |
-| Agreement / accuracy | Not measured, requires comparison against known trip facts |
+| Agreement / accuracy | Measured for grouping on Shanghai at 0.78 pair F1; source field accuracy still needs known trip facts |
 | False positives / false negatives | Not measured, no inferred labels produced yet |
-| Grouping correction burden | Not measured, proposals generated but no review decisions recorded |
+| Grouping correction burden | Measured on Shanghai: 5 splits and 1 merge across 30 reference memories |
 | Regression coverage | Not started |
 
 Fetched metadata and visual-model output remain unmeasured and keep their Week 1 expected ratings until the
@@ -174,9 +212,8 @@ until they are compared against the reference grouping.
 
 ## Open items
 
-- The Shanghai dataset ships a human grouping document under `Grouped & Unpacked/`, which includes the
-  traveler's own account of why each memory mattered. It is the comparison point for the Review stage and has
-  not yet been parsed into a reference grouping.
+- The cruise and London datasets have no reference grouping supplied, so the comparison above covers Shanghai
+  only. The traveler's account of why each memory mattered is present in the same document but is not yet used.
 - The 16 London videos are inventoried and hashed but excluded from extraction. Whether video belongs in the
   PoC grouping is an open product question.
 - Group proposals are held in memory only. Persisting them, and the review decisions taken against them,

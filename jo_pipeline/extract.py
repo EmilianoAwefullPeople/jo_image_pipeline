@@ -94,20 +94,15 @@ class PhotoExtractor:
         return {ExifTags.GPSTAGS.get(code, str(code)): json_safe(value) for code, value in exif.get_ifd(GPS_IFD).items()}
 
     def _read_visual_signals(self, image: Image.Image) -> dict:
-        sample = self._sample_array(image)
+        sample = sample_array(image)
         greyscale = cv2.cvtColor(sample, cv2.COLOR_RGB2GRAY)
         return {
             "palette": self._palette(sample),
             "blur_score": float(cv2.Laplacian(greyscale, cv2.CV_64F).var()),
             "brightness": float(greyscale.mean()),
-            "difference_hash": self._difference_hash(greyscale),
+            "difference_hash": difference_hash(greyscale),
             "sample_max_edge": SAMPLE_MAX_EDGE,
         }
-
-    def _sample_array(self, image: Image.Image) -> numpy.ndarray:
-        sample = image.convert("RGB")
-        sample.thumbnail((SAMPLE_MAX_EDGE, SAMPLE_MAX_EDGE), Image.Resampling.BILINEAR)
-        return numpy.asarray(sample)
 
     def _palette(self, sample: numpy.ndarray) -> list[dict]:
         cv2.setRNGSeed(PALETTE_SEED)
@@ -124,13 +119,28 @@ class PhotoExtractor:
             })
         return palette
 
-    def _difference_hash(self, greyscale: numpy.ndarray) -> str:
-        resized = cv2.resize(greyscale, (HASH_EDGE + 1, HASH_EDGE), interpolation=cv2.INTER_AREA)
-        bits = resized[:, 1:] > resized[:, :-1]
-        value = 0
-        for bit in bits.flatten():
-            value = (value << 1) | int(bit)
-        return f"{value:016x}"
+
+def sample_array(image: Image.Image) -> numpy.ndarray:
+    sample = image.convert("RGB")
+    sample.thumbnail((SAMPLE_MAX_EDGE, SAMPLE_MAX_EDGE), Image.Resampling.BILINEAR)
+    return numpy.asarray(sample)
+
+
+def difference_hash(greyscale: numpy.ndarray) -> str:
+    resized = cv2.resize(greyscale, (HASH_EDGE + 1, HASH_EDGE), interpolation=cv2.INTER_AREA)
+    bits = resized[:, 1:] > resized[:, :-1]
+    value = 0
+    for bit in bits.flatten():
+        value = (value << 1) | int(bit)
+    return f"{value:016x}"
+
+
+def image_difference_hash(image: Image.Image) -> str:
+    return difference_hash(cv2.cvtColor(sample_array(image), cv2.COLOR_RGB2GRAY))
+
+
+def hamming_distance(left: str, right: str) -> int:
+    return bin(int(left, 16) ^ int(right, 16)).count("1")
 
 
 def json_safe(value: object) -> object:
