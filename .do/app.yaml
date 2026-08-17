@@ -1,0 +1,38 @@
+name: jo-image-pipeline
+region: syd
+services:
+  - name: web
+    instance_count: 1
+    instance_size_slug: apps-s-1vcpu-1gb
+    http_port: 8080
+    dockerfile_path: Dockerfile
+    source_dir: /
+    github:
+      repo: Citric-Sheep/jo_image_pipeline
+      branch: main
+      deploy_on_push: true
+    health_check:
+      http_path: /api/health
+      initial_delay_seconds: 30
+      period_seconds: 30
+      timeout_seconds: 10
+      failure_threshold: 5
+    envs:
+      - key: JO_OPENROUTER_MODEL
+        scope: RUN_TIME
+        value: openai/gpt-5.6-sol
+      - key: JO_LOG_LEVEL
+        scope: RUN_TIME
+        value: INFO
+      - key: JO_WEB_RUNS_DIR
+        scope: RUN_TIME
+        value: /app/data/web_runs
+      - key: JO_WEB_MAX_FILES
+        scope: RUN_TIME
+        value: "60"
+      - key: JO_WEB_RUN_TTL_MINUTES
+        scope: RUN_TIME
+        value: "120"
+      - key: JO_WEB_LLM_CONCURRENCY
+        scope: RUN_TIME
+        value: "4"

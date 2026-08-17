@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journey Onward image pipeline</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="masthead">
+  <h1>Journey Onward image pipeline</h1>
+  <p>Upload a set of photos. The pipeline inventories them, extracts and normalises their metadata, groups them into moments, and evaluates each image with a visual model.</p>
+</header>
+
+<main>
+  <section class="panel" id="upload-panel">
+    <div class="dropzone" id="dropzone">
+      <p class="dropzone-title">Drop photos here</p>
+      <p class="dropzone-hint" id="dropzone-hint">HEIC, JPEG, PNG or TIFF</p>
+      <button type="button" class="button" id="pick">Choose files</button>
+      <input type="file" id="file-input" multiple accept=".heic,.heif,.jpg,.jpeg,.png,.tif,.tiff" hidden>
+    </div>
+    <div class="upload-status" id="upload-status" hidden>
+      <div class="bar"><div class="bar-fill" id="upload-bar"></div></div>
+      <p class="muted" id="upload-detail"></p>
+    </div>
+  </section>
+
+  <section class="panel" id="progress-panel" hidden>
+    <h2>Run <span class="mono" id="run-id"></span></h2>
+    <p class="muted">Started <span id="run-created"></span></p>
+    <ol class="stages" id="stages"></ol>
+    <p class="muted" id="progress-detail"></p>
+  </section>
+
+  <section class="panel error" id="error-panel" hidden>
+    <h2>Run failed</h2>
+    <p id="error-detail"></p>
+  </section>
+
+  <section class="panel" id="summary-panel" hidden>
+    <h2>Result</h2>
+    <div class="tiles" id="summary-tiles"></div>
+    <p class="muted" id="skipped-detail"></p>
+  </section>
+
+  <section class="panel" id="groups-panel" hidden>
+    <h2>Moments</h2>
+    <p class="muted">Proposals are split on capture-time gaps and on movement beyond 150 metres. The sharpest frame in each moment is elected as its representative.</p>
+    <div id="groups"></div>
+  </section>
+
+  <section class="panel" id="reliability-panel" hidden>
+    <h2>Metadata reliability</h2>
+    <p class="muted">How often each field was actually present across the uploaded set, and the most common reason it was missing.</p>
+    <div class="table-scroll"><table id="reliability"><thead><tr><th>Category</th><th>Field</th><th>Present</th><th>Rate</th><th>Common unknown reason</th></tr></thead><tbody></tbody></table></div>
+  </section>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>
