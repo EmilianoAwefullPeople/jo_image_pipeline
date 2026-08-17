@@ -31,6 +31,10 @@ class PipelineConfig:
     def runs_dir(self) -> Path:
         return self.data_dir / "runs"
 
+    @property
+    def llm_runs_dir(self) -> Path:
+        return self.data_dir / "llm_runs"
+
     def dataset_path(self, dataset_id: str) -> Path:
         return self.dataset_root / dataset_id
 

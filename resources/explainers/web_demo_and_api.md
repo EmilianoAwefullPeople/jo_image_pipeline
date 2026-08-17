@@ -17,7 +17,11 @@ Everything a run produces nests under one directory, so retiring a run is a sing
 
 ## Stages
 
-`created` → `queued` → `inventorying` → `extracting` → `thumbnailing` → `grouping` → `evaluating` → `complete`, or `failed` with a `failure_detail`. The client polls `GET /api/runs/{id}` for the current stage and results.
+`created` → `queued` → `inventorying` → `extracting` → `thumbnailing` → `grouping` → `evaluating` → `refining` → `complete`, or `failed` with a `failure_detail`. The client polls `GET /api/runs/{id}` for the current stage and results.
+
+The run payload carries both `groups` and `baseline_groups`. `baseline_groups` is what capture time, GPS and OpenCV alone produced; `groups` is that result after the visual model re-elected representatives on composition rather than sharpness, dropped anything it read as not worth keeping, and flagged screenshots without removing them. Showing both is the point — it is the only way a viewer can see what the model contributed rather than taking it on trust. When no API key is configured the two are identical and the demo still works, returning metadata and grouping only.
+
+Photos the model drops are listed in the proposal's `evidence.excluded_by_signal` with the model's reason and confidence, and rendered under their moment rather than hidden, so a viewer can disagree with the call.
 
 Thumbnails are written during the run rather than transcoded per request. Most customer media is HEIC, which no browser renders, and a full HEIC decode peaks near 250 MB — a gallery of them loading in parallel would exhaust the container. Serving pre-built JPEGs keyed by content hash also means the thumbnail route never builds a path from client input.
 

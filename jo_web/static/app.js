@@ -1,4 +1,4 @@
-const STAGES = ["queued", "inventorying", "extracting", "thumbnailing", "grouping", "evaluating", "complete"];
+const STAGES = ["queued", "inventorying", "extracting", "thumbnailing", "grouping", "evaluating", "refining", "complete"];
 const POLL_INTERVAL_MS = 1200;
 
 const dropzone = document.getElementById("dropzone");
@@ -140,10 +140,12 @@ function render(runId, state) {
 
 function renderSummary(state) {
   const llm = state.llm.summary;
+  const dropped = state.groups.reduce((total, group) => total + (group.evidence.excluded_by_signal || []).length, 0);
   const tiles = [
     { label: "Files received", value: state.files.length },
     { label: "Images analysed", value: state.extraction.images_analysed },
     { label: "Moments", value: state.groups.length },
+    { label: "Left out by model", value: dropped },
     { label: "Evaluated", value: llm ? llm.images_evaluated : 0 },
     { label: "Model cost", value: llm ? `$${llm.total_cost_usd.toFixed(3)}` : "$0.000" },
   ];
@@ -167,28 +169,74 @@ function renderGroups(runId, state) {
     evaluations[record.sha256.slice(0, 16)] = record.evaluation;
   });
 
+  renderRefinementDetail(state);
+
   document.getElementById("groups").innerHTML = state.groups
     .map((group) => {
       const located = group.evidence.located_members || 0;
       const unlocated = group.evidence.unlocated_members || 0;
-      const shots = group.members
-        .map((member) => {
-          const key = state.thumbnails[member.relative_path];
-          const image = key
-            ? `<img src="/api/runs/${runId}/thumbnails/${key}" alt="" loading="lazy">`
-            : `<img alt="" loading="lazy">`;
-          const badge = member.membership === "member" ? "" : `<span class="badge ${member.membership}">${member.membership}</span> `;
-          return `<div class="shot">${image}<div class="caption">${badge}${escapeHtml(member.relative_path)}${renderEvaluation(evaluations[key])}</div></div>`;
-        })
-        .join("");
+      const shots = group.members.map((member) => shot(runId, state, evaluations, member)).join("");
+      const baseline = group.evidence.baseline_score;
+      const scoreNote = baseline === undefined
+        ? `score ${group.score.toFixed(2)}`
+        : `score ${group.score.toFixed(2)} (was ${baseline.toFixed(2)})`;
       return `<div class="group">
         <div class="group-head"><h3>${escapeHtml(group.label)}</h3>
-        <span class="group-meta">${group.members.length} photos, score ${group.score.toFixed(2)}, ${located} located, ${unlocated} unlocated</span></div>
+        <span class="group-meta">${group.members.length} photos, ${scoreNote}, ${located} located, ${unlocated} unlocated</span></div>
         <div class="shots">${shots}</div>
+        ${renderExcluded(runId, state, group)}
       </div>`;
     })
     .join("");
   show("groups-panel", state.groups.length > 0);
+}
+
+function shot(runId, state, evaluations, member) {
+  const key = state.thumbnails[member.relative_path];
+  const image = key ? `<img src="/api/runs/${runId}/thumbnails/${key}" alt="" loading="lazy">` : `<img alt="" loading="lazy">`;
+  const badge = member.membership === "member" ? "" : `<span class="badge ${member.membership}">${member.membership}</span> `;
+  return `<div class="shot">${image}<div class="caption">${badge}${escapeHtml(member.relative_path)}${renderEvaluation(evaluations[key])}</div></div>`;
+}
+
+function renderExcluded(runId, state, group) {
+  const excluded = group.evidence.excluded_by_signal || [];
+  const flagged = group.evidence.screenshots_flagged || [];
+  if (!excluded.length && !flagged.length) return "";
+
+  const rows = excluded.map((entry) => {
+    const key = state.thumbnails[entry.relative_path];
+    const image = key ? `<img src="/api/runs/${runId}/thumbnails/${key}" alt="" loading="lazy">` : `<img alt="" loading="lazy">`;
+    return `<div class="shot">${image}<div class="caption"><span class="badge duplicate">left out</span> ${escapeHtml(entry.relative_path)}
+      <div class="evaluation"><p>${escapeHtml(entry.reason)}</p></div></div></div>`;
+  }).join("");
+
+  const flagNote = flagged.length
+    ? `<p class="muted">${flagged.length} screenshot or document flagged for review, kept in the moment: ${flagged.map((item) => escapeHtml(item.relative_path)).join(", ")}</p>`
+    : "";
+  const excludedNote = excluded.length ? `<p class="muted">The model read these as not worth keeping. They stay available and the traveller can put them back.</p>${`<div class="shots">${rows}</div>`}` : "";
+  return `<div class="evaluation">${excludedNote}${flagNote}</div>`;
+}
+
+function renderRefinementDetail(state) {
+  const refined = state.groups;
+  const baseline = state.baseline_groups;
+  if (!state.llm.summary || !baseline.length) {
+    text("refinement-detail", "");
+    return;
+  }
+
+  const dropped = refined.reduce((total, group) => total + (group.evidence.excluded_by_signal || []).length, 0);
+  const reelected = refined.filter((group) =>
+    group.members.some((member) => member.membership === "representative"
+      && member.evidence.previous_representative
+      && member.evidence.previous_representative !== member.relative_path)
+  ).length;
+  const flagged = refined.reduce((total, group) => total + (group.evidence.screenshots_flagged || []).length, 0);
+  text(
+    "refinement-detail",
+    `The model changed this result: ${baseline.length} proposals became ${refined.length}, ${dropped} photo(s) dropped as not worth keeping, `
+      + `${reelected} representative(s) re-elected on composition rather than sharpness, ${flagged} screenshot(s) flagged but kept.`
+  );
 }
 
 function renderEvaluation(evaluation) {

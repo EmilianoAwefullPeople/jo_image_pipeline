@@ -17,6 +17,7 @@ def run_state_payload(state: RunState, queue_depth: int) -> dict:
             "rows": [dict(asdict(row), presence_rate=row.presence_rate) for row in state.reliability_rows],
         },
         "groups": [asdict(proposal) for proposal in state.groups],
+        "baseline_groups": [asdict(proposal) for proposal in state.baseline_groups],
         "thumbnails": state.thumbnails,
         "llm": {
             "summary": None if state.llm_summary is None else asdict(state.llm_summary),

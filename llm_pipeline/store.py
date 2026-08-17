@@ -8,6 +8,7 @@ LOGGER = logging.getLogger(__name__)
 
 SHA_PREFIX_LENGTH = 16
 SUMMARY_STAMP_FORMAT = "%Y%m%dT%H%M%SZ"
+SUMMARY_PREFIX = "run-"
 
 
 @dataclass(frozen=True)
@@ -59,6 +60,21 @@ class RunStore:
 
     def exists(self, sha256: str) -> bool:
         return self.record_path(sha256).is_file()
+
+    def records(self) -> list[dict]:
+        if not self.run_dir.is_dir():
+            LOGGER.info(f"no evaluation records stored yet at {self.run_dir}")
+            return []
+
+        payloads = []
+        for path in sorted(self.run_dir.glob("*.json")):
+            if path.name.startswith(SUMMARY_PREFIX):
+                LOGGER.debug(f"{path.name}: skipped, run summary rather than an image record")
+                continue
+            payloads.append(json.loads(path.read_text()))
+
+        LOGGER.info(f"loaded {len(payloads)} evaluation records from {self.run_dir}")
+        return payloads
 
     def write_record(self, record: ImageEvaluationRecord) -> Path:
         target = self.record_path(record.sha256)

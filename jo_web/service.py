@@ -1,15 +1,17 @@
 import logging
+from dataclasses import asdict
 from pathlib import Path
 
 import httpx
 from PIL import Image, ImageOps, UnidentifiedImageError
 
 from jo_pipeline.assets import AssetLoader, build_signals
-from jo_pipeline.cli import build_reliability
+from jo_pipeline.cli import build_reliability, fan_out_evaluations
 from jo_pipeline.group import MomentGrouper
 from jo_pipeline.manifest import DatasetManifest, InventoryScanner
+from jo_pipeline.refine import ProposalRefiner, build_image_signals
 from jo_web.config import UPLOAD_DATASET_ID, WebConfig
-from jo_web.registry import EVALUATING, EXTRACTING, GROUPING, INVENTORYING, THUMBNAILING, RunRegistry
+from jo_web.registry import EVALUATING, EXTRACTING, GROUPING, INVENTORYING, REFINING, THUMBNAILING, RunRegistry
 from llm_pipeline.client import OpenRouterClient
 from llm_pipeline.discovery import discover_images
 from llm_pipeline.prompts import PROMPT_VERSION
@@ -50,10 +52,24 @@ class PipelineService:
         self.registry.set_thumbnails(run_id, self._build_thumbnails(run_id, dataset_path, manifest))
 
         self.registry.set_stage(run_id, GROUPING, 0, len(extracted))
-        proposals = MomentGrouper().group([build_signals(asset) for asset in extracted])
-        self.registry.set_groups(run_id, proposals)
+        baseline = MomentGrouper().group([build_signals(asset) for asset in extracted])
+        self.registry.set_groups(run_id, baseline, baseline)
 
         self._evaluate(run_id, dataset_path)
+        self._refine(run_id, manifest, baseline)
+
+    def _refine(self, run_id: str, manifest: DatasetManifest, baseline: list):
+        state = self.registry.get(run_id)
+        if state is None or not state.llm_records:
+            LOGGER.info(f"{run_id}: refinement skipped, no evaluation records for this run")
+            return
+
+        self.registry.set_stage(run_id, REFINING, 0, len(baseline))
+        evaluations = fan_out_evaluations(manifest, [asdict(record) for record in state.llm_records])
+        signals = build_image_signals(evaluations)
+        refined = ProposalRefiner().refine(baseline, signals)
+        self.registry.set_groups(run_id, refined, baseline)
+        LOGGER.info(f"{run_id}: refinement produced {len(refined)} proposals from {len(baseline)} baseline proposals")
 
     def _build_thumbnails(self, run_id: str, dataset_path: Path, manifest: DatasetManifest) -> dict:
         target_dir = self.config.thumbnail_dir(run_id)

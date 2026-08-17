@@ -1,4 +1,5 @@
 import json
+from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -31,7 +32,7 @@ def build_config(tmp_path: Path) -> WebConfig:
     )
 
 
-def evaluation_payload() -> dict:
+def evaluation_payload(keep="keep", quality=0.8) -> dict:
     return {
         "caption": "A quiet street in late light",
         "scene": {"scene_type": "cityscape_street", "confidence": 0.8, "evidence": "shopfronts and kerb"},
@@ -40,18 +41,19 @@ def evaluation_payload() -> dict:
         "visible_text": {"transcription": None, "text_kind": None, "language": None, "confidence": 0.9},
         "screenshot": {"is_screenshot_or_document": False, "travel_relevance": "not_applicable", "document_kind": None, "confidence": 0.95},
         "emotions": [{"label": "calm", "confidence": 0.6}],
-        "memory": {"keep_signal": "keep", "reason": "Distinctive scene", "confidence": 0.7},
-        "representative_quality": {"score": 0.8, "reasoning": "Clear subject"},
+        "memory": {"keep_signal": keep, "reason": "Distinctive scene", "confidence": 0.7},
+        "representative_quality": {"score": quality, "reasoning": "Clear subject"},
         "journaling_prompt": None,
     }
 
 
-def build_transport(requests: list) -> httpx.MockTransport:
+def build_transport(requests: list, payloads: list | None = None) -> httpx.MockTransport:
     def handler(request):
         requests.append(json.loads(request.content.decode()))
+        payload = payloads[len(requests) - 1] if payloads else evaluation_payload()
         body = {
             "id": "gen-abc",
-            "choices": [{"message": {"role": "assistant", "content": json.dumps(evaluation_payload())}}],
+            "choices": [{"message": {"role": "assistant", "content": json.dumps(payload)}}],
             "usage": {"prompt_tokens": 900, "completion_tokens": 400, "cost": 0.01},
         }
         return httpx.Response(200, json=body)
@@ -138,6 +140,43 @@ def test_a_run_with_no_readable_image_fails_the_run_without_killing_the_worker(t
     assert registry.get(broken.run_id).images_analysed == 0
     assert registry.get(healthy).status == COMPLETE
     assert len(registry.get(healthy).groups) == 1
+
+
+def test_a_leave_out_verdict_reaches_the_api_as_a_dropped_member_with_its_reason(tmp_path):
+    # The demo has to show what the model changed, otherwise the evaluation is decorative
+    config = replace(build_config(tmp_path), llm_concurrency=1)
+    registry = RunRegistry(config)
+    requests = []
+    payloads = [evaluation_payload(quality=0.95), evaluation_payload(keep="leave_out"), evaluation_payload(quality=0.3)]
+    service = PipelineService(config, registry, transport=build_transport(requests, payloads))
+    run_id = seed_run(config, registry, [(200, 40, 40), (40, 200, 40), (40, 40, 200)])
+
+    service.execute(run_id)
+
+    state = registry.get(run_id)
+    assert len(state.baseline_groups) == 1
+    assert len(state.baseline_groups[0].members) == 3
+    assert len(state.groups[0].members) == 2
+    excluded = state.groups[0].evidence["excluded_by_signal"]
+    assert len(excluded) == 1
+    assert excluded[0]["reason"] == "Distinctive scene"
+    representative = [member for member in state.groups[0].members if member.membership == "representative"]
+    assert representative[0].evidence["representative_score"] == 0.95
+
+
+def test_a_run_without_evaluation_records_keeps_the_deterministic_groups(tmp_path):
+    # No key configured must still produce a usable result, not an empty one
+    config = replace(build_config(tmp_path), openrouter_api_key="")
+    registry = RunRegistry(config)
+    service = PipelineService(config, registry, transport=build_transport([]))
+    run_id = seed_run(config, registry, [(10, 10, 10), (20, 20, 20)])
+
+    service.execute(run_id)
+
+    state = registry.get(run_id)
+    assert state.llm_summary is None
+    assert len(state.groups) == 1
+    assert state.groups == state.baseline_groups
 
 
 def test_expired_runs_are_swept_and_recent_runs_are_kept(tmp_path):

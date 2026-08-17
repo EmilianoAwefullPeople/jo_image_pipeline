@@ -8,7 +8,9 @@ from jo_pipeline.config import REPO_ROOT
 from jo_pipeline.group import GroupMember, GroupProposal
 from jo_pipeline.manifest import DatasetManifest, ManifestEntry
 from jo_pipeline.normalize import MetadataObservation
-from jo_pipeline.persist import COMPLETE, PipelineStore
+from jo_pipeline.persist import COMPLETE, OPENROUTER_PROVIDER, ModelCall, PipelineStore
+from jo_pipeline.refine import build_llm_observations
+from tests.test_refine import evaluation
 
 
 def build_database(tmp_path):
@@ -159,6 +161,96 @@ def test_a_failure_inside_the_transaction_stores_nothing(tmp_path):
 
     connection = sqlite3.connect(database_path)
     assert connection.execute("select count(*) from media_assets").fetchone()[0] == 0
+    connection.close()
+
+
+def test_llm_observations_store_under_the_fetched_category_the_schema_reserves(tmp_path):
+    # The category CHECK constraint must accept externally obtained metadata without a schema change
+    database_path = build_database(tmp_path)
+    manifest = build_manifest()
+    observations = build_llm_observations(evaluation(keep="leave_out", quality=0.91), "openai/gpt-5.6-sol", "p1/llm-eval-1")
+
+    with PipelineStore(database_path) as store:
+        store.save_dataset(manifest)
+        asset_ids = store.save_assets(manifest)
+        run_id = store.start_run(manifest, "digest", "openai/gpt-5.6-sol")
+        stored = store.save_path_observations(run_id, asset_ids, {"IMG_0001.HEIC": observations})
+
+    connection = sqlite3.connect(database_path)
+    categories = {row[0] for row in connection.execute("select distinct category from metadata_observations").fetchall()}
+    keep, confidence, evidence = connection.execute(
+        "select value, confidence, evidence from metadata_observations where field = 'memory_keep_signal'"
+    ).fetchone()
+    source = connection.execute("select distinct source from metadata_observations").fetchone()[0]
+    landmark_reason = connection.execute("select unknown_reason from metadata_observations where field = 'landmark_candidate'").fetchone()[0]
+    model_id = connection.execute("select model_id from processing_runs where id = ?", (run_id,)).fetchone()[0]
+    connection.close()
+
+    assert stored == len(observations)
+    assert categories == {"fetched"}
+    assert json.loads(keep) == "leave_out"
+    assert confidence == 0.77
+    assert json.loads(evidence)["reason"] == "a reason"
+    assert source == "llm.openai/gpt-5.6-sol"
+    assert landmark_reason == "model returned null"
+    assert model_id == "openai/gpt-5.6-sol"
+
+
+def test_model_calls_store_their_cost_accounting(tmp_path):
+    # model_calls has existed unwritten since Week 2; this is the contract it was designed for
+    database_path = build_database(tmp_path)
+    manifest = build_manifest()
+    call = ModelCall(
+        relative_path="IMG_0001.HEIC",
+        provider=OPENROUTER_PROVIDER,
+        model_id="openai/gpt-5.6-sol",
+        prompt_version="1",
+        schema_version="llm-eval-1",
+        attempt=2,
+        validation_status="valid",
+        latency_ms=9970,
+        prompt_tokens=2373,
+        completion_tokens=457,
+        cost_usd=0.0285,
+        parsed_output={"caption": "a caption"},
+        failure_detail=None,
+        called_utc="2026-08-17T06:00:00+00:00",
+    )
+
+    with PipelineStore(database_path) as store:
+        store.save_dataset(manifest)
+        asset_ids = store.save_assets(manifest)
+        run_id = store.start_run(manifest, "digest", "openai/gpt-5.6-sol")
+        stored = store.save_model_calls(run_id, asset_ids, [call])
+
+    connection = sqlite3.connect(database_path)
+    provider, status, attempt, cost, tokens, parsed = connection.execute(
+        "select provider, validation_status, attempt, cost_usd, prompt_tokens, parsed_output from model_calls"
+    ).fetchone()
+    connection.close()
+
+    assert stored == 1
+    assert provider == "openrouter"
+    assert status == "valid"
+    assert attempt == 2
+    assert cost == 0.0285
+    assert tokens == 2373
+    assert json.loads(parsed)["caption"] == "a caption"
+
+
+def test_a_model_call_for_an_unstored_asset_is_skipped_rather_than_failing(tmp_path):
+    database_path = build_database(tmp_path)
+    manifest = build_manifest()
+
+    with PipelineStore(database_path) as store:
+        store.save_dataset(manifest)
+        asset_ids = store.save_assets(manifest)
+        run_id = store.start_run(manifest, "digest", None)
+        stored = store.save_path_observations(run_id, asset_ids, {"GHOST.HEIC": build_llm_observations(evaluation(), "m", "v")})
+
+    assert stored == 0
+    connection = sqlite3.connect(database_path)
+    assert connection.execute("select count(*) from metadata_observations").fetchone()[0] == 0
     connection.close()
 
 

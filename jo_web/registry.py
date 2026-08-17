@@ -22,10 +22,11 @@ EXTRACTING = "extracting"
 THUMBNAILING = "thumbnailing"
 GROUPING = "grouping"
 EVALUATING = "evaluating"
+REFINING = "refining"
 COMPLETE = "complete"
 FAILED = "failed"
 
-ACTIVE_STATUSES = (QUEUED, INVENTORYING, EXTRACTING, THUMBNAILING, GROUPING, EVALUATING)
+ACTIVE_STATUSES = (QUEUED, INVENTORYING, EXTRACTING, THUMBNAILING, GROUPING, EVALUATING, REFINING)
 
 
 @dataclass(frozen=True)
@@ -55,6 +56,7 @@ class RunState:
     reliability_failures: dict = field(default_factory=dict)
     images_analysed: int = 0
     groups: list[GroupProposal] = field(default_factory=list)
+    baseline_groups: list[GroupProposal] = field(default_factory=list)
     thumbnails: dict = field(default_factory=dict)
     llm_summary: RunSummary | None = None
     llm_records: list[ImageEvaluationRecord] = field(default_factory=list)
@@ -120,13 +122,14 @@ class RunRegistry:
         LOGGER.info(f"{run_id}: {len(thumbnails)} thumbnails available")
         return state
 
-    def set_groups(self, run_id: str, groups: list[GroupProposal]) -> RunState | None:
+    def set_groups(self, run_id: str, groups: list[GroupProposal], baseline: list[GroupProposal]) -> RunState | None:
         with self._lock:
             state = self._runs.get(run_id)
             if state is None:
                 return None
             state.groups = groups
-        LOGGER.info(f"{run_id}: {len(groups)} group proposals recorded")
+            state.baseline_groups = baseline
+        LOGGER.info(f"{run_id}: {len(groups)} group proposals recorded against a {len(baseline)} proposal baseline")
         return state
 
     def set_evaluation(self, run_id: str, summary: RunSummary, records: list[ImageEvaluationRecord]) -> RunState | None:
