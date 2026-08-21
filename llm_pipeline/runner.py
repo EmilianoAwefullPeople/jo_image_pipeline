@@ -13,7 +13,7 @@ from llm_pipeline.client import OpenRouterClient, OpenRouterError
 from llm_pipeline.derivative import DERIVATIVE_VERSION, DerivativeBuilder
 from llm_pipeline.discovery import DiscoveredImage
 from llm_pipeline.evaluate import VALID, EvaluationOutcome, ImageEvaluator
-from llm_pipeline.prompts import PROMPT_VERSION, build_messages
+from llm_pipeline.prompts import PromptSet
 from llm_pipeline.schema import SCHEMA_VERSION
 from llm_pipeline.store import ImageEvaluationRecord, RunStore, RunSummary
 
@@ -69,14 +69,14 @@ def group_by_hash(images: list[DiscoveredImage]) -> dict[str, list[DiscoveredIma
     return grouped
 
 
-def build_record(dataset_id: str, image: DiscoveredImage, model: str, outcome: EvaluationOutcome) -> ImageEvaluationRecord:
+def build_record(dataset_id: str, image: DiscoveredImage, model: str, prompt_version: str, outcome: EvaluationOutcome) -> ImageEvaluationRecord:
     evaluation = None if outcome.evaluation is None else outcome.evaluation.model_dump()
     return ImageEvaluationRecord(
         dataset_id=dataset_id,
         relative_path=image.relative_path,
         sha256=image.sha256,
         model=model,
-        prompt_version=PROMPT_VERSION,
+        prompt_version=prompt_version,
         schema_version=SCHEMA_VERSION,
         derivative_version=DERIVATIVE_VERSION,
         evaluated_utc=datetime.now(timezone.utc).isoformat(),
@@ -93,11 +93,12 @@ def build_record(dataset_id: str, image: DiscoveredImage, model: str, outcome: E
 
 
 class EvaluationRunner:
-    def __init__(self, client: OpenRouterClient, store: RunStore, dataset_id: str, dataset_path: Path, concurrency: int = DEFAULT_CONCURRENCY):
+    def __init__(self, client: OpenRouterClient, store: RunStore, dataset_id: str, dataset_path: Path, prompts: PromptSet, concurrency: int = DEFAULT_CONCURRENCY):
         self.client = client
         self.store = store
         self.dataset_id = dataset_id
         self.dataset_path = dataset_path
+        self.prompts = prompts
         self.concurrency = concurrency
         self.evaluator = ImageEvaluator(client)
         self.builder = DerivativeBuilder(dataset_path)
@@ -123,7 +124,7 @@ class EvaluationRunner:
         summary = RunSummary(
             dataset_id=self.dataset_id,
             model=self.client.model,
-            prompt_version=PROMPT_VERSION,
+            prompt_version=self.prompts.version,
             schema_version=SCHEMA_VERSION,
             started_utc=started_utc,
             finished_utc=datetime.now(timezone.utc).isoformat(),
@@ -173,7 +174,7 @@ class EvaluationRunner:
             LOGGER.warning(f"{image.relative_path}: {detail}")
             return ImageAttempt(record=None, failure_detail=detail)
 
-        messages = build_messages(derivative.data_url, derivative.capture_local_time)
+        messages = self.prompts.build_messages(derivative.data_url, derivative.capture_local_time)
         try:
             outcome = self._evaluate_with_retry(image.relative_path, messages)
         except OpenRouterError as error:
@@ -181,7 +182,7 @@ class EvaluationRunner:
             LOGGER.warning(f"{image.relative_path}: {detail}")
             return ImageAttempt(record=None, failure_detail=detail)
 
-        record = build_record(self.dataset_id, image, self.client.model, outcome)
+        record = build_record(self.dataset_id, image, self.client.model, self.prompts.version, outcome)
         self.store.write_record(record)
         LOGGER.info(f"{image.relative_path}: {record.validation_status} attempts={record.attempts} cost=${record.cost_usd:.4f}")
         return ImageAttempt(record=record, failure_detail=None)

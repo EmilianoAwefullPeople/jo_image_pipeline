@@ -8,11 +8,26 @@ const uploadStatus = document.getElementById("upload-status");
 const uploadBar = document.getElementById("upload-bar");
 const uploadDetail = document.getElementById("upload-detail");
 const dropzoneHint = document.getElementById("dropzone-hint");
+const promptSystem = document.getElementById("prompt-system");
+const promptUser = document.getElementById("prompt-user");
+const promptReset = document.getElementById("prompt-reset");
+const promptState = document.getElementById("prompt-state");
 
 let busy = false;
+let defaultPrompt = null;
 
 pickButton.addEventListener("click", () => fileInput.click());
 fileInput.addEventListener("change", () => submit(Array.from(fileInput.files)));
+promptSystem.addEventListener("input", renderPromptState);
+promptUser.addEventListener("input", renderPromptState);
+promptReset.addEventListener("click", () => {
+  if (!defaultPrompt) return;
+  promptSystem.value = defaultPrompt.system;
+  promptUser.value = defaultPrompt.user_template;
+  renderPromptState();
+});
+
+loadPrompt();
 
 dropzone.addEventListener("dragover", (event) => {
   event.preventDefault();
@@ -38,6 +53,44 @@ function stamp(isoValue) {
   return new Date(isoValue).toISOString().replace("T", " ").slice(0, 19) + " UTC";
 }
 
+async function loadPrompt() {
+  const response = await fetch("/api/prompt");
+  if (!response.ok) {
+    text("prompt-detail", "The default prompt could not be loaded, runs will use the prompt stored on the server.");
+    return;
+  }
+  defaultPrompt = await response.json();
+  promptSystem.value = defaultPrompt.system;
+  promptUser.value = defaultPrompt.user_template;
+  renderPromptState();
+}
+
+function promptEdited() {
+  if (!defaultPrompt) return false;
+  return promptSystem.value.trim() !== defaultPrompt.system.trim() || promptUser.value.trim() !== defaultPrompt.user_template.trim();
+}
+
+function renderPromptState() {
+  const edited = promptEdited();
+  promptState.textContent = edited ? "edited" : "default";
+  promptState.className = edited ? "prompt-state edited" : "prompt-state";
+  text("prompt-detail", edited ? "The next run will use this prompt." : "");
+}
+
+async function applyPrompt(runId) {
+  if (!promptEdited()) return;
+  const response = await fetch(`/api/runs/${runId}/prompt`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ system: promptSystem.value, user_template: promptUser.value }),
+  });
+  if (!response.ok) {
+    const body = await response.json().catch(() => ({ detail: response.statusText }));
+    throw new Error(body.detail || "That prompt was refused");
+  }
+  text("prompt-detail", "This run is using the edited prompt.");
+}
+
 async function submit(files) {
   if (busy || !files.length) return;
   busy = true;
@@ -46,6 +99,7 @@ async function submit(files) {
 
   try {
     const created = await postJson("/api/runs");
+    await applyPrompt(created.run_id);
     dropzoneHint.textContent = `Accepting up to ${created.limits.max_files} files`;
     show("upload-status", true);
     const accepted = await uploadAll(created.run_id, files.slice(0, created.limits.max_files));
@@ -148,6 +202,7 @@ function renderSummary(state) {
     { label: "Left out by model", value: dropped },
     { label: "Evaluated", value: llm ? llm.images_evaluated : 0 },
     { label: "Model cost", value: llm ? `$${llm.total_cost_usd.toFixed(3)}` : "$0.000" },
+    { label: "Prompt", value: escapeHtml(state.llm.prompt_version) },
   ];
   document.getElementById("summary-tiles").innerHTML = tiles
     .map((tile) => `<div class="tile"><div class="value">${tile.value}</div><div class="label">${tile.label}</div></div>`)

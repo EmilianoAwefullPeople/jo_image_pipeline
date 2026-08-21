@@ -10,6 +10,7 @@ from jo_web.config import WebConfig
 from jo_web.registry import COMPLETE, RunRegistry
 from jo_web.service import PipelineService
 from jo_web.worker import RunWorker
+from llm_pipeline.prompts import custom_prompts, default_prompts
 
 CAPTURE_BASE = datetime(2026, 5, 4, 9, 30, 0, tzinfo=timezone.utc)
 
@@ -177,6 +178,37 @@ def test_a_run_without_evaluation_records_keeps_the_deterministic_groups(tmp_pat
     assert state.llm_summary is None
     assert len(state.groups) == 1
     assert state.groups == state.baseline_groups
+
+
+def test_a_prompt_attached_to_a_run_is_the_one_sent_and_recorded(tmp_path):
+    # The editor is only useful if the edited text reaches the request and the record says so
+    config = build_config(tmp_path)
+    registry = RunRegistry(config)
+    requests = []
+    service = PipelineService(config, registry, transport=build_transport(requests))
+    run_id = seed_run(config, registry, [(200, 40, 40)])
+    registry.set_prompts(run_id, custom_prompts("Answer only in Latin.", "Taken at {capture_local_time}."))
+
+    service.execute(run_id)
+
+    state = registry.get(run_id)
+    assert requests[0]["messages"][0]["content"] == "Answer only in Latin."
+    assert requests[0]["messages"][1]["content"][1]["text"] == "Taken at 2026:05:04 09:30:00."
+    assert state.llm_summary.prompt_version == "custom"
+    assert state.llm_records[0].prompt_version == "custom"
+
+
+def test_a_run_with_no_attached_prompt_uses_the_stored_default(tmp_path):
+    config = build_config(tmp_path)
+    registry = RunRegistry(config)
+    requests = []
+    service = PipelineService(config, registry, transport=build_transport(requests))
+    run_id = seed_run(config, registry, [(40, 40, 200)])
+
+    service.execute(run_id)
+
+    assert requests[0]["messages"][0]["content"] == default_prompts().system
+    assert registry.get(run_id).llm_summary.prompt_version == "1"
 
 
 def test_expired_runs_are_swept_and_recent_runs_are_kept(tmp_path):

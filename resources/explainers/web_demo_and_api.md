@@ -43,6 +43,18 @@ Uploads arrive one file per request, which avoids request body and timeout limit
 
 Filenames are reduced to a bare name and rejected if empty, dotted or hidden; a repeated name is given the next free index rather than overwriting its predecessor. Anything refused is reported back and listed in the run's `skipped` array, because a file that silently disappears reads as lost data.
 
+## Editing the prompt from the page
+
+The demo page carries a prompt editor so a prompt change can be tried against real media without a redeploy. It is a testing feature and behaves like one:
+
+- `GET /api/prompt` serves the system prompt and user template that ship with the build, along with the `{capture_local_time}` placeholder name and the character cap.
+- `PUT /api/runs/{id}/prompt` attaches an edited pair to one run, before it starts. After `start` the route answers 409 — swapping the prompt mid-run would make the stored records lie about what was sent.
+- The page only sends the prompt when the text differs from the served default, so an untouched editor leaves the run on the shipped prompt.
+
+An edited prompt is validated before it is accepted: both parts must be non-empty and within the cap, and the user template must be formattable, since a stray brace would otherwise fail once per image at request time. `{capture_local_time}` is optional — dropping it simply means the model is not told the capture time.
+
+A run carrying an edited prompt records `prompt_version` as `custom` rather than the shipped version, in its per-image records, its run summary, and the directory those records are written to. Nothing about the edit is persisted beyond the run: the next run starts from the shipped prompt again, and the files under `llm_pipeline/prompts/` are never written to. Changing the prompt changes what the model returns, so the moments a run proposes are only comparable with another run on the same prompt version.
+
 ## Duplicates
 
 Byte-identical files are kept on disk and both reach grouping, where `DuplicateIndex` uses the shared hash as a first-class signal and collapses the later copy. Only the **evaluation** list is deduplicated by hash, so an identical pair is described once and paid for once, and the single record is shared by every path with that hash.

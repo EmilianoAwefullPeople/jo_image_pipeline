@@ -9,6 +9,7 @@ from pathlib import Path
 from jo_pipeline.group import GroupProposal
 from jo_pipeline.reliability import FieldReliability
 from jo_web.config import WebConfig
+from llm_pipeline.prompts import PromptSet
 from llm_pipeline.store import ImageEvaluationRecord, RunSummary
 
 LOGGER = logging.getLogger(__name__)
@@ -60,6 +61,7 @@ class RunState:
     thumbnails: dict = field(default_factory=dict)
     llm_summary: RunSummary | None = None
     llm_records: list[ImageEvaluationRecord] = field(default_factory=list)
+    prompts: PromptSet | None = None
     failure_detail: str | None = None
 
 
@@ -111,6 +113,15 @@ class RunRegistry:
             state.reliability_failures = failures
             state.images_analysed = images_analysed
         LOGGER.info(f"{run_id}: extraction recorded {images_analysed} images with {len(failures)} failures")
+        return state
+
+    def set_prompts(self, run_id: str, prompts: PromptSet) -> RunState | None:
+        with self._lock:
+            state = self._runs.get(run_id)
+            if state is None:
+                return None
+            state.prompts = prompts
+        LOGGER.info(f"{run_id}: prompt version {prompts.version} attached, {len(prompts.system)} system characters")
         return state
 
     def set_thumbnails(self, run_id: str, thumbnails: dict) -> RunState | None:

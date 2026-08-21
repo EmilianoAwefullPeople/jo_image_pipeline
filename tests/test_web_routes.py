@@ -110,6 +110,51 @@ def test_a_name_collision_takes_the_next_free_index():
     assert unique_filename("IMG.jpg", {"IMG.jpg", "IMG (2).jpg"}) == "IMG (3).jpg"
 
 
+def test_the_default_prompt_is_served_for_editing(tmp_path):
+    # The editor has to start from what the server would actually send
+    with build_client(tmp_path) as client:
+        payload = client.get("/api/prompt").json()
+
+        assert payload["version"] == "1"
+        assert "{capture_local_time}" in payload["user_template"]
+        assert payload["placeholder"] == "{capture_local_time}"
+        assert payload["system"].strip()
+
+
+def test_an_edited_prompt_is_attached_to_the_run_that_will_use_it(tmp_path):
+    with build_client(tmp_path) as client:
+        run_id = client.post("/api/runs").json()["run_id"]
+
+        response = client.put(f"/api/runs/{run_id}/prompt", json={"system": "Say nothing.", "user_template": "At {capture_local_time}."})
+
+        assert response.status_code == 200
+        assert response.json()["prompt_version"] == "custom"
+        assert client.get(f"/api/runs/{run_id}").json()["llm"]["prompt_version"] == "custom"
+
+
+def test_an_unusable_or_empty_prompt_is_refused_before_the_run_starts(tmp_path):
+    # A template that cannot be formatted would fail once per image instead
+    with build_client(tmp_path) as client:
+        run_id = client.post("/api/runs").json()["run_id"]
+
+        assert client.put(f"/api/runs/{run_id}/prompt", json={"system": "Say nothing.", "user_template": "At {when}."}).status_code == 400
+        assert client.put(f"/api/runs/{run_id}/prompt", json={"system": "  ", "user_template": "At {capture_local_time}."}).status_code == 400
+        assert client.put(f"/api/runs/{run_id}/prompt", json={"system": "x" * 20001, "user_template": "At {capture_local_time}."}).status_code == 400
+        assert client.get(f"/api/runs/{run_id}").json()["llm"]["prompt_version"] == "1"
+
+
+def test_the_prompt_cannot_be_changed_once_the_run_has_started(tmp_path):
+    # Swapping the prompt mid run would make the records lie about what was sent
+    with build_client(tmp_path) as client:
+        run_id = client.post("/api/runs").json()["run_id"]
+        client.post(f"/api/runs/{run_id}/files", files={"file": ("IMG_0001.jpg", photo_bytes(), "image/jpeg")})
+        client.post(f"/api/runs/{run_id}/start")
+
+        response = client.put(f"/api/runs/{run_id}/prompt", json={"system": "Too late.", "user_template": "At {capture_local_time}."})
+
+        assert response.status_code == 409
+
+
 def test_health_reports_ok(tmp_path):
     with build_client(tmp_path) as client:
         assert client.get("/api/health").json() == {"status": "ok"}

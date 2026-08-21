@@ -14,7 +14,7 @@ from jo_web.config import UPLOAD_DATASET_ID, WebConfig
 from jo_web.registry import EVALUATING, EXTRACTING, GROUPING, INVENTORYING, REFINING, THUMBNAILING, RunRegistry
 from llm_pipeline.client import OpenRouterClient
 from llm_pipeline.discovery import discover_images
-from llm_pipeline.prompts import PROMPT_VERSION
+from llm_pipeline.prompts import PromptSet, default_prompts
 from llm_pipeline.runner import EvaluationProgress, EvaluationRunner
 from llm_pipeline.schema import SCHEMA_VERSION
 from llm_pipeline.store import RunStore
@@ -106,16 +106,25 @@ class PipelineService:
             LOGGER.warning(f"{run_id}: evaluation skipped, JO_OPENROUTER_API_KEY is not set")
             return
 
+        prompts = self._prompts(run_id)
         llm_config = self.config.llm_config(run_id)
         images = discover_images(dataset_path)
         self.registry.set_stage(run_id, EVALUATING, 0, len(images))
-        store = RunStore(llm_config.llm_runs_dir, UPLOAD_DATASET_ID, PROMPT_VERSION, SCHEMA_VERSION)
+        store = RunStore(llm_config.llm_runs_dir, UPLOAD_DATASET_ID, prompts.version, SCHEMA_VERSION)
 
         with OpenRouterClient(llm_config.openrouter_api_key, llm_config.openrouter_model, transport=self.transport) as client:
-            runner = EvaluationRunner(client, store, UPLOAD_DATASET_ID, dataset_path, concurrency=self.config.llm_concurrency)
+            runner = EvaluationRunner(client, store, UPLOAD_DATASET_ID, dataset_path, prompts, concurrency=self.config.llm_concurrency)
             evaluation = runner.run(images, on_progress=lambda progress: self._on_evaluation_progress(run_id, progress))
 
         self.registry.set_evaluation(run_id, evaluation.summary, evaluation.records)
+
+    def _prompts(self, run_id: str) -> PromptSet:
+        state = self.registry.get(run_id)
+        if state is None or state.prompts is None:
+            LOGGER.info(f"{run_id}: evaluating with the stored default prompt")
+            return default_prompts()
+        LOGGER.info(f"{run_id}: evaluating with the {state.prompts.version} prompt supplied for this run")
+        return state.prompts
 
     def _on_evaluation_progress(self, run_id: str, progress: EvaluationProgress):
         self.registry.set_stage(run_id, EVALUATING, progress.done, progress.total)

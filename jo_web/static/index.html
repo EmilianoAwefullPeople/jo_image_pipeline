@@ -26,6 +26,21 @@
     </div>
   </section>
 
+  <section class="panel" id="prompt-panel">
+    <details id="prompt-details">
+      <summary class="prompt-summary">Prompt <span class="prompt-state" id="prompt-state">default</span></summary>
+      <p class="muted">Testing only. Edits apply to the next run you start from this page and are never saved to the server. The user template must keep the <span class="mono">{capture_local_time}</span> placeholder if you want the capture time passed in.</p>
+      <label class="prompt-label" for="prompt-system">System prompt</label>
+      <textarea id="prompt-system" class="prompt-input" rows="18" spellcheck="false"></textarea>
+      <label class="prompt-label" for="prompt-user">User template</label>
+      <textarea id="prompt-user" class="prompt-input" rows="3" spellcheck="false"></textarea>
+      <div class="prompt-actions">
+        <button type="button" class="button secondary" id="prompt-reset">Reset to default</button>
+        <span class="muted" id="prompt-detail"></span>
+      </div>
+    </details>
+  </section>
+
   <section class="panel" id="progress-panel" hidden>
     <h2>Run <span class="mono" id="run-id"></span></h2>
     <p class="muted">Started <span id="run-created"></span></p>

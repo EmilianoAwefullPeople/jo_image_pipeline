@@ -6,7 +6,7 @@ from llm_pipeline.client import OpenRouterClient, PRICE_INPUT_USD_PER_MTOK, PRIC
 from llm_pipeline.config import LlmConfig, load_config
 from llm_pipeline.discovery import discover_images
 from llm_pipeline.logging_setup import configure_logging
-from llm_pipeline.prompts import PROMPT_VERSION, load_system_prompt
+from llm_pipeline.prompts import PROMPT_VERSION, default_prompts, load_system_prompt
 from llm_pipeline.runner import EvaluationRunner, pending_images
 from llm_pipeline.schema import SCHEMA_VERSION
 from llm_pipeline.store import RunStore, RunSummary
@@ -31,7 +31,7 @@ def run_evaluation(config: LlmConfig, args: argparse.Namespace):
     images = discover_images(dataset_path)
 
     with OpenRouterClient(config.openrouter_api_key, config.openrouter_model) as client:
-        evaluation = EvaluationRunner(client, store, args.dataset, dataset_path).run(images, limit=args.limit)
+        evaluation = EvaluationRunner(client, store, args.dataset, dataset_path, default_prompts()).run(images, limit=args.limit)
 
     print_run_summary(evaluation.summary, store.run_dir)
 

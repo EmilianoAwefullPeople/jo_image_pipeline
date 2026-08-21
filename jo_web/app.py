@@ -9,6 +9,7 @@ from fastapi import FastAPI, HTTPException, UploadFile
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from PIL import Image, UnidentifiedImageError
+from pydantic import BaseModel
 
 from jo_pipeline.logging_setup import configure_logging
 from jo_web.config import ACCEPTED_EXTENSIONS, WebConfig, load_web_config
@@ -16,6 +17,7 @@ from jo_web.registry import CREATED, SkippedFile, RunRegistry, UploadedFile
 from jo_web.serialize import run_state_payload, run_summary_payload
 from jo_web.service import PipelineService
 from jo_web.worker import RunJanitor, RunWorker
+from llm_pipeline.prompts import CAPTURE_TIME_PLACEHOLDER, custom_prompts, default_prompts, template_reject_reason
 
 LOGGER = logging.getLogger(__name__)
 
@@ -23,6 +25,12 @@ STATIC_DIR = Path(__file__).resolve().parent / "static"
 UPLOAD_CHUNK_BYTES = 1024 * 1024
 MAX_FILENAME_LENGTH = 120
 THUMBNAIL_KEY_LENGTH = 16
+MAX_PROMPT_CHARS = 20000
+
+
+class PromptOverride(BaseModel):
+    system: str
+    user_template: str
 
 
 def safe_filename(raw: str | None) -> str | None:
@@ -85,6 +93,17 @@ def build_app(config: WebConfig | None = None, transport: httpx.BaseTransport | 
     async def health() -> dict:
         return {"status": "ok"}
 
+    @application.get("/api/prompt")
+    async def read_prompt() -> dict:
+        prompts = default_prompts()
+        return {
+            "version": prompts.version,
+            "system": prompts.system,
+            "user_template": prompts.user_template,
+            "placeholder": CAPTURE_TIME_PLACEHOLDER,
+            "max_chars": MAX_PROMPT_CHARS,
+        }
+
     @application.get("/api/runs")
     async def list_runs() -> dict:
         return {"runs": [run_summary_payload(state) for state in registry.snapshot()]}
@@ -133,6 +152,28 @@ def build_app(config: WebConfig | None = None, transport: httpx.BaseTransport | 
 
         registry.add_file(run_id, UploadedFile(filename=name, size_bytes=written))
         return {"accepted": True, "filename": name, "size_bytes": written}
+
+    @application.put("/api/runs/{run_id}/prompt")
+    async def replace_prompt(run_id: str, override: PromptOverride) -> dict:
+        state = require_run(run_id)
+        if state.status != CREATED:
+            raise HTTPException(status_code=409, detail="this run has already started")
+
+        system = override.system.strip()
+        user_template = override.user_template.strip()
+        if not system or not user_template:
+            raise HTTPException(status_code=400, detail="both the system prompt and the user template are required")
+        if len(system) > MAX_PROMPT_CHARS or len(user_template) > MAX_PROMPT_CHARS:
+            raise HTTPException(status_code=400, detail=f"a prompt is limited to {MAX_PROMPT_CHARS} characters")
+
+        reason = template_reject_reason(user_template)
+        if reason:
+            LOGGER.warning(f"{run_id}: prompt rejected, {reason}")
+            raise HTTPException(status_code=400, detail=reason)
+
+        prompts = custom_prompts(system, user_template)
+        registry.set_prompts(run_id, prompts)
+        return {"run_id": run_id, "prompt_version": prompts.version}
 
     @application.post("/api/runs/{run_id}/start", status_code=202)
     async def start_run(run_id: str) -> dict:

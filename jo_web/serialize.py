@@ -1,6 +1,7 @@
 from dataclasses import asdict
 
 from jo_web.registry import RunState
+from llm_pipeline.prompts import PROMPT_VERSION
 
 
 def run_state_payload(state: RunState, queue_depth: int) -> dict:
@@ -22,6 +23,7 @@ def run_state_payload(state: RunState, queue_depth: int) -> dict:
         "llm": {
             "summary": None if state.llm_summary is None else asdict(state.llm_summary),
             "records": [asdict(record) for record in state.llm_records],
+            "prompt_version": PROMPT_VERSION if state.prompts is None else state.prompts.version,
         },
         "failure_detail": state.failure_detail,
     }
