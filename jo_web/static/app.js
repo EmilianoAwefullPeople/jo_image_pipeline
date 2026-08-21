@@ -1,5 +1,21 @@
 const STAGES = ["queued", "inventorying", "extracting", "thumbnailing", "grouping", "evaluating", "refining", "complete"];
 const POLL_INTERVAL_MS = 1200;
+const EXTRACTION_FIELDS = [
+  { label: "1. General description", value: (item) => escapeHtml(item.general_description) },
+  { label: "2. Scene / setting type", value: (item) => tags(withOther(item.scene_setting)) },
+  { label: "3. Landmark / point of interest", value: (item) => landmarkValue(item.landmark) },
+  { label: "4. Notable subjects", value: (item) => tags(item.notable_subjects) },
+  { label: "5. Focal point type", value: (item) => tags(item.focal_points) },
+  { label: "6. Activity depicted", value: (item) => tags(withOther(item.activity)) },
+  { label: "7. Environment & cultural style", value: (item) => environmentValue(item.environment) },
+  { label: "8. Composition / framing", value: (item) => tags(item.composition) },
+  { label: "9. Visual weather condition", value: (item) => tags(item.weather) },
+  { label: "10. Keyword tags", value: (item) => tags(item.keyword_tags) },
+  { label: "11. Photographic style", value: (item) => tags(withOther(item.photographic_style)) },
+  { label: "Screenshot or document", value: (item) => screenshotValue(item.screenshot) },
+  { label: "Keep signal", value: (item) => `<span class="tag">${escapeHtml(item.memory.keep_signal)}</span><span class="tag">${item.memory.confidence.toFixed(2)}</span>${note(item.memory.reason)}` },
+  { label: "Representative quality", value: (item) => `<span class="tag">${item.representative_quality.score.toFixed(2)}</span>${note(item.representative_quality.reasoning)}` },
+];
 
 const dropzone = document.getElementById("dropzone");
 const fileInput = document.getElementById("file-input");
@@ -95,7 +111,7 @@ async function submit(files) {
   if (busy || !files.length) return;
   busy = true;
   pickButton.disabled = true;
-  ["progress-panel", "error-panel", "summary-panel", "groups-panel", "reliability-panel"].forEach((id) => show(id, false));
+  ["progress-panel", "error-panel", "summary-panel", "groups-panel", "evaluations-panel", "reliability-panel"].forEach((id) => show(id, false));
 
   try {
     const created = await postJson("/api/runs");
@@ -189,6 +205,7 @@ function renderProgress(state) {
 function render(runId, state) {
   renderSummary(state);
   renderGroups(runId, state);
+  renderEvaluations(runId, state);
   renderReliability(state);
 }
 
@@ -296,13 +313,61 @@ function renderRefinementDetail(state) {
 
 function renderEvaluation(evaluation) {
   if (!evaluation) return "";
-  const emotions = evaluation.emotions.map((item) => `<span class="tag">${escapeHtml(item.label)}</span>`).join("");
   const landmark = evaluation.landmark.name ? `<p><strong>${escapeHtml(evaluation.landmark.name)}</strong></p>` : "";
   return `<div class="evaluation">
-    <p>${escapeHtml(evaluation.caption)}</p>
+    <p>${escapeHtml(evaluation.general_description)}</p>
     ${landmark}
-    <p class="tags"><span class="tag">${escapeHtml(evaluation.scene.scene_type)}</span><span class="tag">keep: ${escapeHtml(evaluation.memory.keep_signal)}</span>${emotions}</p>
+    <p class="tags">${tags(withOther(evaluation.scene_setting))}<span class="tag">keep: ${escapeHtml(evaluation.memory.keep_signal)}</span></p>
   </div>`;
+}
+
+function withOther(selection) {
+  return selection.types.map((type) => (type === "other" && selection.other_detail ? `other: ${selection.other_detail}` : type));
+}
+
+function tags(values) {
+  if (!values || !values.length) return `<span class="empty">none</span>`;
+  return values.map((value) => `<span class="tag">${escapeHtml(value)}</span>`).join("");
+}
+
+function note(value) {
+  return value ? `<span class="note">${escapeHtml(value)}</span>` : "";
+}
+
+function landmarkValue(landmark) {
+  if (!landmark.name) return `<span class="empty">none identified</span>`;
+  return `<span class="tag strong">${escapeHtml(landmark.name)}</span><span class="tag">${escapeHtml(landmark.confidence_tier)} confidence</span>${note(landmark.evidence)}`;
+}
+
+function environmentValue(environment) {
+  return `${tags(withOther(environment))}${note(environment.specific_style)}`;
+}
+
+function screenshotValue(screenshot) {
+  if (!screenshot.is_screenshot_or_document) return `<span class="empty">no</span>`;
+  const kind = screenshot.document_kind ? `, ${screenshot.document_kind}` : "";
+  return `<span class="tag">${escapeHtml(screenshot.travel_relevance)}</span>${note(`screenshot or document${kind}`)}`;
+}
+
+function renderEvaluations(runId, state) {
+  document.getElementById("evaluations").innerHTML = state.llm.records.map((record) => reviewCard(runId, state, record)).join("");
+  show("evaluations-panel", state.llm.records.length > 0);
+}
+
+function reviewCard(runId, state, record) {
+  const key = state.thumbnails[record.relative_path];
+  const image = key ? `<img src="/api/runs/${runId}/thumbnails/${key}" alt="" loading="lazy">` : `<img alt="" loading="lazy">`;
+  const head = `<div class="review-head"><span class="mono">${escapeHtml(record.relative_path)}</span>
+    <span class="badge ${escapeHtml(record.validation_status)}">${escapeHtml(record.validation_status)}</span></div>`;
+  if (!record.evaluation) {
+    return `<div class="review">${image}<div class="review-body">${head}
+      <p class="muted">${escapeHtml(record.failure_detail || "The model returned nothing that matched the schema for this image.")}</p></div></div>`;
+  }
+
+  const rows = EXTRACTION_FIELDS.map((field) =>
+    `<div class="field"><div class="field-label">${escapeHtml(field.label)}</div><div class="field-value">${field.value(record.evaluation)}</div></div>`
+  ).join("");
+  return `<div class="review">${image}<div class="review-body">${head}<div class="fields">${rows}</div></div></div>`;
 }
 
 function renderReliability(state) {

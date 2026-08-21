@@ -10,7 +10,7 @@ from jo_web.config import WebConfig
 from jo_web.registry import COMPLETE, RunRegistry
 from jo_web.service import PipelineService
 from jo_web.worker import RunWorker
-from llm_pipeline.prompts import custom_prompts, default_prompts
+from llm_pipeline.prompts import PROMPT_VERSION, custom_prompts, default_prompts
 
 CAPTURE_BASE = datetime(2026, 5, 4, 9, 30, 0, tzinfo=timezone.utc)
 
@@ -35,16 +35,20 @@ def build_config(tmp_path: Path) -> WebConfig:
 
 def evaluation_payload(keep="keep", quality=0.8) -> dict:
     return {
-        "caption": "A quiet street in late light",
-        "scene": {"scene_type": "cityscape_street", "confidence": 0.8, "evidence": "shopfronts and kerb"},
-        "activity": {"description": None, "confidence": 0.2, "evidence": None},
-        "landmark": {"name": None, "confidence": 0.1, "evidence": None},
-        "visible_text": {"transcription": None, "text_kind": None, "language": None, "confidence": 0.9},
+        "general_description": "A quiet street in late light with shopfronts running down one side of the kerb",
+        "scene_setting": {"types": ["street"], "other_detail": None},
+        "landmark": {"name": None, "confidence_tier": None, "evidence": None},
+        "notable_subjects": [],
+        "focal_points": ["no_clear_subject"],
+        "activity": {"types": [], "other_detail": None},
+        "environment": {"types": ["city"], "other_detail": None, "specific_style": None},
+        "composition": ["wide_landscape"],
+        "weather": ["overcast"],
+        "keyword_tags": ["street", "shopfronts", "late light"],
+        "photographic_style": {"types": ["muted_desaturated"], "other_detail": None},
         "screenshot": {"is_screenshot_or_document": False, "travel_relevance": "not_applicable", "document_kind": None, "confidence": 0.95},
-        "emotions": [{"label": "calm", "confidence": 0.6}],
         "memory": {"keep_signal": keep, "reason": "Distinctive scene", "confidence": 0.7},
         "representative_quality": {"score": quality, "reasoning": "Clear subject"},
-        "journaling_prompt": None,
     }
 
 
@@ -208,7 +212,7 @@ def test_a_run_with_no_attached_prompt_uses_the_stored_default(tmp_path):
     service.execute(run_id)
 
     assert requests[0]["messages"][0]["content"] == default_prompts().system
-    assert registry.get(run_id).llm_summary.prompt_version == "1"
+    assert registry.get(run_id).llm_summary.prompt_version == PROMPT_VERSION
 
 
 def test_expired_runs_are_swept_and_recent_runs_are_kept(tmp_path):

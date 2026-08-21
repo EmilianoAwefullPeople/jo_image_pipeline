@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-PROMPT_VERSION = "1"
+PROMPT_VERSION = "2"
 CUSTOM_PROMPT_VERSION = "custom"
 PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
 UNKNOWN_CAPTURE_TIME = "unknown"

@@ -32,7 +32,7 @@ class ImageSignal:
     representative_reasoning: str
     is_screenshot: bool
     travel_relevance: str
-    scene_type: str
+    scene_setting_types: list
 
 
 def build_image_signals(evaluations: dict) -> dict:
@@ -54,7 +54,7 @@ def build_image_signals(evaluations: dict) -> dict:
             representative_reasoning=quality["reasoning"],
             is_screenshot=screenshot["is_screenshot_or_document"],
             travel_relevance=screenshot["travel_relevance"],
-            scene_type=evaluation["scene"]["scene_type"],
+            scene_setting_types=evaluation["scene_setting"]["types"],
         )
         LOGGER.debug(f"{relative_path}: signal built with keep {memory['keep_signal']} and quality {quality['score']}")
     LOGGER.info(f"built {len(signals)} image signals from {len(evaluations)} evaluations")
@@ -63,25 +63,31 @@ def build_image_signals(evaluations: dict) -> dict:
 
 def build_llm_observations(evaluation: dict, model_id: str, method_version: str) -> list[MetadataObservation]:
     source = f"llm.{model_id}"
-    scene = evaluation["scene"]
-    activity = evaluation["activity"]
+    scene_setting = evaluation["scene_setting"]
     landmark = evaluation["landmark"]
-    visible_text = evaluation["visible_text"]
+    activity = evaluation["activity"]
+    environment = evaluation["environment"]
+    style = evaluation["photographic_style"]
     screenshot = evaluation["screenshot"]
     memory = evaluation["memory"]
     quality = evaluation["representative_quality"]
 
     fields = [
-        ("caption", evaluation["caption"], None, {}),
-        ("scene_type", scene["scene_type"], scene["confidence"], {"evidence": scene["evidence"]}),
-        ("activity_description", activity["description"], activity["confidence"], {"evidence": activity["evidence"]}),
-        ("landmark_candidate", landmark["name"], landmark["confidence"], {"evidence": landmark["evidence"]}),
-        ("visible_text", visible_text["transcription"], visible_text["confidence"], {"text_kind": visible_text["text_kind"], "language": visible_text["language"]}),
+        ("general_description", evaluation["general_description"], None, {}),
+        ("scene_setting_types", scene_setting["types"] or None, None, {"other_detail": scene_setting["other_detail"]}),
+        ("landmark_candidate", landmark["name"], None, {"confidence_tier": landmark["confidence_tier"], "evidence": landmark["evidence"]}),
+        ("notable_subjects", evaluation["notable_subjects"] or None, None, {}),
+        ("focal_point_types", evaluation["focal_points"] or None, None, {}),
+        ("activity_types", activity["types"] or None, None, {"other_detail": activity["other_detail"]}),
+        ("environment_general_types", environment["types"] or None, None, {"other_detail": environment["other_detail"]}),
+        ("environment_specific_style", environment["specific_style"], None, {}),
+        ("composition_types", evaluation["composition"] or None, None, {}),
+        ("weather_conditions", evaluation["weather"] or None, None, {}),
+        ("keyword_tags", evaluation["keyword_tags"] or None, None, {}),
+        ("photographic_style_types", style["types"] or None, None, {"other_detail": style["other_detail"]}),
         ("is_screenshot_or_document", screenshot["is_screenshot_or_document"], screenshot["confidence"], {"travel_relevance": screenshot["travel_relevance"], "document_kind": screenshot["document_kind"]}),
         ("memory_keep_signal", memory["keep_signal"], memory["confidence"], {"reason": memory["reason"]}),
         ("representative_quality", quality["score"], None, {"reasoning": quality["reasoning"]}),
-        ("emotions", [label["label"] for label in evaluation["emotions"]] or None, None, {"labels": evaluation["emotions"]}),
-        ("journaling_prompt", evaluation["journaling_prompt"], None, {}),
     ]
 
     observations = []
@@ -198,7 +204,7 @@ class ProposalRefiner:
         for member in members:
             signal = signals.get(member.relative_path)
             if signal and signal.is_screenshot and signal.travel_relevance == NOT_TRAVEL_RELEVANT:
-                flagged.append({"relative_path": member.relative_path, "scene_type": signal.scene_type})
+                flagged.append({"relative_path": member.relative_path, "scene_setting_types": signal.scene_setting_types})
         return flagged
 
     def _refined_score(self, proposal: GroupProposal, members: list[GroupMember], signals: dict, evidence: dict) -> float:

@@ -79,6 +79,29 @@ main { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column;
 .evaluation .tags { display: flex; flex-wrap: wrap; gap: .25rem; }
 .evaluation .tag { background: var(--page); border: 1px solid var(--line); border-radius: 3px; padding: .05rem .35rem; font-size: .7rem; color: var(--ink-soft); }
 
+.review { display: flex; gap: 1rem; border: 1px solid var(--line); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+.review img { flex: 0 0 200px; width: 200px; height: 200px; object-fit: cover; border-radius: 6px; background: var(--line); }
+.review-body { flex: 1; min-width: 0; }
+.review-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; padding-bottom: .5rem; border-bottom: 1px solid var(--line); word-break: break-word; }
+.badge.valid { background: var(--accent-soft); color: var(--accent); }
+.badge.invalid { background: var(--bad-soft); color: var(--bad); }
+
+.fields { display: grid; grid-template-columns: minmax(150px, 190px) 1fr; gap: .1rem .9rem; margin-top: .55rem; }
+.field { display: contents; }
+.field-label { font-size: .74rem; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-soft); padding: .35rem 0; }
+.field-value { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem; font-size: .82rem; padding: .35rem 0; border-bottom: 1px solid var(--line); word-break: break-word; }
+.field-value .tag { background: var(--page); border: 1px solid var(--line); border-radius: 3px; padding: .05rem .35rem; font-size: .74rem; color: var(--ink); }
+.field-value .tag.strong { background: var(--accent-soft); border-color: #bcd9d9; color: var(--accent); font-weight: 650; }
+.field-value .note { color: var(--ink-soft); font-size: .78rem; }
+.field-value .empty { color: var(--ink-soft); font-style: italic; }
+
+@media (max-width: 720px) {
+  .review { flex-direction: column; }
+  .review img { flex: none; width: 100%; height: 200px; }
+  .fields { grid-template-columns: 1fr; gap: 0; }
+  .field-label { padding-bottom: 0; }
+}
+
 .table-scroll { overflow-x: auto; margin-top: 1rem; }
 table { border-collapse: collapse; width: 100%; font-size: .84rem; }
 th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--line); white-space: nowrap; }

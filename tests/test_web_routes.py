@@ -4,6 +4,7 @@ from fastapi.testclient import TestClient
 from PIL import Image
 
 from jo_web.app import build_app, safe_filename, unique_filename
+from llm_pipeline.prompts import PROMPT_VERSION
 from tests.test_web_service import build_config, build_transport
 
 
@@ -115,7 +116,7 @@ def test_the_default_prompt_is_served_for_editing(tmp_path):
     with build_client(tmp_path) as client:
         payload = client.get("/api/prompt").json()
 
-        assert payload["version"] == "1"
+        assert payload["version"] == PROMPT_VERSION
         assert "{capture_local_time}" in payload["user_template"]
         assert payload["placeholder"] == "{capture_local_time}"
         assert payload["system"].strip()
@@ -140,7 +141,7 @@ def test_an_unusable_or_empty_prompt_is_refused_before_the_run_starts(tmp_path):
         assert client.put(f"/api/runs/{run_id}/prompt", json={"system": "Say nothing.", "user_template": "At {when}."}).status_code == 400
         assert client.put(f"/api/runs/{run_id}/prompt", json={"system": "  ", "user_template": "At {capture_local_time}."}).status_code == 400
         assert client.put(f"/api/runs/{run_id}/prompt", json={"system": "x" * 20001, "user_template": "At {capture_local_time}."}).status_code == 400
-        assert client.get(f"/api/runs/{run_id}").json()["llm"]["prompt_version"] == "1"
+        assert client.get(f"/api/runs/{run_id}").json()["llm"]["prompt_version"] == PROMPT_VERSION
 
 
 def test_the_prompt_cannot_be_changed_once_the_run_has_started(tmp_path):

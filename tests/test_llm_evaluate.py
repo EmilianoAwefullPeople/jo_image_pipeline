@@ -9,16 +9,20 @@ from llm_pipeline.evaluate import INVALID, VALID, ImageEvaluator
 
 def build_payload() -> dict:
     return {
-        "caption": "A stone temple gate under afternoon light",
-        "scene": {"scene_type": "landmark", "confidence": 0.8, "evidence": "ornate gate structure"},
-        "activity": {"description": None, "confidence": 0.2, "evidence": None},
-        "landmark": {"name": None, "confidence": 0.1, "evidence": None},
-        "visible_text": {"transcription": None, "text_kind": None, "language": None, "confidence": 0.9},
+        "general_description": "A stone temple gate under warm afternoon light at the end of a quiet approach",
+        "scene_setting": {"types": ["museum_landmark"], "other_detail": None},
+        "landmark": {"name": None, "confidence_tier": None, "evidence": None},
+        "notable_subjects": ["Architecture, timber temple gate"],
+        "focal_points": ["landmark_architecture"],
+        "activity": {"types": ["viewing_sightseeing"], "other_detail": None},
+        "environment": {"types": ["historic_district"], "other_detail": None, "specific_style": "temple compound"},
+        "composition": ["wide_landscape"],
+        "weather": ["sunny_clear"],
+        "keyword_tags": ["temple", "gate", "afternoon light"],
+        "photographic_style": {"types": ["warm_toned"], "other_detail": None},
         "screenshot": {"is_screenshot_or_document": False, "travel_relevance": "not_applicable", "document_kind": None, "confidence": 0.95},
-        "emotions": [{"label": "awe", "confidence": 0.6}],
         "memory": {"keep_signal": "keep", "reason": "A distinctive scene with story value", "confidence": 0.7},
         "representative_quality": {"score": 0.8, "reasoning": "Clear subject and strong composition"},
-        "journaling_prompt": None,
     }
 
 

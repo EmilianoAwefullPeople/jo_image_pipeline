@@ -1,19 +1,23 @@
 from jo_pipeline.group import BURST, GROUPER_VERSION, MEMBER, REPRESENTATIVE, GroupMember, GroupProposal
-from jo_pipeline.refine import REFINER_VERSION, ProposalRefiner, build_image_signals
+from jo_pipeline.refine import REFINER_VERSION, ProposalRefiner, build_image_signals, build_llm_observations
 
 
 def evaluation(keep="keep", quality=0.5, screenshot=False, relevance="not_applicable", reason="a reason") -> dict:
     return {
-        "caption": "a caption",
-        "scene": {"scene_type": "cityscape_street", "confidence": 0.8, "evidence": "shopfronts"},
-        "activity": {"description": None, "confidence": 0.2, "evidence": None},
-        "landmark": {"name": None, "confidence": 0.1, "evidence": None},
-        "visible_text": {"transcription": None, "text_kind": None, "language": None, "confidence": 0.9},
+        "general_description": "A quiet row of shopfronts along a narrow street in the late afternoon",
+        "scene_setting": {"types": ["street"], "other_detail": None},
+        "landmark": {"name": None, "confidence_tier": None, "evidence": None},
+        "notable_subjects": [],
+        "focal_points": ["no_clear_subject"],
+        "activity": {"types": [], "other_detail": None},
+        "environment": {"types": ["city"], "other_detail": None, "specific_style": None},
+        "composition": ["wide_landscape"],
+        "weather": ["overcast"],
+        "keyword_tags": ["street", "shopfronts", "afternoon"],
+        "photographic_style": {"types": ["muted_desaturated"], "other_detail": None},
         "screenshot": {"is_screenshot_or_document": screenshot, "travel_relevance": relevance, "document_kind": None, "confidence": 0.9},
-        "emotions": [{"label": "calm", "confidence": 0.6}],
         "memory": {"keep_signal": keep, "reason": reason, "confidence": 0.77},
         "representative_quality": {"score": quality, "reasoning": "composition and story"},
-        "journaling_prompt": None,
     }
 
 
@@ -80,7 +84,7 @@ def test_a_non_travel_relevant_screenshot_is_flagged_but_never_dropped():
     refined = ProposalRefiner().refine([proposal(members)], signals)
 
     assert [member.relative_path for member in refined[0].members] == ["shot.png", "real.jpg"]
-    assert refined[0].evidence["screenshots_flagged"] == [{"relative_path": "shot.png", "scene_type": "cityscape_street"}]
+    assert refined[0].evidence["screenshots_flagged"] == [{"relative_path": "shot.png", "scene_setting_types": ["street"]}]
     assert "excluded_by_signal" not in refined[0].evidence
 
 
@@ -125,3 +129,36 @@ def test_an_evaluation_that_failed_validation_yields_no_signal():
     signals = build_image_signals({"a.jpg": None, "b.jpg": evaluation()})
 
     assert list(signals) == ["b.jpg"]
+
+
+def test_every_extraction_category_reaches_the_observation_rows():
+    # The data-extraction categories document is the contract for what the model returns and what gets persisted
+    observations = build_llm_observations(evaluation(), "openai/gpt-5.6-sol", "p2/llm-eval-2")
+
+    fields = [observation.field for observation in observations]
+    assert fields == [
+        "general_description",
+        "scene_setting_types",
+        "landmark_candidate",
+        "notable_subjects",
+        "focal_point_types",
+        "activity_types",
+        "environment_general_types",
+        "environment_specific_style",
+        "composition_types",
+        "weather_conditions",
+        "keyword_tags",
+        "photographic_style_types",
+        "is_screenshot_or_document",
+        "memory_keep_signal",
+        "representative_quality",
+    ]
+
+
+def test_a_category_the_model_left_empty_is_recorded_as_unknown_rather_than_dropped():
+    observations = {observation.field: observation for observation in build_llm_observations(evaluation(), "m", "v")}
+
+    assert observations["activity_types"].value is None
+    assert observations["activity_types"].unknown_reason is not None
+    assert observations["scene_setting_types"].value == ["street"]
+    assert observations["scene_setting_types"].unknown_reason is None
