@@ -255,6 +255,7 @@ function renderGroups(runId, state) {
       return `<div class="group">
         <div class="group-head"><h3>${escapeHtml(group.label)}</h3>
         <span class="group-meta">${group.members.length} photos, ${scoreNote}, ${located} located, ${unlocated} unlocated</span></div>
+        ${groupReasons(group)}
         <div class="shots">${shots}</div>
         ${renderExcluded(runId, state, group)}
       </div>`;
@@ -267,7 +268,84 @@ function shot(runId, state, evaluations, member) {
   const key = state.thumbnails[member.relative_path];
   const image = key ? `<img src="/api/runs/${runId}/thumbnails/${key}" alt="" loading="lazy">` : `<img alt="" loading="lazy">`;
   const badge = member.membership === "member" ? "" : `<span class="badge ${member.membership}">${member.membership}</span> `;
-  return `<div class="shot">${image}<div class="caption">${badge}${escapeHtml(member.relative_path)}${renderEvaluation(evaluations[key])}</div></div>`;
+  return `<div class="shot">${image}<div class="caption">${badge}${escapeHtml(member.relative_path)}${memberReason(member)}${renderEvaluation(evaluations[key])}</div></div>`;
+}
+
+function duration(seconds) {
+  if (seconds === null || seconds === undefined) return "unknown";
+  if (seconds < 90) return `${Math.round(seconds)} s`;
+  const minutes = Math.round(seconds / 60);
+  if (minutes < 90) return `${minutes} min`;
+  return `${Math.floor(minutes / 60)} h ${minutes % 60} min`;
+}
+
+function metres(value) {
+  if (value === null || value === undefined) return "unknown";
+  if (value < 1000) return `${Math.round(value)} m`;
+  return `${(value / 1000).toFixed(1)} km`;
+}
+
+function memberReason(member) {
+  const evidence = member.evidence || {};
+  if (member.membership === "burst") {
+    return `<div class="member-reason">burst frame of ${escapeHtml(evidence.canonical)}, ${duration(evidence.gap_seconds)} apart and ${evidence.hash_distance} bits different</div>`;
+  }
+  if (member.membership === "duplicate") {
+    const detail = evidence.hash_distance === undefined ? "identical file content" : `${evidence.hash_distance} bits different, inside the near-duplicate threshold`;
+    return `<div class="member-reason">copy of ${escapeHtml(evidence.canonical)}, ${detail}</div>`;
+  }
+  if (member.membership === "representative" && evidence.reason) {
+    return `<div class="member-reason">representative: ${escapeHtml(evidence.reason)}</div>`;
+  }
+  return "";
+}
+
+function boundaryReason(boundary) {
+  if (boundary.kind === "time_gap") {
+    return `a gap of ${duration(boundary.gap_seconds)} after ${escapeHtml(boundary.after)}, longer than the ${duration(boundary.window_seconds)} window in force there`;
+  }
+  return `a move of ${metres(boundary.distance_metres)} after ${escapeHtml(boundary.after)}, past the ${metres(boundary.threshold_metres)} place threshold`;
+}
+
+function timeReasons(evidence) {
+  const reasons = [];
+  if (evidence.primary_count > 1) {
+    reasons.push(`${evidence.primary_count} photos taken over ${duration(evidence.span_seconds)}, with nothing between them far enough apart to break the moment`);
+  } else {
+    reasons.push("one photo on its own, with nothing close enough in time to join it");
+  }
+  if (evidence.closest_call) {
+    const closest = evidence.closest_call;
+    reasons.push(`nearest it came to splitting: a gap of ${duration(closest.gap_seconds)} against the ${duration(closest.window_seconds)} window the shooting cadence allowed there`);
+  }
+  return reasons;
+}
+
+function placeReason(evidence) {
+  if (evidence.located_members === 0) {
+    return `no photo here carries a coordinate, so location neither held the moment together nor split it`;
+  }
+  if (evidence.located_members === 1) {
+    return `only one photo here carries a coordinate, so location could not be used to split the moment`;
+  }
+  const unlocated = evidence.unlocated_members ? `, and ${evidence.unlocated_members} without a coordinate stayed on capture time alone` : "";
+  return `the located photos span ${metres(evidence.max_distance_metres)}, inside the ${metres(evidence.place_threshold_metres)} place threshold${unlocated}`;
+}
+
+function groupReasons(group) {
+  const evidence = group.evidence;
+  if (evidence.span_seconds === undefined) {
+    return `<ul class="reasons"><li>${escapeHtml(evidence.reason || "no grouping evidence was recorded")}</li></ul>`;
+  }
+
+  const reasons = timeReasons(evidence);
+  reasons.push(placeReason(evidence));
+  if (evidence.attached_count) {
+    reasons.push(`${evidence.attached_count} frame(s) attached to a photo already here as a duplicate or burst frame`);
+  }
+  reasons.push(evidence.opened_by ? `split from the moment before it by ${boundaryReason(evidence.opened_by)}` : "first moment in the set, nothing came before it");
+  reasons.push(evidence.closed_by ? `closed by ${boundaryReason(evidence.closed_by)}` : "last moment in the set, nothing came after it");
+  return `<ul class="reasons">${reasons.map((reason) => `<li>${reason}</li>`).join("")}</ul>`;
 }
 
 function renderExcluded(runId, state, group) {

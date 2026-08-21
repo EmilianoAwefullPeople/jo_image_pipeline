@@ -31,12 +31,23 @@ REPRESENTATIVE = "representative"
 DUPLICATE = "duplicate"
 BURST = "burst"
 
+TIME_GAP = "time_gap"
+PLACE_CHANGE = "place_change"
+
 
 @dataclass(frozen=True)
 class GroupMember:
     relative_path: str
     membership: str
     evidence: dict = field(default_factory=dict)
+
+
+@dataclass
+class MomentSequence:
+    assets: list
+    opened_by: dict | None = None
+    closed_by: dict | None = None
+    admitted_gaps: list = field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -111,32 +122,35 @@ class MomentGrouper:
         LOGGER.info(f"grouping produced {len(proposals)} proposals from {len(signals)} assets with {len(links)} duplicate or burst links")
         return proposals
 
-    def _split(self, anchored: list[AssetSignals]) -> list[list[AssetSignals]]:
+    def _split(self, anchored: list[AssetSignals]) -> list[MomentSequence]:
         if not anchored:
             return []
 
-        sequences = [[anchored[0]]]
+        sequences = [MomentSequence(assets=[anchored[0]])]
         gaps = []
         for previous, current in zip(anchored, anchored[1:]):
             gap = time_gap_seconds(previous.captured_utc, current.captured_utc)
-            reason = self._boundary_reason(previous, current, gap, gaps)
-            if reason:
-                LOGGER.debug(f"{current.relative_path}: boundary after {previous.relative_path} because {reason}")
-                sequences.append([current])
+            window = self._adaptive_window(gaps)
+            distance = haversine_metres(previous, current)
+            boundary = self._boundary(previous, gap, window, distance)
+            if boundary:
+                LOGGER.info(f"{current.relative_path}: boundary after {previous.relative_path} on {boundary['kind']}")
+                sequences[-1].closed_by = boundary
+                sequences.append(MomentSequence(assets=[current], opened_by=boundary))
                 gaps = []
             else:
-                sequences[-1].append(current)
+                LOGGER.debug(f"{current.relative_path}: joined {previous.relative_path} at {gap:.0f}s inside the {window:.0f}s window")
+                sequences[-1].assets.append(current)
+                sequences[-1].admitted_gaps.append({"gap_seconds": round(gap, 1), "window_seconds": round(window, 1)})
                 gaps.append(gap)
         return sequences
 
-    def _boundary_reason(self, previous: AssetSignals, current: AssetSignals, gap: float, gaps: list[float]) -> str | None:
-        window = self._adaptive_window(gaps)
+    def _boundary(self, previous: AssetSignals, gap: float, window: float, distance: float | None) -> dict | None:
         if gap > window:
-            return f"time gap {gap:.0f}s exceeded window {window:.0f}s"
+            return {"kind": TIME_GAP, "after": previous.relative_path, "gap_seconds": round(gap, 1), "window_seconds": round(window, 1)}
 
-        distance = haversine_metres(previous, current)
         if distance is not None and distance > PLACE_THRESHOLD_METRES:
-            return f"moved {distance:.0f}m beyond the {PLACE_THRESHOLD_METRES:.0f}m place threshold"
+            return {"kind": PLACE_CHANGE, "after": previous.relative_path, "distance_metres": round(distance, 1), "threshold_metres": PLACE_THRESHOLD_METRES}
         return None
 
     def _adaptive_window(self, gaps: list[float]) -> float:
@@ -146,34 +160,49 @@ class MomentGrouper:
         cadence = statistics.median(gaps[-CADENCE_SAMPLE:])
         return min(max(cadence * WINDOW_MULTIPLIER, MIN_WINDOW_SECONDS), MAX_WINDOW_SECONDS)
 
-    def _build_proposal(self, sequence: list[AssetSignals], links: dict) -> GroupProposal:
-        members = [GroupMember(asset.relative_path, MEMBER) for asset in sequence]
-        members.extend(self._attached_links(sequence, links))
-        members = self._elect_representative(members, sequence)
+    def _build_proposal(self, sequence: MomentSequence, links: dict) -> GroupProposal:
+        assets = sequence.assets
+        members = [GroupMember(asset.relative_path, MEMBER) for asset in assets]
+        members.extend(self._attached_links(assets, links))
+        members = self._elect_representative(members, assets)
 
-        located = [asset for asset in sequence if asset.latitude is not None]
-        span_seconds = time_gap_seconds(sequence[0].captured_utc, sequence[-1].captured_utc)
+        located = [asset for asset in assets if asset.latitude is not None]
+        span_seconds = time_gap_seconds(assets[0].captured_utc, assets[-1].captured_utc)
+        closest = self._closest_call(sequence.admitted_gaps)
         evidence = {
             "member_count": len(members),
-            "primary_count": len(sequence),
-            "attached_count": len(members) - len(sequence),
+            "primary_count": len(assets),
+            "attached_count": len(members) - len(assets),
             "span_seconds": span_seconds,
             "located_members": len(located),
-            "unlocated_members": len(sequence) - len(located),
+            "unlocated_members": len(assets) - len(located),
             "max_distance_metres": self._max_distance(located),
+            "place_threshold_metres": PLACE_THRESHOLD_METRES,
+            "closest_call": closest,
+            "opened_by": sequence.opened_by,
+            "closed_by": sequence.closed_by,
         }
-        components = self._score_components(sequence, located, span_seconds)
+        components = self._score_components(assets, located, span_seconds)
         evidence["score_components"] = components
 
         return GroupProposal(
-            label=self._label(sequence),
-            start_utc=sequence[0].captured_utc.isoformat(),
-            end_utc=sequence[-1].captured_utc.isoformat(),
+            label=self._label(assets),
+            start_utc=assets[0].captured_utc.isoformat(),
+            end_utc=assets[-1].captured_utc.isoformat(),
             score=self._weighted_score(components),
             method_version=GROUPER_VERSION,
             members=members,
             evidence=evidence,
         )
+
+    def _closest_call(self, admitted_gaps: list[dict]) -> dict | None:
+        if not admitted_gaps:
+            LOGGER.debug("proposal holds a single primary asset, no gap was admitted into it")
+            return None
+
+        closest = max(admitted_gaps, key=lambda admitted: admitted["gap_seconds"] / admitted["window_seconds"])
+        LOGGER.debug(f"closest admitted gap {closest['gap_seconds']}s against a {closest['window_seconds']}s window")
+        return closest
 
     def _attached_links(self, sequence: list[AssetSignals], links: dict) -> list[GroupMember]:
         paths = {asset.relative_path for asset in sequence}

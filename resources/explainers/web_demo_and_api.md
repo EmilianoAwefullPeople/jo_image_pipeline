@@ -23,6 +23,10 @@ The run payload carries both `groups` and `baseline_groups`. `baseline_groups` i
 
 Photos the model drops are listed in the proposal's `evidence.excluded_by_signal` with the model's reason and confidence, and rendered under their moment rather than hidden, so a viewer can disagree with the call.
 
+Every proposal also carries the reason it exists, and the page prints it under the moment's heading. The grouper records the facts rather than a sentence: `closest_call` is the gap that came nearest to breaking the moment and the adaptive window in force at that point, `opened_by` and `closed_by` are the boundaries on either side (`time_gap` with the gap and window, or `place_change` with the distance and the threshold), and `place_threshold_metres` travels with the proposal so the page never hard-codes it. The boundary that closes one moment is the same object that opens the next, so the two agree by construction. Members attached as a duplicate or burst frame carry the photo they were attached to, the hash distance and the seconds between them.
+
+Reporting the *closest* gap rather than the widest is deliberate: the window narrows with shooting cadence, so two equal gaps are not equally close to a boundary, and the one that nearly split the moment is the one worth showing.
+
 Thumbnails are written during the run rather than transcoded per request. Most customer media is HEIC, which no browser renders, and a full HEIC decode peaks near 250 MB — a gallery of them loading in parallel would exhaust the container. Serving pre-built JPEGs keyed by content hash also means the thumbnail route never builds a path from client input.
 
 ## One run at a time

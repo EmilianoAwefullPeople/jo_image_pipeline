@@ -102,6 +102,12 @@ main { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column;
   .field-label { padding-bottom: 0; }
 }
 
+.reasons { list-style: none; margin: .6rem 0 0; padding: .55rem .75rem; background: var(--page); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; }
+.reasons li { font-size: .8rem; color: var(--ink-soft); padding: .12rem 0; }
+.reasons li::before { content: "\2022"; color: var(--accent); margin-right: .45rem; }
+
+.member-reason { margin-top: .25rem; color: var(--warn); font-size: .7rem; }
+
 .table-scroll { overflow-x: auto; margin-top: 1rem; }
 table { border-collapse: collapse; width: 100%; font-size: .84rem; }
 th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--line); white-space: nowrap; }

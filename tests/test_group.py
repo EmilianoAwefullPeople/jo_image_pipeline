@@ -144,6 +144,60 @@ def test_location_support_is_recorded_in_the_score_components():
     assert proposals[0].evidence["score_components"]["location_support"] == 0.5
 
 
+def test_a_group_records_why_its_photos_were_held_together():
+    # The demo has to explain a proposal, not just assert it
+    proposals = MomentGrouper().group([
+        signal("a", 0, latitude=37.645, longitude=21.319),
+        signal("b", 10, latitude=37.6451, longitude=21.319),
+        signal("c", 20, latitude=37.6452, longitude=21.319),
+    ])
+
+    evidence = proposals[0].evidence
+    assert evidence["closest_call"]["gap_seconds"] == 600.0
+    assert evidence["closest_call"]["window_seconds"] == 2700.0
+    assert evidence["place_threshold_metres"] == 150.0
+    assert evidence["max_distance_metres"] < 150.0
+    assert evidence["opened_by"] is None
+    assert evidence["closed_by"] is None
+
+
+def test_a_time_split_is_recorded_on_both_sides_of_the_boundary():
+    # A viewer needs the reason a moment ended, and the next one names the same cause
+    proposals = MomentGrouper().group([signal("a", 0), signal("b", 60)])
+
+    closed = proposals[0].evidence["closed_by"]
+    opened = proposals[1].evidence["opened_by"]
+    assert closed == opened
+    assert closed["kind"] == "time_gap"
+    assert closed["after"] == "a"
+    assert closed["gap_seconds"] == 3600.0
+    assert closed["window_seconds"] == 2700.0
+
+
+def test_a_place_split_records_the_distance_that_caused_it():
+    proposals = MomentGrouper().group([
+        signal("a", 0, latitude=37.645, longitude=21.319),
+        signal("b", 5, latitude=37.647, longitude=21.319),
+    ])
+
+    boundary = proposals[0].evidence["closed_by"]
+    assert boundary["kind"] == "place_change"
+    assert boundary["after"] == "a"
+    assert boundary["distance_metres"] > 150.0
+    assert boundary["threshold_metres"] == 150.0
+
+
+def test_the_reported_gap_is_the_one_that_came_nearest_to_splitting_the_moment():
+    # Equal gaps are not equally close to a boundary once the window has narrowed
+    dense = [signal("a", 0), signal("b", 1), signal("c", 2), signal("d", 3)]
+    proposals = MomentGrouper().group(dense + [signal("e", 23)])
+
+    closest = proposals[0].evidence["closest_call"]
+    assert closest["gap_seconds"] == 60.0
+    assert closest["window_seconds"] == 900.0
+    assert proposals[0].evidence["closed_by"]["window_seconds"] == 900.0
+
+
 def test_haversine_measures_a_known_separation():
     start = signal("a", 0, latitude=0.0, longitude=0.0)
     end = signal("b", 0, latitude=0.0, longitude=0.001)
