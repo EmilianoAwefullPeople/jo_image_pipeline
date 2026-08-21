@@ -287,17 +287,24 @@ function metres(value) {
 
 function memberReason(member) {
   const evidence = member.evidence || {};
-  if (member.membership === "burst") {
-    return `<div class="member-reason">burst frame of ${escapeHtml(evidence.canonical)}, ${duration(evidence.gap_seconds)} apart and ${evidence.hash_distance} bits different</div>`;
-  }
-  if (member.membership === "duplicate") {
-    const detail = evidence.hash_distance === undefined ? "identical file content" : `${evidence.hash_distance} bits different, inside the near-duplicate threshold`;
-    return `<div class="member-reason">copy of ${escapeHtml(evidence.canonical)}, ${detail}</div>`;
-  }
+  const lines = [];
   if (member.membership === "representative" && evidence.reason) {
-    return `<div class="member-reason">representative: ${escapeHtml(evidence.reason)}</div>`;
+    lines.push(`<div class="member-reason">${escapeHtml(evidence.reason)}</div>`);
   }
-  return "";
+  if (evidence.canonical) {
+    lines.push(`<div class="member-reason link">${attachmentReason(evidence)}</div>`);
+  }
+  return lines.join("");
+}
+
+function attachmentReason(evidence) {
+  if (evidence.gap_seconds !== undefined) {
+    return `burst frame of ${escapeHtml(evidence.canonical)}, ${duration(evidence.gap_seconds)} apart and ${evidence.hash_distance} bits different`;
+  }
+  if (evidence.hash_distance !== undefined) {
+    return `near copy of ${escapeHtml(evidence.canonical)}, ${evidence.hash_distance} bits different`;
+  }
+  return `identical file content to ${escapeHtml(evidence.canonical)}`;
 }
 
 function boundaryReason(boundary) {

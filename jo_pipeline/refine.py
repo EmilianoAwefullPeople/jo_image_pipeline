@@ -176,11 +176,12 @@ class ProposalRefiner:
         elected = []
         for member in members:
             if member.relative_path == best:
-                evidence = {
+                evidence = dict(member.evidence)
+                evidence.update({
                     "reason": "highest model representative quality",
                     "representative_score": scored[best],
                     "previous_representative": previous,
-                }
+                })
                 signal = signals.get(best)
                 if signal:
                     evidence["reasoning"] = signal.representative_reasoning

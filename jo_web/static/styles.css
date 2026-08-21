@@ -106,7 +106,8 @@ main { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column;
 .reasons li { font-size: .8rem; color: var(--ink-soft); padding: .12rem 0; }
 .reasons li::before { content: "\2022"; color: var(--accent); margin-right: .45rem; }
 
-.member-reason { margin-top: .25rem; color: var(--warn); font-size: .7rem; }
+.member-reason { margin-top: .25rem; color: var(--ink-soft); font-size: .7rem; }
+.member-reason.link { color: var(--warn); }
 
 .table-scroll { overflow-x: auto; margin-top: 1rem; }
 table { border-collapse: collapse; width: 100%; font-size: .84rem; }

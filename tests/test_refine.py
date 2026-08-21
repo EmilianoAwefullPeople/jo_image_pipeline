@@ -64,6 +64,23 @@ def test_the_representative_is_re_elected_on_model_quality_not_sharpness():
     assert superseded[0].membership == MEMBER
 
 
+def test_promoting_a_burst_frame_keeps_the_link_to_the_frame_it_came_from():
+    # The proposal still counts it as an attached frame, so the link has to survive the promotion
+    members = [
+        GroupMember("first.jpg", REPRESENTATIVE, {"reason": "sharpest member", "blur_score": 2000.0}),
+        GroupMember("second.jpg", BURST, {"canonical": "first.jpg", "hash_distance": 3, "gap_seconds": 2.0}),
+    ]
+    signals = build_image_signals({"first.jpg": evaluation(quality=0.2), "second.jpg": evaluation(quality=0.95)})
+
+    refined = ProposalRefiner().refine([proposal(members)], signals)
+
+    elected = [member for member in refined[0].members if member.membership == REPRESENTATIVE]
+    assert elected[0].relative_path == "second.jpg"
+    assert elected[0].evidence["canonical"] == "first.jpg"
+    assert elected[0].evidence["gap_seconds"] == 2.0
+    assert elected[0].evidence["reason"] == "highest model representative quality"
+
+
 def test_a_proposal_whose_every_member_is_leave_out_is_dropped_entirely():
     members = [GroupMember("a.jpg", REPRESENTATIVE), GroupMember("b.jpg", MEMBER)]
     signals = build_image_signals({"a.jpg": evaluation(keep="leave_out"), "b.jpg": evaluation(keep="leave_out")})
