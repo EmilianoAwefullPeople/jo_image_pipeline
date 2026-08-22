@@ -128,3 +128,8 @@ details[open] .prompt-summary::before { content: "\25be"; }
 .prompt-actions .muted { margin: 0; }
 .button.secondary { background: var(--page); color: var(--ink); border: 1px solid var(--line); }
 .button.secondary:hover { background: var(--accent-soft); }
+
+.panel-head { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-bottom: .35rem; }
+.panel-head h2 { margin: 0; }
+.panel-head .muted { margin: 0; }
+.panel-head .button { margin-left: auto; }

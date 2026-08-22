@@ -1,5 +1,7 @@
+import hashlib
 import logging
 from contextlib import asynccontextmanager
+from dataclasses import asdict, dataclass
 from pathlib import Path
 
 import cv2
@@ -31,6 +33,12 @@ MAX_PROMPT_CHARS = 20000
 class PromptOverride(BaseModel):
     system: str
     user_template: str
+
+
+@dataclass(frozen=True)
+class StoredUpload:
+    size_bytes: int
+    sha256: str
 
 
 def safe_filename(raw: str | None) -> str | None:
@@ -143,15 +151,18 @@ def build_app(config: WebConfig | None = None, transport: httpx.BaseTransport | 
 
         name = unique_filename(name, registry.existing_names(run_id))
         target = settings.upload_dir(run_id) / name
-        written = await _stream_to_disk(file, target, state.uploaded_bytes, settings)
+        stored = await _stream_to_disk(file, target, state.uploaded_bytes, settings)
         reason = _reject_reason(target, settings)
         if reason:
             target.unlink(missing_ok=True)
             registry.add_skipped(run_id, SkippedFile(filename=name, reason=reason))
             return {"accepted": False, "filename": name, "reason": reason}
 
-        registry.add_file(run_id, UploadedFile(filename=name, size_bytes=written))
-        return {"accepted": True, "filename": name, "size_bytes": written}
+        key = stored.sha256[:THUMBNAIL_KEY_LENGTH]
+        thumbnail = key if service.ensure_thumbnail(target, settings.thumbnail_dir(run_id) / f"{key}.jpg", name) else None
+        uploaded = UploadedFile(filename=name, size_bytes=stored.size_bytes, thumbnail=thumbnail)
+        registry.add_file(run_id, uploaded)
+        return {"accepted": True, **asdict(uploaded)}
 
     @application.put("/api/runs/{run_id}/prompt")
     async def replace_prompt(run_id: str, override: PromptOverride) -> dict:
@@ -211,8 +222,9 @@ def build_app(config: WebConfig | None = None, transport: httpx.BaseTransport | 
     return application
 
 
-async def _stream_to_disk(file: UploadFile, target: Path, already_uploaded: int, settings: WebConfig) -> int:
+async def _stream_to_disk(file: UploadFile, target: Path, already_uploaded: int, settings: WebConfig) -> StoredUpload:
     written = 0
+    digest = hashlib.sha256()
     with target.open("wb") as handle:
         while True:
             chunk = await file.read(UPLOAD_CHUNK_BYTES)
@@ -225,8 +237,9 @@ async def _stream_to_disk(file: UploadFile, target: Path, already_uploaded: int,
                 LOGGER.warning(f"{target.name}: rejected, upload exceeded the configured size limits")
                 raise HTTPException(status_code=413, detail="that upload is larger than this demo allows")
             handle.write(chunk)
+            digest.update(chunk)
     LOGGER.debug(f"{target.name}: wrote {written} bytes")
-    return written
+    return StoredUpload(size_bytes=written, sha256=digest.hexdigest())
 
 
 def _reject_reason(target: Path, settings: WebConfig) -> str | None:

@@ -9,7 +9,7 @@
 <body>
 <header class="masthead">
   <h1>Journey Onward image pipeline</h1>
-  <p>Upload a set of photos. The pipeline inventories them, extracts and normalises their metadata, groups them into moments, and evaluates each image with a visual model.</p>
+  <p>Upload a set of photos, check the set, then press Process. The pipeline inventories the photos, extracts and normalises their metadata, groups them into moments, and evaluates each image with a visual model.</p>
 </header>
 
 <main>
@@ -24,6 +24,17 @@
       <div class="bar"><div class="bar-fill" id="upload-bar"></div></div>
       <p class="muted" id="upload-detail"></p>
     </div>
+  </section>
+
+  <section class="panel" id="set-panel" hidden>
+    <div class="panel-head">
+      <h2>Set</h2>
+      <p class="muted" id="set-count"></p>
+      <button type="button" class="button" id="process" disabled>Process</button>
+    </div>
+    <p class="muted">Every photo accepted into the set. Drop more above to add to it. Nothing is analysed until you press Process.</p>
+    <div class="shots" id="set-grid"></div>
+    <p class="muted" id="set-skipped"></p>
   </section>
 
   <section class="panel" id="prompt-panel">
@@ -43,7 +54,7 @@
 
   <section class="panel" id="progress-panel" hidden>
     <h2>Run <span class="mono" id="run-id"></span></h2>
-    <p class="muted">Started <span id="run-created"></span></p>
+    <p class="muted">Created <span id="run-created"></span></p>
     <ol class="stages" id="stages"></ol>
     <p class="muted" id="progress-detail"></p>
   </section>

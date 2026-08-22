@@ -1,5 +1,7 @@
 const STAGES = ["queued", "inventorying", "extracting", "thumbnailing", "grouping", "evaluating", "refining", "complete"];
 const POLL_INTERVAL_MS = 1200;
+const MEGABYTE = 1024 * 1024;
+const RESULT_PANELS = ["progress-panel", "error-panel", "summary-panel", "groups-panel", "evaluations-panel", "reliability-panel"];
 const EXTRACTION_FIELDS = [
   { label: "1. General description", value: (item) => escapeHtml(item.general_description) },
   { label: "2. Scene / setting type", value: (item) => tags(withOther(item.scene_setting)) },
@@ -24,16 +26,21 @@ const uploadStatus = document.getElementById("upload-status");
 const uploadBar = document.getElementById("upload-bar");
 const uploadDetail = document.getElementById("upload-detail");
 const dropzoneHint = document.getElementById("dropzone-hint");
+const setGrid = document.getElementById("set-grid");
+const processButton = document.getElementById("process");
 const promptSystem = document.getElementById("prompt-system");
 const promptUser = document.getElementById("prompt-user");
 const promptReset = document.getElementById("prompt-reset");
 const promptState = document.getElementById("prompt-state");
 
-let busy = false;
+let currentSet = null;
+let uploading = false;
+let processing = false;
 let defaultPrompt = null;
 
 pickButton.addEventListener("click", () => fileInput.click());
-fileInput.addEventListener("change", () => submit(Array.from(fileInput.files)));
+fileInput.addEventListener("change", () => addFiles(Array.from(fileInput.files)));
+processButton.addEventListener("click", process);
 promptSystem.addEventListener("input", renderPromptState);
 promptUser.addEventListener("input", renderPromptState);
 promptReset.addEventListener("click", () => {
@@ -53,7 +60,7 @@ dropzone.addEventListener("dragleave", () => dropzone.classList.remove("over"));
 dropzone.addEventListener("drop", (event) => {
   event.preventDefault();
   dropzone.classList.remove("over");
-  submit(Array.from(event.dataTransfer.files));
+  addFiles(Array.from(event.dataTransfer.files));
 });
 
 function show(id, visible) {
@@ -107,52 +114,102 @@ async function applyPrompt(runId) {
   text("prompt-detail", "This run is using the edited prompt.");
 }
 
-async function submit(files) {
-  if (busy || !files.length) return;
-  busy = true;
+async function addFiles(files) {
+  if (uploading || processing || !files.length) return;
+  uploading = true;
   pickButton.disabled = true;
-  ["progress-panel", "error-panel", "summary-panel", "groups-panel", "evaluations-panel", "reliability-panel"].forEach((id) => show(id, false));
+  renderProcessButton();
 
   try {
-    const created = await postJson("/api/runs");
-    await applyPrompt(created.run_id);
-    dropzoneHint.textContent = `Accepting up to ${created.limits.max_files} files`;
+    if (!currentSet || currentSet.started) await openSet();
     show("upload-status", true);
-    const accepted = await uploadAll(created.run_id, files.slice(0, created.limits.max_files));
-    if (!accepted) throw new Error("None of those files could be used. Upload HEIC, JPEG, PNG or TIFF images.");
-    await postJson(`/api/runs/${created.run_id}/start`);
-    show("upload-status", false);
-    show("progress-panel", true);
-    text("run-id", created.run_id.slice(0, 12));
-    text("run-created", stamp(created.created_utc));
-    await poll(created.run_id);
+    await uploadAll(files);
+    show("set-panel", true);
   } catch (error) {
-    show("upload-status", false);
     show("error-panel", true);
     text("error-detail", error.message);
   } finally {
-    busy = false;
+    show("upload-status", false);
+    uploading = false;
     pickButton.disabled = false;
     fileInput.value = "";
+    renderProcessButton();
   }
 }
 
-async function uploadAll(runId, files) {
-  let accepted = 0;
-  for (let index = 0; index < files.length; index += 1) {
-    uploadDetail.textContent = `Uploading ${index + 1} of ${files.length}: ${files[index].name}`;
-    uploadBar.style.width = `${Math.round((index / files.length) * 100)}%`;
+async function openSet() {
+  const created = await postJson("/api/runs");
+  currentSet = { runId: created.run_id, createdUtc: created.created_utc, limits: created.limits, accepted: 0, skipped: [], started: false };
+  dropzoneHint.textContent = `Accepting up to ${created.limits.max_files} files`;
+  setGrid.innerHTML = "";
+  RESULT_PANELS.forEach((id) => show(id, false));
+  renderSetCount();
+}
+
+async function uploadAll(files) {
+  const room = Math.max(0, currentSet.limits.max_files - currentSet.accepted);
+  if (files.length > room) {
+    currentSet.skipped.push({ filename: `${files.length - room} file(s)`, reason: `the set is capped at ${currentSet.limits.max_files} photos` });
+  }
+  const queued = files.slice(0, room);
+  for (let index = 0; index < queued.length; index += 1) {
+    uploadDetail.textContent = `Uploading ${index + 1} of ${queued.length}: ${queued[index].name}`;
+    uploadBar.style.width = `${Math.round((index / queued.length) * 100)}%`;
     const body = new FormData();
-    body.append("file", files[index]);
-    const response = await fetch(`/api/runs/${runId}/files`, { method: "POST", body });
-    if (response.ok) {
-      const result = await response.json();
-      if (result.accepted) accepted += 1;
+    body.append("file", queued[index]);
+    const response = await fetch(`/api/runs/${currentSet.runId}/files`, { method: "POST", body });
+    const result = await response.json().catch(() => ({ detail: response.statusText }));
+    if (response.ok && result.accepted) {
+      currentSet.accepted += 1;
+      setGrid.insertAdjacentHTML("beforeend", setTile(currentSet.runId, result));
+    } else {
+      currentSet.skipped.push({ filename: queued[index].name, reason: result.reason || result.detail || "refused" });
     }
+    renderSetCount();
   }
   uploadBar.style.width = "100%";
-  uploadDetail.textContent = `${accepted} of ${files.length} files accepted`;
-  return accepted;
+}
+
+function setTile(runId, uploaded) {
+  const image = uploaded.thumbnail ? `<img src="/api/runs/${runId}/thumbnails/${uploaded.thumbnail}" alt="" loading="lazy">` : `<img alt="" loading="lazy">`;
+  return `<div class="shot">${image}<div class="caption">${escapeHtml(uploaded.filename)}<div class="member-reason">${(uploaded.size_bytes / MEGABYTE).toFixed(1)} MB</div></div></div>`;
+}
+
+function renderSetCount() {
+  const count = currentSet ? currentSet.accepted : 0;
+  const skipped = currentSet ? currentSet.skipped : [];
+  text("set-count", `${count} photo${count === 1 ? "" : "s"}`);
+  text("set-skipped", skipped.length ? `${skipped.length} file(s) not added: ${skipped.map((item) => `${item.filename} (${item.reason})`).join(", ")}` : "");
+}
+
+function renderProcessButton() {
+  processButton.disabled = uploading || processing || !currentSet || currentSet.started || !currentSet.accepted;
+}
+
+async function process() {
+  if (uploading || processing || !currentSet || currentSet.started || !currentSet.accepted) return;
+  processing = true;
+  pickButton.disabled = true;
+  renderProcessButton();
+  show("error-panel", false);
+  const set = currentSet;
+
+  try {
+    await applyPrompt(set.runId);
+    await postJson(`/api/runs/${set.runId}/start`);
+    set.started = true;
+    show("progress-panel", true);
+    text("run-id", set.runId.slice(0, 12));
+    text("run-created", stamp(set.createdUtc));
+    await poll(set.runId);
+  } catch (error) {
+    show("error-panel", true);
+    text("error-detail", error.message);
+  } finally {
+    processing = false;
+    pickButton.disabled = false;
+    renderProcessButton();
+  }
 }
 
 async function postJson(url) {

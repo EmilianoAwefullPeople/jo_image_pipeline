@@ -73,22 +73,20 @@ class PipelineService:
 
     def _build_thumbnails(self, run_id: str, dataset_path: Path, manifest: DatasetManifest) -> dict:
         target_dir = self.config.thumbnail_dir(run_id)
-        target_dir.mkdir(parents=True, exist_ok=True)
         thumbnails = {}
         for entry in manifest.entries:
             key = entry.sha256[:THUMBNAIL_KEY_LENGTH]
-            target = target_dir / f"{key}.jpg"
-            if target.is_file():
-                LOGGER.debug(f"{entry.relative_path}: thumbnail {key} already written for an identical file")
+            if self.ensure_thumbnail(dataset_path / entry.relative_path, target_dir / f"{key}.jpg", entry.relative_path):
                 thumbnails[entry.relative_path] = key
-                continue
-            if not self._write_thumbnail(dataset_path / entry.relative_path, target, entry.relative_path):
-                continue
-            thumbnails[entry.relative_path] = key
-        LOGGER.info(f"{run_id}: wrote {len(set(thumbnails.values()))} thumbnails for {len(thumbnails)} files")
+        LOGGER.info(f"{run_id}: {len(set(thumbnails.values()))} thumbnails on disk for {len(thumbnails)} files")
         return thumbnails
 
-    def _write_thumbnail(self, source: Path, target: Path, relative_path: str) -> bool:
+    def ensure_thumbnail(self, source: Path, target: Path, relative_path: str) -> bool:
+        if target.is_file():
+            LOGGER.debug(f"{relative_path}: thumbnail {target.stem} already on disk")
+            return True
+
+        target.parent.mkdir(parents=True, exist_ok=True)
         try:
             with Image.open(source) as image:
                 upright = ImageOps.exif_transpose(image)

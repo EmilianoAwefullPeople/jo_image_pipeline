@@ -15,6 +15,12 @@ data/web_runs/<run_id>/thumbnails/<sha256[:16]>.jpg
 
 Everything a run produces nests under one directory, so retiring a run is a single `rmtree`. Nothing is written inside `input/`, so the recursive scans in `InventoryScanner` and `discover_images` never pick up the pipeline's own artifacts. `run_id` is a uuid4 hex, generated server side and never taken from the request.
 
+## Build the set, then press Process
+
+Uploading and processing are separate steps. A drop on the page opens a run (`POST /api/runs`) and sends each file to it one request at a time; the run stays in `created` while the visitor adds more, and the page shows everything accepted so far as a grid of thumbnails with the file name and size under each. Nothing is analysed until the Process button is pressed, which attaches any edited prompt and calls `POST /api/runs/{id}/start`. From that point the run is closed: further uploads and prompt edits answer 409, and the next drop on the page opens a fresh run.
+
+The grid needs server-side thumbnails, because most customer media is HEIC and browsers will not render it. Each accepted upload is therefore hashed as it streams to disk and thumbnailed straight away under `thumbnails/<sha256[:16]>.jpg` — the same key the manifest will assign it later — and the upload response carries that key. The `thumbnailing` stage then only fills gaps, which in practice means files that reached `input/` without going through the upload route.
+
 ## Stages
 
 `created` → `queued` → `inventorying` → `extracting` → `thumbnailing` → `grouping` → `evaluating` → `refining` → `complete`, or `failed` with a `failure_detail`. The client polls `GET /api/runs/{id}` for the current stage and results.
@@ -27,7 +33,7 @@ Every proposal also carries the reason it exists, and the page prints it under t
 
 Reporting the *closest* gap rather than the widest is deliberate: the window narrows with shooting cadence, so two equal gaps are not equally close to a boundary, and the one that nearly split the moment is the one worth showing.
 
-Thumbnails are written during the run rather than transcoded per request. Most customer media is HEIC, which no browser renders, and a full HEIC decode peaks near 250 MB — a gallery of them loading in parallel would exhaust the container. Serving pre-built JPEGs keyed by content hash also means the thumbnail route never builds a path from client input.
+Thumbnails are pre-built rather than transcoded per request. A full HEIC decode peaks near 250 MB — a gallery of them loading in parallel would exhaust the container. Serving pre-built JPEGs keyed by content hash also means the thumbnail route never builds a path from client input.
 
 ## One run at a time
 

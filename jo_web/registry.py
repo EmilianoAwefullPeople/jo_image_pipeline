@@ -34,6 +34,7 @@ ACTIVE_STATUSES = (QUEUED, INVENTORYING, EXTRACTING, THUMBNAILING, GROUPING, EVA
 class UploadedFile:
     filename: str
     size_bytes: int
+    thumbnail: str | None
 
 
 @dataclass(frozen=True)
