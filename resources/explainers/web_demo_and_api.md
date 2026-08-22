@@ -35,6 +35,8 @@ Reporting the *closest* gap rather than the widest is deliberate: the window nar
 
 Thumbnails are pre-built rather than transcoded per request. A full HEIC decode peaks near 250 MB — a gallery of them loading in parallel would exhaust the container. Serving pre-built JPEGs keyed by content hash also means the thumbnail route never builds a path from client input.
 
+`GET /api/runs/{id}/export` returns the same payload as `GET /api/runs/{id}`, pretty printed and served as an attachment named `jo-run-<id>.json`, so a finished run can be taken away and read or diffed outside the page. The run box on the page offers it as a Download JSON button once the run is complete.
+
 ## One run at a time
 
 A single worker thread drains a FIFO queue. This is a memory decision: extraction peaks around 330 MB resident on 12 MP HEIC files, because `sample_array` converts to RGB at full resolution before thumbnailing. On a 1 GB instance that admits one concurrent run. Extraction is fast (roughly 7 s for 50 images), so serialising costs little; a waiting run reports its queue position.

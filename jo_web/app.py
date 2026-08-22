@@ -1,4 +1,5 @@
 import hashlib
+import json
 import logging
 from contextlib import asynccontextmanager
 from dataclasses import asdict, dataclass
@@ -8,7 +9,8 @@ import cv2
 import httpx
 import pillow_heif
 from fastapi import FastAPI, HTTPException, UploadFile
-from fastapi.responses import FileResponse, JSONResponse
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import FileResponse, JSONResponse, Response
 from fastapi.staticfiles import StaticFiles
 from PIL import Image, UnidentifiedImageError
 from pydantic import BaseModel
@@ -200,6 +202,12 @@ def build_app(config: WebConfig | None = None, transport: httpx.BaseTransport | 
     @application.get("/api/runs/{run_id}")
     async def read_run(run_id: str) -> dict:
         return run_state_payload(require_run(run_id), worker.depth())
+
+    @application.get("/api/runs/{run_id}/export")
+    async def export_run(run_id: str) -> Response:
+        payload = jsonable_encoder(run_state_payload(require_run(run_id), worker.depth()))
+        headers = {"Content-Disposition": f'attachment; filename="jo-run-{run_id}.json"'}
+        return Response(content=json.dumps(payload, indent=2), media_type="application/json", headers=headers)
 
     @application.get("/api/runs/{run_id}/thumbnails/{key}")
     async def read_thumbnail(run_id: str, key: str):

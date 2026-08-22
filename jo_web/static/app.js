@@ -28,6 +28,7 @@ const uploadDetail = document.getElementById("upload-detail");
 const dropzoneHint = document.getElementById("dropzone-hint");
 const setGrid = document.getElementById("set-grid");
 const processButton = document.getElementById("process");
+const downloadLink = document.getElementById("download");
 const promptSystem = document.getElementById("prompt-system");
 const promptUser = document.getElementById("prompt-user");
 const promptReset = document.getElementById("prompt-reset");
@@ -142,6 +143,7 @@ async function openSet() {
   currentSet = { runId: created.run_id, createdUtc: created.created_utc, limits: created.limits, accepted: 0, skipped: [], started: false };
   dropzoneHint.textContent = `Accepting up to ${created.limits.max_files} files`;
   setGrid.innerHTML = "";
+  downloadLink.hidden = true;
   RESULT_PANELS.forEach((id) => show(id, false));
   renderSetCount();
 }
@@ -234,6 +236,8 @@ async function poll(runId) {
     }
     if (state.status === "complete") {
       render(runId, state);
+      downloadLink.href = `/api/runs/${runId}/export`;
+      downloadLink.hidden = false;
       return;
     }
     await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL_MS));

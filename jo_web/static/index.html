@@ -53,7 +53,10 @@
   </section>
 
   <section class="panel" id="progress-panel" hidden>
-    <h2>Run <span class="mono" id="run-id"></span></h2>
+    <div class="panel-head">
+      <h2>Run <span class="mono" id="run-id"></span></h2>
+      <a class="button secondary" id="download" download hidden>Download JSON</a>
+    </div>
     <p class="muted">Created <span id="run-created"></span></p>
     <ol class="stages" id="stages"></ol>
     <p class="muted" id="progress-detail"></p>

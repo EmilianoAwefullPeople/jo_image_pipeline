@@ -88,6 +88,22 @@ def test_uploads_keep_joining_the_set_until_it_is_started(tmp_path):
         assert late.status_code == 409
 
 
+def test_the_run_can_be_downloaded_as_a_json_attachment(tmp_path):
+    # The export is the same payload the page renders from, served as a file rather than an API response
+    with build_client(tmp_path) as client:
+        run_id = client.post("/api/runs").json()["run_id"]
+        client.post(f"/api/runs/{run_id}/files", files={"file": ("IMG_0001.jpg", photo_bytes(), "image/jpeg")})
+
+        response = client.get(f"/api/runs/{run_id}/export")
+
+        assert response.status_code == 200
+        assert response.headers["content-disposition"] == f'attachment; filename="jo-run-{run_id}.json"'
+        assert response.headers["content-type"] == "application/json"
+        assert response.json()["run_id"] == run_id
+        assert response.json()["files"][0]["filename"] == "IMG_0001.jpg"
+        assert client.get(f"/api/runs/{'0' * 32}/export").status_code == 404
+
+
 def test_starting_a_run_twice_is_refused(tmp_path):
     # A double clicked button would otherwise collide on the immutable manifest
     with build_client(tmp_path) as client:
