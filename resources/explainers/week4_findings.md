@@ -115,19 +115,15 @@ and measured above. Task 11, the topic-based grouping path, is the memory questi
 Emiliano is preparing come in two variants per sample set, moment-based and non-time/location-based, which is
 the right evidence to measure both against.
 
-## Proposed path
+## What was done about it
 
-1. **Reframe the moment review around memories (review prompt v2).** Same mechanism and cost, still
-   contiguous: the model is asked which consecutive photos form one memory worth telling, what it is about in a
-   sentence, and why it matters from the six tags. Measurable on Shanghai in minutes for cents, and the hike is
-   the test case.
-2. **A trip-wide memory review (task 11).** One text-only call over all the frame descriptions of a set
-   (Shanghai is roughly 6 000 tokens, London 11 000): memories as sets of frames rather than ranges, each with a
-   title, a sentence on what it is, and why-tags from the closed list; a photo may belong to no memory, which is
-   the traveler's "intentionally left out" expressed directly. Same strict-schema, cached, measured shape as the
-   moment review, scored with the same pair metrics against the non-time/location reference variants when they
-   arrive and against the Shanghai document now. It is a second path beside the moment path, not a replacement:
-   postcards want moments, recaps and journaling want memories.
+Two things, both built the same day and described in the next section. First, a per-photo *why* was added to
+the base prompt and to the text the review reads, so the question can be asked at all; on its own that moved
+the moment review toward memory-shaped moments. Second, the memory question, and a set of other fixed
+framings, became selectable **grouping styles**: one trip-wide text-only call per style, memories as sets of
+photos with a title, a sentence and why-tags, photos allowed to belong to none. It is a second path beside
+the moment path, not a replacement: postcards want moments, recaps and journaling want memories, and the
+non-time/location reference sets JO is preparing are the right judge of the memory path.
 
 ## Grouping styles: a drop-down of fixed questions
 
@@ -185,6 +181,36 @@ London, Foodie tour ($0.038): 8 stops, "Cocktails, Curry, and Flatbread", "Taver
 Chips", "Bakery Stop", "Savory Pastry and Hot Drink", with 92 photos not in the view. Landmark tour ($0.068):
 35 groups, "Tower Bridge, London" from four vantage points across a day, "Stamford Bridge" x6, "St Paul's
 Cathedral, London" x4, "The Great Hall, Winchester", "Selhurst Park", every name taken from the frame text.
+
+## Consequences
+
+- **Two readings of the same photos now exist and disagree by design.** Moments (place-shaped, every photo
+  placed, per outing) and the topic styles (memory- or theme-shaped, trip-wide, photos may be left out) are
+  stored as separate proposal sets (`regroup-1`, `topic-<style>-1`) beside `group-1` and `refine-1`; nothing
+  overwrites anything, and the demo's `groups` is whichever style was last chosen, named in `llm.review.style`.
+- **The why-tags trade precision for recall in the moment review.** Shanghai pair F1 0.818 → 0.800, recall
+  0.783 → 0.870, precision 0.857 → 0.741; the hike becomes one moment and the temple is fused into it. This is
+  the same lever as the time window was in Week 2, now expressed in the prompt text: which way JO wants it is a
+  product decision, and the drop-down is the way to feel it rather than argue it.
+- **The base per-image prompt is v3 with a field beyond the eleven.** New demo runs collect `why_tags`
+  (`llm-eval-3`, same per-image cost); the v1 corpus was not re-evaluated. Task 5's "no extras" now has four
+  extras to rule on, not three. If the answer is no, `why_tags` comes out of the prompt and the Memories and
+  Enjoyable moments styles lose their per-photo hint and fall back to inferring mood from the descriptions.
+- **The memory view is coarser than the traveler's memories.** Twelve arcs against thirty memories on Shanghai
+  (recall 0.917, precision 0.250). Read as a first cut of the question, not a tuned answer: the instruction
+  block is the knob, the reference sets are the test, and the pair metric punishes coarseness hard. One
+  positive is already real: the memory view left five of the seven deliberately excluded photos unassigned,
+  where the per-image keep signal caught two.
+- **Cost and cache.** Every style is text-only and cached per session under a hash of exactly what the model
+  saw, so switching styles on the demo costs cents once and then nothing. The flip side: any change to what the
+  model sees (the description line, the grouper's boundaries, a prompt version) re-reviews for cents, which is
+  why the moments numbers were re-measured today. Corpus cost this week, all styles and re-runs included, was
+  under $0.40.
+- **Privacy posture is unchanged.** The review calls send the per-image text, UTC clock times, gaps and metre
+  distances; never images, coordinates, file names, counts or identities.
+- **Sessions have a ceiling.** Topic styles read the whole trip in one call up to 200 photos, then cut at the
+  largest gap between rule-based moments; a 500-photo trip becomes three or four calls whose groups cannot reach
+  across the cuts. Acceptable for the sample sets, a known limit for larger trips.
 
 ## Notes for the review call
 
