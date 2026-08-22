@@ -10,6 +10,7 @@ from jo_pipeline.group import GroupProposal
 from jo_pipeline.reliability import FieldReliability
 from jo_web.config import WebConfig
 from llm_pipeline.prompts import PromptSet
+from llm_pipeline.review import ReviewSummary
 from llm_pipeline.store import ImageEvaluationRecord, RunSummary
 
 LOGGER = logging.getLogger(__name__)
@@ -24,10 +25,11 @@ THUMBNAILING = "thumbnailing"
 GROUPING = "grouping"
 EVALUATING = "evaluating"
 REFINING = "refining"
+REVIEWING = "reviewing"
 COMPLETE = "complete"
 FAILED = "failed"
 
-ACTIVE_STATUSES = (QUEUED, INVENTORYING, EXTRACTING, THUMBNAILING, GROUPING, EVALUATING, REFINING)
+ACTIVE_STATUSES = (QUEUED, INVENTORYING, EXTRACTING, THUMBNAILING, GROUPING, EVALUATING, REFINING, REVIEWING)
 
 
 @dataclass(frozen=True)
@@ -62,6 +64,8 @@ class RunState:
     thumbnails: dict = field(default_factory=dict)
     llm_summary: RunSummary | None = None
     llm_records: list[ImageEvaluationRecord] = field(default_factory=list)
+    review_summary: ReviewSummary | None = None
+    review_records: list[dict] = field(default_factory=list)
     prompts: PromptSet | None = None
     failure_detail: str | None = None
 
@@ -152,6 +156,16 @@ class RunRegistry:
             state.llm_summary = summary
             state.llm_records = records
         LOGGER.info(f"{run_id}: evaluation recorded {len(records)} records at ${summary.total_cost_usd:.4f}")
+        return state
+
+    def set_review(self, run_id: str, summary: ReviewSummary, records: list[dict]) -> RunState | None:
+        with self._lock:
+            state = self._runs.get(run_id)
+            if state is None:
+                return None
+            state.review_summary = summary
+            state.review_records = records
+        LOGGER.info(f"{run_id}: moment review recorded {len(records)} session records at ${summary.total_cost_usd:.4f}")
         return state
 
     def set_failed(self, run_id: str, detail: str) -> RunState | None:

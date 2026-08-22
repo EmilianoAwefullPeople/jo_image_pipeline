@@ -10,14 +10,16 @@ from jo_pipeline.cli import build_reliability, fan_out_evaluations
 from jo_pipeline.group import MomentGrouper
 from jo_pipeline.manifest import DatasetManifest, InventoryScanner
 from jo_pipeline.refine import ProposalRefiner, build_image_signals
+from jo_pipeline.regroup import Regrouper, SessionBuilder
 from jo_web.config import UPLOAD_DATASET_ID, WebConfig
-from jo_web.registry import EVALUATING, EXTRACTING, GROUPING, INVENTORYING, REFINING, THUMBNAILING, RunRegistry
+from jo_web.registry import EVALUATING, EXTRACTING, GROUPING, INVENTORYING, REFINING, REVIEWING, THUMBNAILING, RunRegistry
 from llm_pipeline.client import OpenRouterClient
 from llm_pipeline.discovery import discover_images
-from llm_pipeline.prompts import PromptSet, default_prompts
+from llm_pipeline.prompts import PromptSet, default_prompts, default_review_prompts
+from llm_pipeline.review import MomentReviewer, ReviewProgress, ReviewStore, parse_reviews, review_records_for
 from llm_pipeline.runner import EvaluationProgress, EvaluationRunner
 from llm_pipeline.schema import SCHEMA_VERSION
-from llm_pipeline.store import RunStore
+from llm_pipeline.store import RunStore, run_name
 
 LOGGER = logging.getLogger(__name__)
 
@@ -52,13 +54,14 @@ class PipelineService:
         self.registry.set_thumbnails(run_id, self._build_thumbnails(run_id, dataset_path, manifest))
 
         self.registry.set_stage(run_id, GROUPING, 0, len(extracted))
-        baseline = MomentGrouper().group([build_signals(asset) for asset in extracted])
+        signals = [build_signals(asset) for asset in extracted]
+        baseline = MomentGrouper().group(signals)
         self.registry.set_groups(run_id, baseline, baseline)
 
         self._evaluate(run_id, dataset_path)
-        self._refine(run_id, manifest, baseline)
+        self._refine(run_id, manifest, baseline, {signal.relative_path: signal for signal in signals})
 
-    def _refine(self, run_id: str, manifest: DatasetManifest, baseline: list):
+    def _refine(self, run_id: str, manifest: DatasetManifest, baseline: list, signals_by_path: dict):
         state = self.registry.get(run_id)
         if state is None or not state.llm_records:
             LOGGER.info(f"{run_id}: refinement skipped, no evaluation records for this run")
@@ -66,10 +69,35 @@ class PipelineService:
 
         self.registry.set_stage(run_id, REFINING, 0, len(baseline))
         evaluations = fan_out_evaluations(manifest, [asdict(record) for record in state.llm_records])
-        signals = build_image_signals(evaluations)
-        refined = ProposalRefiner().refine(baseline, signals)
+        image_signals = build_image_signals(state.llm_records[0].schema_version, evaluations)
+        refined = ProposalRefiner().refine(baseline, image_signals)
         self.registry.set_groups(run_id, refined, baseline)
         LOGGER.info(f"{run_id}: refinement produced {len(refined)} proposals from {len(baseline)} baseline proposals")
+
+        source_version = run_name(state.llm_summary.prompt_version, state.llm_summary.schema_version)
+        self._review(run_id, baseline, signals_by_path, image_signals, source_version)
+
+    def _review(self, run_id: str, baseline: list, signals_by_path: dict, image_signals: dict, source_version: str):
+        sessions = SessionBuilder().build(UPLOAD_DATASET_ID, source_version, baseline, signals_by_path, image_signals)
+        if not sessions:
+            LOGGER.info(f"{run_id}: moment review skipped, no outing holds more than one photo")
+            return
+
+        llm_config = self.config.llm_config(run_id)
+        store = ReviewStore(llm_config.llm_runs_dir, UPLOAD_DATASET_ID)
+        self.registry.set_stage(run_id, REVIEWING, 0, len(sessions))
+        with OpenRouterClient(llm_config.openrouter_api_key, llm_config.openrouter_model, transport=self.transport) as client:
+            reviewer = MomentReviewer(client, store, UPLOAD_DATASET_ID, default_review_prompts(), concurrency=self.config.llm_concurrency)
+            run = reviewer.review(sessions, on_progress=lambda progress: self._on_review_progress(run_id, progress))
+
+        records = review_records_for(store, sessions)
+        regrouped = Regrouper().regroup(baseline, signals_by_path, image_signals, sessions, parse_reviews(records))
+        self.registry.set_review(run_id, run.summary, records)
+        self.registry.set_groups(run_id, regrouped, baseline)
+        LOGGER.info(f"{run_id}: moment review produced {len(regrouped)} proposals from {len(baseline)} baseline proposals across {len(sessions)} sessions")
+
+    def _on_review_progress(self, run_id: str, progress: ReviewProgress):
+        self.registry.set_stage(run_id, REVIEWING, progress.done, progress.total)
 
     def _build_thumbnails(self, run_id: str, dataset_path: Path, manifest: DatasetManifest) -> dict:
         target_dir = self.config.thumbnail_dir(run_id)
@@ -108,7 +136,7 @@ class PipelineService:
         llm_config = self.config.llm_config(run_id)
         images = discover_images(dataset_path)
         self.registry.set_stage(run_id, EVALUATING, 0, len(images))
-        store = RunStore(llm_config.llm_runs_dir, UPLOAD_DATASET_ID, prompts.version, SCHEMA_VERSION)
+        store = RunStore.for_versions(llm_config.llm_runs_dir, UPLOAD_DATASET_ID, prompts.version, SCHEMA_VERSION)
 
         with OpenRouterClient(llm_config.openrouter_api_key, llm_config.openrouter_model, transport=self.transport) as client:
             runner = EvaluationRunner(client, store, UPLOAD_DATASET_ID, dataset_path, prompts, concurrency=self.config.llm_concurrency)

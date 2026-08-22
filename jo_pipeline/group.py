@@ -109,13 +109,14 @@ class DuplicateIndex:
 class MomentGrouper:
     def __init__(self):
         self.duplicates = DuplicateIndex()
+        self.builder = ProposalBuilder()
 
     def group(self, signals: list[AssetSignals]) -> list[GroupProposal]:
         links = self.duplicates.classify(signals)
         anchored = sorted([asset for asset in signals if asset.captured_utc and asset.relative_path not in links], key=lambda asset: asset.captured_utc)
         unanchored = [asset for asset in signals if not asset.captured_utc and asset.relative_path not in links]
 
-        proposals = [self._build_proposal(sequence, links) for sequence in self._split(anchored)]
+        proposals = [self.builder.build(sequence, links) for sequence in self._split(anchored)]
         if unanchored:
             proposals.append(self._unanchored_proposal(unanchored))
 
@@ -160,7 +161,21 @@ class MomentGrouper:
         cadence = statistics.median(gaps[-CADENCE_SAMPLE:])
         return min(max(cadence * WINDOW_MULTIPLIER, MIN_WINDOW_SECONDS), MAX_WINDOW_SECONDS)
 
-    def _build_proposal(self, sequence: MomentSequence, links: dict) -> GroupProposal:
+    def _unanchored_proposal(self, unanchored: list[AssetSignals]) -> GroupProposal:
+        LOGGER.info(f"{len(unanchored)} assets have no capture timestamp and cannot be placed on the timeline")
+        return GroupProposal(
+            label="Unanchored assets",
+            start_utc=None,
+            end_utc=None,
+            score=0.0,
+            method_version=GROUPER_VERSION,
+            members=[GroupMember(asset.relative_path, MEMBER, {"reason": "no capture timestamp"}) for asset in unanchored],
+            evidence={"member_count": len(unanchored), "reason": "no capture timestamp and no coordinate to place these assets"},
+        )
+
+
+class ProposalBuilder:
+    def build(self, sequence: MomentSequence, links: dict) -> GroupProposal:
         assets = sequence.assets
         members = [GroupMember(asset.relative_path, MEMBER) for asset in assets]
         members.extend(self._attached_links(assets, links))
@@ -247,18 +262,6 @@ class MomentGrouper:
         start = sequence[0].captured_utc
         end = sequence[-1].captured_utc
         return f"{start.strftime('%Y-%m-%d %H:%M')} to {end.strftime('%H:%M')} UTC"
-
-    def _unanchored_proposal(self, unanchored: list[AssetSignals]) -> GroupProposal:
-        LOGGER.info(f"{len(unanchored)} assets have no capture timestamp and cannot be placed on the timeline")
-        return GroupProposal(
-            label="Unanchored assets",
-            start_utc=None,
-            end_utc=None,
-            score=0.0,
-            method_version=GROUPER_VERSION,
-            members=[GroupMember(asset.relative_path, MEMBER, {"reason": "no capture timestamp"}) for asset in unanchored],
-            evidence={"member_count": len(unanchored), "reason": "no capture timestamp and no coordinate to place these assets"},
-        )
 
 
 def time_gap_seconds(earlier: datetime | None, later: datetime | None) -> float | None:

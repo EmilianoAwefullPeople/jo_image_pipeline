@@ -12,7 +12,7 @@ from PIL import Image, UnidentifiedImageError
 from llm_pipeline.client import OpenRouterClient, OpenRouterError
 from llm_pipeline.derivative import DERIVATIVE_VERSION, DerivativeBuilder
 from llm_pipeline.discovery import DiscoveredImage
-from llm_pipeline.evaluate import VALID, EvaluationOutcome, ImageEvaluator
+from llm_pipeline.evaluate import VALID, EvaluationOutcome, image_evaluator
 from llm_pipeline.prompts import PromptSet
 from llm_pipeline.schema import SCHEMA_VERSION
 from llm_pipeline.store import ImageEvaluationRecord, RunStore, RunSummary
@@ -69,6 +69,21 @@ def group_by_hash(images: list[DiscoveredImage]) -> dict[str, list[DiscoveredIma
     return grouped
 
 
+def call_with_retry(label: str, attempt_call: Callable[[], EvaluationOutcome]) -> EvaluationOutcome:
+    attempt = 0
+    while True:
+        attempt += 1
+        try:
+            return attempt_call()
+        except OpenRouterError as error:
+            if error.status_code not in RETRY_STATUS_CODES or attempt >= MAX_REQUEST_ATTEMPTS:
+                LOGGER.warning(f"{label}: status {error.status_code} on attempt {attempt}, giving up")
+                raise
+            delay = BACKOFF_BASE_SECONDS * (2 ** (attempt - 1))
+            LOGGER.info(f"{label}: status {error.status_code} on attempt {attempt}, retrying in {delay:.0f}s")
+            time.sleep(delay)
+
+
 def build_record(dataset_id: str, image: DiscoveredImage, model: str, prompt_version: str, outcome: EvaluationOutcome) -> ImageEvaluationRecord:
     evaluation = None if outcome.evaluation is None else outcome.evaluation.model_dump()
     return ImageEvaluationRecord(
@@ -100,7 +115,7 @@ class EvaluationRunner:
         self.dataset_path = dataset_path
         self.prompts = prompts
         self.concurrency = concurrency
-        self.evaluator = ImageEvaluator(client)
+        self.evaluator = image_evaluator(client)
         self.builder = DerivativeBuilder(dataset_path)
         self._lock = threading.Lock()
         self._done = 0
@@ -176,7 +191,7 @@ class EvaluationRunner:
 
         messages = self.prompts.build_messages(derivative.data_url, derivative.capture_local_time)
         try:
-            outcome = self._evaluate_with_retry(image.relative_path, messages)
+            outcome = call_with_retry(image.relative_path, lambda: self.evaluator.evaluate(image.relative_path, messages))
         except OpenRouterError as error:
             detail = f"request failed with status {error.status_code}: {error}"
             LOGGER.warning(f"{image.relative_path}: {detail}")
@@ -186,17 +201,3 @@ class EvaluationRunner:
         self.store.write_record(record)
         LOGGER.info(f"{image.relative_path}: {record.validation_status} attempts={record.attempts} cost=${record.cost_usd:.4f}")
         return ImageAttempt(record=record, failure_detail=None)
-
-    def _evaluate_with_retry(self, relative_path: str, messages: list[dict]) -> EvaluationOutcome:
-        attempt = 0
-        while True:
-            attempt += 1
-            try:
-                return self.evaluator.evaluate(relative_path, messages)
-            except OpenRouterError as error:
-                if error.status_code not in RETRY_STATUS_CODES or attempt >= MAX_REQUEST_ATTEMPTS:
-                    LOGGER.warning(f"{relative_path}: status {error.status_code} on attempt {attempt}, giving up")
-                    raise
-                delay = BACKOFF_BASE_SECONDS * (2 ** (attempt - 1))
-                LOGGER.info(f"{relative_path}: status {error.status_code} on attempt {attempt}, retrying in {delay:.0f}s")
-                time.sleep(delay)

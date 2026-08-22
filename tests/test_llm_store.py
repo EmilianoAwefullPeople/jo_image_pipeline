@@ -48,7 +48,7 @@ def build_summary() -> RunSummary:
 
 
 def build_store(tmp_path) -> RunStore:
-    return RunStore(tmp_path / "llm_runs", "Trip", "1", "llm-eval-1")
+    return RunStore.for_versions(tmp_path / "llm_runs", "Trip", "1", "llm-eval-1")
 
 
 def test_a_record_is_written_once_and_a_second_write_is_refused(tmp_path):
@@ -77,6 +77,16 @@ def test_the_artifact_directory_embeds_prompt_and_schema_versions(tmp_path):
 
     assert target.parent.name == "p1-llm-eval-1"
     assert target.name == f"{'a' * 16}.json"
+
+
+def test_a_store_opened_on_an_existing_run_directory_reads_its_records(tmp_path):
+    # jo_pipeline must be able to read whichever prompt/schema run exists on disk, not only the current one
+    build_store(tmp_path).write_record(build_record())
+
+    records = RunStore(tmp_path / "llm_runs" / "Trip" / "p1-llm-eval-1").records()
+
+    assert len(records) == 1
+    assert records[0]["schema_version"] == "llm-eval-1"
 
 
 def test_run_summaries_are_timestamped_files_in_the_run_directory(tmp_path):

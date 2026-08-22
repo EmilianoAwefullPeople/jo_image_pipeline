@@ -51,9 +51,17 @@ class RunSummary:
     total_cost_usd: float
 
 
+def run_name(prompt_version: str, schema_version: str) -> str:
+    return f"p{prompt_version}-{schema_version}"
+
+
 class RunStore:
-    def __init__(self, llm_runs_dir: Path, dataset_id: str, prompt_version: str, schema_version: str):
-        self.run_dir = llm_runs_dir / dataset_id / f"p{prompt_version}-{schema_version}"
+    def __init__(self, run_dir: Path):
+        self.run_dir = run_dir
+
+    @classmethod
+    def for_versions(cls, llm_runs_dir: Path, dataset_id: str, prompt_version: str, schema_version: str) -> "RunStore":
+        return cls(llm_runs_dir / dataset_id / run_name(prompt_version, schema_version))
 
     def record_path(self, sha256: str) -> Path:
         return self.run_dir / f"{sha256[:SHA_PREFIX_LENGTH]}.json"

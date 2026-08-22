@@ -32,7 +32,7 @@ The web demo renders every field against its image in the Extracted fields panel
 
 - Null is a valid outcome; the model is instructed never to invent, and every inferred value carries confidence and evidence.
 - No headcounts and no identity claims: the schema has no fields for them and the prompt forbids them in free text (both are gated on privacy review per the reliability matrix). `focal_points` carries the single/couple/group distinction the template choice needs, as a closed category rather than a number.
-- Only a downscaled clean re-encode leaves the machine (1024px max edge JPEG, no EXIF, no GPS). Capture time is the only metadata sent, as text context.
+- Only a downscaled clean re-encode leaves the machine (1024px max edge JPEG, no EXIF, no GPS). Capture time is the only metadata sent with an image, as text context. The moment review (`resources/explainers/moment_review.md`) is a separate, text-only call that sends these per-image descriptions back with clock times, gaps and metre distances, never images or coordinates.
 - Fixed model routing with `allow_fallbacks: false` and `data_collection: "deny"`. A failed call is a visible failure, never a hidden substitution.
 - Invalid responses are retried once with the validation error, then stored for review. Outputs are provisional detected metadata and never override traveler decisions.
 
@@ -47,4 +47,4 @@ uv run python -m llm_pipeline estimate --dataset "Dan Egypt 2024"
 uv run python -m llm_pipeline run --dataset "Dan Egypt 2024" --limit 5
 ```
 
-Requires `JO_OPENROUTER_API_KEY` in `.env`. `run` is the only command that transmits anything.
+Requires `JO_OPENROUTER_API_KEY` in `.env`. `run` is the only command here that transmits anything; `jo_pipeline review-moments` is the other paid command in the repo.

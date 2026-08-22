@@ -1,6 +1,7 @@
 import logging
 from dataclasses import dataclass, replace
 
+from jo_pipeline.evaluation_readers import reader_for
 from jo_pipeline.group import COHESION_WEIGHT, LOCATION_WEIGHT, MEMBER, QUALITY_WEIGHT, REPRESENTATIVE, GroupMember, GroupProposal
 from jo_pipeline.normalize import MetadataObservation
 
@@ -22,42 +23,18 @@ class MemberPartition:
     excluded: list
 
 
-@dataclass(frozen=True)
-class ImageSignal:
-    relative_path: str
-    keep_signal: str
-    keep_reason: str
-    keep_confidence: float
-    representative_score: float
-    representative_reasoning: str
-    is_screenshot: bool
-    travel_relevance: str
-    scene_setting_types: list
-
-
-def build_image_signals(evaluations: dict) -> dict:
+def build_image_signals(schema_version: str, evaluations: dict) -> dict:
+    reader = reader_for(schema_version)
     signals = {}
     for relative_path, evaluation in evaluations.items():
         if not evaluation:
             LOGGER.debug(f"{relative_path}: no evaluation available, no signal built")
             continue
 
-        memory = evaluation["memory"]
-        quality = evaluation["representative_quality"]
-        screenshot = evaluation["screenshot"]
-        signals[relative_path] = ImageSignal(
-            relative_path=relative_path,
-            keep_signal=memory["keep_signal"],
-            keep_reason=memory["reason"],
-            keep_confidence=memory["confidence"],
-            representative_score=quality["score"],
-            representative_reasoning=quality["reasoning"],
-            is_screenshot=screenshot["is_screenshot_or_document"],
-            travel_relevance=screenshot["travel_relevance"],
-            scene_setting_types=evaluation["scene_setting"]["types"],
-        )
-        LOGGER.debug(f"{relative_path}: signal built with keep {memory['keep_signal']} and quality {quality['score']}")
-    LOGGER.info(f"built {len(signals)} image signals from {len(evaluations)} evaluations")
+        signal = reader.signal(relative_path, evaluation)
+        signals[relative_path] = signal
+        LOGGER.debug(f"{relative_path}: signal built with keep {signal.keep_signal} and quality {signal.representative_score}")
+    LOGGER.info(f"built {len(signals)} image signals from {len(evaluations)} {schema_version} evaluations")
     return signals
 
 
@@ -158,8 +135,9 @@ class ProposalRefiner:
                     "membership": member.membership,
                     "reason": signal.keep_reason,
                     "confidence": signal.keep_confidence,
+                    "source": signal.keep_source,
                 })
-                LOGGER.info(f"{member.relative_path}: dropped from {proposal.label}, model marked it leave_out at {signal.keep_confidence}")
+                LOGGER.info(f"{member.relative_path}: dropped from {proposal.label}, {signal.keep_source} marked it leave_out at {signal.keep_confidence}")
             else:
                 kept.append(member)
         return MemberPartition(kept=kept, excluded=excluded)

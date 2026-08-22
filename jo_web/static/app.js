@@ -1,4 +1,4 @@
-const STAGES = ["queued", "inventorying", "extracting", "thumbnailing", "grouping", "evaluating", "refining", "complete"];
+const STAGES = ["queued", "inventorying", "extracting", "thumbnailing", "grouping", "evaluating", "refining", "reviewing", "complete"];
 const POLL_INTERVAL_MS = 1200;
 const MEGABYTE = 1024 * 1024;
 const RESULT_PANELS = ["progress-panel", "error-panel", "summary-panel", "groups-panel", "evaluations-panel", "reliability-panel"];
@@ -297,14 +297,17 @@ function render(runId, state) {
 
 function renderSummary(state) {
   const llm = state.llm.summary;
+  const review = state.llm.review.summary;
   const dropped = state.groups.reduce((total, group) => total + (group.evidence.excluded_by_signal || []).length, 0);
+  const cost = (llm ? llm.total_cost_usd : 0) + (review ? review.total_cost_usd : 0);
   const tiles = [
     { label: "Files received", value: state.files.length },
     { label: "Images analysed", value: state.extraction.images_analysed },
     { label: "Moments", value: state.groups.length },
     { label: "Left out by model", value: dropped },
     { label: "Evaluated", value: llm ? llm.images_evaluated : 0 },
-    { label: "Model cost", value: llm ? `$${llm.total_cost_usd.toFixed(3)}` : "$0.000" },
+    { label: "Outings reviewed", value: review ? review.sessions_total : 0 },
+    { label: "Model cost", value: `$${cost.toFixed(3)}` },
     { label: "Prompt", value: escapeHtml(state.llm.prompt_version) },
   ];
   document.getElementById("summary-tiles").innerHTML = tiles
@@ -338,8 +341,10 @@ function renderGroups(runId, state) {
       const scoreNote = baseline === undefined
         ? `score ${group.score.toFixed(2)}`
         : `score ${group.score.toFixed(2)} (was ${baseline.toFixed(2)})`;
+      const review = group.evidence.review || {};
+      const heading = review.title ? `${escapeHtml(review.title)}<span class="group-label"> ${escapeHtml(group.label)}</span>` : escapeHtml(group.label);
       return `<div class="group">
-        <div class="group-head"><h3>${escapeHtml(group.label)}</h3>
+        <div class="group-head"><h3>${heading}</h3>
         <span class="group-meta">${group.members.length} photos, ${scoreNote}, ${located} located, ${unlocated} unlocated</span></div>
         ${groupReasons(group)}
         <div class="shots">${shots}</div>
@@ -397,7 +402,34 @@ function boundaryReason(boundary) {
   if (boundary.kind === "time_gap") {
     return `a gap of ${duration(boundary.gap_seconds)} after ${escapeHtml(boundary.after)}, longer than the ${duration(boundary.window_seconds)} window in force there`;
   }
+  if (boundary.kind === "review_split") {
+    return `the moment review, which read the photos after ${escapeHtml(boundary.after)} as a different moment: ${escapeHtml(boundary.reason)}`;
+  }
   return `a move of ${metres(boundary.distance_metres)} after ${escapeHtml(boundary.after)}, past the ${metres(boundary.threshold_metres)} place threshold`;
+}
+
+function reviewReasons(evidence) {
+  const review = evidence.review;
+  if (!review) return [];
+  if (review.status === "fallback") {
+    return ["the moment review returned no usable verdict for this outing, so the rule-based boundaries stand"];
+  }
+  if (review.status !== "reviewed") return [];
+
+  const reasons = [`the moment review read this outing's photos as text and titled this moment "${escapeHtml(review.title)}": ${escapeHtml(review.reason)}`];
+  if (review.change === "merged") {
+    reasons.push(`merged from ${review.baseline_labels.length} rule-based moments: ${review.baseline_labels.map(escapeHtml).join("; ")}`);
+  } else if (review.change === "split") {
+    reasons.push(`split out of the rule-based moment ${escapeHtml(review.baseline_labels[0])}`);
+  } else if (review.change === "resegmented") {
+    reasons.push(`re-cut across ${review.baseline_labels.length} rule-based moments: ${review.baseline_labels.map(escapeHtml).join("; ")}`);
+  } else {
+    reasons.push("confirmed as one moment by the review, boundaries unchanged");
+  }
+  (evidence.bridged_boundaries || []).forEach((boundary) => {
+    reasons.push(`the review bridged a boundary the rules drew at ${boundaryReason(boundary)}`);
+  });
+  return reasons;
 }
 
 function timeReasons(evidence) {
@@ -438,6 +470,7 @@ function groupReasons(group) {
   }
   reasons.push(evidence.opened_by ? `split from the moment before it by ${boundaryReason(evidence.opened_by)}` : "first moment in the set, nothing came before it");
   reasons.push(evidence.closed_by ? `closed by ${boundaryReason(evidence.closed_by)}` : "last moment in the set, nothing came after it");
+  reasons.push(...reviewReasons(evidence));
   return `<ul class="reasons">${reasons.map((reason) => `<li>${reason}</li>`).join("")}</ul>`;
 }
 
@@ -449,14 +482,15 @@ function renderExcluded(runId, state, group) {
   const rows = excluded.map((entry) => {
     const key = state.thumbnails[entry.relative_path];
     const image = key ? `<img src="/api/runs/${runId}/thumbnails/${key}" alt="" loading="lazy">` : `<img alt="" loading="lazy">`;
-    return `<div class="shot">${image}<div class="caption"><span class="badge duplicate">left out</span> ${escapeHtml(entry.relative_path)}
+    const badge = entry.source === "moment_review" ? "left out by review" : "left out";
+    return `<div class="shot">${image}<div class="caption"><span class="badge duplicate">${badge}</span> ${escapeHtml(entry.relative_path)}
       <div class="evaluation"><p>${escapeHtml(entry.reason)}</p></div></div></div>`;
   }).join("");
 
   const flagNote = flagged.length
     ? `<p class="muted">${flagged.length} screenshot or document flagged for review, kept in the moment: ${flagged.map((item) => escapeHtml(item.relative_path)).join(", ")}</p>`
     : "";
-  const excludedNote = excluded.length ? `<p class="muted">The model read these as not worth keeping. They stay available and the traveller can put them back.</p>${`<div class="shots">${rows}</div>`}` : "";
+  const excludedNote = excluded.length ? `<p class="muted">The model read these as not worth keeping, either on the photo alone or when reviewing the outing as a set. They stay available and the traveller can put them back.</p>${`<div class="shots">${rows}</div>`}` : "";
   return `<div class="evaluation">${excludedNote}${flagNote}</div>`;
 }
 
@@ -475,10 +509,20 @@ function renderRefinementDetail(state) {
       && member.evidence.previous_representative !== member.relative_path)
   ).length;
   const flagged = refined.reduce((total, group) => total + (group.evidence.screenshots_flagged || []).length, 0);
+  const changes = { merged: 0, split: 0, resegmented: 0, unchanged: 0 };
+  refined.forEach((group) => {
+    const review = group.evidence.review;
+    if (review && review.status === "reviewed") changes[review.change] += 1;
+  });
+  const reviewSummary = state.llm.review.summary;
+  const reviewNote = reviewSummary
+    ? ` The moment review read ${reviewSummary.sessions_total} outing(s) as text, at $${reviewSummary.total_cost_usd.toFixed(3)}, and ${changes.merged} moment(s) were merged, `
+      + `${changes.split} split, ${changes.resegmented} re-cut and ${changes.unchanged} confirmed as the rules drew them.`
+    : "";
   text(
     "refinement-detail",
     `The model changed this result: ${baseline.length} proposals became ${refined.length}, ${dropped} photo(s) dropped as not worth keeping, `
-      + `${reelected} representative(s) re-elected on composition rather than sharpness, ${flagged} screenshot(s) flagged but kept.`
+      + `${reelected} representative(s) re-elected on composition rather than sharpness, ${flagged} screenshot(s) flagged but kept.${reviewNote}`
   );
 }
 

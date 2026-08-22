@@ -4,8 +4,6 @@ from dataclasses import dataclass
 
 import httpx
 
-from llm_pipeline.schema import RESPONSE_SCHEMA_NAME, response_schema
-
 LOGGER = logging.getLogger(__name__)
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
@@ -50,11 +48,11 @@ class OpenRouterClient:
     def __exit__(self, exc_type, exc_value, traceback):
         self.client.close()
 
-    def complete(self, messages: list[dict]) -> CompletionResult:
+    def complete(self, messages: list[dict], schema_name: str, schema: dict) -> CompletionResult:
         payload = {
             "model": self.model,
             "messages": messages,
-            "response_format": {"type": "json_schema", "json_schema": {"name": RESPONSE_SCHEMA_NAME, "strict": True, "schema": response_schema()}},
+            "response_format": {"type": "json_schema", "json_schema": {"name": schema_name, "strict": True, "schema": schema}},
             "usage": {"include": True},
             "provider": {"allow_fallbacks": False, "data_collection": "deny"},
             "temperature": 0,

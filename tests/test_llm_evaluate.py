@@ -4,7 +4,7 @@ import httpx
 import pytest
 
 from llm_pipeline.client import OpenRouterClient, OpenRouterError
-from llm_pipeline.evaluate import INVALID, VALID, ImageEvaluator
+from llm_pipeline.evaluate import INVALID, VALID, image_evaluator
 
 
 def build_payload() -> dict:
@@ -50,7 +50,7 @@ def test_a_valid_first_response_completes_in_one_attempt_with_usage_captured():
     requests = []
     client = build_client([completion_body(json.dumps(build_payload()))], requests)
 
-    outcome = ImageEvaluator(client).evaluate("IMG_0001.jpg", build_messages_stub())
+    outcome = image_evaluator(client).evaluate("IMG_0001.jpg", build_messages_stub())
 
     assert outcome.validation_status == VALID
     assert outcome.attempts == 1
@@ -64,7 +64,7 @@ def test_the_request_pins_the_model_route_and_demands_strict_schema_output():
     requests = []
     client = build_client([completion_body(json.dumps(build_payload()))], requests)
 
-    ImageEvaluator(client).evaluate("IMG_0001.jpg", build_messages_stub())
+    image_evaluator(client).evaluate("IMG_0001.jpg", build_messages_stub())
 
     body = requests[0]
     assert body["model"] == "test/model"
@@ -77,7 +77,7 @@ def test_an_invalid_response_is_retried_once_with_the_validation_error():
     requests = []
     client = build_client([completion_body("not json"), completion_body(json.dumps(build_payload()), cost=0.02)], requests)
 
-    outcome = ImageEvaluator(client).evaluate("IMG_0001.jpg", build_messages_stub())
+    outcome = image_evaluator(client).evaluate("IMG_0001.jpg", build_messages_stub())
 
     assert outcome.validation_status == VALID
     assert outcome.attempts == 2
@@ -91,7 +91,7 @@ def test_a_second_invalid_response_is_stored_for_review_without_a_third_attempt(
     requests = []
     client = build_client([completion_body("not json"), completion_body('{"still": "wrong"}')], requests)
 
-    outcome = ImageEvaluator(client).evaluate("IMG_0001.jpg", build_messages_stub())
+    outcome = image_evaluator(client).evaluate("IMG_0001.jpg", build_messages_stub())
 
     assert outcome.validation_status == INVALID
     assert outcome.attempts == 2
@@ -108,7 +108,7 @@ def test_a_transport_failure_raises_visibly_rather_than_falling_back():
     client = OpenRouterClient("test-key", "test/model", transport=httpx.MockTransport(handler))
 
     with pytest.raises(OpenRouterError) as failure:
-        ImageEvaluator(client).evaluate("IMG_0001.jpg", build_messages_stub())
+        image_evaluator(client).evaluate("IMG_0001.jpg", build_messages_stub())
 
     assert failure.value.status_code == 500
     assert "provider exploded" in failure.value.body

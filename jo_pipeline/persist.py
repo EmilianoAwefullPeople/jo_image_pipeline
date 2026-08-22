@@ -22,7 +22,7 @@ OPENROUTER_PROVIDER = "openrouter"
 
 @dataclass(frozen=True)
 class ModelCall:
-    relative_path: str
+    relative_path: str | None
     provider: str
     model_id: str
     prompt_version: str
@@ -155,10 +155,14 @@ class PipelineStore:
     def save_model_calls(self, run_id: int, asset_ids: dict, calls: list[ModelCall]) -> int:
         stored = 0
         for call in calls:
-            asset_id = asset_ids.get(call.relative_path)
-            if asset_id is None:
-                LOGGER.warning(f"{call.relative_path}: model call skipped, no stored media asset for this path")
-                continue
+            if call.relative_path is None:
+                asset_id = None
+                LOGGER.debug(f"{run_id}: model call over a set of photos stored without a media asset")
+            else:
+                asset_id = asset_ids.get(call.relative_path)
+                if asset_id is None:
+                    LOGGER.warning(f"{call.relative_path}: model call skipped, no stored media asset for this path")
+                    continue
 
             self.connection.execute(INSERT_MODEL_CALL, (
                 asset_id,

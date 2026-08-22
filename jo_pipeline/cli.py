@@ -6,6 +6,7 @@ from pathlib import Path
 
 from jo_pipeline.assets import AssetLoader, build_signals
 from jo_pipeline.config import PipelineConfig, load_config, resolve_path
+from jo_pipeline.evaluation_readers import SCHEMA_V2
 from jo_pipeline.group import BURST, DUPLICATE, MomentGrouper
 from jo_pipeline.keepscore import KeepSignalScore, KeepSignalScorer
 from jo_pipeline.logging_setup import configure_logging
@@ -13,17 +14,24 @@ from jo_pipeline.manifest import DatasetManifest, InventoryScanner, manifest_dig
 from jo_pipeline.persist import COMPLETE, OPENROUTER_PROVIDER, ModelCall, PipelineStore
 from jo_pipeline.reference import ReferenceGrouping, ReferenceReader
 from jo_pipeline.refine import ProposalRefiner, build_image_signals, build_llm_observations
+from jo_pipeline.regroup import Regrouper, SessionBuilder
 from jo_pipeline.reliability import ReliabilityReport
 from jo_pipeline.review import GroupingReviewer, ReviewComparison
+from llm_pipeline.client import PRICE_INPUT_USD_PER_MTOK, PRICE_OUTPUT_USD_PER_MTOK, OpenRouterClient
 from llm_pipeline.prompts import PROMPT_VERSION as LLM_PROMPT_VERSION
+from llm_pipeline.prompts import default_review_prompts
+from llm_pipeline.review import MomentReviewer, ReviewStore, ReviewSummary, parse_reviews, render_session, review_records_for
 from llm_pipeline.schema import SCHEMA_VERSION as LLM_SCHEMA_VERSION
-from llm_pipeline.store import RunStore
+from llm_pipeline.store import RunStore, run_name
 
 LOGGER = logging.getLogger(__name__)
 
 REFERENCE_PATTERN = "**/*.docx"
 COLLAPSED_MEMBERSHIPS = (DUPLICATE, BURST)
-LLM_METHOD_VERSION = f"p{LLM_PROMPT_VERSION}/{LLM_SCHEMA_VERSION}"
+DEFAULT_LLM_VERSION = run_name(LLM_PROMPT_VERSION, LLM_SCHEMA_VERSION)
+REVIEW_CHARS_PER_TOKEN = 4
+REVIEW_SCHEMA_TOKENS = 250
+REVIEW_OUTPUT_TOKENS = 400
 
 
 def load_manifest(config: PipelineConfig, args: argparse.Namespace) -> DatasetManifest:
@@ -73,13 +81,30 @@ class RunArtifacts:
     extracted: list
     baseline: list
     refined: list
+    regrouped: list
+    image_signals: dict
+    review_signals: dict
+    sessions: list
+    review_records: list
     model_calls: list
     llm_observations: dict
     model_id: str | None
+    llm_method_version: str | None
 
 
-def load_llm_records(config: PipelineConfig, dataset_id: str) -> list[dict]:
-    return RunStore(config.llm_runs_dir, dataset_id, LLM_PROMPT_VERSION, LLM_SCHEMA_VERSION).records()
+@dataclass(frozen=True)
+class ReviewInputs:
+    manifest: DatasetManifest
+    baseline: list
+    signals_by_path: dict
+    image_signals: dict
+    sessions: list
+
+
+def load_llm_records(config: PipelineConfig, dataset_id: str, llm_version: str) -> list[dict]:
+    records = RunStore(config.llm_runs_dir / dataset_id / llm_version).records()
+    LOGGER.info(f"{dataset_id}: {len(records)} evaluation records read from the {llm_version} run directory")
+    return records
 
 
 def fan_out_evaluations(manifest: DatasetManifest, records: list[dict]) -> dict:
@@ -115,11 +140,30 @@ def build_model_calls(records: list[dict]) -> list[ModelCall]:
     ) for record in records]
 
 
-def build_llm_observation_rows(evaluations: dict, model_id: str) -> dict:
+def build_review_calls(records: list[dict]) -> list[ModelCall]:
+    return [ModelCall(
+        relative_path=None,
+        provider=OPENROUTER_PROVIDER,
+        model_id=record["model"],
+        prompt_version=record["review_prompt_version"],
+        schema_version=record["review_schema_version"],
+        attempt=record["attempts"],
+        validation_status=record["validation_status"],
+        latency_ms=record["latency_ms"],
+        prompt_tokens=record["prompt_tokens"],
+        completion_tokens=record["completion_tokens"],
+        cost_usd=record["cost_usd"],
+        parsed_output=record["review"],
+        failure_detail=record["failure_detail"],
+        called_utc=record["reviewed_utc"],
+    ) for record in records]
+
+
+def build_llm_observation_rows(evaluations: dict, model_id: str, method_version: str) -> dict:
     rows = {}
     for relative_path, evaluation in evaluations.items():
         if evaluation:
-            rows[relative_path] = build_llm_observations(evaluation, model_id, LLM_METHOD_VERSION)
+            rows[relative_path] = build_llm_observations(evaluation, model_id, method_version)
         else:
             LOGGER.info(f"{relative_path}: evaluation failed validation, no observations to store")
     return rows
@@ -128,23 +172,67 @@ def build_llm_observation_rows(evaluations: dict, model_id: str) -> dict:
 def build_run_artifacts(config: PipelineConfig, args: argparse.Namespace, manifest: DatasetManifest) -> RunArtifacts:
     assets = AssetLoader(config.dataset_path(args.dataset)).load(manifest)
     extracted = [asset for asset in assets if not asset.failure]
-    baseline = MomentGrouper().group([build_signals(asset) for asset in extracted])
+    signals = [build_signals(asset) for asset in extracted]
+    signals_by_path = {signal.relative_path: signal for signal in signals}
+    baseline = MomentGrouper().group(signals)
 
-    records = load_llm_records(config, args.dataset)
+    records = load_llm_records(config, args.dataset, args.llm_version)
     evaluations = fan_out_evaluations(manifest, records)
-    image_signals = build_image_signals(evaluations)
+    if records:
+        model_id = records[0]["model"]
+        schema_version = records[0]["schema_version"]
+        llm_method_version = f"p{records[0]['prompt_version']}/{schema_version}"
+        image_signals = build_image_signals(schema_version, evaluations)
+    else:
+        model_id = None
+        schema_version = None
+        llm_method_version = None
+        image_signals = {}
     refined = ProposalRefiner().refine(baseline, image_signals)
-    model_id = records[0]["model"] if records else None
+
+    sessions = SessionBuilder().build(args.dataset, args.llm_version, baseline, signals_by_path, image_signals)
+    review_records = review_records_for(ReviewStore(config.llm_runs_dir, args.dataset), sessions) if sessions else []
+    reviews = parse_reviews(review_records)
+    regrouper = Regrouper()
+    regrouped = regrouper.regroup(baseline, signals_by_path, image_signals, sessions, reviews)
+    review_signals = regrouper.review_signals(image_signals, sessions, reviews)
+
+    if schema_version == SCHEMA_V2:
+        llm_observations = build_llm_observation_rows(evaluations, model_id, llm_method_version)
+    else:
+        LOGGER.info(f"{args.dataset}: fetched observation rows are only flattened for {SCHEMA_V2} records, none built from {schema_version}")
+        llm_observations = {}
 
     return RunArtifacts(
         manifest=manifest,
         extracted=extracted,
         baseline=baseline,
         refined=refined,
+        regrouped=regrouped,
+        image_signals=image_signals,
+        review_signals=review_signals,
+        sessions=sessions,
+        review_records=review_records,
         model_calls=build_model_calls(records),
-        llm_observations=build_llm_observation_rows(evaluations, model_id) if model_id else {},
+        llm_observations=llm_observations,
         model_id=model_id,
+        llm_method_version=llm_method_version,
     )
+
+
+def build_review_inputs(config: PipelineConfig, args: argparse.Namespace) -> ReviewInputs:
+    manifest = ensure_manifest(config, args)
+    assets = AssetLoader(config.dataset_path(args.dataset)).load(manifest)
+    signals = [build_signals(asset) for asset in assets if not asset.failure]
+    signals_by_path = {signal.relative_path: signal for signal in signals}
+    baseline = MomentGrouper().group(signals)
+
+    records = load_llm_records(config, args.dataset, args.llm_version)
+    if not records:
+        raise SystemExit(f"no evaluation records under {args.llm_version} for {args.dataset}, run llm_pipeline first or pass --llm-version")
+    image_signals = build_image_signals(records[0]["schema_version"], fan_out_evaluations(manifest, records))
+    sessions = SessionBuilder().build(args.dataset, args.llm_version, baseline, signals_by_path, image_signals)
+    return ReviewInputs(manifest=manifest, baseline=baseline, signals_by_path=signals_by_path, image_signals=image_signals, sessions=sessions)
 
 
 def persist_run(config: PipelineConfig, artifacts: RunArtifacts) -> int:
@@ -161,6 +249,11 @@ def persist_run(config: PipelineConfig, artifacts: RunArtifacts) -> int:
             store.save_proposals(run_id, manifest.dataset_id, asset_ids, artifacts.refined)
         else:
             LOGGER.info(f"{manifest.dataset_id}: no evaluation records, storing the deterministic baseline only")
+        if artifacts.review_records:
+            store.save_model_calls(run_id, asset_ids, build_review_calls(artifacts.review_records))
+            store.save_proposals(run_id, manifest.dataset_id, asset_ids, artifacts.regrouped)
+        else:
+            LOGGER.info(f"{manifest.dataset_id}: no moment review records, regrouped proposals not stored")
         store.complete_run(run_id, COMPLETE)
     return run_id
 
@@ -201,8 +294,48 @@ def run_group(config: PipelineConfig, args: argparse.Namespace):
 def run_persist(config: PipelineConfig, args: argparse.Namespace):
     artifacts = build_run_artifacts(config, args, load_manifest(config, args))
     run_id = persist_run(config, artifacts)
-    proposals = len(artifacts.baseline) + (len(artifacts.refined) if artifacts.model_calls else 0)
-    print(f"\n{args.dataset}: run {run_id} stored {len(artifacts.manifest.entries)} assets, {proposals} proposals and {len(artifacts.model_calls)} model calls in {config.database_path}\n")
+    proposals = len(artifacts.baseline) + (len(artifacts.refined) if artifacts.model_calls else 0) + (len(artifacts.regrouped) if artifacts.review_records else 0)
+    calls = len(artifacts.model_calls) + len(artifacts.review_records)
+    print(f"\n{args.dataset}: run {run_id} stored {len(artifacts.manifest.entries)} assets, {proposals} proposals and {calls} model calls in {config.database_path}\n")
+
+
+def run_review_moments(config: PipelineConfig, args: argparse.Namespace):
+    inputs = build_review_inputs(config, args)
+    store = ReviewStore(config.llm_runs_dir, args.dataset)
+    print_review_estimate(args.dataset, inputs.sessions, store, config.openrouter_model)
+    if not config.openrouter_api_key:
+        raise SystemExit("JO_OPENROUTER_API_KEY is not set, add it to .env before reviewing moments")
+
+    with OpenRouterClient(config.openrouter_api_key, config.openrouter_model) as client:
+        run = MomentReviewer(client, store, args.dataset, default_review_prompts()).review(inputs.sessions, limit=args.limit)
+    print_review_run(run.summary, store.run_dir)
+
+
+def print_review_estimate(dataset_id: str, sessions: list, store: ReviewStore, model: str):
+    system_tokens = len(default_review_prompts().system) // REVIEW_CHARS_PER_TOKEN + REVIEW_SCHEMA_TOKENS
+    pending = [session for session in sessions if not store.exists(session.session_id)]
+    print(f"\nMoment review for {dataset_id} with {model}\n")
+    total = 0.0
+    for session in pending:
+        input_tokens = system_tokens + len(render_session(session)) // REVIEW_CHARS_PER_TOKEN
+        cost = (input_tokens * PRICE_INPUT_USD_PER_MTOK + REVIEW_OUTPUT_TOKENS * PRICE_OUTPUT_USD_PER_MTOK) / 1_000_000
+        total += cost
+        print(f"  {session.session_id}  {len(session.frames):>3} photos  {session.frames[0].captured_utc[:16]} to {session.frames[-1].captured_utc[11:16]}  ~{input_tokens} tokens in  ~${cost:.4f}")
+    print(f"\n{len(pending)} sessions pending of {len(sessions)}, {len(sessions) - len(pending)} already reviewed")
+    print(f"Estimated total: ~${total:.2f} at ${PRICE_INPUT_USD_PER_MTOK}/M in, ${PRICE_OUTPUT_USD_PER_MTOK}/M out, text only, no images sent\n")
+
+
+def print_review_run(summary: ReviewSummary, run_dir: Path):
+    print(f"\n{summary.dataset_id}: moments reviewed with {summary.model}, review prompt v{summary.review_prompt_version}, schema {summary.review_schema_version}\n")
+    print(f"  sessions           {summary.sessions_total}")
+    print(f"  skipped existing   {summary.sessions_skipped_existing}")
+    print(f"  reviewed           {summary.sessions_reviewed}")
+    print(f"  valid              {summary.valid}")
+    print(f"  invalid            {summary.invalid}")
+    print(f"  failed requests    {summary.request_failed}")
+    print(f"  tokens             {summary.total_prompt_tokens} in, {summary.total_completion_tokens} out")
+    print(f"  cost               ${summary.total_cost_usd:.4f}")
+    print(f"  records            {run_dir}\n")
 
 
 def run_review(config: PipelineConfig, args: argparse.Namespace):
@@ -222,12 +355,12 @@ def run_benchmark(config: PipelineConfig, args: argparse.Namespace):
     manifest = ensure_manifest(config, args)
     artifacts = build_run_artifacts(config, args, manifest)
     signals = [build_signals(asset) for asset in artifacts.extracted]
-    evaluations = fan_out_evaluations(manifest, load_llm_records(config, args.dataset))
-    image_signals = build_image_signals(evaluations)
+    image_signals = artifacts.image_signals
 
-    print(f"\n{'=' * 78}\n{args.dataset}  benchmark  model {artifacts.model_id or 'none'}\n{'=' * 78}")
+    print(f"\n{'=' * 78}\n{args.dataset}  benchmark  model {artifacts.model_id or 'none'}  records {args.llm_version}\n{'=' * 78}")
     print(f"\n{len(image_signals)} of {len(signals)} extracted images carry a valid evaluation\n")
     print_refinement_effect(artifacts)
+    print_review_effect(artifacts)
 
     document = find_reference_document(config.dataset_path(args.dataset), args.reference)
     if not document:
@@ -235,13 +368,28 @@ def run_benchmark(config: PipelineConfig, args: argparse.Namespace):
         return
 
     reference = ReferenceReader(document).read(args.dataset, signals)
-    baseline_comparison = GroupingReviewer().compare(artifacts.baseline, reference)
-    refined_comparison = GroupingReviewer().compare(artifacts.refined, reference)
+    comparisons = [GroupingReviewer().compare(proposals, reference) for proposals in (artifacts.baseline, artifacts.refined, artifacts.regrouped)]
     keep = KeepSignalScorer().score(reference, image_signals)
-    print_benchmark(baseline_comparison, refined_comparison, keep)
+    review_keep = KeepSignalScorer().score(reference, artifacts.review_signals)
+    print_benchmark(comparisons, keep, review_keep)
 
-    artifact = write_benchmark_artifact(config, args, artifacts, baseline_comparison, refined_comparison, keep)
+    artifact = write_benchmark_artifact(config, args, artifacts, comparisons, keep, review_keep)
     print(f"  artifact                   {artifact}\n")
+
+
+def print_review_effect(artifacts: RunArtifacts):
+    reviewed = [proposal for proposal in artifacts.regrouped if proposal.evidence.get("review", {}).get("status") == "reviewed"]
+    changes = {}
+    for proposal in reviewed:
+        change = proposal.evidence["review"]["change"]
+        changes[change] = changes.get(change, 0) + 1
+    valid = sum(1 for record in artifacts.review_records if record["validation_status"] == "valid")
+    cost = sum(record["cost_usd"] for record in artifacts.review_records)
+    left_out = sum(1 for proposal in artifacts.regrouped for entry in proposal.evidence.get("excluded_by_signal", []) if entry.get("source") == "moment_review")
+    print(f"Moment review: {len(artifacts.sessions)} sessions, {valid} valid reviews of {len(artifacts.review_records)} records, ${cost:.4f}\n")
+    print(f"  regrouped proposals           {len(artifacts.regrouped)} from {len(artifacts.baseline)} baseline")
+    print(f"  moments reviewed              {len(reviewed)}  " + ", ".join(f"{count} {change}" for change, count in sorted(changes.items())))
+    print(f"  photos left out by the review {left_out}\n")
 
 
 def print_refinement_effect(artifacts: RunArtifacts):
@@ -259,24 +407,30 @@ def print_refinement_effect(artifacts: RunArtifacts):
     print(f"  model calls recorded          {len(artifacts.model_calls)}\n")
 
 
-def print_benchmark(baseline: ReviewComparison, refined: ReviewComparison, keep: KeepSignalScore):
-    print(f"Accuracy against the traveler's own grouping, baseline against refined\n")
-    print(f"  {'metric':<26} {'baseline':>9} {'refined':>9}  delta")
-    for label, left, right in (
-        ("pair precision", baseline.pair_precision, refined.pair_precision),
-        ("pair recall", baseline.pair_recall, refined.pair_recall),
-        ("pair f1", baseline.pair_f1, refined.pair_f1),
+def print_benchmark(comparisons: list[ReviewComparison], keep: KeepSignalScore, review_keep: KeepSignalScore):
+    baseline, refined, regrouped = comparisons
+    print(f"Accuracy against the traveler's own grouping, baseline against refined against regrouped\n")
+    print(f"  {'metric':<26} {'baseline':>9} {'refined':>9} {'regrouped':>9}  delta")
+    for label, left, middle, right in (
+        ("pair precision", baseline.pair_precision, refined.pair_precision, regrouped.pair_precision),
+        ("pair recall", baseline.pair_recall, refined.pair_recall, regrouped.pair_recall),
+        ("pair f1", baseline.pair_f1, refined.pair_f1, regrouped.pair_f1),
     ):
-        print(f"  {label:<26} {left:>9.3f} {right:>9.3f}  {right - left:+.3f}")
-    for label, left, right in (
-        ("proposals", baseline.proposed_groups, refined.proposed_groups),
-        ("reference memories split", baseline.split_groups, refined.split_groups),
-        ("proposals merging memories", baseline.merged_proposals, refined.merged_proposals),
-        ("excluded photos grouped", baseline.excluded_assets_grouped, refined.excluded_assets_grouped),
+        print(f"  {label:<26} {left:>9.3f} {middle:>9.3f} {right:>9.3f}  {right - left:+.3f}")
+    for label, left, middle, right in (
+        ("proposals", baseline.proposed_groups, refined.proposed_groups, regrouped.proposed_groups),
+        ("reference memories split", baseline.split_groups, refined.split_groups, regrouped.split_groups),
+        ("proposals merging memories", baseline.merged_proposals, refined.merged_proposals, regrouped.merged_proposals),
+        ("excluded photos grouped", baseline.excluded_assets_grouped, refined.excluded_assets_grouped, regrouped.excluded_assets_grouped),
     ):
-        print(f"  {label:<26} {left:>9} {right:>9}  {right - left:+d}")
+        print(f"  {label:<26} {left:>9} {middle:>9} {right:>9}  {right - left:+d}")
 
-    print(f"\nKeep signal against the {keep.excluded_total} photos the traveler left out\n")
+    print_keep_score("per-image keep signal", keep)
+    print_keep_score("keep signal with the moment review", review_keep)
+
+
+def print_keep_score(title: str, keep: KeepSignalScore):
+    print(f"\n{title[0].upper()}{title[1:]} against the {keep.excluded_total} photos the traveler left out\n")
     print(f"  evaluated exclusions       {keep.excluded_with_signal} of {keep.excluded_total}")
     print(f"  caught as leave_out        {keep.excluded_caught}")
     print(f"  recall                     {keep.recall:.2f}")
@@ -288,19 +442,28 @@ def print_benchmark(baseline: ReviewComparison, refined: ReviewComparison, keep:
         print(f"  false   {hit.relative_path}  {hit.reason}")
 
 
-def write_benchmark_artifact(config: PipelineConfig, args: argparse.Namespace, artifacts: RunArtifacts, baseline: ReviewComparison, refined: ReviewComparison, keep: KeepSignalScore) -> Path:
+def write_benchmark_artifact(config: PipelineConfig, args: argparse.Namespace, artifacts: RunArtifacts, comparisons: list[ReviewComparison], keep: KeepSignalScore, review_keep: KeepSignalScore) -> Path:
+    baseline, refined, regrouped = comparisons
     config.runs_dir.mkdir(parents=True, exist_ok=True)
     artifact = config.runs_dir / f"{args.dataset}-v{args.dataset_version}-benchmark.json"
     artifact.write_text(json.dumps({
         "dataset_id": args.dataset,
         "dataset_version": args.dataset_version,
         "model_id": artifacts.model_id,
-        "llm_method_version": LLM_METHOD_VERSION,
+        "llm_method_version": artifacts.llm_method_version,
         "baseline_comparison": baseline.as_dict(),
         "refined_comparison": refined.as_dict(),
+        "regrouped_comparison": regrouped.as_dict(),
         "keep_signal_score": keep.as_dict(),
+        "review_keep_signal_score": review_keep.as_dict(),
+        "review": {
+            "sessions": len(artifacts.sessions),
+            "records": artifacts.review_records,
+            "cost_usd": round(sum(record["cost_usd"] for record in artifacts.review_records), 4),
+        },
         "baseline_proposals": [asdict(proposal) for proposal in artifacts.baseline],
         "refined_proposals": [asdict(proposal) for proposal in artifacts.refined],
+        "regrouped_proposals": [asdict(proposal) for proposal in artifacts.regrouped],
     }, indent=2))
     LOGGER.info(f"{args.dataset}: benchmark artifact written to {artifact}")
     return artifact
@@ -395,6 +558,7 @@ def print_review(dataset_id: str, reference: ReferenceGrouping, comparison: Revi
 def add_dataset_arguments(parser: argparse.ArgumentParser):
     parser.add_argument("--dataset", required=True, help="Dataset folder name under the dataset root")
     parser.add_argument("--dataset-version", default="1", help="Manifest version")
+    parser.add_argument("--llm-version", default=DEFAULT_LLM_VERSION, help=f"Evaluation run directory under data/llm_runs/<dataset>, such as p1-llm-eval-1 (default {DEFAULT_LLM_VERSION})")
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -427,10 +591,15 @@ def build_parser() -> argparse.ArgumentParser:
     review.add_argument("--reference", help="Path to the reference document, discovered under the dataset folder when omitted")
     review.set_defaults(handler=run_review)
 
-    benchmark = subparsers.add_parser("benchmark", help="Score the deterministic baseline against the visual model refinement, no API calls")
+    benchmark = subparsers.add_parser("benchmark", help="Score the deterministic baseline against the visual model refinement and the moment review, no API calls")
     add_dataset_arguments(benchmark)
     benchmark.add_argument("--reference", help="Path to the reference document, discovered under the dataset folder when omitted")
     benchmark.set_defaults(handler=run_benchmark)
+
+    review_moments = subparsers.add_parser("review-moments", help="Send each outing's per-image descriptions to the model as text and store its moment review, the only paid action here")
+    add_dataset_arguments(review_moments)
+    review_moments.add_argument("--limit", type=int, help="Maximum number of pending sessions to review this run")
+    review_moments.set_defaults(handler=run_review_moments)
 
     return parser
 

@@ -1,10 +1,11 @@
 import json
+import re
 from dataclasses import replace
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import httpx
-from PIL import Image
+from PIL import Image, ImageDraw
 
 from jo_web.config import WebConfig
 from jo_web.registry import COMPLETE, RunRegistry
@@ -52,31 +53,55 @@ def evaluation_payload(keep="keep", quality=0.8) -> dict:
     }
 
 
-def build_transport(requests: list, payloads: list | None = None) -> httpx.MockTransport:
+def review_payload(frame_count: int, moments: list | None = None) -> dict:
+    ranges = moments or [(0, frame_count - 1)]
+    return {
+        "moments": [{"first_frame": first, "last_frame": last, "title": f"Moment from {first}", "reason": "The descriptions read as one place."} for first, last in ranges],
+        "leave_out": [],
+    }
+
+
+def build_transport(requests: list, payloads: list | None = None, review_moments: list | None = None) -> httpx.MockTransport:
+    evaluations = []
+
     def handler(request):
-        requests.append(json.loads(request.content.decode()))
-        payload = payloads[len(requests) - 1] if payloads else evaluation_payload()
-        body = {
+        body = json.loads(request.content.decode())
+        requests.append(body)
+        if body["response_format"]["json_schema"]["name"] == "moment_review":
+            frame_count = int(re.search(r"Session of (\d+) photos", body["messages"][1]["content"]).group(1))
+            payload = review_payload(frame_count, review_moments)
+        else:
+            evaluations.append(body)
+            payload = payloads[len(evaluations) - 1] if payloads else evaluation_payload()
+        response = {
             "id": "gen-abc",
             "choices": [{"message": {"role": "assistant", "content": json.dumps(payload)}}],
             "usage": {"prompt_tokens": 900, "completion_tokens": 400, "cost": 0.01},
         }
-        return httpx.Response(200, json=body)
+        return httpx.Response(200, json=response)
 
     return httpx.MockTransport(handler)
 
 
-def write_photo(target: Path, colour: tuple, minutes_offset: int):
+def review_requests(requests: list) -> list:
+    return [body for body in requests if body["response_format"]["json_schema"]["name"] == "moment_review"]
+
+
+def write_photo(target: Path, colour: tuple, minutes_offset: int, pattern: int = 0):
+    # A vertical bar at a per-photo column keeps the difference hashes apart, so the photos group as distinct frames rather than duplicates
     captured = CAPTURE_BASE + timedelta(minutes=minutes_offset)
     exif = Image.Exif()
     exif[0x8769] = {0x9003: captured.strftime("%Y:%m:%d %H:%M:%S"), 0x9011: "+00:00"}
-    Image.new("RGB", (160, 120), colour).save(target, format="JPEG", exif=exif)
+    image = Image.new("RGB", (160, 120), colour)
+    left = 10 + (pattern * 45) % 130
+    ImageDraw.Draw(image).rectangle([left, 0, left + 15, 120], fill=(255, 255, 255))
+    image.save(target, format="JPEG", exif=exif)
 
 
 def seed_run(config: WebConfig, registry: RunRegistry, colours: list) -> str:
     state = registry.create()
     for index, colour in enumerate(colours):
-        write_photo(config.upload_dir(state.run_id) / f"IMG_{index:04d}.jpg", colour, index * 3)
+        write_photo(config.upload_dir(state.run_id) / f"IMG_{index:04d}.jpg", colour, index * 3, pattern=index)
     return state.run_id
 
 
@@ -98,7 +123,11 @@ def test_a_run_produces_grouping_thumbnails_and_one_evaluation_per_image(tmp_pat
     assert len(state.thumbnails) == 3
     assert len(state.llm_records) == 3
     assert state.llm_summary.valid == 3
-    assert len(requests) == 3
+    assert len(requests) == 4
+    assert len(review_requests(requests)) == 1
+    assert state.review_summary.valid == 1
+    assert state.groups[0].evidence["review"]["title"] == "Moment from 0"
+    assert state.groups[0].method_version == "regroup-1"
     for key in set(state.thumbnails.values()):
         assert (config.thumbnail_dir(run_id) / f"{key}.jpg").is_file()
 
@@ -124,6 +153,7 @@ def test_byte_identical_uploads_are_evaluated_once_and_still_group_as_duplicates
     result = registry.get(state.run_id)
     assert len(requests) == 1
     assert len(result.llm_records) == 1
+    assert result.review_summary is None
     memberships = [member.membership for group in result.groups for member in group.members]
     assert "duplicate" in memberships
 
@@ -167,6 +197,27 @@ def test_a_leave_out_verdict_reaches_the_api_as_a_dropped_member_with_its_reason
     assert excluded[0]["reason"] == "Distinctive scene"
     representative = [member for member in state.groups[0].members if member.membership == "representative"]
     assert representative[0].evidence["representative_score"] == 0.95
+
+
+def test_a_review_that_splits_an_outing_reaches_the_page_with_its_titles_and_the_new_boundary(tmp_path):
+    # The review is only worth showing if the viewer can see what it changed and why
+    config = build_config(tmp_path)
+    registry = RunRegistry(config)
+    requests = []
+    service = PipelineService(config, registry, transport=build_transport(requests, review_moments=[(0, 0), (1, 2)]))
+    run_id = seed_run(config, registry, [(200, 40, 40), (40, 200, 40), (40, 40, 200)])
+
+    service.execute(run_id)
+
+    state = registry.get(run_id)
+    assert len(state.baseline_groups) == 1
+    assert [len(group.members) for group in state.groups] == [1, 2]
+    assert [group.evidence["review"]["title"] for group in state.groups] == ["Moment from 0", "Moment from 1"]
+    assert [group.evidence["review"]["change"] for group in state.groups] == ["split", "split"]
+    assert state.groups[0].evidence["closed_by"]["kind"] == "review_split"
+    assert state.groups[1].evidence["opened_by"] == state.groups[0].evidence["closed_by"]
+    assert len(state.review_records) == 1
+    assert "IMG_" not in review_requests(requests)[0]["messages"][1]["content"]
 
 
 def test_a_run_without_evaluation_records_keeps_the_deterministic_groups(tmp_path):

@@ -238,6 +238,43 @@ def test_model_calls_store_their_cost_accounting(tmp_path):
     assert json.loads(parsed)["caption"] == "a caption"
 
 
+def test_a_model_call_over_a_set_of_photos_is_stored_without_a_media_asset(tmp_path):
+    # The moment review is one call per outing, so it has no single photo to hang off; media_asset_id is nullable for exactly this
+    database_path = build_database(tmp_path)
+    manifest = build_manifest()
+    call = ModelCall(
+        relative_path=None,
+        provider=OPENROUTER_PROVIDER,
+        model_id="openai/gpt-5.6-sol",
+        prompt_version="1",
+        schema_version="moment-review-1",
+        attempt=1,
+        validation_status="valid",
+        latency_ms=4000,
+        prompt_tokens=3100,
+        completion_tokens=320,
+        cost_usd=0.025,
+        parsed_output={"moments": [{"first_frame": 0, "last_frame": 2, "title": "A walk", "reason": "one place"}], "leave_out": []},
+        failure_detail=None,
+        called_utc="2026-08-22T06:00:00+00:00",
+    )
+
+    with PipelineStore(database_path) as store:
+        store.save_dataset(manifest)
+        asset_ids = store.save_assets(manifest)
+        run_id = store.start_run(manifest, "digest", "openai/gpt-5.6-sol")
+        stored = store.save_model_calls(run_id, asset_ids, [call])
+
+    connection = sqlite3.connect(database_path)
+    asset_id, schema_version, parsed = connection.execute("select media_asset_id, schema_version, parsed_output from model_calls").fetchone()
+    connection.close()
+
+    assert stored == 1
+    assert asset_id is None
+    assert schema_version == "moment-review-1"
+    assert json.loads(parsed)["moments"][0]["title"] == "A walk"
+
+
 def test_a_model_call_for_an_unstored_asset_is_skipped_rather_than_failing(tmp_path):
     database_path = build_database(tmp_path)
     manifest = build_manifest()

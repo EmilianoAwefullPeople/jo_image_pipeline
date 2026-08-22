@@ -2,10 +2,12 @@ from dataclasses import dataclass
 from pathlib import Path
 
 PROMPT_VERSION = "2"
+REVIEW_PROMPT_VERSION = "1"
 CUSTOM_PROMPT_VERSION = "custom"
 PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
 UNKNOWN_CAPTURE_TIME = "unknown"
 CAPTURE_TIME_PLACEHOLDER = "{capture_local_time}"
+SESSION_PLACEHOLDER = "{session}"
 
 
 @dataclass(frozen=True)
@@ -28,6 +30,19 @@ class PromptSet:
         ]
 
 
+@dataclass(frozen=True)
+class ReviewPrompts:
+    version: str
+    system: str
+    user_template: str
+
+    def build_messages(self, session_text: str) -> list[dict]:
+        return [
+            {"role": "system", "content": self.system},
+            {"role": "user", "content": self.user_template.format(session=session_text).strip()},
+        ]
+
+
 def load_system_prompt() -> str:
     return (PROMPTS_DIR / f"system_v{PROMPT_VERSION}.txt").read_text()
 
@@ -38,6 +53,14 @@ def load_user_template() -> str:
 
 def default_prompts() -> PromptSet:
     return PromptSet(version=PROMPT_VERSION, system=load_system_prompt(), user_template=load_user_template())
+
+
+def default_review_prompts() -> ReviewPrompts:
+    return ReviewPrompts(
+        version=REVIEW_PROMPT_VERSION,
+        system=(PROMPTS_DIR / f"review_system_v{REVIEW_PROMPT_VERSION}.txt").read_text(),
+        user_template=(PROMPTS_DIR / f"review_user_v{REVIEW_PROMPT_VERSION}.txt").read_text(),
+    )
 
 
 def custom_prompts(system: str, user_template: str) -> PromptSet:

@@ -19,7 +19,7 @@ CHARS_PER_TOKEN = 4
 
 
 def build_store(config: LlmConfig, dataset_id: str) -> RunStore:
-    return RunStore(config.llm_runs_dir, dataset_id, PROMPT_VERSION, SCHEMA_VERSION)
+    return RunStore.for_versions(config.llm_runs_dir, dataset_id, PROMPT_VERSION, SCHEMA_VERSION)
 
 
 def run_evaluation(config: LlmConfig, args: argparse.Namespace):

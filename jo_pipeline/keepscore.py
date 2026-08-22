@@ -1,8 +1,9 @@
 import logging
 from dataclasses import asdict, dataclass, field
 
+from jo_pipeline.evaluation_readers import ImageSignal
 from jo_pipeline.reference import ReferenceGrouping
-from jo_pipeline.refine import LEAVE_OUT, ImageSignal
+from jo_pipeline.refine import LEAVE_OUT
 
 LOGGER = logging.getLogger(__name__)
 

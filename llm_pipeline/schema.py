@@ -4,6 +4,8 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 SCHEMA_VERSION = "llm-eval-2"
 RESPONSE_SCHEMA_NAME = "image_evaluation"
+REVIEW_SCHEMA_VERSION = "moment-review-1"
+REVIEW_SCHEMA_NAME = "moment_review"
 BOUND_KEYWORDS = ("minimum", "maximum", "exclusiveMinimum", "exclusiveMaximum", "minItems", "maxItems")
 
 OTHER = "other"
@@ -12,6 +14,7 @@ DESCRIPTION_MAX_WORDS = 17
 MAX_NOTABLE_SUBJECTS = 4
 MIN_KEYWORD_TAGS = 3
 MAX_KEYWORD_TAGS = 6
+MAX_TITLE_WORDS = 8
 
 SceneSettingType = Literal[
     "beach",
@@ -182,8 +185,65 @@ class ImageEvaluation(StrictModel):
         return self
 
 
+class ReviewedMoment(StrictModel):
+    first_frame: int = Field(ge=0, description="Index of the first frame in this moment")
+    last_frame: int = Field(ge=0, description="Index of the last frame in this moment, inclusive")
+    title: str = Field(description=f"At most {MAX_TITLE_WORDS} words naming what the moment is, drawn from the frame text")
+    reason: str = Field(description="One sentence on why these frames belong together and apart from their neighbours")
+
+    @model_validator(mode="after")
+    def _range_and_title_hold(self) -> "ReviewedMoment":
+        if self.last_frame < self.first_frame:
+            raise ValueError(f"last_frame {self.last_frame} is before first_frame {self.first_frame}")
+        words = len(self.title.split())
+        if words > MAX_TITLE_WORDS:
+            raise ValueError(f"title must be at most {MAX_TITLE_WORDS} words, it was {words}")
+        return self
+
+
+class LeaveOutSuggestion(StrictModel):
+    frame: int = Field(ge=0, description="Index of the frame that adds nothing to any moment")
+    reason: str = Field(description="Why this frame adds nothing to the moment it sits in")
+    confidence: float = Field(ge=0.0, le=1.0, description="How sure you are that the frame adds nothing")
+
+
+class MomentReview(StrictModel):
+    moments: list[ReviewedMoment] = Field(min_length=1, description="Every moment in the session, in frame order, covering every frame exactly once")
+    leave_out: list[LeaveOutSuggestion] = Field(description="Frames that add nothing to any moment, empty when every frame earns its place")
+
+    @model_validator(mode="after")
+    def _moments_partition_the_frames(self) -> "MomentReview":
+        expected = 0
+        for moment in self.moments:
+            if moment.first_frame != expected:
+                raise ValueError(f"moments must be contiguous from frame 0, a moment starts at {moment.first_frame} where {expected} was expected")
+            expected = moment.last_frame + 1
+        frames = [suggestion.frame for suggestion in self.leave_out]
+        if len(frames) != len(set(frames)):
+            raise ValueError("leave_out names the same frame more than once")
+        outside = [frame for frame in frames if frame >= expected]
+        if outside:
+            raise ValueError(f"leave_out names frames outside the session: {outside}")
+        return self
+
+    def frame_count(self) -> int:
+        return self.moments[-1].last_frame + 1
+
+    def covers(self, frame_count: int):
+        if self.frame_count() != frame_count:
+            raise ValueError(f"moments cover {self.frame_count()} frames but the session has {frame_count}, every frame must belong to exactly one moment")
+
+
 def response_schema() -> dict:
-    schema = ImageEvaluation.model_json_schema()
+    return strict_schema(ImageEvaluation)
+
+
+def review_schema() -> dict:
+    return strict_schema(MomentReview)
+
+
+def strict_schema(model_class: type[BaseModel]) -> dict:
+    schema = model_class.model_json_schema()
     _apply_strict_rules(schema)
     return schema
 

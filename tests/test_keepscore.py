@@ -17,7 +17,7 @@ def grouping(grouped: list, excluded: list) -> ReferenceGrouping:
 def test_the_keep_signal_is_scored_against_the_photos_the_traveler_left_out():
     # This is the specific Week 2 gap the signal exists to close
     reference = grouping(grouped=["keep1.jpg", "keep2.jpg"], excluded=["out1.jpg", "out2.jpg"])
-    signals = build_image_signals({
+    signals = build_image_signals("llm-eval-2", {
         "keep1.jpg": evaluation(keep="keep"),
         "keep2.jpg": evaluation(keep="unsure"),
         "out1.jpg": evaluation(keep="leave_out", reason="a duplicate of a better frame"),
@@ -41,7 +41,7 @@ def test_the_keep_signal_is_scored_against_the_photos_the_traveler_left_out():
 
 def test_leave_out_on_a_photo_the_traveler_kept_counts_as_a_false_positive():
     reference = grouping(grouped=["keep1.jpg", "keep2.jpg"], excluded=["out1.jpg"])
-    signals = build_image_signals({
+    signals = build_image_signals("llm-eval-2", {
         "keep1.jpg": evaluation(keep="leave_out", reason="looked incidental"),
         "keep2.jpg": evaluation(keep="keep"),
         "out1.jpg": evaluation(keep="leave_out"),
@@ -59,7 +59,7 @@ def test_leave_out_on_a_photo_the_traveler_kept_counts_as_a_false_positive():
 def test_photos_never_evaluated_are_excluded_from_the_denominator():
     # Scoring must reflect what the model actually saw, not what the reference contained
     reference = grouping(grouped=["keep1.jpg"], excluded=["out1.jpg", "out2.jpg", "out3.jpg"])
-    signals = build_image_signals({"out1.jpg": evaluation(keep="leave_out")})
+    signals = build_image_signals("llm-eval-2", {"out1.jpg": evaluation(keep="leave_out")})
 
     score = KeepSignalScorer().score(reference, signals)
 
@@ -74,7 +74,7 @@ def test_photos_never_evaluated_are_excluded_from_the_denominator():
 def test_a_repeated_excluded_path_is_counted_once():
     # ReferenceReader can emit the same path twice when a photo appears in two excluded paragraphs
     reference = grouping(grouped=["keep1.jpg"], excluded=["out1.jpg", "out1.jpg"])
-    signals = build_image_signals({"out1.jpg": evaluation(keep="leave_out"), "keep1.jpg": evaluation(keep="keep")})
+    signals = build_image_signals("llm-eval-2", {"out1.jpg": evaluation(keep="leave_out"), "keep1.jpg": evaluation(keep="keep")})
 
     score = KeepSignalScorer().score(reference, signals)
 
@@ -84,7 +84,7 @@ def test_a_repeated_excluded_path_is_counted_once():
 
 def test_the_score_serializes_with_its_per_path_detail():
     reference = grouping(grouped=["keep1.jpg"], excluded=["out1.jpg"])
-    signals = build_image_signals({"out1.jpg": evaluation(keep="leave_out"), "keep1.jpg": evaluation(keep="keep")})
+    signals = build_image_signals("llm-eval-2", {"out1.jpg": evaluation(keep="leave_out"), "keep1.jpg": evaluation(keep="keep")})
 
     payload = KeepSignalScorer().score(reference, signals).as_dict()
 
