@@ -160,7 +160,7 @@ function resetPage() {
 
 function clearSet() {
   if (uploading || !currentSet) return;
-  if (!window.confirm("Clear this set? The page goes back to its starting state.")) return;
+  if (!window.confirm("Clear this set?")) return;
   currentSet.cleared = true;
   currentSet = null;
   resetPage();
