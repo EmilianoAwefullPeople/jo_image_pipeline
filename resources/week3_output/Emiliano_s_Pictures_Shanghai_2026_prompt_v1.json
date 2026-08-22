@@ -1,0 +1,4210 @@
+{
+  "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+  "description": "Per-image visual LLM evaluation output, prompt v1 / schema llm-eval-1, one record per unique image by content hash. Byte-identical duplicate files share the record of the file listed under identical_to.",
+  "prompt_version": "1",
+  "schema_version": "llm-eval-1",
+  "model": "openai/gpt-5.6-sol",
+  "generated_utc": "2026-08-22T20:48:08Z",
+  "images_on_disk": 61,
+  "unique_images": 61,
+  "records": 61,
+  "duplicate_files": [],
+  "total_prompt_tokens": 122451,
+  "total_completion_tokens": 39848,
+  "total_cost_usd": 1.4788,
+  "evaluations": [
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "049A466F-99BB-4577-A5C5-77C581DA0EED_1_105_c.jpeg",
+      "sha256": "9906f2e85a948d31ef3c8cf0773b1d02e003f424f6de7c1becea269edbe6b505",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:14:27.439546+00:00",
+      "attempts": 1,
+      "latency_ms": 18069,
+      "prompt_tokens": 2373,
+      "completion_tokens": 818,
+      "cost_usd": 0.0312025,
+      "generation_id": "gen-1786954452-yVHBc3QlByxcxTJoprMy",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A photographed information card for % Arabica at Shanghai Pudong Airport rests on a white tabletop.",
+        "scene": {
+          "scene_type": "document_or_screen",
+          "confidence": 0.99,
+          "evidence": "The image centers on a printed café information card containing an address, contact details, opening hours, and an airport terminal map."
+        },
+        "activity": {
+          "description": "The traveler was likely photographing the café's location and contact card for later reference.",
+          "confidence": 0.88,
+          "evidence": "The card is deliberately centered and shows practical venue details along with a terminal map."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.96,
+          "evidence": "The card names Shanghai Pudong Airport, but the photograph does not show distinctive physical features of a landmark."
+        },
+        "visible_text": {
+          "transcription": "% ARABICA®\nSHANGHAI\nPUDONG AIRPORT\n\n2B-5, 3F, Terminal 2, Pudong Airport\nNo.8000 Yingbin Ave, Shanghai\nTel: +86-180-0197-0539\nEmail: info@cn.arabica.hk\narabica.cn\nArabica\nShop hours: 6am - 10pm\nOpen daily",
+          "text_kind": "label",
+          "language": "English",
+          "confidence": 0.96
+        },
+        "screenshot": {
+          "is_screenshot_or_document": true,
+          "travel_relevance": "travel_relevant",
+          "document_kind": "Photographed café information card with an airport terminal map",
+          "confidence": 0.99
+        },
+        "emotions": [],
+        "memory": {
+          "keep_signal": "unsure",
+          "reason": "The card may preserve a useful airport café stop or logistical detail, but its personal story value depends on the trip context.",
+          "confidence": 0.83
+        },
+        "representative_quality": {
+          "score": 0.57,
+          "reasoning": "The card is clearly framed and records a specific travel location, though it conveys limited atmosphere or personal experience."
+        },
+        "journaling_prompt": "What made this airport café worth remembering, and what was happening during your stop there?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "145E6D87-9B19-4DA8-A475-76760A49D133_4_5005_c.jpeg",
+      "sha256": "71c4de2b9562f6a96215a86799f0d7586c8ac6488527a5690742be5093274682",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:14:29.948948+00:00",
+      "attempts": 1,
+      "latency_ms": 20580,
+      "prompt_tokens": 1668,
+      "completion_tokens": 824,
+      "cost_usd": 0.02697625,
+      "generation_id": "gen-1786954452-GNa8tLX38ieVTxIpr13y",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A gilded religious statue stands on a flower-decorated altar inside an ornately painted temple interior.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.77,
+          "evidence": "The image centers on a ceremonial statue and altar framed by painted columns, hanging inscriptions, and traditional temple decoration."
+        },
+        "activity": {
+          "description": "Visiting and photographing a temple shrine.",
+          "confidence": 0.88,
+          "evidence": "The frontal composition focuses on a devotional statue, altar offerings, and the surrounding religious interior."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.18,
+          "evidence": "The shrine has Chinese-style religious decoration, but no distinctive or legible feature establishes a specific temple or monument."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.28
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.75
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.72
+          },
+          {
+            "label": "calm",
+            "confidence": 0.58
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The centered shrine and rich ceremonial setting preserve a distinctive cultural moment from the trip.",
+          "confidence": 0.87
+        },
+        "representative_quality": {
+          "score": 0.79,
+          "reasoning": "The frontal composition clearly presents the statue, altar, offerings, and decorative temple setting, making the visit easy to recognize and remember."
+        },
+        "journaling_prompt": "What drew your attention to this shrine, and what did the temple atmosphere feel like while you were there?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "170AA0F6-519E-4DB4-9892-408222A03124_4_5005_c.jpeg",
+      "sha256": "4d65cd2a833e952e60b17c47f82cfac6a5004cd4888814c5eca97b4159318135",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:14:23.632942+00:00",
+      "attempts": 1,
+      "latency_ms": 14266,
+      "prompt_tokens": 1668,
+      "completion_tokens": 568,
+      "cost_usd": 0.02746125,
+      "generation_id": "gen-1786954452-IN8Di8pdGsdE7jcBBCu1",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A restaurant table is filled with dumplings, rice, stir-fried dishes, soup, and bottled soft drinks for a shared meal.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.99,
+          "evidence": "Prepared dishes, serving bowls, plates, utensils, drinks, and a dining table dominate the image."
+        },
+        "activity": {
+          "description": "Sharing a Chinese-style restaurant dinner.",
+          "confidence": 0.94,
+          "evidence": "The table is set with communal dishes, a bamboo steamer of dumplings, rice, soup, stir-fries, serving utensils, and place settings."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "No distinctive landmark or identifiable location feature is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.96
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "connection",
+            "confidence": 0.9
+          },
+          {
+            "label": "fun",
+            "confidence": 0.72
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The abundant shared meal captures a social dining moment with strong potential for personal trip memories.",
+          "confidence": 0.91
+        },
+        "representative_quality": {
+          "score": 0.88,
+          "reasoning": "The overhead composition clearly presents the variety of food and communal table setting, making it a strong representation of the dining experience."
+        },
+        "journaling_prompt": "What made this shared dinner memorable, and which dish did you enjoy most?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "18359949-4D39-45F8-ACDA-9FA5AF23F033_4_5005_c.jpeg",
+      "sha256": "e4b572c72784c424fcbae92357158270346e4fe1156c91810d46cda8867b712a",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:14:21.726204+00:00",
+      "attempts": 1,
+      "latency_ms": 12360,
+      "prompt_tokens": 1668,
+      "completion_tokens": 447,
+      "cost_usd": 0.02383125,
+      "generation_id": "gen-1786954452-yjObJJPSRpflAMWmETtw",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A large golden laughing Buddha statue sits on a lotus pedestal between vivid purple flowers beneath an ornate wooden ceiling.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.85,
+          "evidence": "The image centers on a prominent religious statue displayed within a timber-framed temple-like interior."
+        },
+        "activity": {
+          "description": "Visiting and photographing a religious or cultural site.",
+          "confidence": 0.89,
+          "evidence": "The carefully framed image focuses on a large ceremonial statue and surrounding floral display."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.2,
+          "evidence": "The statue resembles Budai, often called the Laughing Buddha, but no distinctive signage or architectural feature supports naming the specific site."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.76
+          },
+          {
+            "label": "calm",
+            "confidence": 0.69
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.66
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The striking statue, flowers, and traditional interior preserve a distinctive cultural-site moment from the trip.",
+          "confidence": 0.9
+        },
+        "representative_quality": {
+          "score": 0.86,
+          "reasoning": "The centered composition clearly presents the statue and its temple setting, making the moment visually distinctive and easy to recall."
+        },
+        "journaling_prompt": "What drew you to this statue, and what did the atmosphere of the place feel like when you stood before it?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "1AF607D2-5105-4EA6-BC21-73344FD7A343_1_105_c.jpeg",
+      "sha256": "5bdebe2cb942b05d851cb926fb5764e1f5770bc6c902cc2d4ab943769f4dc625",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:14:36.124845+00:00",
+      "attempts": 1,
+      "latency_ms": 14377,
+      "prompt_tokens": 2373,
+      "completion_tokens": 613,
+      "cost_usd": 0.0250525,
+      "generation_id": "gen-1786954463-Kefuy57bZgeEj8jmfJb7",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "Panelists speak onstage before an audience during an entrepreneurship and innovation discussion.",
+        "scene": {
+          "scene_type": "activity_event",
+          "confidence": 0.98,
+          "evidence": "An indoor stage, seated speakers, audience seating, projection screen, and event signage are visible."
+        },
+        "activity": {
+          "description": "Attending an entrepreneurship and innovation panel discussion.",
+          "confidence": 0.96,
+          "evidence": "The projected slide explicitly labels the event as an entrepreneurship and innovation panel discussion, with speakers seated onstage before an audience."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.98,
+          "evidence": "No distinctive landmark is visible; the image shows a generic indoor event venue."
+        },
+        "visible_text": {
+          "transcription": "ENTREPRENEURSHIP & INNOVATION\nPANEL DISCUSSION\nNX TALK",
+          "text_kind": "screen",
+          "language": "English",
+          "confidence": 0.97
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "meaningful",
+            "confidence": 0.78
+          },
+          {
+            "label": "connection",
+            "confidence": 0.72
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The image clearly preserves the setting and subject of a specific event that could anchor memories of what you learned or discussed.",
+          "confidence": 0.89
+        },
+        "representative_quality": {
+          "score": 0.84,
+          "reasoning": "The wide composition captures the speakers, audience, venue, and event title together, making the moment easy to understand."
+        },
+        "journaling_prompt": "What idea or comment from this panel stayed with you after the event?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "1E45D526-A0E6-4136-B061-D6CF7D7E02E0_4_5005_c.jpeg",
+      "sha256": "ea0e2a32b7474869cc7bd829b23cd2f89ca4f596a91859c199a585abc6b38504",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:14:36.486040+00:00",
+      "attempts": 1,
+      "latency_ms": 12843,
+      "prompt_tokens": 1668,
+      "completion_tokens": 665,
+      "cost_usd": 0.02220625,
+      "generation_id": "gen-1786954464-TRO4qMvV8urJlHILlpy1",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "Street signs on Zhongshan East First Road frame historic waterfront architecture beneath a blue, cloud-streaked sky.",
+        "scene": {
+          "scene_type": "cityscape_street",
+          "confidence": 0.98,
+          "evidence": "Visible street-name and traffic signs, roadway infrastructure, buildings, a vehicle, and roadside trees establish an urban street setting."
+        },
+        "activity": {
+          "description": "Exploring the city and photographing a recognizable street location.",
+          "confidence": 0.84,
+          "evidence": "The composition prominently centers the street-name sign and surrounding historic architecture, suggesting sightseeing or location documentation."
+        },
+        "landmark": {
+          "name": "The Bund, Shanghai",
+          "confidence": 0.88,
+          "evidence": "The sign reads “中山东一路,” the road along Shanghai’s Bund, and the background shows the area's characteristic historic stone architecture."
+        },
+        "visible_text": {
+          "transcription": "大型号牌\n小型号牌\n7:00-23:00\n中山东一路\nZhongshan Dong Yi Lu",
+          "text_kind": "sign",
+          "language": "Chinese and English",
+          "confidence": 0.91
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "connection",
+            "confidence": 0.7
+          },
+          {
+            "label": "calm",
+            "confidence": 0.55
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The street sign and surrounding architecture provide a strong place marker for a visit to Shanghai’s historic waterfront district.",
+          "confidence": 0.9
+        },
+        "representative_quality": {
+          "score": 0.78,
+          "reasoning": "The layered street signs, architecture, trees, and sky clearly convey the location and atmosphere, making the image a useful scene-setting memory."
+        },
+        "journaling_prompt": "What do you remember noticing as you explored this part of Shanghai, beyond what the street scene shows?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "21AC94B1-4031-4F75-B82E-DA5291C21701_1_105_c.jpeg",
+      "sha256": "c6c844729ffecf74aca5ed3867256cf91b2ec9df83f43f3896e9c99f03e92351",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:14:39.107396+00:00",
+      "attempts": 1,
+      "latency_ms": 11651,
+      "prompt_tokens": 2373,
+      "completion_tokens": 675,
+      "cost_usd": 0.0269125,
+      "generation_id": "gen-1786954468-TwaSXbxZvk68U1QV1c9Q",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A conference presentation about global business perspectives and understanding China is viewed from a desk holding a laptop, notebook, cup, glasses, and pens.",
+        "scene": {
+          "scene_type": "activity_event",
+          "confidence": 0.98,
+          "evidence": "A presenter stands at a lectern beneath projected presentation slides, with conference name cards and note-taking materials visible on desks."
+        },
+        "activity": {
+          "description": "Attending a business or academic conference session about China.",
+          "confidence": 0.96,
+          "evidence": "The projected title concerns global business and China, while a presenter, lectern, attendee desks, laptop, notebook, and conference materials are visible."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.98,
+          "evidence": "The image shows a generic conference or lecture room without distinctive architectural or geographic features."
+        },
+        "visible_text": {
+          "transcription": "Global Business Perspectives: A Better Understanding of China",
+          "text_kind": "screen",
+          "language": "English",
+          "confidence": 0.97
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "meaningful",
+            "confidence": 0.76
+          },
+          {
+            "label": "connection",
+            "confidence": 0.57
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The image preserves a specific professional or educational event and the traveler's viewpoint as a participant.",
+          "confidence": 0.86
+        },
+        "representative_quality": {
+          "score": 0.82,
+          "reasoning": "The presentation title, conference setting, and personal desk items clearly establish both the event and the traveler's experience of attending it."
+        },
+        "journaling_prompt": "What idea from this session most changed or deepened your understanding of business in China?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "2225D07E-AA97-4A4E-86EE-47E9FFC859E0_4_5005_c.jpeg",
+      "sha256": "5bc9f7d817bfd4c34fa891407514d66432542401297f3627e3ec239aacf3ab97",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:14:42.129075+00:00",
+      "attempts": 1,
+      "latency_ms": 12167,
+      "prompt_tokens": 1668,
+      "completion_tokens": 551,
+      "cost_usd": 0.01878625,
+      "generation_id": "gen-1786954470-fNatyWcG5lPDDqSquJd9",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A traveler poses along a waterfront promenade with an illuminated historic skyline across the river at night.",
+        "scene": {
+          "scene_type": "people_moment",
+          "confidence": 0.95,
+          "evidence": "A person is centered in a posed portrait, with a river and brightly illuminated waterfront architecture behind them."
+        },
+        "activity": {
+          "description": "Posing for a nighttime travel portrait beside the river.",
+          "confidence": 0.97,
+          "evidence": "The person faces the camera in a deliberate pose against a scenic illuminated waterfront backdrop."
+        },
+        "landmark": {
+          "name": "The Bund, Shanghai",
+          "confidence": 0.82,
+          "evidence": "The opposite riverbank shows a long row of illuminated historic buildings and a prominent clock tower consistent with Shanghai's Bund waterfront."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "connection",
+            "confidence": 0.84
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.76
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.72
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The posed waterfront portrait preserves both a personal trip moment and a distinctive nighttime city setting.",
+          "confidence": 0.96
+        },
+        "representative_quality": {
+          "score": 0.91,
+          "reasoning": "The centered portrait, illuminated skyline, and river setting clearly convey a memorable evening sightseeing moment."
+        },
+        "journaling_prompt": "What do you remember most about standing by the river with the city glowing behind you that night?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "23A6E54B-C148-4B98-A372-22C423A772CE_1_105_c.jpeg",
+      "sha256": "aae20efa095022ae67e9cba36d7d587bcf8fcf4d6fbf641dbbc69216a23d79db",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:14:52.600036+00:00",
+      "attempts": 1,
+      "latency_ms": 16456,
+      "prompt_tokens": 2373,
+      "completion_tokens": 557,
+      "cost_usd": 0.0233725,
+      "generation_id": "gen-1786954479-dJluocF4b6qkMpfl9UOv",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A traveler poses beside a river with an illuminated historic skyline in the background at night.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.93,
+          "evidence": "The photo prominently frames a brightly illuminated waterfront skyline of historic buildings across a broad river."
+        },
+        "activity": {
+          "description": "Posing for a nighttime sightseeing photo along the waterfront.",
+          "confidence": 0.96,
+          "evidence": "The traveler is standing deliberately in the foreground while the illuminated riverfront is composed as the backdrop."
+        },
+        "landmark": {
+          "name": "The Bund, Shanghai",
+          "confidence": 0.9,
+          "evidence": "The broad river and distinctive row of illuminated historic waterfront buildings match the commonly photographed Bund skyline in Shanghai."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "excitement",
+            "confidence": 0.78
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.76
+          },
+          {
+            "label": "connection",
+            "confidence": 0.7
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The posed waterfront portrait clearly preserves a recognizable nighttime sightseeing moment.",
+          "confidence": 0.96
+        },
+        "representative_quality": {
+          "score": 0.91,
+          "reasoning": "The traveler and illuminated skyline are both prominent, giving the image a strong sense of place and a clear personal story."
+        },
+        "journaling_prompt": "What do you remember most about seeing the waterfront lights that night?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "26456CB8-3568-4FD2-A356-3AF07246DD4D_1_105_c.jpeg",
+      "sha256": "b0f772cc07a4d1fc83949a748bd3ac686b26981d2423086e9208b508b5474910",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:14:50.236402+00:00",
+      "attempts": 1,
+      "latency_ms": 13729,
+      "prompt_tokens": 2373,
+      "completion_tokens": 631,
+      "cost_usd": 0.0255925,
+      "generation_id": "gen-1786954478-2xrUGSdI0tkKWIB7EkNW",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A person descends stone steps toward a traditional pavilion surrounded by dense woodland.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.82,
+          "evidence": "A traditional pavilion with curved tiled roofs is prominently framed within a landscaped, wooded site."
+        },
+        "activity": {
+          "description": "Exploring a wooded cultural site on foot.",
+          "confidence": 0.9,
+          "evidence": "A person is visibly walking down stone steps toward the pavilion along a maintained path."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.12,
+          "evidence": "The pavilion has traditional architectural features, but no distinctive or readable marker supports a specific identification."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.97
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.89
+          },
+          {
+            "label": "awe",
+            "confidence": 0.64
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.58
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The descending path, traditional pavilion, and lush setting capture a distinctive moment of cultural exploration.",
+          "confidence": 0.92
+        },
+        "representative_quality": {
+          "score": 0.88,
+          "reasoning": "The path and walking figure lead naturally toward the pavilion, giving the scene a strong sense of place, movement, and discovery."
+        },
+        "journaling_prompt": "What do you remember noticing as you descended toward this pavilion in the forest?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "2B473BED-C22C-4FD7-8268-8FF12505D72D_4_5005_c.jpeg",
+      "sha256": "dbd857e1a94a46f170db1e039e9e09eccbcbe1fb88d4b1225267921cc0fc786b",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:03.119268+00:00",
+      "attempts": 1,
+      "latency_ms": 24002,
+      "prompt_tokens": 1668,
+      "completion_tokens": 888,
+      "cost_usd": 0.02889625,
+      "generation_id": "gen-1786954479-mj9XNBUguKJugwMVeUaE",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "An illuminated commercial avenue at night is framed by ornate historic facades, neon signs, and a distant modern tower.",
+        "scene": {
+          "scene_type": "cityscape_street",
+          "confidence": 0.98,
+          "evidence": "The image shows a broad urban avenue lined with illuminated commercial buildings, signage, decorative lighting, and a clock-tower facade."
+        },
+        "activity": {
+          "description": "Sightseeing or walking along a lively shopping avenue at night.",
+          "confidence": 0.9,
+          "evidence": "The street-level viewpoint looks down an illuminated pedestrian-oriented commercial corridor with storefronts and decorative displays."
+        },
+        "landmark": {
+          "name": "Nanjing Road Pedestrian Street, Shanghai",
+          "confidence": 0.82,
+          "evidence": "The brightly lit historic commercial facades, pedestrian shopping corridor, clock-tower architecture, and distant saucer-topped tower are consistent with central Shanghai's Nanjing Road area."
+        },
+        "visible_text": {
+          "transcription": "2026",
+          "text_kind": "sign",
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "excitement",
+            "confidence": 0.9
+          },
+          {
+            "label": "awe",
+            "confidence": 0.77
+          },
+          {
+            "label": "fun",
+            "confidence": 0.7
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The vivid nighttime architecture and festive commercial atmosphere capture a distinctive city-exploration moment.",
+          "confidence": 0.94
+        },
+        "representative_quality": {
+          "score": 0.9,
+          "reasoning": "The avenue's strong perspective, illuminated facades, and contrasting skyline create an expressive overview of the nighttime setting."
+        },
+        "journaling_prompt": "What drew your attention most as you walked through these lights, signs, and historic facades?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "2B838242-CC1F-4692-913E-CB36E4B5ADE1_4_5005_c.jpeg",
+      "sha256": "f926565389a8c02dc9d9ab3085e644e7dcff4b76444b4002433410a2248a439e",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:14:50.625767+00:00",
+      "attempts": 1,
+      "latency_ms": 8488,
+      "prompt_tokens": 1728,
+      "completion_tokens": 386,
+      "cost_usd": 0.01421125,
+      "generation_id": "gen-1786954483-6LWWwe13ZNAfEg9Lv7Gq",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A breakfast plate with fried eggs, sausages, and bacon sits beside orange juice, with coffee and fruit visible across the table.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.99,
+          "evidence": "The image centers on a plated cooked breakfast, a glass of juice, and table settings, with coffee and fruit in the background."
+        },
+        "activity": {
+          "description": "Having breakfast at a dining table, likely in a hotel or restaurant.",
+          "confidence": 0.87,
+          "evidence": "Prepared breakfast dishes, beverages, condiments, cutlery, and coordinated table settings are visibly arranged on the table."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": null
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.61
+          }
+        ],
+        "memory": {
+          "keep_signal": "unsure",
+          "reason": "The meal could recall a specific travel morning, but the image alone does not reveal a distinctive place or personal story.",
+          "confidence": 0.72
+        },
+        "representative_quality": {
+          "score": 0.68,
+          "reasoning": "The close composition clearly captures the breakfast experience and surrounding table context, though it offers few distinctive details about the destination."
+        },
+        "journaling_prompt": "What do you remember about this breakfast and the day of travel that followed?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "2C00BDA6-7AA6-407C-96DE-54D895953A6F_1_105_c.jpeg",
+      "sha256": "1d2b9c503b3d6ff541878c556408b89325923ffec48d5f8a405b61bd8624f9ab",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:00.711786+00:00",
+      "attempts": 1,
+      "latency_ms": 10449,
+      "prompt_tokens": 2028,
+      "completion_tokens": 722,
+      "cost_usd": 0.02616625,
+      "generation_id": "gen-1786954490-6vxnB9IC8YoNRiKFTh19",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A phone screenshot shows Spanish instructions for installing a travel eSIM using a QR code.",
+        "scene": {
+          "scene_type": "document_or_screen",
+          "confidence": 0.99,
+          "evidence": "Visible mobile interface contains an eSIM installation message, QR code, reference number, and email controls."
+        },
+        "activity": {
+          "description": "Reviewing instructions to install and activate a travel eSIM.",
+          "confidence": 0.98,
+          "evidence": "The screen explicitly instructs the reader to install an eSIM by scanning a QR code and mentions enabling data roaming during a trip."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "No physical place or distinctive landmark is visible."
+        },
+        "visible_text": {
+          "transcription": "Activa el 'Roaming de datos'\n\nInstala tu eSIM con código QR\n\nEscanea el código QR desde Configuración de tu dispositivo móvil. Ten en cuenta que puedes instalar antes o durante tu viaje.\n\nNúmero de referencia:\n89353330426001245468\n\nO instala manualmente\n\nEncuentra el código para tu Sistema Operativo correspondiente justo debajo. Recuerda que los pasos detallados están en el sitio web o en las…",
+          "text_kind": "screen",
+          "language": "Spanish",
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": true,
+          "travel_relevance": "travel_relevant",
+          "document_kind": "eSIM installation instructions",
+          "confidence": 0.99
+        },
+        "emotions": [],
+        "memory": {
+          "keep_signal": "leave_out",
+          "reason": "This is a practical travel-setup screenshot rather than an expressive record of the completed trip.",
+          "confidence": 0.91
+        },
+        "representative_quality": {
+          "score": 0.12,
+          "reasoning": "It clearly documents a logistical step but provides little visual story or emotional context about the trip itself."
+        },
+        "journaling_prompt": null
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "30A29B73-3C42-41D6-BCF3-AA9B23B9AEF2_1_105_c.jpeg",
+      "sha256": "18ff233db85f70c66115613be6d357968c0f5d3ff969afe2c56c3ea224a6f82c",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:05.184876+00:00",
+      "attempts": 1,
+      "latency_ms": 14537,
+      "prompt_tokens": 2373,
+      "completion_tokens": 563,
+      "cost_usd": 0.0235525,
+      "generation_id": "gen-1786954492-pyQ3DLI5uNPMXLwce4LU",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "Dense woodland surrounds a green safety fence bearing a Chinese no-climbing sign.",
+        "scene": {
+          "scene_type": "landscape_nature",
+          "confidence": 0.88,
+          "evidence": "Dense trees, vines, leafy undergrowth, and forest-floor vegetation dominate the view, with a safety fence running through the setting."
+        },
+        "activity": {
+          "description": "The traveler was likely exploring a wooded trail or nature area and documenting its safety signage.",
+          "confidence": 0.64,
+          "evidence": "The image shows dense woodland beside a green barrier with a clearly visible no-climbing warning."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.97,
+          "evidence": "No distinctive structure, place name, or uniquely identifiable natural feature is visible."
+        },
+        "visible_text": {
+          "transcription": "請勿攀爬",
+          "text_kind": "sign",
+          "language": "Traditional Chinese",
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.52
+          }
+        ],
+        "memory": {
+          "keep_signal": "unsure",
+          "reason": "The forest setting may recall a specific outing, but the partially obstructed safety fence offers limited standalone story or emotional value.",
+          "confidence": 0.72
+        },
+        "representative_quality": {
+          "score": 0.42,
+          "reasoning": "The image documents the wooded setting and a trail restriction, though foliage and fencing dominate without revealing much of the broader experience."
+        },
+        "journaling_prompt": "What were you exploring in this wooded area, and what made you pause at this spot?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "31713596-DD1E-4A58-A6EB-61F11498FF25_1_105_c.jpeg",
+      "sha256": "d7c82cdc72815ec29101e7fb685943732f66329c5d417fc068ceb0e8182ed426",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:05.630363+00:00",
+      "attempts": 1,
+      "latency_ms": 13007,
+      "prompt_tokens": 2373,
+      "completion_tokens": 467,
+      "cost_usd": 0.0206725,
+      "generation_id": "gen-1786954494-sA3P2yn0GaLNae0owmOo",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A person poses beside a waterfront railing with an illuminated skyline rising across the river under low clouds at night.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.99,
+          "evidence": "The illuminated Oriental Pearl Tower and distinctive Lujiazui skyscrapers are clearly visible across the waterfront."
+        },
+        "activity": {
+          "description": "Nighttime waterfront sightseeing and posing for a travel portrait.",
+          "confidence": 0.97,
+          "evidence": "A person is posed in front of a railing, river, and brightly lit skyline at night."
+        },
+        "landmark": {
+          "name": "Lujiazui skyline, Shanghai",
+          "confidence": 0.99,
+          "evidence": "The Oriental Pearl Tower, Shanghai World Financial Center, and Shanghai Tower form the distinctive illuminated skyline across the river."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.92
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.83
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.8
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The posed waterfront portrait and iconic illuminated skyline strongly preserve a distinctive nighttime travel moment.",
+          "confidence": 0.99
+        },
+        "representative_quality": {
+          "score": 0.96,
+          "reasoning": "The portrait, colorful skyline, river reflections, and dramatic clouds clearly convey both the destination and the nighttime atmosphere."
+        },
+        "journaling_prompt": "What do you remember most about seeing Shanghai’s skyline glowing across the river that night?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "323377DC-11D4-4964-9E38-881F69277AC0_4_5005_c.jpeg",
+      "sha256": "d4d942f845a822a9f24bce9249fdf957313da97c27f44d7db46a8b4473fa5abd",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:12.778679+00:00",
+      "attempts": 1,
+      "latency_ms": 12053,
+      "prompt_tokens": 1668,
+      "completion_tokens": 550,
+      "cost_usd": 0.01875625,
+      "generation_id": "gen-1786954501-8xFpoN6rrZJOtb4cfPfG",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A person poses along a waterfront promenade with an illuminated city skyline across the water at night.",
+        "scene": {
+          "scene_type": "people_moment",
+          "confidence": 0.94,
+          "evidence": "A person facing the camera is the central subject, framed by a waterfront railing and a brightly lit skyline."
+        },
+        "activity": {
+          "description": "Posing for a travel photo during a nighttime waterfront visit.",
+          "confidence": 0.96,
+          "evidence": "The person is looking toward the camera in a deliberate pose beside the water, with the illuminated skyline used as the backdrop."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.18,
+          "evidence": "The waterfront skyline includes illuminated towers, but no uniquely identifiable landmark or readable location sign is clear enough for a reliable match."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.92
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "meaningful",
+            "confidence": 0.85
+          },
+          {
+            "label": "connection",
+            "confidence": 0.74
+          },
+          {
+            "label": "calm",
+            "confidence": 0.62
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The intentional portrait and vivid nighttime waterfront setting preserve a personal moment from the trip.",
+          "confidence": 0.95
+        },
+        "representative_quality": {
+          "score": 0.88,
+          "reasoning": "The clear central pose, recognizable waterfront setting, and illuminated skyline strongly convey the experience of an evening city visit."
+        },
+        "journaling_prompt": "What do you remember most about this evening by the water and the city lights behind you?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "3610E2A9-C374-4AE5-BFFD-0A95B105D266_4_5005_c.jpeg",
+      "sha256": "67bd1b7b795c8c09a33416a067e73722c7dc36769f69157e7cee3f60af83240b",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:23.432792+00:00",
+      "attempts": 1,
+      "latency_ms": 20303,
+      "prompt_tokens": 1668,
+      "completion_tokens": 1010,
+      "cost_usd": 0.03255625,
+      "generation_id": "gen-1786954503-PwWfZquXb3JVWelfSmti",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "An illuminated downtown skyline rises above a busy street at night, with traffic, a Chinese flag, and a parking sign in the foreground.",
+        "scene": {
+          "scene_type": "cityscape_street",
+          "confidence": 0.99,
+          "evidence": "Visible high-rise buildings, streetlights, illuminated signs, vehicles, and roadside infrastructure establish a nighttime urban street scene."
+        },
+        "activity": {
+          "description": "Viewing or photographing the illuminated city skyline while exploring at night.",
+          "confidence": 0.9,
+          "evidence": "The photo is framed upward from street level toward lit skyscrapers and surrounding nighttime traffic."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.25,
+          "evidence": "The towers are visually distinctive, but no clearly readable building name or uniquely identifiable feature supports a reliable landmark candidate."
+        },
+        "visible_text": {
+          "transcription": "CC Plaza\nP",
+          "text_kind": "sign",
+          "language": "English",
+          "confidence": 0.66
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "excitement",
+            "confidence": 0.84
+          },
+          {
+            "label": "awe",
+            "confidence": 0.73
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The dramatic illuminated skyline and lively street context create a strong visual record of nighttime city exploration.",
+          "confidence": 0.91
+        },
+        "representative_quality": {
+          "score": 0.86,
+          "reasoning": "The upward composition, glowing towers, traffic, flag, and street signage convey both the scale and atmosphere of the moment."
+        },
+        "journaling_prompt": "What stood out most to you as you looked up at the city lights that night?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "36C44325-7008-43D6-84C3-6F0EB8BEAF9A_4_5005_c.jpeg",
+      "sha256": "2b9fad82514c4ae3f7857c83d578605623d0bbe917ef17b8b5eb186b6ff981b2",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:15.016640+00:00",
+      "attempts": 1,
+      "latency_ms": 9822,
+      "prompt_tokens": 1668,
+      "completion_tokens": 476,
+      "cost_usd": 0.01653625,
+      "generation_id": "gen-1786954505-mhTCSDfyHDatls1T6nqv",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A dawn city street is viewed through a vehicle windshield beneath an elevated roadway, with green traffic lights ahead.",
+        "scene": {
+          "scene_type": "transport",
+          "confidence": 0.92,
+          "evidence": "The vehicle dashboard and windshield frame a roadway, traffic signals, buildings, and an elevated structure."
+        },
+        "activity": {
+          "description": "Traveling by vehicle through the city in the early morning.",
+          "confidence": 0.9,
+          "evidence": "The photo is taken from behind a vehicle windshield, and the blue dawn sky and illuminated street signals indicate early-morning travel."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.96,
+          "evidence": "The elevated roadway and surrounding buildings do not show sufficiently distinctive features for a reliable landmark hypothesis."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.88
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.68
+          }
+        ],
+        "memory": {
+          "keep_signal": "unsure",
+          "reason": "The atmospheric early-morning transit scene may recall a specific departure or journey, but its personal significance is not visible.",
+          "confidence": 0.72
+        },
+        "representative_quality": {
+          "score": 0.57,
+          "reasoning": "The windshield perspective, blue dawn light, elevated roadway, and green signals create a clear sense of being in transit, though the destination and story remain ambiguous."
+        },
+        "journaling_prompt": "Where were you headed through the city at this early hour, and what did the journey feel like?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "3F7B6AD7-6465-48F2-A8F5-52F2D63A3BA6_1_105_c.jpeg",
+      "sha256": "ab137431fe463ca0d5fecc6835cdab84b66ca6aa0b3caa118c4b3fcf94aaa596",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:14.196483+00:00",
+      "attempts": 1,
+      "latency_ms": 8535,
+      "prompt_tokens": 2143,
+      "completion_tokens": 403,
+      "cost_usd": 0.017315,
+      "generation_id": "gen-1786954506-XCIaJnBlAjkwql4lOADj",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "People pose closely for a cheerful photo inside a vehicle at night.",
+        "scene": {
+          "scene_type": "transport",
+          "confidence": 0.98,
+          "evidence": "Visible seat backs, upholstery, and windows establish the interior of a vehicle."
+        },
+        "activity": {
+          "description": "Taking a posed photo during a nighttime vehicle ride.",
+          "confidence": 0.94,
+          "evidence": "People face the camera closely, smile, and gesture while seated inside a dark vehicle."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "No distinctive landmark is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.96
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "fun",
+            "confidence": 0.91
+          },
+          {
+            "label": "connection",
+            "confidence": 0.9
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.72
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The cheerful expressions and playful gesture capture an expressive shared moment during the journey.",
+          "confidence": 0.94
+        },
+        "representative_quality": {
+          "score": 0.88,
+          "reasoning": "The close framing, direct engagement with the camera, and visible vehicle setting clearly convey a lively social moment in transit."
+        },
+        "journaling_prompt": "Where were you headed that night, and what made this ride feel worth remembering?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "43D4BE4B-E8C0-4040-BAF5-1A258C5DBBA7_4_5005_c.jpeg",
+      "sha256": "74b0ac66747996b62e6680c26f2de41b61ce80e548f0050435fe64f81edcd687",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:27.733059+00:00",
+      "attempts": 1,
+      "latency_ms": 14945,
+      "prompt_tokens": 1668,
+      "completion_tokens": 724,
+      "cost_usd": 0.02397625,
+      "generation_id": "gen-1786954513-7K5HpicPol2eTnQ37C1W",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A traditional temple complex with golden roof details stands among modern high-rises, overhead wires, and Chinese national flags at a city intersection.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.94,
+          "evidence": "The image prominently frames an ornate traditional religious complex with tiered roofs and a gilded tower against a dense modern skyline."
+        },
+        "activity": {
+          "description": "Sightseeing and photographing the contrast between historic architecture and the surrounding modern city.",
+          "confidence": 0.88,
+          "evidence": "The deliberate upward composition centers the ornate temple and adjacent skyscraper from across an urban intersection."
+        },
+        "landmark": {
+          "name": "Jing'an Temple, Shanghai",
+          "confidence": 0.78,
+          "evidence": "The gilded tiered roofs, dark traditional temple architecture, dense Shanghai-style high-rises, and nearby Bank of Communications signage are consistent with Jing'an Temple, though the view is partial."
+        },
+        "visible_text": {
+          "transcription": "Bank of Communications",
+          "text_kind": "sign",
+          "language": "English",
+          "confidence": 0.84
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.75
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.58
+          },
+          {
+            "label": "calm",
+            "confidence": 0.42
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The striking juxtaposition of traditional temple architecture, national flags, and modern towers gives the city visit a strong sense of place.",
+          "confidence": 0.91
+        },
+        "representative_quality": {
+          "score": 0.86,
+          "reasoning": "The composition clearly captures the architectural contrast and urban context, making it a strong representative image of sightseeing at this location."
+        },
+        "journaling_prompt": "What stood out to you most about seeing this traditional temple surrounded by the modern city?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "45F6747D-D79A-482A-A304-4F98081FE1D0_1_105_c.jpeg",
+      "sha256": "ebb32732bd25a771a29ddf60c5c31d2ef782bc51a39c3ae7c9ad9b1a6aeda106",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:31.566940+00:00",
+      "attempts": 1,
+      "latency_ms": 17351,
+      "prompt_tokens": 2373,
+      "completion_tokens": 724,
+      "cost_usd": 0.0283825,
+      "generation_id": "gen-1786954514-7UcivNb1m8cHd6CEjleh",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "The Oriental Pearl Tower rises among Lujiazui skyscrapers above a city road at sunset.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.99,
+          "evidence": "The distinctive sphere-and-spire tower is prominently framed by the recognizable Lujiazui skyline."
+        },
+        "activity": {
+          "description": "Sightseeing and photographing the skyline from a pedestrian overpass.",
+          "confidence": 0.94,
+          "evidence": "The elevated walkway provides a deliberate view toward the landmark, surrounding towers, and roadway."
+        },
+        "landmark": {
+          "name": "Oriental Pearl Radio & Television Tower, Shanghai",
+          "confidence": 0.99,
+          "evidence": "The visible tower has its distinctive stacked pink spheres, narrow columns, and tall antenna within the Lujiazui skyline."
+        },
+        "visible_text": {
+          "transcription": "中国银行",
+          "text_kind": "sign",
+          "language": "Chinese",
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.91
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.77
+          },
+          {
+            "label": "calm",
+            "confidence": 0.69
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The iconic landmark, sunset atmosphere, and broad city view strongly capture a memorable Shanghai sightseeing moment.",
+          "confidence": 0.98
+        },
+        "representative_quality": {
+          "score": 0.94,
+          "reasoning": "The landmark is clearly centered within an expansive skyline, while the roadway and sunset add context, depth, and atmosphere."
+        },
+        "journaling_prompt": "What did it feel like to see Shanghai’s skyline unfolding around you at sunset?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "498122BA-74E0-49B0-8A68-8B5045602CC8_1_105_c.jpeg",
+      "sha256": "cb2ec29164e6c986272715f91569bcd9188b4288b971d876e35d103266f7c56b",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:30.859674+00:00",
+      "attempts": 1,
+      "latency_ms": 15824,
+      "prompt_tokens": 2373,
+      "completion_tokens": 796,
+      "cost_usd": 0.0305425,
+      "generation_id": "gen-1786954515-YObj3Jp9kG1qnFG1j5XL",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A presenter speaks beside projected slides while a laptop, notebook, pen, cup, and conference materials fill the foreground.",
+        "scene": {
+          "scene_type": "activity_event",
+          "confidence": 0.97,
+          "evidence": "A person holds a microphone beside presentation screens in a formal room with name placards, notes, and a laptop."
+        },
+        "activity": {
+          "description": "Attending a lecture or conference presentation and taking notes.",
+          "confidence": 0.96,
+          "evidence": "The visible microphone, projected slides, conference-style placards, open notebook, and pen support this activity."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.98,
+          "evidence": "The room and presentation setup do not show distinctive architectural or geographic features that support identifying a landmark."
+        },
+        "visible_text": {
+          "transcription": "En L'An 2000\nFUDAN",
+          "text_kind": "screen",
+          "language": "French / proper name",
+          "confidence": 0.78
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "meaningful",
+            "confidence": 0.78
+          },
+          {
+            "label": "connection",
+            "confidence": 0.58
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The immersive desk-level view preserves a distinctive moment of participating in a formal presentation during the trip.",
+          "confidence": 0.86
+        },
+        "representative_quality": {
+          "score": 0.84,
+          "reasoning": "The layered composition combines the presentation, workspace, and note-taking materials to communicate both the setting and the traveler's participation."
+        },
+        "journaling_prompt": "What brought you to this presentation, and which idea or conversation from the session stayed with you?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "4E048816-66CB-4AD4-8003-31A8A8193E92_1_105_c.jpeg",
+      "sha256": "de62f9ac4c760b6db286430022fd44b759f7d8d2f3a61052f0caa16a7d30cb9b",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:34.855231+00:00",
+      "attempts": 1,
+      "latency_ms": 11397,
+      "prompt_tokens": 2143,
+      "completion_tokens": 530,
+      "cost_usd": 0.021125,
+      "generation_id": "gen-1786954524-Sb7ueU4de1SO4W4Ix8Xw",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A dramatic low-angle evening view of illuminated skyscrapers rising against a deep blue sky.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.98,
+          "evidence": "The image prominently frames a distinctive cluster of illuminated supertall skyscrapers, including a twisting cylindrical tower, a tiered pagoda-inspired tower, and a rectangular tower with a large opening near its top."
+        },
+        "activity": {
+          "description": "Viewing and photographing the illuminated city skyline during an evening outing.",
+          "confidence": 0.93,
+          "evidence": "The camera is aimed steeply upward from street level to emphasize the lit skyscrapers after sunset."
+        },
+        "landmark": {
+          "name": "Lujiazui skyline, Shanghai",
+          "confidence": 0.99,
+          "evidence": "The visible twisting Shanghai Tower, tiered Jin Mao Tower, and bottle-opener-shaped Shanghai World Financial Center form the distinctive Lujiazui skyline."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.97
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.86
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The striking upward perspective captures an iconic skyline and a memorable sense of scale during an evening city visit.",
+          "confidence": 0.97
+        },
+        "representative_quality": {
+          "score": 0.92,
+          "reasoning": "The dramatic perspective, recognizable architecture, and evening illumination strongly represent the experience of standing among Shanghai's landmark skyscrapers, although the framing crops parts of the towers."
+        },
+        "journaling_prompt": "What did it feel like to stand beneath these illuminated towers and look up at the Shanghai skyline?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "53131FF5-E151-43D0-A81B-FA9E887E5F66_1_105_c.jpeg",
+      "sha256": "9f447819c3125a7d98e10e73c004c75958e1e373d5229d7e8bc2132b7e62e45f",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:45.995528+00:00",
+      "attempts": 1,
+      "latency_ms": 18246,
+      "prompt_tokens": 2373,
+      "completion_tokens": 796,
+      "cost_usd": 0.0305425,
+      "generation_id": "gen-1786954528-nkWFFxC6Ssezphs4K0vR",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A large bronze incense burner stands before an ornate Chinese Buddhist temple hall with a golden statue visible inside.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.91,
+          "evidence": "The image prominently frames a traditional temple facade, a ceremonial incense burner, the inscription 大雄寶殿, and a golden Buddhist statue."
+        },
+        "activity": {
+          "description": "Visiting and photographing a Buddhist temple complex.",
+          "confidence": 0.94,
+          "evidence": "The photo is composed from the temple courtyard toward the main hall and its ceremonial incense burner."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.18,
+          "evidence": "The inscription 大雄寶殿 identifies the building as a main Buddhist hall, but this title and architectural style occur at many temples and do not uniquely establish the site."
+        },
+        "visible_text": {
+          "transcription": "大雄寶殿",
+          "text_kind": "sign",
+          "language": "Chinese",
+          "confidence": 0.97
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.82
+          },
+          {
+            "label": "calm",
+            "confidence": 0.73
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.68
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The monumental hall, ceremonial burner, and visible statue create a strong record of a culturally significant temple visit.",
+          "confidence": 0.93
+        },
+        "representative_quality": {
+          "score": 0.87,
+          "reasoning": "The centered incense burner provides a strong foreground anchor while the decorated hall and statue clearly convey the setting and experience."
+        },
+        "journaling_prompt": "What drew your attention most when you entered this temple courtyard, and how did the atmosphere feel in person?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "5C90D736-49B2-42EC-8645-EABC64536D89_4_5005_c.jpeg",
+      "sha256": "f32d8a678f5cd539f730e309a2787290fe6412a38eed76ef2ccf58287ead436b",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:45.828123+00:00",
+      "attempts": 1,
+      "latency_ms": 14958,
+      "prompt_tokens": 1668,
+      "completion_tokens": 732,
+      "cost_usd": 0.02421625,
+      "generation_id": "gen-1786954531-rPORVpm3seQ18jvGfKwO",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A traditional open-sided pavilion stands among mature trees and rocks in a leafy garden.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.84,
+          "evidence": "The pavilion is the central architectural subject, with a curved tiled roof, decorative woodwork, columns, steps, and surrounding garden landscaping."
+        },
+        "activity": {
+          "description": "Exploring a garden and photographing its traditional pavilion.",
+          "confidence": 0.88,
+          "evidence": "The image is composed around a pavilion reached by garden steps and framed by trees and rocks."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.08,
+          "evidence": "No distinctive, legible name or uniquely identifying architectural feature is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": "sign",
+          "language": "Chinese",
+          "confidence": 0.72
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.91
+          },
+          {
+            "label": "awe",
+            "confidence": 0.57
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The pavilion and its tranquil garden setting create a distinctive sense of place worth remembering.",
+          "confidence": 0.89
+        },
+        "representative_quality": {
+          "score": 0.82,
+          "reasoning": "The pavilion is clearly emphasized by the surrounding trees, rocks, and ascending steps, giving the scene atmosphere and a strong sense of discovery."
+        },
+        "journaling_prompt": "What drew you toward this quiet pavilion, and what did the garden feel like as you approached it?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "5CC79085-E1AF-48DA-9CED-0D45998396CE_1_105_c.jpeg",
+      "sha256": "fbff4e41d78b5155c8562ffbad97d722ea69b418d8e4ee756234f8cd802e0609",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:39.265562+00:00",
+      "attempts": 1,
+      "latency_ms": 7663,
+      "prompt_tokens": 2143,
+      "completion_tokens": 418,
+      "cost_usd": 0.017765,
+      "generation_id": "gen-1786954532-RvLVzxWZHFudrHR6pXXJ",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A traveler poses for a selfie with Shanghai’s illuminated skyline and the Oriental Pearl Tower at dusk.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.99,
+          "evidence": "The distinctive pink spheres and needle-like spire of the Oriental Pearl Tower are centered among modern skyscrapers."
+        },
+        "activity": {
+          "description": "Taking a sightseeing selfie during an evening visit to the Shanghai skyline.",
+          "confidence": 0.96,
+          "evidence": "A person is framed prominently in the foreground while facing the camera, with the landmark skyline deliberately positioned behind them."
+        },
+        "landmark": {
+          "name": "Oriental Pearl Tower, Shanghai",
+          "confidence": 0.99,
+          "evidence": "The tower’s distinctive stacked pink spheres, open-column structure, and tall antenna are clearly visible within the Lujiazui skyline."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "excitement",
+            "confidence": 0.82
+          },
+          {
+            "label": "awe",
+            "confidence": 0.78
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.74
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The selfie clearly connects the traveler to a distinctive landmark and captures the atmosphere of an evening city visit.",
+          "confidence": 0.98
+        },
+        "representative_quality": {
+          "score": 0.94,
+          "reasoning": "The traveler and iconic tower are both prominent, while the surrounding illuminated skyscrapers and dusk sky provide strong context for the moment."
+        },
+        "journaling_prompt": "What do you remember most about seeing Shanghai’s skyline light up that evening?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "5CCFB343-0343-457D-B85D-5816F08C2FBA_1_105_c.jpeg",
+      "sha256": "9a834a55cfb84f390f5864be64518ab16f071ce5792e10883e227cc0713cf319",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:50.359047+00:00",
+      "attempts": 1,
+      "latency_ms": 15488,
+      "prompt_tokens": 2373,
+      "completion_tokens": 644,
+      "cost_usd": 0.0259825,
+      "generation_id": "gen-1786954535-DOKxJIEfBLYnPNjfWKJL",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "The illuminated Lujiazui skyline rises across the river at night, with colorful reflections on the water.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.99,
+          "evidence": "The distinctive Oriental Pearl Tower, Shanghai World Financial Center, Shanghai Tower, and surrounding illuminated waterfront skyline are visible."
+        },
+        "activity": {
+          "description": "Viewing and photographing the illuminated skyline from across the river.",
+          "confidence": 0.94,
+          "evidence": "The skyline is deliberately framed above the river from a viewpoint on the opposite waterfront."
+        },
+        "landmark": {
+          "name": "Lujiazui skyline, Shanghai",
+          "confidence": 0.99,
+          "evidence": "Distinctive features include the Oriental Pearl Tower's illuminated spheres, the Shanghai World Financial Center's trapezoidal opening, and the tall twisting Shanghai Tower."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.97
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.95
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.86
+          },
+          {
+            "label": "calm",
+            "confidence": 0.73
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The recognizable skyline, vivid nighttime illumination, and river reflections strongly capture a memorable sightseeing moment.",
+          "confidence": 0.98
+        },
+        "representative_quality": {
+          "score": 0.94,
+          "reasoning": "The broad composition clearly establishes the waterfront setting and showcases distinctive architecture, dramatic lighting, and colorful reflections."
+        },
+        "journaling_prompt": "What stood out most as you watched Shanghai’s skyline glowing across the river that night?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "5EF55197-EE5E-422F-84B2-7D5A3CDBC28B_1_105_c.jpeg",
+      "sha256": "ed3f55d7c1076690c136ff8896e7608ccab2b3c46fae94c613676dabccc76e6f",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:50.547624+00:00",
+      "attempts": 1,
+      "latency_ms": 11274,
+      "prompt_tokens": 2373,
+      "completion_tokens": 668,
+      "cost_usd": 0.0267025,
+      "generation_id": "gen-1786954539-PjL4O4ixYpUFF4kwRkJJ",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A classroom presentation is viewed from a desk covered with handwritten notes, pens, a drink cup, and an open laptop.",
+        "scene": {
+          "scene_type": "activity_event",
+          "confidence": 0.98,
+          "evidence": "A presenter with a microphone, projected instructional slides, classroom seating, and note-taking materials are visible."
+        },
+        "activity": {
+          "description": "Attending an educational lecture or workshop and taking notes.",
+          "confidence": 0.97,
+          "evidence": "The foreground contains handwritten notes and pens while a presenter speaks beside projected slides."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "The image shows a generic classroom interior without distinctive architectural or geographic features."
+        },
+        "visible_text": {
+          "transcription": "What is machine learning good for?\nFUDAN\nExecutive Education",
+          "text_kind": "screen",
+          "language": "English",
+          "confidence": 0.9
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "meaningful",
+            "confidence": 0.82
+          },
+          {
+            "label": "connection",
+            "confidence": 0.58
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The presentation, working notes, and desk setup preserve a clear story of a learning experience during the trip.",
+          "confidence": 0.91
+        },
+        "representative_quality": {
+          "score": 0.88,
+          "reasoning": "The layered composition connects the presentation with active note-taking and gives the moment strong context and narrative value."
+        },
+        "journaling_prompt": "What idea from this session stayed with you, and how did it shape the rest of your experience?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "5FCEA442-7DC0-426D-9CB8-899293F8A35C_1_105_c.jpeg",
+      "sha256": "80f3070364a1ecf780b33f202168f5688f9d00aa8e984da2f5af570aa20ae353",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:56.812836+00:00",
+      "attempts": 1,
+      "latency_ms": 10971,
+      "prompt_tokens": 2373,
+      "completion_tokens": 530,
+      "cost_usd": 0.0225625,
+      "generation_id": "gen-1786954546-AN20rXXVjyAlqLqy9QFw",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A humanoid service robot wearing a red scarf stands in an illuminated ROBOMART retail display stocked with boxed products.",
+        "scene": {
+          "scene_type": "shop_market",
+          "confidence": 0.93,
+          "evidence": "The robot is positioned behind a counter in a branded display with shelves of packaged retail products."
+        },
+        "activity": {
+          "description": "Photographing or observing a robot-operated retail display.",
+          "confidence": 0.9,
+          "evidence": "The image is centered on a humanoid service robot behind a branded shop counter."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.98,
+          "evidence": "No distinctive geographic landmark is visible; the branded retail installation does not establish a unique location."
+        },
+        "visible_text": {
+          "transcription": "ROBOMART",
+          "text_kind": "sign",
+          "language": "English",
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "excitement",
+            "confidence": 0.69
+          },
+          {
+            "label": "fun",
+            "confidence": 0.76
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The unusual robot retail encounter offers a distinctive visual story from the trip.",
+          "confidence": 0.84
+        },
+        "representative_quality": {
+          "score": 0.82,
+          "reasoning": "The centered robot, red scarf, branded lighting, stocked shelves, and counter clearly communicate the novelty and setting of the encounter."
+        },
+        "journaling_prompt": "What surprised or amused you most when you encountered this robot shop?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "7972F8D7-1492-476F-B841-8AC6A5F89241_4_5005_c.jpeg",
+      "sha256": "e2132a45adacb8c34252d85356dfcfc26fa98697d7fe984fe51ef4cc8d4e7671",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:15:56.878418+00:00",
+      "attempts": 1,
+      "latency_ms": 10874,
+      "prompt_tokens": 1668,
+      "completion_tokens": 519,
+      "cost_usd": 0.01782625,
+      "generation_id": "gen-1786954546-9hXpf718imCTpZskKw3N",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A nighttime street view shows a large “SHANGHAI” mural beneath an older building façade.",
+        "scene": {
+          "scene_type": "cityscape_street",
+          "confidence": 0.98,
+          "evidence": "Visible roadway markings, a sidewalk railing, a transit-style sign, building windows, and a street-level mural indicate an urban street."
+        },
+        "activity": {
+          "description": "The traveler was likely exploring the city at night and photographing the Shanghai-themed mural.",
+          "confidence": 0.82,
+          "evidence": "The image is framed directly toward the mural from across the roadway, with nighttime street lighting visible."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.94,
+          "evidence": "The painted skyline and building façade are not distinctive enough to identify a specific landmark."
+        },
+        "visible_text": {
+          "transcription": "SHANGHAI",
+          "text_kind": "other",
+          "language": "English",
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.58
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The mural and surrounding nighttime streetscape preserve a distinctive sense of place from the trip.",
+          "confidence": 0.77
+        },
+        "representative_quality": {
+          "score": 0.68,
+          "reasoning": "The mural provides a clear focal point and local context, while street barriers and a central pole partially interrupt the composition."
+        },
+        "journaling_prompt": "What drew you to this Shanghai mural, and what was the street atmosphere like that night?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "79C6318B-7B18-4878-9D76-E952A1562D0C_4_5005_c.jpeg",
+      "sha256": "5c52e224f918caf7495cd4994e965099d7e2c1945f2136bd291016314c8488b4",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:04.100115+00:00",
+      "attempts": 1,
+      "latency_ms": 13733,
+      "prompt_tokens": 1668,
+      "completion_tokens": 610,
+      "cost_usd": 0.02055625,
+      "generation_id": "gen-1786954551-OHYkyqoL2aQiP1QDflxS",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A person poses beside a lit waterfront promenade with an illuminated skyline across the water at night.",
+        "scene": {
+          "scene_type": "people_moment",
+          "confidence": 0.95,
+          "evidence": "A person is prominently framed in a posed stance, with a waterfront and illuminated city buildings serving as the backdrop."
+        },
+        "activity": {
+          "description": "Posing for a travel photo during a nighttime waterfront visit.",
+          "confidence": 0.96,
+          "evidence": "The person faces the camera in a deliberate pose beside the promenade railing."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.18,
+          "evidence": "The distant illuminated buildings are not clear or distinctive enough to identify a specific landmark reliably."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "fun",
+            "confidence": 0.82
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.69
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.64
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The posed waterfront portrait captures a personal travel moment with a vivid nighttime city backdrop.",
+          "confidence": 0.93
+        },
+        "representative_quality": {
+          "score": 0.86,
+          "reasoning": "The traveler is clearly emphasized against an atmospheric illuminated waterfront, giving the image both personal and place-based storytelling value."
+        },
+        "journaling_prompt": "What do you remember most about this nighttime waterfront stop and the view behind you?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "823D2EC9-E0A1-4396-9905-2BBDB7108B83_4_5005_c.jpeg",
+      "sha256": "3dc178e71b4667300a4d2cdc7e88d2926089f46ce906b7f13c6eb631eb36e5a8",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:05.805949+00:00",
+      "attempts": 1,
+      "latency_ms": 15250,
+      "prompt_tokens": 1668,
+      "completion_tokens": 745,
+      "cost_usd": 0.02460625,
+      "generation_id": "gen-1786954551-WqDd22uPa5VVWuOnWJe0",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A historic red-brick corner building rises above a busy urban intersection with scooters, pedestrians, traffic lights, and crosswalks.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.83,
+          "evidence": "The composition prominently frames a distinctive curved red-brick building with ornate stonework above a large city intersection."
+        },
+        "activity": {
+          "description": "Sightseeing and photographing distinctive architecture while exploring a city intersection.",
+          "confidence": 0.88,
+          "evidence": "The camera is deliberately angled upward from street level to feature the historic corner building and surrounding street activity."
+        },
+        "landmark": {
+          "name": "Wukang Mansion, Shanghai",
+          "confidence": 0.75,
+          "evidence": "The visible wedge-like corner, red-brick façade, projecting windows, rounded edge, and stone arcade resemble Shanghai's Wukang Mansion, though no readable sign confirms it."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.96
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.66
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.58
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The distinctive architecture and lively intersection create a strong visual record of exploring the city.",
+          "confidence": 0.9
+        },
+        "representative_quality": {
+          "score": 0.84,
+          "reasoning": "The dramatic upward composition gives the building a strong presence while the surrounding traffic and street activity provide a vivid sense of place."
+        },
+        "journaling_prompt": "What drew your attention to this building, and what do you remember about arriving at this lively intersection?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "8A9B0621-BCAF-44ED-8033-0E16A599C94D_1_105_c.jpeg",
+      "sha256": "10490f2006a46ad4b4eb2f992c946b12c9d8b7bb2522b0d887c31c9309136267",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:11.468717+00:00",
+      "attempts": 1,
+      "latency_ms": 14636,
+      "prompt_tokens": 2373,
+      "completion_tokens": 633,
+      "cost_usd": 0.0256525,
+      "generation_id": "gen-1786954557-ltnj8qm8Rko58UtK1e5d",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "Green maple leaves frame the glass facade and entrance sign of Fudan University’s School of Management.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.94,
+          "evidence": "The building facade displays a prominent sign reading “SCHOOL OF MANAGEMENT · FUDAN UNIVERSITY.”"
+        },
+        "activity": {
+          "description": "Visiting or walking around the Fudan University campus.",
+          "confidence": 0.74,
+          "evidence": "The photo looks upward at a clearly marked university building from an outdoor campus setting."
+        },
+        "landmark": {
+          "name": "School of Management, Fudan University",
+          "confidence": 0.97,
+          "evidence": "The circular facade sign clearly includes the English words “SCHOOL OF MANAGEMENT · FUDAN UNIVERSITY.”"
+        },
+        "visible_text": {
+          "transcription": "SCHOOL OF MANAGEMENT · FUDAN UNIVERSITY",
+          "text_kind": "sign",
+          "language": "English",
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.76
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.56
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The identifiable campus setting and carefully framed architecture could anchor a specific visit or personal connection to the university.",
+          "confidence": 0.78
+        },
+        "representative_quality": {
+          "score": 0.81,
+          "reasoning": "The prominent institutional sign establishes the place, while the sunlit leaves and upward composition give the moment a distinctive sense of setting."
+        },
+        "journaling_prompt": "What brought you to Fudan University that morning, and what do you most remember about being on the campus?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "8B458F76-0FDA-433B-9EC9-AAF6DCD8662E_1_105_c.jpeg",
+      "sha256": "caeb75b8f42010a5e59eb3d7ea792f46fb02d8d97ad8d7d1b6f0ee6675879f2e",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:09.181646+00:00",
+      "attempts": 1,
+      "latency_ms": 12289,
+      "prompt_tokens": 2373,
+      "completion_tokens": 521,
+      "cost_usd": 0.0222925,
+      "generation_id": "gen-1786954557-GjGBCLzlwDx6cRILH8X3",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A person poses beside a river at night with an illuminated historic skyline across the water.",
+        "scene": {
+          "scene_type": "people_moment",
+          "confidence": 0.98,
+          "evidence": "A posed traveler is prominently framed in the foreground against a brightly lit waterfront cityscape."
+        },
+        "activity": {
+          "description": "Posing for a nighttime travel portrait along the waterfront.",
+          "confidence": 0.98,
+          "evidence": "The person faces the camera in a deliberate pose beside a riverside barrier, with the skyline used as a backdrop."
+        },
+        "landmark": {
+          "name": "The Bund, Shanghai",
+          "confidence": 0.94,
+          "evidence": "The illuminated row of historic waterfront buildings includes the distinctive clock tower associated with the Shanghai Customs House."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "meaningful",
+            "confidence": 0.9
+          },
+          {
+            "label": "connection",
+            "confidence": 0.85
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.74
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "This posed waterfront portrait preserves a personal moment with a distinctive nighttime destination backdrop.",
+          "confidence": 0.98
+        },
+        "representative_quality": {
+          "score": 0.93,
+          "reasoning": "The clear travel portrait, prominent illuminated skyline, and balanced waterfront setting strongly represent the moment and place."
+        },
+        "journaling_prompt": "What do you remember most about seeing the illuminated waterfront that night?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "8E65602C-9935-45CF-88E4-E7B5C755E5F0_4_5005_c.jpeg",
+      "sha256": "8b696f9dbb66bc30a6adfa141a29bb9c7fce2b8e7d2eefe338387a370800715e",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:19.527348+00:00",
+      "attempts": 1,
+      "latency_ms": 15417,
+      "prompt_tokens": 1668,
+      "completion_tokens": 837,
+      "cost_usd": 0.02736625,
+      "generation_id": "gen-1786954564-CMotKOn85sxwaoGTuHRC",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A tree-lined urban street with moving cars, parked scooters, overhead road signs, and high-rise buildings in the background.",
+        "scene": {
+          "scene_type": "cityscape_street",
+          "confidence": 0.98,
+          "evidence": "The image visibly shows a paved city road, vehicles, curbside scooters, traffic signage, dense roadside trees, and tall buildings."
+        },
+        "activity": {
+          "description": "Exploring or observing a city neighborhood from the roadside.",
+          "confidence": 0.68,
+          "evidence": "The photo is framed from near the curb and looks along an active street, suggesting the traveler paused to take in the surrounding neighborhood."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.97,
+          "evidence": "No uniquely identifiable landmark is visible; the buildings and streetscape are not distinctive enough for a reliable match."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.91
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.7
+          },
+          {
+            "label": "connection",
+            "confidence": 0.45
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The leafy streetscape and everyday traffic capture a distinct sense of the destination's urban atmosphere.",
+          "confidence": 0.76
+        },
+        "representative_quality": {
+          "score": 0.74,
+          "reasoning": "The receding road, tree canopy, local signage, traffic, and parked scooters create a well-composed record of an everyday city moment."
+        },
+        "journaling_prompt": "What do you remember most about the atmosphere of this leafy street—the sounds, pace, or feeling of moving through the neighborhood?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "9915ACD4-6BD9-4340-A460-2EAA5C0B3E1F_4_5005_c.jpeg",
+      "sha256": "b7c354b2923ae8a825cd66b3363eb41f45ddfb95d5894bfec247225a10b96630",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:16.074532+00:00",
+      "attempts": 1,
+      "latency_ms": 10258,
+      "prompt_tokens": 1668,
+      "completion_tokens": 560,
+      "cost_usd": 0.01905625,
+      "generation_id": "gen-1786954566-p3KsnMrfuQs8dy2ssCxO",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A restaurant table is filled with shared dishes as people eat together.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.98,
+          "evidence": "The image prominently shows a restaurant dining table with plated food, serving bowls, drinks, utensils, and people eating."
+        },
+        "activity": {
+          "description": "Sharing a restaurant dinner with other travelers or companions.",
+          "confidence": 0.94,
+          "evidence": "People are seated around a communal table, eating from shared dishes and serving bowls."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "No distinctive landmark or location-specific feature is visible."
+        },
+        "visible_text": {
+          "transcription": "Sprite",
+          "text_kind": "label",
+          "language": "English",
+          "confidence": 0.72
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "connection",
+            "confidence": 0.9
+          },
+          {
+            "label": "fun",
+            "confidence": 0.7
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.65
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The shared meal and lively table setting capture a social travel moment with clear story value.",
+          "confidence": 0.9
+        },
+        "representative_quality": {
+          "score": 0.85,
+          "reasoning": "The communal dishes, active dining, and close table-level perspective strongly convey the atmosphere of the meal."
+        },
+        "journaling_prompt": "What do you remember most about this meal—the food, the conversation, or something unexpected that happened?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "998B01D8-42AD-45B7-9ADF-C4B35A2F96E1_4_5005_c.jpeg",
+      "sha256": "c7bb884a9cfaeef276182c82a82b5c8550d99e587551f7721dee918074a1277c",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:23.495143+00:00",
+      "attempts": 1,
+      "latency_ms": 14301,
+      "prompt_tokens": 1668,
+      "completion_tokens": 744,
+      "cost_usd": 0.02457625,
+      "generation_id": "gen-1786954569-c3qetavHbUHkQptVWRkn",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A takeaway coffee cup and printed order ticket rest on a white café counter beside the preparation area.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.98,
+          "evidence": "A lidded coffee cup, order ticket, counter, and café preparation equipment are visible."
+        },
+        "activity": {
+          "description": "Stopping at a café for coffee.",
+          "confidence": 0.92,
+          "evidence": "The prepared takeaway cup and order ticket are positioned together on the service counter."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.97,
+          "evidence": "The café interior and branding do not provide enough distinctive detail to support a landmark identification."
+        },
+        "visible_text": {
+          "transcription": "% ARABICA",
+          "text_kind": "ticket",
+          "language": "English",
+          "confidence": 0.84
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.68
+          }
+        ],
+        "memory": {
+          "keep_signal": "unsure",
+          "reason": "This café stop may recall a pleasant pause during the trip, but its personal significance depends on context not visible in the photo.",
+          "confidence": 0.79
+        },
+        "representative_quality": {
+          "score": 0.66,
+          "reasoning": "The cup and order ticket clearly establish the moment and café setting, though the scene is relatively generic and offers limited narrative context."
+        },
+        "journaling_prompt": "What do you remember about pausing for this coffee during your trip?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "9A11A829-5FA2-4402-93D6-BE32AA7FC8D1_4_5005_c.jpeg",
+      "sha256": "02c9a1828ea4050767c110aba602c38d5998e367149a7657a6dd5bae353a670f",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:23.963991+00:00",
+      "attempts": 1,
+      "latency_ms": 12481,
+      "prompt_tokens": 1668,
+      "completion_tokens": 730,
+      "cost_usd": 0.02415625,
+      "generation_id": "gen-1786954572-TwY0AuYhEeDpOAaK8Ta3",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A bright % Arabica café counter displays coffee grinders, branded cups, an espresso machine, and a metal world map.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.98,
+          "evidence": "Coffee grinders, stacked cups, saucers, and a branded espresso machine are visibly arranged on a café counter."
+        },
+        "activity": {
+          "description": "Stopping at a café for coffee.",
+          "confidence": 0.87,
+          "evidence": "The photo centers on café equipment and % Arabica branding, including grinders, cups, and an espresso machine."
+        },
+        "landmark": {
+          "name": "% Arabica café",
+          "confidence": 0.96,
+          "evidence": "The distinctive percent logo appears on the cups, and “% ARABICA” is prominently printed on the espresso machine."
+        },
+        "visible_text": {
+          "transcription": "% ARABICA",
+          "text_kind": "label",
+          "language": "English",
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.79
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.42
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The distinctive café interior and recognizable branding make this a strong reminder of a coffee stop during the trip.",
+          "confidence": 0.87
+        },
+        "representative_quality": {
+          "score": 0.86,
+          "reasoning": "The deliberate composition clearly captures the café’s branding, equipment, and minimalist atmosphere, making it expressive of the visit."
+        },
+        "journaling_prompt": "What did you order here, and what do you remember about taking this coffee break?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "9A729D29-66E7-4313-B280-5A4C50DABEBE_4_5005_c.jpeg",
+      "sha256": "11ac6a416634a3498bc70631d61fa66be248f8932196559de665e8baac66668f",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:35.398792+00:00",
+      "attempts": 1,
+      "latency_ms": 19315,
+      "prompt_tokens": 1668,
+      "completion_tokens": 853,
+      "cost_usd": 0.02784625,
+      "generation_id": "gen-1786954576-lBELM9tb1ZTgQdTZYNbr",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "An elevated view looks down a busy city street framed by historic buildings, greenery, and modern towers beneath a blue sky.",
+        "scene": {
+          "scene_type": "cityscape_street",
+          "confidence": 0.98,
+          "evidence": "The image visibly shows an urban intersection, pedestrians, vehicles, multistory buildings, street signals, and distant high-rises."
+        },
+        "activity": {
+          "description": "Sightseeing and photographing the city from an elevated roadside viewpoint or vehicle.",
+          "confidence": 0.75,
+          "evidence": "The downward street view, foreground hedge, and framing above street level suggest the traveler paused or rode past while observing the city."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.9,
+          "evidence": "A transit-style logo, Chinese characters, and a skyline are visible, but no landmark or station name is clear enough for reliable identification."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.87
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "excitement",
+            "confidence": 0.68
+          },
+          {
+            "label": "calm",
+            "confidence": 0.6
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The layered street view captures a strong sense of place and the experience of exploring a major city.",
+          "confidence": 0.85
+        },
+        "representative_quality": {
+          "score": 0.82,
+          "reasoning": "The street forms a clear visual corridor toward the modern skyline, while the greenery and older architecture provide context and contrast."
+        },
+        "journaling_prompt": "What caught your attention as you looked down this street, and where were you headed next?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "9AA20C8A-D941-4195-AC3C-FEF31B2320FD_4_5005_c.jpeg",
+      "sha256": "754e6e81206d299825a55323b3ad26c495858079f205b536652b0746655b090b",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:34.347768+00:00",
+      "attempts": 1,
+      "latency_ms": 14811,
+      "prompt_tokens": 1668,
+      "completion_tokens": 706,
+      "cost_usd": 0.02343625,
+      "generation_id": "gen-1786954580-NFAKWaEH4XnI0xW26gkq",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "Traditional Chinese pavilions frame modern Shanghai skyscrapers beneath a bright blue sky, with people gathered in the foreground.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.9,
+          "evidence": "Distinctive ornate Chinese roofs and wooden pavilions appear beside the recognizable twisting form of Shanghai Tower and the surrounding skyline."
+        },
+        "activity": {
+          "description": "Sightseeing and photographing the contrast between historic architecture and Shanghai's modern skyline.",
+          "confidence": 0.9,
+          "evidence": "The image is composed around traditional pavilions, prominent skyscrapers, and people in a public visitor area."
+        },
+        "landmark": {
+          "name": "Yu Garden (Yuyuan), Shanghai",
+          "confidence": 0.82,
+          "evidence": "The traditional Jiangnan-style pavilions in close visual proximity to Shanghai Tower strongly suggest the Yu Garden or Yuyuan area."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.84
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.73
+          },
+          {
+            "label": "connection",
+            "confidence": 0.66
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The striking juxtaposition of historic pavilions and futuristic skyscrapers captures a distinctive sense of place and a memorable sightseeing moment.",
+          "confidence": 0.94
+        },
+        "representative_quality": {
+          "score": 0.91,
+          "reasoning": "The layered composition clearly conveys Shanghai's blend of traditional architecture, contemporary skyline, and active public atmosphere."
+        },
+        "journaling_prompt": "What stood out to you most about seeing old and new Shanghai together in this moment?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "9E97DF59-ACE3-479F-9403-7E663B1DE41A_1_105_c.jpeg",
+      "sha256": "54f6b7f1f017d218effd03c7507ac635a57013acc6e81108ea31077e045aecec",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:42.884957+00:00",
+      "attempts": 1,
+      "latency_ms": 19369,
+      "prompt_tokens": 2373,
+      "completion_tokens": 836,
+      "cost_usd": 0.0317425,
+      "generation_id": "gen-1786954584-ddJA1qF59ytqI5DCkssH",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A monumental Buddhist sculptural tableau rises above an altar filled with glowing red devotional lights and offerings.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.88,
+          "evidence": "The image centers on an elaborate religious monument with a large standing Buddhist figure, many surrounding carved figures, an ornate altar, and devotional lights."
+        },
+        "activity": {
+          "description": "Visiting a Buddhist temple or shrine and viewing its monumental religious artwork.",
+          "confidence": 0.9,
+          "evidence": "The temple-like interior contains a large Buddhist sculptural tableau, an offering altar, flowers, and rows of illuminated devotional lights."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.16,
+          "evidence": "The sculpture is visually distinctive, but no clearly readable location name or uniquely identifying feature supports a reliable landmark attribution."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.2
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.94
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.82
+          },
+          {
+            "label": "calm",
+            "confidence": 0.69
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The immense devotional artwork and glowing altar create a distinctive, culturally meaningful record of the temple visit.",
+          "confidence": 0.94
+        },
+        "representative_quality": {
+          "score": 0.9,
+          "reasoning": "The composition emphasizes the sculpture's scale and intricate detail while including the altar and devotional lights that convey the atmosphere of the moment."
+        },
+        "journaling_prompt": "What details, sounds, or feelings stood out to you as you took in this elaborate sacred artwork?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "A348D1D4-FDD8-4934-8B9E-53B305BA21E3_4_5005_c.jpeg",
+      "sha256": "78db0df650b6f2c217e3c3432e9fc7278a846cf8d2511d2cd1537e4ff811140b",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:40.726281+00:00",
+      "attempts": 1,
+      "latency_ms": 16749,
+      "prompt_tokens": 1668,
+      "completion_tokens": 861,
+      "cost_usd": 0.02808625,
+      "generation_id": "gen-1786954584-Q7lmxlOCypelMkbr3XMF",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "Traveler posing on a waterfront promenade at night with an illuminated historic skyline across the river.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.9,
+          "evidence": "A broad river faces a continuous row of brightly illuminated European-style historic buildings and towers, characteristic of Shanghai's Bund waterfront."
+        },
+        "activity": {
+          "description": "Night sightseeing and posing for a travel portrait by the river.",
+          "confidence": 0.97,
+          "evidence": "The traveler faces the camera beside a waterfront railing while the illuminated skyline is deliberately framed in the background."
+        },
+        "landmark": {
+          "name": "The Bund, Shanghai",
+          "confidence": 0.88,
+          "evidence": "The visible riverfront has the Bund's recognizable line of illuminated historic facades and towers along the Huangpu River."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "meaningful",
+            "confidence": 0.85
+          },
+          {
+            "label": "connection",
+            "confidence": 0.8
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.66
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The posed waterfront portrait pairs a personal travel moment with a distinctive illuminated city landmark.",
+          "confidence": 0.97
+        },
+        "representative_quality": {
+          "score": 0.91,
+          "reasoning": "The centered portrait, riverside setting, and glowing historic skyline clearly capture both the traveler and the atmosphere of the nighttime visit."
+        },
+        "journaling_prompt": "What do you remember feeling as you stood by the river and watched the skyline glow?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "A86D0AE5-1C42-47A3-B404-358D3875BBDD_4_5005_c.jpeg",
+      "sha256": "1aa514d950d875800243a65792ec5dcf38d8a39126328ca582a5887d1227f1a9",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:46.223180+00:00",
+      "attempts": 1,
+      "latency_ms": 11868,
+      "prompt_tokens": 1668,
+      "completion_tokens": 654,
+      "cost_usd": 0.02187625,
+      "generation_id": "gen-1786954595-XfLioSCrKVwbp9NFmRMU",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "Illuminated high-rise buildings rise above a city street lined with parked scooters at night.",
+        "scene": {
+          "scene_type": "cityscape_street",
+          "confidence": 0.98,
+          "evidence": "The image visibly shows a dense urban streetscape with illuminated towers, commercial buildings, roadside greenery, and parked scooters."
+        },
+        "activity": {
+          "description": "Exploring or sightseeing in a commercial city district after dark.",
+          "confidence": 0.78,
+          "evidence": "The street-level viewpoint and framing of the illuminated skyline suggest the traveler paused while moving through the district to photograph the night scene."
+        },
+        "landmark": {
+          "name": "Grand Gateway 66, Shanghai",
+          "confidence": 0.6,
+          "evidence": "The paired dark towers with illuminated golden crowns above a large retail complex resemble the distinctive Grand Gateway 66 complex, though no readable sign confirms it."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.95
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "excitement",
+            "confidence": 0.72
+          },
+          {
+            "label": "awe",
+            "confidence": 0.62
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The vivid nighttime skyline and busy street foreground capture a distinctive moment of exploring a major commercial district.",
+          "confidence": 0.86
+        },
+        "representative_quality": {
+          "score": 0.82,
+          "reasoning": "The layered composition of scooters, storefronts, trees, and glowing towers gives the moment a strong sense of place and nighttime city energy."
+        },
+        "journaling_prompt": "What drew your attention to this skyline, and what did the surrounding district feel like that evening?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "AB6624C9-D7BB-44F3-B05F-C3B30952C3FD_1_105_c.jpeg",
+      "sha256": "c2bcc1ce05b0695562548772e6a1c8728e2f7bfd2e48ff635831ce9251fcb826",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:47.142493+00:00",
+      "attempts": 1,
+      "latency_ms": 11725,
+      "prompt_tokens": 2373,
+      "completion_tokens": 684,
+      "cost_usd": 0.0271825,
+      "generation_id": "gen-1786954596-AY76VCi9nNTfwtlIgNwC",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "University-branded folders, a sticker-covered laptop, sunglasses, and pens are arranged on a desk.",
+        "scene": {
+          "scene_type": "document_or_screen",
+          "confidence": 0.93,
+          "evidence": "The image prominently shows university-branded document folders and a closed laptop on a desk."
+        },
+        "activity": {
+          "description": "The traveler was likely attending or commemorating an event at Fudan University.",
+          "confidence": 0.66,
+          "evidence": "A formal folder visibly bears the Chinese name and seal of Fudan University, suggesting an institutional occasion."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "No building, monument, or other distinctive physical landmark is visible."
+        },
+        "visible_text": {
+          "transcription": "復旦大學\nFUDAN UNIVERSITY\n1905",
+          "text_kind": "label",
+          "language": "Chinese and English",
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.96
+        },
+        "emotions": [
+          {
+            "label": "meaningful",
+            "confidence": 0.88
+          },
+          {
+            "label": "connection",
+            "confidence": 0.67
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The university materials suggest a personally meaningful institutional visit or event with a clear story to preserve.",
+          "confidence": 0.85
+        },
+        "representative_quality": {
+          "score": 0.82,
+          "reasoning": "The deliberate arrangement of recognizable university materials and personal belongings clearly represents the occasion and gives it a strong sense of place."
+        },
+        "journaling_prompt": "What brought you to Fudan University that day, and what did receiving or carrying these materials mean to you?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "ABC41DF1-01BC-4BDF-AD15-CCA9119BB273_4_5005_c.jpeg",
+      "sha256": "d284f4f167eff1cdf28bd842fc61c35bb56f01a7d6b9a9086b14eb9b6275e294",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:53.405212+00:00",
+      "attempts": 1,
+      "latency_ms": 12666,
+      "prompt_tokens": 1668,
+      "completion_tokens": 556,
+      "cost_usd": 0.01893625,
+      "generation_id": "gen-1786954601-KICYwpeO99xmAZwZI3Rv",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A downtown street runs between historic stone buildings toward modern glass skyscrapers under a blue evening sky.",
+        "scene": {
+          "scene_type": "cityscape_street",
+          "confidence": 0.98,
+          "evidence": "The image shows a roadway, sidewalks, traffic signals, pedestrians, older masonry façades, and high-rise buildings in the distance."
+        },
+        "activity": {
+          "description": "Sightseeing and photographing the contrast between historic architecture and the modern city skyline.",
+          "confidence": 0.81,
+          "evidence": "The deliberate elevated view centers the street corridor, older façades, and distant skyscrapers."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.28,
+          "evidence": "The skyline and Chinese urban signage may suggest a recognizable district, but no building is shown distinctly enough for a reliable landmark identification."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.79
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.73
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.62
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The strong street perspective and visible contrast between old and new architecture capture a distinctive city-exploration moment.",
+          "confidence": 0.9
+        },
+        "representative_quality": {
+          "score": 0.84,
+          "reasoning": "The centered street perspective, layered architecture, active sidewalks, and skyline provide a clear sense of place and urban discovery."
+        },
+        "journaling_prompt": "What drew your attention most as you looked down this street—the historic buildings, the distant skyline, or the energy below?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "B16507B2-B8F5-4E36-88CE-C15127D03CC3_1_105_c.jpeg",
+      "sha256": "9f3552d9c1bddc9f813532f22304812e0f5391c024ad4c477be7ae130870f975",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:53.308766+00:00",
+      "attempts": 1,
+      "latency_ms": 10405,
+      "prompt_tokens": 2373,
+      "completion_tokens": 603,
+      "cost_usd": 0.0247525,
+      "generation_id": "gen-1786954603-FhAAmDCSthOf5B74Lmt5",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "Red lanterns inscribed with Chinese characters hang among leafy branches against a lush green hillside.",
+        "scene": {
+          "scene_type": "landscape_nature",
+          "confidence": 0.89,
+          "evidence": "Dense foliage, tree branches, and a forested hillside dominate the outdoor scene, with lanterns as the focal detail."
+        },
+        "activity": {
+          "description": "Photographing decorative lanterns while exploring a garden or wooded outdoor setting.",
+          "confidence": 0.77,
+          "evidence": "The image deliberately frames the hanging lanterns against surrounding greenery."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.97,
+          "evidence": "No distinctive structure or uniquely identifiable landmark is visible."
+        },
+        "visible_text": {
+          "transcription": "四季平安",
+          "text_kind": "other",
+          "language": "Chinese",
+          "confidence": 0.96
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.84
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.67
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The vivid lanterns and traditional inscription create a distinctive cultural detail within the natural setting.",
+          "confidence": 0.87
+        },
+        "representative_quality": {
+          "score": 0.84,
+          "reasoning": "The vertical lantern arrangement forms a strong focal point, while the surrounding foliage clearly conveys the atmosphere of the moment."
+        },
+        "journaling_prompt": "What did the lanterns and their message mean to you as you explored this peaceful setting?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "B19FF4C0-16DC-4D06-B633-572C2CAFC47D_1_105_c.jpeg",
+      "sha256": "53557fb625e2b637c1ecde7adb940f7ab46e0ea99cf53c466fa6e755d85e9d59",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:16:55.962148+00:00",
+      "attempts": 1,
+      "latency_ms": 9722,
+      "prompt_tokens": 2373,
+      "completion_tokens": 469,
+      "cost_usd": 0.0207325,
+      "generation_id": "gen-1786954606-XSVc3OS2rVLT7bwGW9kP",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A robotic arm stands beside a cup dispenser and coffee equipment on a café counter.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.97,
+          "evidence": "The image visibly shows a prepared drink cup, coffee equipment, a cup dispenser, and a robotic serving arm on a counter."
+        },
+        "activity": {
+          "description": "The traveler was likely watching or using an automated coffee-making station.",
+          "confidence": 0.86,
+          "evidence": "A robotic arm is positioned beside a drink cup and coffee machinery, suggesting an automated beverage service demonstration or order."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "No distinctive landmark or clearly identifiable venue branding is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.95
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "fun",
+            "confidence": 0.76
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.56
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The unusual robotic drink station captures a distinctive food-and-technology experience that could anchor a travel story.",
+          "confidence": 0.8
+        },
+        "representative_quality": {
+          "score": 0.81,
+          "reasoning": "The robotic arm is prominently framed with the cup and surrounding beverage equipment, clearly conveying the novelty of the moment."
+        },
+        "journaling_prompt": "What was it like to watch this robotic station prepare or serve your drink?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "B2D5B67B-0398-4A87-9AE5-5BB36E8AA285_1_105_c.jpeg",
+      "sha256": "81b8033dc4b9862bfa3f5cf23df70e345884fb9d90592d4bf7847ff29723bc5b",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:00.181647+00:00",
+      "attempts": 1,
+      "latency_ms": 13023,
+      "prompt_tokens": 2373,
+      "completion_tokens": 641,
+      "cost_usd": 0.0258925,
+      "generation_id": "gen-1786954607-9HC0PGi1XPsJXRFWArR9",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A Snow beer bottle stands on a restaurant table beside menus, dishes, and drinkware.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.98,
+          "evidence": "A labeled beer bottle is centered among illustrated menus, dishes, and drinkware on a restaurant table."
+        },
+        "activity": {
+          "description": "Dining at a restaurant and having beer.",
+          "confidence": 0.91,
+          "evidence": "The visible beer bottle, food menus, tableware, and restaurant seating support a dining occasion."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": null
+        },
+        "visible_text": {
+          "transcription": "雪花纯生\n匠心营造\nDRAFT BEER\n500ml\nSTAPLE FOOD",
+          "text_kind": "label",
+          "language": "Chinese and English",
+          "confidence": 0.91
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "fun",
+            "confidence": 0.61
+          },
+          {
+            "label": "connection",
+            "confidence": 0.66
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The bottle, menus, and shared restaurant setting preserve a specific dining moment from the trip.",
+          "confidence": 0.77
+        },
+        "representative_quality": {
+          "score": 0.72,
+          "reasoning": "The prominent local beer bottle and surrounding dining details clearly convey the restaurant experience, though the frame emphasizes the drink more than the broader occasion."
+        },
+        "journaling_prompt": "What do you remember about this meal, and was this beer a new discovery for you?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "B4F966A1-9929-4E7C-9305-EA34AADFA956_4_5005_c.jpeg",
+      "sha256": "02df600daafd73beb3db4d767ed4ed6729e1fa85ad9ac47dcb327bbd8c01a0da",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:09.133872+00:00",
+      "attempts": 1,
+      "latency_ms": 15817,
+      "prompt_tokens": 1668,
+      "completion_tokens": 814,
+      "cost_usd": 0.02667625,
+      "generation_id": "gen-1786954614-YrlrHUkDD5iHeYeJQq0F",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "Street signs for Zhongshan East 1st Road stand against historic urban buildings, trees, and a blue sky.",
+        "scene": {
+          "scene_type": "cityscape_street",
+          "confidence": 0.97,
+          "evidence": "Visible road signs, traffic restrictions, lampposts, mature street trees, and multi-story city buildings establish an urban street setting."
+        },
+        "activity": {
+          "description": "The traveler was likely sightseeing or orienting themselves along Zhongshan East 1st Road.",
+          "confidence": 0.78,
+          "evidence": "The photo deliberately frames a named street sign together with the surrounding historic architecture."
+        },
+        "landmark": {
+          "name": "The Bund, Shanghai",
+          "confidence": 0.72,
+          "evidence": "The Zhongshan East 1st Road sign and the visible historic waterfront-district architecture are consistent with Shanghai's Bund area."
+        },
+        "visible_text": {
+          "transcription": "中山东一路\nZhongshan Rd. (E-1)\n7:00–23:00",
+          "text_kind": "sign",
+          "language": "Chinese and English",
+          "confidence": 0.89
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.5
+          },
+          {
+            "label": "calm",
+            "confidence": 0.65
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The clearly framed street name and surrounding architecture provide a strong sense of place for recalling this part of the trip.",
+          "confidence": 0.9
+        },
+        "representative_quality": {
+          "score": 0.82,
+          "reasoning": "The prominent location sign, historic buildings, leafy streetscape, and open sky create an expressive overview of the moment and its setting."
+        },
+        "journaling_prompt": "What brought you to Zhongshan East 1st Road, and what do you remember noticing as you explored this part of the city?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "BE92AB27-DFBC-4B41-BE8C-34B311F09A28_4_5005_c.jpeg",
+      "sha256": "05be8b8765459695fcc989e6182273fb9c5d15cfa06c6e7037836f11df0c7e3e",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:03.170107+00:00",
+      "attempts": 1,
+      "latency_ms": 9757,
+      "prompt_tokens": 1668,
+      "completion_tokens": 475,
+      "cost_usd": 0.01650625,
+      "generation_id": "gen-1786954614-svTZbH0pjxhjB0Wxz3sY",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A person takes a mirror selfie inside a bright, minimalist café.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.93,
+          "evidence": "A service counter, cups, trays, and beverage-making equipment are visible in the café interior."
+        },
+        "activity": {
+          "description": "Taking a mirror selfie while visiting a café.",
+          "confidence": 0.96,
+          "evidence": "A person is visibly holding a phone toward a large mirror beside the café counter."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.98,
+          "evidence": "No distinctive landmark or clearly identifiable venue branding is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.94
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.78
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.58
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The mirror selfie captures a personal moment within a distinctive café visit.",
+          "confidence": 0.8
+        },
+        "representative_quality": {
+          "score": 0.76,
+          "reasoning": "The composition clearly connects the personal selfie moment with the bright café setting and its service counter."
+        },
+        "journaling_prompt": "What drew you to this café, and what do you remember about stopping here?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "BED3DE42-2C02-46BB-9E0D-B67CEE7489EE.jpeg",
+      "sha256": "11331efb40986eea43e02008803c915cf5bc8645bdeca5507d6bdd18f00851c5",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:10.818907+00:00",
+      "attempts": 1,
+      "latency_ms": 14810,
+      "prompt_tokens": 2476,
+      "completion_tokens": 679,
+      "cost_usd": 0.02767625,
+      "generation_id": "gen-1786954616-PGjn5TJKK52LKoa1je1z",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "The Lujiazui skyline rises across the Huangpu River beneath a broad blue sky.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.99,
+          "evidence": "The distinctive Oriental Pearl Tower, Shanghai Tower, Shanghai World Financial Center, surrounding skyscrapers, and riverfront are clearly visible."
+        },
+        "activity": {
+          "description": "Sightseeing and photographing the skyline from across the river.",
+          "confidence": 0.94,
+          "evidence": "The image is framed as a wide scenic view of the waterfront skyline across the Huangpu River."
+        },
+        "landmark": {
+          "name": "Lujiazui skyline, Shanghai",
+          "confidence": 0.99,
+          "evidence": "The skyline includes the recognizable spheres of the Oriental Pearl Tower, the twisting Shanghai Tower, and the trapezoidal opening of the Shanghai World Financial Center."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.92
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.77
+          },
+          {
+            "label": "calm",
+            "confidence": 0.7
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The iconic skyline and broad river view strongly capture a recognizable sightseeing moment in Shanghai.",
+          "confidence": 0.98
+        },
+        "representative_quality": {
+          "score": 0.93,
+          "reasoning": "The expansive composition clearly establishes the riverfront setting while the distinctive skyline provides a strong visual centerpiece and sense of place."
+        },
+        "journaling_prompt": "What stood out most to you as you looked across the river at Shanghai’s skyline?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "C76FF83A-BBAB-41E3-827F-F80A7A99DD45_1_105_c.jpeg",
+      "sha256": "a17607dff16970d59790ec0c1d77fabb1134b250a18dc714c129265a2efcea46",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:09.495292+00:00",
+      "attempts": 1,
+      "latency_ms": 9297,
+      "prompt_tokens": 2373,
+      "completion_tokens": 462,
+      "cost_usd": 0.0205225,
+      "generation_id": "gen-1786954620-1HQQ0U96VWkI39x9FpEo",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A person poses by a waterfront at night with an illuminated historic skyline across the river.",
+        "scene": {
+          "scene_type": "people_moment",
+          "confidence": 0.98,
+          "evidence": "A posed person fills the foreground while a brightly illuminated waterfront skyline and river form the backdrop."
+        },
+        "activity": {
+          "description": "Posing for a travel portrait beside the river at night.",
+          "confidence": 0.97,
+          "evidence": "The person is deliberately positioned against the waterfront skyline and looking away from the camera."
+        },
+        "landmark": {
+          "name": "The Bund, Shanghai",
+          "confidence": 0.94,
+          "evidence": "The visible waterfront includes the Bund's distinctive illuminated historic facades and clock-tower silhouette across the Huangpu River."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "excitement",
+            "confidence": 0.78
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.81
+          },
+          {
+            "label": "connection",
+            "confidence": 0.7
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The deliberate portrait and recognizable illuminated waterfront preserve a strong sense of place and a personal trip moment.",
+          "confidence": 0.96
+        },
+        "representative_quality": {
+          "score": 0.91,
+          "reasoning": "The portrait clearly combines the traveler’s moment with a distinctive nighttime city backdrop, making it expressive and strongly representative of the visit."
+        },
+        "journaling_prompt": "What do you remember feeling as you looked across the river at the illuminated skyline that night?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "D1E84D8A-590D-4750-9273-EEF03E2170C4_4_5005_c.jpeg",
+      "sha256": "b317956ad788d04a07ae5aa65d529c3d10d4e752866b416762c28fcc1ab63f9d",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:12.722145+00:00",
+      "attempts": 1,
+      "latency_ms": 9542,
+      "prompt_tokens": 1668,
+      "completion_tokens": 486,
+      "cost_usd": 0.01683625,
+      "generation_id": "gen-1786954623-MSzg4ZTuDSHSLFJkODKK",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A Korean barbecue meal fills a restaurant table with a built-in grill, raw ingredients, leafy wraps, side dishes, sauces, and beer.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.99,
+          "evidence": "The image centers on a restaurant table covered with Korean barbecue ingredients, banchan, dipping sauces, leafy wraps, and a beer bottle around a built-in grill."
+        },
+        "activity": {
+          "description": "Dining on Korean barbecue and preparing food at the tabletop grill.",
+          "confidence": 0.97,
+          "evidence": "A built-in grill, raw sliced meat, lettuce wraps, rice, side dishes, sauces, utensils, and seated diners are visibly arranged for a meal."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": null
+        },
+        "visible_text": {
+          "transcription": "CASS",
+          "text_kind": "label",
+          "language": "English",
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "fun",
+            "confidence": 0.82
+          },
+          {
+            "label": "connection",
+            "confidence": 0.79
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.63
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The abundant tabletop barbecue spread and shared dining setting capture a distinctive meal with strong story and social value.",
+          "confidence": 0.9
+        },
+        "representative_quality": {
+          "score": 0.88,
+          "reasoning": "The close view clearly presents the grill, ingredients, side dishes, and surrounding dining context, making it expressive of the meal despite the busy composition."
+        },
+        "journaling_prompt": "What dishes stood out to you, and what do you remember about sharing this Korean barbecue meal?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "D4844807-6CE1-4E5F-9EE1-08F6CDBEB390_1_105_c.jpeg",
+      "sha256": "3613b00cf93535e021aa5c9eac4e2ff01a9083c87b4e947cbef3547d37ddb6a9",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:22.113797+00:00",
+      "attempts": 1,
+      "latency_ms": 12946,
+      "prompt_tokens": 2143,
+      "completion_tokens": 728,
+      "cost_usd": 0.027065,
+      "generation_id": "gen-1786954629-nHr39Mkwme0cHuKOu9rK",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A phone displays a ride-hailing pickup map centered near Fuxing Park in Shanghai.",
+        "scene": {
+          "scene_type": "document_or_screen",
+          "confidence": 0.99,
+          "evidence": "The image is dominated by a photographed phone screen showing a map, vehicle route, pickup point, and ride status."
+        },
+        "activity": {
+          "description": "The traveler was likely waiting for a ride-hailing vehicle to arrive at a pickup location.",
+          "confidence": 0.97,
+          "evidence": "The screen states “Driver is on the way,” gives an estimated arrival time, and shows a route to a marked pickup point."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.98,
+          "evidence": "Fuxing Park and nearby places are labeled on the map, but no physical landmark is depicted."
+        },
+        "visible_text": {
+          "transcription": "Driver is on the way. Please…\n06m 2min away from you\nCloser pickup location found\nFuxing Park - East Gate\n沪ACD8600\nPriority grey · Roewe\nDriver Cheng\nCall   Message   Cancel   Share\nCancel the trip for free before 03:40",
+          "text_kind": "screen",
+          "language": "English and Chinese",
+          "confidence": 0.9
+        },
+        "screenshot": {
+          "is_screenshot_or_document": true,
+          "travel_relevance": "travel_relevant",
+          "document_kind": "Photographed ride-hailing app screen",
+          "confidence": 0.99
+        },
+        "emotions": [],
+        "memory": {
+          "keep_signal": "unsure",
+          "reason": "The ride details may help recall a specific transfer or destination, but the image has limited standalone story value.",
+          "confidence": 0.78
+        },
+        "representative_quality": {
+          "score": 0.4,
+          "reasoning": "The screen clearly documents a travel pickup near Fuxing Park, though it offers little visual context about the broader experience."
+        },
+        "journaling_prompt": "Where were you headed from this pickup near Fuxing Park, and what do you remember about that journey?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "DB78C21E-D76B-4705-9A6A-0BAA18B5CCCD_1_105_c.jpeg",
+      "sha256": "834529d5f8cdd49dcdbfa8a851b372401d351ebe409a9d7d5fdd21d1afcf762a",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:25.504802+00:00",
+      "attempts": 1,
+      "latency_ms": 15995,
+      "prompt_tokens": 2373,
+      "completion_tokens": 744,
+      "cost_usd": 0.0289825,
+      "generation_id": "gen-1786954630-a9wg5fN1msmUHsl1d1R5",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A person poses beside a waterfront railing with Shanghai’s illuminated Pudong skyline rising through low clouds across the river.",
+        "scene": {
+          "scene_type": "cityscape_street",
+          "confidence": 0.99,
+          "evidence": "An illuminated urban skyline, river, waterfront railing, and dense cluster of high-rise buildings dominate the scene."
+        },
+        "activity": {
+          "description": "Posing for a waterfront travel photo while sightseeing at night.",
+          "confidence": 0.96,
+          "evidence": "A person stands prominently in the foreground against a brightly lit landmark skyline and river."
+        },
+        "landmark": {
+          "name": "Oriental Pearl Tower and Pudong skyline, Shanghai",
+          "confidence": 0.99,
+          "evidence": "The skyline includes the Oriental Pearl Tower’s distinctive illuminated spheres and spire alongside the recognizable cluster of Lujiazui skyscrapers."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.86
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.91
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.83
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.78
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The waterfront portrait and dramatic illuminated skyline create a distinctive record of nighttime sightseeing in Shanghai.",
+          "confidence": 0.98
+        },
+        "representative_quality": {
+          "score": 0.94,
+          "reasoning": "The person, colorful river reflections, famous skyline, and atmospheric clouds clearly convey both the place and the experience of the moment."
+        },
+        "journaling_prompt": "What do you remember feeling as you looked across the river at Shanghai’s lights and clouds that night?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "E40EC7FF-2BA4-4B02-A09C-1851A0B3655B_4_5005_c.jpeg",
+      "sha256": "269a7d95b2f564ae01212029aa8f7f6f7126da15b85f767da21ec379a338a5f3",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:29.890597+00:00",
+      "attempts": 1,
+      "latency_ms": 19058,
+      "prompt_tokens": 1668,
+      "completion_tokens": 1033,
+      "cost_usd": 0.03324625,
+      "generation_id": "gen-1786954631-7on6k4pPC7yeUlO7wbqz",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A tree-lined city street displays vehicle-restriction signs and a Zhongshan East 1st Road sign beside historic stone-fronted buildings.",
+        "scene": {
+          "scene_type": "cityscape_street",
+          "confidence": 0.98,
+          "evidence": "Visible road signs, traffic lanes, vehicles, street trees, and multistory urban buildings establish a city street setting."
+        },
+        "activity": {
+          "description": "Exploring or documenting Zhongshan East 1st Road and its historic streetscape.",
+          "confidence": 0.84,
+          "evidence": "The photograph deliberately frames the named street sign together with the surrounding architecture."
+        },
+        "landmark": {
+          "name": "The Bund, Shanghai",
+          "confidence": 0.78,
+          "evidence": "The sign reads “中山东一路,” the road along Shanghai’s Bund, and the visible historic masonry architecture is consistent with that area."
+        },
+        "visible_text": {
+          "transcription": "大型号牌\n小型号牌\n7:00-23:00\n中山东一路",
+          "text_kind": "sign",
+          "language": "Chinese",
+          "confidence": 0.94
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.53
+          },
+          {
+            "label": "calm",
+            "confidence": 0.57
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.48
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The named street and historic urban surroundings provide a strong sense of place for recalling this part of the trip.",
+          "confidence": 0.86
+        },
+        "representative_quality": {
+          "score": 0.8,
+          "reasoning": "The prominent street sign, architecture, road activity, trees, and open sky combine into a clear environmental portrait of the moment."
+        },
+        "journaling_prompt": "What drew your attention as you traveled along Zhongshan East 1st Road, and what do you remember about the atmosphere there?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "ED034A32-6BA5-4DAD-9A38-AE036BC86947_4_5005_c.jpeg",
+      "sha256": "e4128edcc64e70642ca630ad752fa3293d7cd824b05df83d5c2d473e6eb83647",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:27.812108+00:00",
+      "attempts": 1,
+      "latency_ms": 15079,
+      "prompt_tokens": 1668,
+      "completion_tokens": 837,
+      "cost_usd": 0.02736625,
+      "generation_id": "gen-1786954633-PpEOFa2RHXcYqgHLS5Jx",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A first-person view from an airplane seat shows a traveler's lap, neck pillow, and seatback entertainment screen.",
+        "scene": {
+          "scene_type": "transport",
+          "confidence": 0.99,
+          "evidence": "Airplane seats, seatback entertainment systems, tray-table hardware, and cabin fixtures are visible."
+        },
+        "activity": {
+          "description": "Settling into an airplane seat and viewing the in-flight entertainment system.",
+          "confidence": 0.92,
+          "evidence": "The photo is taken from a seated perspective with a neck pillow on the traveler's lap and an active entertainment screen directly ahead."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "The cabin has no distinctive visible branding or location-specific features that support identifying an airline or place."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.91
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "excitement",
+            "confidence": 0.72
+          },
+          {
+            "label": "calm",
+            "confidence": 0.55
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The personal first-person view captures the onboard experience and can serve as a clear marker of the journey.",
+          "confidence": 0.82
+        },
+        "representative_quality": {
+          "score": 0.83,
+          "reasoning": "The immersive composition clearly conveys the traveler's seat, comfort setup, and airplane environment, making it expressive of the flight moment."
+        },
+        "journaling_prompt": "Where were you headed, and what were you feeling as you settled into your seat?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "ED30D75D-B660-4306-93E9-0B0ABB4D47F4_1_105_c.jpeg",
+      "sha256": "600fc58061425077fbbb77e90e08f0dfcbb53c99f76e8410bb3b7ef0ca2bc49b",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:36.433333+00:00",
+      "attempts": 1,
+      "latency_ms": 14298,
+      "prompt_tokens": 2373,
+      "completion_tokens": 755,
+      "cost_usd": 0.0293125,
+      "generation_id": "gen-1786954642-FjbpPG1Vf4ihnvoUftgs",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A brightly lit convenience store entrance displays drinks, snacks, and illuminated Chinese food signs at night.",
+        "scene": {
+          "scene_type": "shop_market",
+          "confidence": 0.98,
+          "evidence": "Visible storefront signage, glass entrance, refrigerated drink cases, and illuminated snack advertisements indicate a convenience store."
+        },
+        "activity": {
+          "description": "Stopping at or photographing a convenience store offering late-night snacks and drinks.",
+          "confidence": 0.78,
+          "evidence": "The image is framed directly toward the open storefront, where drink refrigerators and signs advertising prepared snacks are visible."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.98,
+          "evidence": "The storefront has no distinctive features supporting identification as a landmark."
+        },
+        "visible_text": {
+          "transcription": "Convenience Store\n上海香酥鸡柳\n烟\n农夫山泉\n台湾烤香肠\n关东煮\n烟酒 饮料\n冷饮 热饮\n零食小吃\n上海特产",
+          "text_kind": "sign",
+          "language": "Chinese and English",
+          "confidence": 0.9
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "fun",
+            "confidence": 0.58
+          },
+          {
+            "label": "calm",
+            "confidence": 0.42
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The vivid nighttime storefront and local snack signage capture a specific street-food and convenience-store moment from the trip.",
+          "confidence": 0.78
+        },
+        "representative_quality": {
+          "score": 0.82,
+          "reasoning": "The direct composition clearly preserves the storefront atmosphere, colorful signage, and range of local snacks and drinks."
+        },
+        "journaling_prompt": "What drew you into this late-night shop, and what snack or drink did you choose?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "F334690A-0AE6-4B02-A3F9-116836757300_1_105_c.jpeg",
+      "sha256": "f8e17a105e3d49af4aa5d6528e7f0386502e04f00d40c89ffe9af8b279756b13",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:34.244742+00:00",
+      "attempts": 1,
+      "latency_ms": 8715,
+      "prompt_tokens": 2335,
+      "completion_tokens": 486,
+      "cost_usd": 0.021005,
+      "generation_id": "gen-1786954646-1zojIZDN9yBuOfB8mvaD",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A screenshot displays a motivational social-media post about finding a unique purpose and working persistently in service of others.",
+        "scene": {
+          "scene_type": "document_or_screen",
+          "confidence": 0.99,
+          "evidence": "The image consists of a social-media post interface and large blocks of digital text on a plain background."
+        },
+        "activity": {
+          "description": "The traveler was likely saving or sharing a motivational post for later reflection.",
+          "confidence": 0.83,
+          "evidence": "The image is a captured social-media post containing an inspirational quotation and added motivational text."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": null
+        },
+        "visible_text": {
+          "transcription": "Your task in life is to find the unique vector of magic you were born to deliver to the world\n\n33 likes  2 replies\n\nThen just become tunnel vision\n\nWake up every day and work aggressively in service of others\n\nAnd never ever stop",
+          "text_kind": "screen",
+          "language": "English",
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": true,
+          "travel_relevance": "not_travel_relevant",
+          "document_kind": "social-media screenshot with motivational text",
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "meaningful",
+            "confidence": 0.68
+          }
+        ],
+        "memory": {
+          "keep_signal": "leave_out",
+          "reason": "This is a generic motivational screenshot with no visible connection to the finished trip.",
+          "confidence": 0.97
+        },
+        "representative_quality": {
+          "score": 0.08,
+          "reasoning": "The post may preserve a personal thought, but it does not visually represent a travel place, activity, or moment."
+        },
+        "journaling_prompt": null
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "F757B844-E270-461A-B5B3-81640059FBC0_1_105_c.jpeg",
+      "sha256": "6cd7bb64433be9b6ce2066a02f5660dc4de7318147392868e50df8125a1f8ed1",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:38.850125+00:00",
+      "attempts": 1,
+      "latency_ms": 11017,
+      "prompt_tokens": 2373,
+      "completion_tokens": 527,
+      "cost_usd": 0.0224725,
+      "generation_id": "gen-1786954648-TToXyPMX9lmDociXPTyZ",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A modern indoor common area features tiered wooden bench seating with colorful cushions beneath exposed pipes and ceiling lights.",
+        "scene": {
+          "scene_type": "other",
+          "confidence": 0.91,
+          "evidence": "The image shows an indoor communal space with stepped seating, cushions, railings, exposed utilities, and contemporary lighting, but no clear cues identifying a specific travel venue type."
+        },
+        "activity": {
+          "description": null,
+          "confidence": 0.18,
+          "evidence": null
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.97,
+          "evidence": "The interior has no distinctive signage or uniquely identifiable architectural feature."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.96
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.52
+          }
+        ],
+        "memory": {
+          "keep_signal": "unsure",
+          "reason": "The space may recall a meaningful stop or venue, but the image alone does not reveal its travel context or story.",
+          "confidence": 0.72
+        },
+        "representative_quality": {
+          "score": 0.48,
+          "reasoning": "The wide view clearly records the interior design and atmosphere, though it offers limited context about why the moment mattered."
+        },
+        "journaling_prompt": "What brought you into this space, and what do you remember doing or feeling there?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Emiliano_s_Pictures_Shanghai 2026",
+      "relative_path": "FE08F095-2443-44F0-BF79-A8ECF1E784BF_4_5005_c.jpeg",
+      "sha256": "4ebf2969927ad6179587209b1297db1c9086080fa49ecb1c2d81cefbb5cd6fe9",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:17:45.630457+00:00",
+      "attempts": 1,
+      "latency_ms": 15729,
+      "prompt_tokens": 1656,
+      "completion_tokens": 684,
+      "cost_usd": 0.02270125,
+      "generation_id": "gen-1786954650-KEf8THu4ZEeDava1weLe",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A Chinese restaurant storefront with sidewalk seating and parked scooters in front.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.97,
+          "evidence": "The image shows restaurant signage, occupied dining tables, stools, and an open storefront."
+        },
+        "activity": {
+          "description": "The traveler was likely documenting a restaurant or meal stop.",
+          "confidence": 0.76,
+          "evidence": "The camera is directed at a restaurant facade with active dining visible inside and along the open frontage."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.96,
+          "evidence": "The storefront does not show distinctive features supporting identification as a landmark."
+        },
+        "visible_text": {
+          "transcription": "…于家®；东北味道",
+          "text_kind": "sign",
+          "language": "Chinese",
+          "confidence": 0.85
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "connection",
+            "confidence": 0.52
+          },
+          {
+            "label": "fun",
+            "confidence": 0.4
+          }
+        ],
+        "memory": {
+          "keep_signal": "unsure",
+          "reason": "The restaurant may mark a memorable food stop, but its personal significance cannot be determined from the image alone.",
+          "confidence": 0.74
+        },
+        "representative_quality": {
+          "score": 0.68,
+          "reasoning": "The storefront, dining atmosphere, signage, and scooters provide useful context for the stop, though the traveler’s specific experience is not visible."
+        },
+        "journaling_prompt": "What drew you to this restaurant, and what do you remember most about the food or atmosphere?"
+      },
+      "failure_detail": null
+    }
+  ]
+}

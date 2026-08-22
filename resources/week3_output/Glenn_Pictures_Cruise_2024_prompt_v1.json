@@ -1,0 +1,1426 @@
+{
+  "dataset_id": "Glenn_Pictures_Cruise_2024",
+  "description": "Per-image visual LLM evaluation output, prompt v1 / schema llm-eval-1, one record per unique image by content hash. Byte-identical duplicate files share the record of the file listed under identical_to.",
+  "prompt_version": "1",
+  "schema_version": "llm-eval-1",
+  "model": "openai/gpt-5.6-sol",
+  "generated_utc": "2026-08-22T20:48:08Z",
+  "images_on_disk": 21,
+  "unique_images": 20,
+  "records": 20,
+  "duplicate_files": [
+    {
+      "relative_path": "IMG_5348.HEIC",
+      "identical_to": "IMG_5348(1).HEIC"
+    }
+  ],
+  "total_prompt_tokens": 47460,
+  "total_completion_tokens": 11744,
+  "total_cost_usd": 0.4856,
+  "evaluations": [
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5348(1).HEIC",
+      "sha256": "44e7eba552265174b76dd04752b57b1500f8711961ba389cfc88bfb2edf19948",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:27.225879+00:00",
+      "attempts": 1,
+      "latency_ms": 12177,
+      "prompt_tokens": 2373,
+      "completion_tokens": 505,
+      "cost_usd": 0.0218125,
+      "generation_id": "gen-1786954758-vWMUXav9oiEn49E3Mgoy",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "The illuminated ancient temples of the Acropolis rise above a rocky hillside and darkened Athens buildings at night.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.99,
+          "evidence": "A monumental classical temple complex with prominent Doric columns is visibly illuminated atop a fortified rocky hill."
+        },
+        "activity": {
+          "description": "Nighttime sightseeing and photographing the illuminated Acropolis from a viewpoint below.",
+          "confidence": 0.94,
+          "evidence": "The landmark is framed from a distant city viewpoint after dark, with architectural floodlighting visible."
+        },
+        "landmark": {
+          "name": "Acropolis of Athens, including the Parthenon",
+          "confidence": 0.99,
+          "evidence": "The distinctive Parthenon colonnade and surrounding classical structures stand on the recognizable fortified rock of the Athenian Acropolis."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.96
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.79
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.72
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The dramatic nighttime view of an iconic historic landmark strongly captures a distinctive travel moment.",
+          "confidence": 0.98
+        },
+        "representative_quality": {
+          "score": 0.91,
+          "reasoning": "The illuminated ruins dominate the composition against the night sky, while the hillside and nearby buildings provide a strong sense of place."
+        },
+        "journaling_prompt": "What did it feel like to see the Acropolis glowing above Athens that night?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5390.HEIC",
+      "sha256": "689a43dca62206db675b2352a22a80561a477b11b8a9161de17cef020e306062",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:28.746437+00:00",
+      "attempts": 1,
+      "latency_ms": 13651,
+      "prompt_tokens": 2373,
+      "completion_tokens": 576,
+      "cost_usd": 0.0239425,
+      "generation_id": "gen-1786954758-ndfXjL05BxvEuXsniUzE",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "An olive tree frames a rectangular opening in an ancient marble wall, with classical columns visible beyond.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.92,
+          "evidence": "Ancient carved marble blocks, standing classical columns, archaeological remains, and a small site fixture are visibly present."
+        },
+        "activity": {
+          "description": "Exploring and photographing an ancient archaeological site.",
+          "confidence": 0.93,
+          "evidence": "The image deliberately composes an olive tree, ruined marble wall, and classical columns as a sightseeing view."
+        },
+        "landmark": {
+          "name": "Erechtheion, Acropolis of Athens",
+          "confidence": 0.66,
+          "evidence": "The combination of ancient marble architecture, Ionic-style columns, and a prominent olive tree is consistent with the Erechtheion area, though the partial view is not uniquely conclusive."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.8
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.71
+          },
+          {
+            "label": "calm",
+            "confidence": 0.68
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The layered view of an olive tree and classical ruins creates a distinctive record of visiting an ancient site.",
+          "confidence": 0.9
+        },
+        "representative_quality": {
+          "score": 0.86,
+          "reasoning": "The tree and stone opening naturally frame the distant columns, giving the scene strong visual depth and a clear sense of place."
+        },
+        "journaling_prompt": "What did it feel like to stand among these ancient stones, and what detail about the site stayed with you afterward?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5399.HEIC",
+      "sha256": "3b31453ed584de8021c8ed97a9c53769a26e99ceb26db4f703c3d6c8118e0282",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:30.149451+00:00",
+      "attempts": 1,
+      "latency_ms": 15080,
+      "prompt_tokens": 2373,
+      "completion_tokens": 594,
+      "cost_usd": 0.0244825,
+      "generation_id": "gen-1786954758-xEDV2otqFvmeLthvts7p",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "An ancient Greek temple with a long Doric colonnade rises above a rocky foreground as visitors explore the site.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.99,
+          "evidence": "The image prominently frames a monumental ancient Doric temple on an exposed archaeological site."
+        },
+        "activity": {
+          "description": "Sightseeing and touring an ancient archaeological site.",
+          "confidence": 0.98,
+          "evidence": "Visitors are visibly walking, gathering, and photographing the temple grounds."
+        },
+        "landmark": {
+          "name": "Parthenon, Acropolis of Athens",
+          "confidence": 0.99,
+          "evidence": "The distinctive rectangular Doric temple, surviving colonnade, marble structure, rocky Acropolis setting, and visible restoration scaffolding strongly match the Parthenon."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.96
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.87
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.75
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "This clear, expansive view of an iconic historic site strongly captures a significant sightseeing moment.",
+          "confidence": 0.99
+        },
+        "representative_quality": {
+          "score": 0.95,
+          "reasoning": "The temple dominates the composition, while the rocky foreground and visible visitors convey both the scale of the monument and the experience of touring it."
+        },
+        "journaling_prompt": "What stood out most to you when you finally saw this ancient temple in person?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5485.HEIC",
+      "sha256": "6a09b31acf04170e14219a1a26365724cefebca1a3b4c166b41589ee1cd67986",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:30.149064+00:00",
+      "attempts": 1,
+      "latency_ms": 15077,
+      "prompt_tokens": 2373,
+      "completion_tokens": 561,
+      "cost_usd": 0.0234925,
+      "generation_id": "gen-1786954758-0uWKVR1ReWIV6r1ZJbnq",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A smiling person takes a selfie overlooking a broad historic track bordered by grassy embankments and trees.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.86,
+          "evidence": "The image shows a long, formal earthen track in a heritage setting, with grassy spectator embankments, cypress-like trees, and visitors sightseeing."
+        },
+        "activity": {
+          "description": "Taking a selfie while sightseeing at an archaeological site.",
+          "confidence": 0.97,
+          "evidence": "A person smiles directly into a camera held at arm’s length, with a historic outdoor track and other visitors behind them."
+        },
+        "landmark": {
+          "name": "Ancient Stadium of Olympia",
+          "confidence": 0.76,
+          "evidence": "The long rectangular earthen track, sloped grassy embankments, sparse stone features, and Mediterranean vegetation resemble the ancient stadium at Olympia, though no identifying sign is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "fun",
+            "confidence": 0.93
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.82
+          },
+          {
+            "label": "connection",
+            "confidence": 0.68
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.62
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The expressive selfie and recognizable historic setting create a personal record of the sightseeing experience.",
+          "confidence": 0.97
+        },
+        "representative_quality": {
+          "score": 0.91,
+          "reasoning": "The smiling selfie clearly captures the traveler’s reaction while keeping the expansive historic setting visible enough to tell the story of the visit."
+        },
+        "journaling_prompt": "What did it feel like to stand beside this historic track, and what part of the visit stayed with you afterward?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5492.HEIC",
+      "sha256": "46344b65412ebdf67e34bf0b6b809f494fedc3ac660685d519c6b35f1a8a9be2",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:40.656576+00:00",
+      "attempts": 1,
+      "latency_ms": 13116,
+      "prompt_tokens": 2373,
+      "completion_tokens": 684,
+      "cost_usd": 0.0271825,
+      "generation_id": "gen-1786954769-sOMh2gR2G5CRBfVwq6k4",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A carved stone slab with a weathered Greek inscription stands among the remains of an archaeological site.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.9,
+          "evidence": "The image shows an inscribed stone monument surrounded by large ancient masonry blocks and architectural ruins."
+        },
+        "activity": {
+          "description": "Visiting an archaeological site and examining a historical inscription.",
+          "confidence": 0.91,
+          "evidence": "The inscribed slab is deliberately centered in the foreground, with excavated stone ruins visible behind it."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.18,
+          "evidence": "The ruins and Greek inscription indicate a historical site, but no uniquely identifying structure or readable site name is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": "other",
+          "language": "Ancient Greek",
+          "confidence": 0.72
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.75
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.71
+          },
+          {
+            "label": "calm",
+            "confidence": 0.57
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The close view of an ancient inscription within its archaeological setting captures a distinctive sightseeing moment.",
+          "confidence": 0.89
+        },
+        "representative_quality": {
+          "score": 0.83,
+          "reasoning": "The centered inscription and surrounding ruins clearly convey the experience of exploring a historical site, though the stone text is difficult to read."
+        },
+        "journaling_prompt": "What drew your attention to this inscription, and what did you learn about it while visiting the site?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5506.HEIC",
+      "sha256": "76c1bd10cd4cf749a24830419c21eacb03c0bcf9dfa53af2230e9b5aeff5ec12",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:37.926652+00:00",
+      "attempts": 1,
+      "latency_ms": 8963,
+      "prompt_tokens": 2373,
+      "completion_tokens": 499,
+      "cost_usd": 0.0216325,
+      "generation_id": "gen-1786954769-cgGRcWqz2DSafkQDImgl",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "The cruise ship Seabourn Encore is moored beside a concrete pier under a blue sky.",
+        "scene": {
+          "scene_type": "transport",
+          "confidence": 0.99,
+          "evidence": "A large passenger ship is visibly secured to a pier with mooring lines and harbor fixtures."
+        },
+        "activity": {
+          "description": "Viewing the docked cruise ship from the pier.",
+          "confidence": 0.88,
+          "evidence": "The photo is composed from the waterfront with the moored ship filling most of the frame."
+        },
+        "landmark": {
+          "name": "Seabourn Encore",
+          "confidence": 0.99,
+          "evidence": "The vessel name “SEABOURN ENCORE” is clearly visible on the bow."
+        },
+        "visible_text": {
+          "transcription": "SEABOURN ENCORE",
+          "text_kind": "label",
+          "language": "English",
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.82
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.76
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The prominently framed, named cruise ship provides a strong visual anchor for a voyage or port visit.",
+          "confidence": 0.94
+        },
+        "representative_quality": {
+          "score": 0.93,
+          "reasoning": "The ship dominates the composition, its name is legible, and the pier and mooring lines clearly establish the port setting."
+        },
+        "journaling_prompt": "What were you most looking forward to when you saw the Seabourn Encore at the pier?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5511.HEIC",
+      "sha256": "2c5f7a3e56e66b1ede702b8db1b4d985c78d17343d76a2cb182043645deaa49a",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:39.763993+00:00",
+      "attempts": 1,
+      "latency_ms": 9348,
+      "prompt_tokens": 2373,
+      "completion_tokens": 437,
+      "cost_usd": 0.0197725,
+      "generation_id": "gen-1786954771-AQuyqYDsI21xr9gQMWia",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A plated salad with soft white cheese, cured meat, tomatoes, and lettuce sits on a formally set dining table.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.99,
+          "evidence": "The image centers on a prepared dish served on a wide-rimmed plate, surrounded by dining utensils and glassware."
+        },
+        "activity": {
+          "description": "Sitting down for a restaurant meal and photographing the plated dish before eating.",
+          "confidence": 0.91,
+          "evidence": "The prepared dish, white tablecloth, arranged cutlery, glassware, and table service visibly indicate a dining setting."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": null
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.72
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.42
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The carefully presented meal and formal table setting can preserve a distinct dining moment from the trip.",
+          "confidence": 0.78
+        },
+        "representative_quality": {
+          "score": 0.83,
+          "reasoning": "The centered dish and surrounding place setting clearly represent the meal, with enough context to convey the dining experience."
+        },
+        "journaling_prompt": "What made this meal memorable, and what do you remember about the place where you enjoyed it?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5571.HEIC",
+      "sha256": "08aeed0142c73cea461c642280dfbd9db196449db2501e8685f4c331f7a1bcee",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:43.404094+00:00",
+      "attempts": 1,
+      "latency_ms": 12981,
+      "prompt_tokens": 2373,
+      "completion_tokens": 712,
+      "cost_usd": 0.0280225,
+      "generation_id": "gen-1786954771-Nfpj15Cang73icONwW3G",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "People sit at a waterfront restaurant table with wine and water, with palm trees and buildings visible across the harbor.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.93,
+          "evidence": "Wine glasses, water glasses, a bottle, napkins, and table settings are visible at an outdoor waterfront dining table."
+        },
+        "activity": {
+          "description": "Having drinks at a waterfront restaurant.",
+          "confidence": 0.96,
+          "evidence": "The people are seated at a set table and holding drinks beside a harbor promenade."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.92,
+          "evidence": "The waterfront, palm trees, and distant buildings are visually generic and do not provide distinctive landmark features."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "connection",
+            "confidence": 0.9
+          },
+          {
+            "label": "calm",
+            "confidence": 0.84
+          },
+          {
+            "label": "fun",
+            "confidence": 0.76
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The posed waterfront dining moment has clear personal value and captures the atmosphere of a shared trip experience.",
+          "confidence": 0.95
+        },
+        "representative_quality": {
+          "score": 0.88,
+          "reasoning": "The people, drinks, and expansive harbor setting combine into an expressive composition that clearly represents a relaxed waterfront dining moment."
+        },
+        "journaling_prompt": "What do you remember most about this waterfront stop and the conversation you shared over drinks?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5574.HEIC",
+      "sha256": "0a7ec6a7be5a05bcd10e69b7b988c65852b82ff9e32931cf99b1a738f0d609e9",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:49.936529+00:00",
+      "attempts": 1,
+      "latency_ms": 11756,
+      "prompt_tokens": 2373,
+      "completion_tokens": 536,
+      "cost_usd": 0.0227425,
+      "generation_id": "gen-1786954779-niVAOKRbuMQpVEoZnyJV",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A plate of mussel pasta with cherry tomatoes and basil sits on a restaurant table beside red wine.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.99,
+          "evidence": "The foreground prominently shows a plated seafood pasta dish, with dining ware, glassware, and wine arranged on the table."
+        },
+        "activity": {
+          "description": "Enjoying a seafood pasta meal with red wine at a restaurant.",
+          "confidence": 0.92,
+          "evidence": "The prepared pasta, mussels, wine, water, napkins, and table setting visibly indicate a restaurant meal."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "No distinctive landmark or identifiable location feature is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.92
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.72
+          },
+          {
+            "label": "fun",
+            "confidence": 0.61
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The carefully framed local-style meal and wine capture a distinct dining moment from the trip.",
+          "confidence": 0.89
+        },
+        "representative_quality": {
+          "score": 0.88,
+          "reasoning": "The dish is prominently composed and surrounded by restaurant details that clearly convey the meal and its atmosphere."
+        },
+        "journaling_prompt": "What do you remember most about the flavors, setting, or conversation around this meal?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5662.HEIC",
+      "sha256": "395328dea816ad95c45582097f2143214c0f71a342b612f5b73f68a8e193f161",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:49.914605+00:00",
+      "attempts": 1,
+      "latency_ms": 9895,
+      "prompt_tokens": 2373,
+      "completion_tokens": 447,
+      "cost_usd": 0.0200725,
+      "generation_id": "gen-1786954780-JjqaoXZdHs4PYseYeT8m",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A plate of grilled seafood with potatoes, vegetables, salad, and a lemon wedge is served on a white-clothed dining table.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.99,
+          "evidence": "The meal fills the foreground, with grilled seafood, potato slices, vegetables, tableware, glasses, and bottled water visibly arranged on a dining table."
+        },
+        "activity": {
+          "description": "The traveler was likely having a seafood meal at a restaurant.",
+          "confidence": 0.94,
+          "evidence": "A prepared seafood plate is set with cutlery, drinking glasses, bottled water, and another meal in the background."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": null
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.72
+          },
+          {
+            "label": "fun",
+            "confidence": 0.63
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The distinctive restaurant meal can preserve a flavorful and personal moment from the trip.",
+          "confidence": 0.85
+        },
+        "representative_quality": {
+          "score": 0.88,
+          "reasoning": "The close composition clearly centers the meal while surrounding table details provide enough context to represent the dining experience."
+        },
+        "journaling_prompt": "What do you remember most about the flavors and atmosphere of this meal?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5663.HEIC",
+      "sha256": "26e2ea5f99fbf0fc1992d7ebe04ef1df7f88db635665d1efc5db986db6e5b6dd",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:55.099027+00:00",
+      "attempts": 1,
+      "latency_ms": 14192,
+      "prompt_tokens": 2373,
+      "completion_tokens": 838,
+      "cost_usd": 0.0318025,
+      "generation_id": "gen-1786954781-8al2L6w2NFngXRn7fzae",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A bottle of Croatian Pošip white wine stands on a dining table with glasses and tableware in the background.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.99,
+          "evidence": "The wine bottle and its label dominate the frame, with drinking glasses and dining tableware visible behind it."
+        },
+        "activity": {
+          "description": "Likely enjoying or tasting local wine during a meal.",
+          "confidence": 0.87,
+          "evidence": "The bottle is positioned on a set dining table alongside glasses and tableware."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "No distinctive landmark is visible."
+        },
+        "visible_text": {
+          "transcription": "POŠIP\n2023.\nSUHO BIJELO VINO\nZAŠTIĆENA OZNAKA IZVORNOSTI\nSREDNJA I JUŽNA DALMACIJA\nVINOGORJE KORČULA\nVINOGRAD: SMOKVICA\nSTAROST VINOGRADA: > 25 GODINA\nBERBA: RUČNA\nODLEŽAVANJE: INOX\nPROIZVODI I PUNI:\nVINARIJA TORETA\nSMOKVICA-496 BRNA\nVINO IZ HRVATSKE\nALK 13,0% VOL. 0,75L\nSADRŽI SULFITE\nL 3PT2023",
+          "text_kind": "label",
+          "language": "Croatian",
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.72
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.64
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The local Korčula wine label anchors the image to a specific dining experience and destination.",
+          "confidence": 0.88
+        },
+        "representative_quality": {
+          "score": 0.85,
+          "reasoning": "The close composition clearly preserves the wine's name, origin, vintage, and dining context, making it a strong record of the moment."
+        },
+        "journaling_prompt": "What did this local Pošip taste like, and what else do you remember about the meal or setting where you enjoyed it?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5732.HEIC",
+      "sha256": "981178aa81ecdfc461ee63094331d195d2e82f2740ebef6c2b33d26e5ff7ce3f",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:19:58.658438+00:00",
+      "attempts": 1,
+      "latency_ms": 14969,
+      "prompt_tokens": 2373,
+      "completion_tokens": 666,
+      "cost_usd": 0.0266425,
+      "generation_id": "gen-1786954784-Cvr76vsOMLBsGvsaNzGW",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "An upward view inside a circular historic masonry chamber frames blue sky through a large open oculus.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.93,
+          "evidence": "Ancient-looking stone walls, Roman-style brick bands, arched openings, and a monumental circular oculus indicate a preserved historic structure."
+        },
+        "activity": {
+          "description": "Exploring a historic site and looking up at its open circular roof.",
+          "confidence": 0.91,
+          "evidence": "The camera is aimed vertically through the interior masonry toward the central opening and sky."
+        },
+        "landmark": {
+          "name": "Vestibule of Diocletian's Palace, Split",
+          "confidence": 0.84,
+          "evidence": "The cylindrical masonry interior, large roof oculus, Roman brick courses, and vertically arranged arched openings are distinctive features associated with the palace vestibule."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.94
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.72
+          },
+          {
+            "label": "calm",
+            "confidence": 0.58
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The dramatic upward perspective captures a distinctive architectural discovery and a strong sense of place.",
+          "confidence": 0.95
+        },
+        "representative_quality": {
+          "score": 0.92,
+          "reasoning": "The centered oculus, surrounding layers of historic masonry, and vivid opening to the sky create an expressive composition that clearly represents the site visit."
+        },
+        "journaling_prompt": "What did it feel like to stand beneath this ancient opening and look up at the sky?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5784.HEIC",
+      "sha256": "af7e824f8df44831b58afd74ddf7a2f7042b24b14cdca8ef9a6387348c051876",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:20:03.545194+00:00",
+      "attempts": 1,
+      "latency_ms": 13356,
+      "prompt_tokens": 2373,
+      "completion_tokens": 561,
+      "cost_usd": 0.0234925,
+      "generation_id": "gen-1786954793-fimX7OybXr5NXFVm8jzH",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "The ancient marble Arch of Hadrian frames a view toward the Acropolis beneath a clear blue sky.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.99,
+          "evidence": "A monumental ancient stone gateway with Corinthian columns and a large central arch dominates the frame, with the Acropolis visible through the opening."
+        },
+        "activity": {
+          "description": "Sightseeing and photographing ancient monuments in Athens.",
+          "confidence": 0.98,
+          "evidence": "The image deliberately centers the ornate ancient gateway and uses its arch to frame the Acropolis beyond."
+        },
+        "landmark": {
+          "name": "Arch of Hadrian, Athens",
+          "confidence": 0.99,
+          "evidence": "The freestanding marble arch, Corinthian upper columns, triangular pediment, and direct sightline toward the Acropolis match the distinctive Arch of Hadrian in Athens."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.91
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.82
+          },
+          {
+            "label": "calm",
+            "confidence": 0.7
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The carefully framed pairing of two ancient Athenian monuments creates a distinctive and memorable record of sightseeing.",
+          "confidence": 0.98
+        },
+        "representative_quality": {
+          "score": 0.95,
+          "reasoning": "The monumental arch fills the composition while naturally framing the Acropolis, giving the image a strong sense of place and visual story."
+        },
+        "journaling_prompt": "What did it feel like to see the Acropolis framed through this ancient arch on that morning?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5802.HEIC",
+      "sha256": "8d6d35d468bb3d4d7e59232c03575f159c1093ee7cc675b6e11ca0b5234064ac",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:20:02.955200+00:00",
+      "attempts": 1,
+      "latency_ms": 12739,
+      "prompt_tokens": 2373,
+      "completion_tokens": 599,
+      "cost_usd": 0.0246325,
+      "generation_id": "gen-1786954791-HXNhaKa4GjSSCCUgmg7l",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A traveler takes a selfie in Piazza San Marco with St Mark’s Campanile and ornate arcaded buildings behind them.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.99,
+          "evidence": "The prominent brick bell tower with a green pyramidal spire, the broad paved square, and the surrounding Venetian arcades are distinctive features of Piazza San Marco."
+        },
+        "activity": {
+          "description": "Sightseeing and taking a selfie in the historic square.",
+          "confidence": 0.98,
+          "evidence": "A person is framed at arm’s length in the foreground with the square and bell tower intentionally positioned in the background."
+        },
+        "landmark": {
+          "name": "Piazza San Marco and St Mark’s Campanile, Venice",
+          "confidence": 0.99,
+          "evidence": "The image clearly shows the Campanile’s tall brick shaft, white belfry, green spire, and the recognizable architecture of Piazza San Marco."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "excitement",
+            "confidence": 0.9
+          },
+          {
+            "label": "awe",
+            "confidence": 0.82
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.84
+          },
+          {
+            "label": "fun",
+            "confidence": 0.86
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The expressive selfie and unmistakable landmark setting strongly preserve a personal sightseeing moment.",
+          "confidence": 0.98
+        },
+        "representative_quality": {
+          "score": 0.94,
+          "reasoning": "The traveler’s expression and the clearly framed campanile establish both personal story and a strong sense of place."
+        },
+        "journaling_prompt": "What did it feel like to step into Piazza San Marco that morning, and what detail of the square stayed with you afterward?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5810.HEIC",
+      "sha256": "6e45c939d49a9dcc2de6d682a9f17445fcff0ca2718779243bd62965d75dbdab",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:20:07.535619+00:00",
+      "attempts": 1,
+      "latency_ms": 12150,
+      "prompt_tokens": 2373,
+      "completion_tokens": 464,
+      "cost_usd": 0.0205825,
+      "generation_id": "gen-1786954796-7M6ZvQq5KbinA790KiqK",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A sunlit Venetian courtyard frames an ornate brick palace with a cylindrical external staircase and rows of white stone arches.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.98,
+          "evidence": "The image prominently features a distinctive historic palace façade, multi-level arcades, and an elaborate cylindrical external staircase in a visitor courtyard."
+        },
+        "activity": {
+          "description": "Visiting and photographing a historic architectural site in Venice.",
+          "confidence": 0.94,
+          "evidence": "The upward-looking composition centers on the ornate staircase and arcades, while display plaques, a QR code, and visitor barriers indicate a sightseeing setting."
+        },
+        "landmark": {
+          "name": "Scala Contarini del Bovolo",
+          "confidence": 0.98,
+          "evidence": "The tightly winding cylindrical tower, stacked Renaissance-style white arches, brick construction, and adjoining arcaded façade closely match this distinctive Venetian landmark."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 1.0
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.89
+          },
+          {
+            "label": "calm",
+            "confidence": 0.7
+          },
+          {
+            "label": "excitement",
+            "confidence": 0.64
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The distinctive architecture and immersive courtyard view strongly preserve the experience of discovering a memorable Venetian landmark.",
+          "confidence": 0.97
+        },
+        "representative_quality": {
+          "score": 0.94,
+          "reasoning": "The dramatic upward perspective, clear architectural details, courtyard context, and strong sense of place make this an expressive representation of the visit."
+        },
+        "journaling_prompt": "What was it like to step into this hidden courtyard and see the spiral staircase rising above you?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5819.HEIC",
+      "sha256": "da30c94ad175693dafb7a07a7c4ac9e13c4a4e41246766bbe8c021c8a85a721a",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:20:09.423206+00:00",
+      "attempts": 1,
+      "latency_ms": 10507,
+      "prompt_tokens": 2373,
+      "completion_tokens": 501,
+      "cost_usd": 0.0216925,
+      "generation_id": "gen-1786954799-PdI1Rx4tRT9V3fuYI7Fe",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A colorful sculptural glass bowl is displayed among other handblown glass pieces in a shop or market stall.",
+        "scene": {
+          "scene_type": "shop_market",
+          "confidence": 0.97,
+          "evidence": "Decorative glassware is arranged on white display surfaces with a mirrored backdrop and shoppers visible beyond the display."
+        },
+        "activity": {
+          "description": "Browsing decorative handblown glass while shopping or visiting a craft market.",
+          "confidence": 0.9,
+          "evidence": "The camera is directed closely at a featured glass bowl surrounded by other glass objects presented for sale or viewing."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.98,
+          "evidence": "No distinctive architecture, signage, or location-specific feature is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.98
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.72
+          },
+          {
+            "label": "fun",
+            "confidence": 0.58
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The vivid centerpiece and surrounding artisan glass capture a distinctive shopping or craft-browsing moment from the trip.",
+          "confidence": 0.84
+        },
+        "representative_quality": {
+          "score": 0.82,
+          "reasoning": "The central glass bowl is expressive and prominently framed, while the surrounding display adds useful context despite busy reflections in the background."
+        },
+        "journaling_prompt": "What drew you to this particular glass piece, and what do you remember about the place where you found it?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5852.HEIC",
+      "sha256": "668e5ea57f82d1c2cb5614cd84872ae7fb6d99656fe606c4c32207fe5b902110",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:20:13.931681+00:00",
+      "attempts": 1,
+      "latency_ms": 10685,
+      "prompt_tokens": 2373,
+      "completion_tokens": 578,
+      "cost_usd": 0.0240025,
+      "generation_id": "gen-1786954803-IoMpx0VvS2NItX8EDqaT",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A white platter of grilled eggplant, zucchini, and peppers sits on a set dining table.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.99,
+          "evidence": "The image centers on plated grilled vegetables beside cutlery and table linens."
+        },
+        "activity": {
+          "description": "The traveler was likely having a restaurant meal featuring grilled vegetables.",
+          "confidence": 0.91,
+          "evidence": "The prepared dish is presented on a set table with a fork, linens, and additional tableware."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "No distinctive building, monument, or location-specific feature is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.55
+          }
+        ],
+        "memory": {
+          "keep_signal": "unsure",
+          "reason": "The meal is clearly documented, but its personal or trip-specific significance cannot be determined from the image alone.",
+          "confidence": 0.76
+        },
+        "representative_quality": {
+          "score": 0.72,
+          "reasoning": "The close composition clearly represents the dining moment and highlights the food, though it provides little context about the place or occasion."
+        },
+        "journaling_prompt": "What do you remember about this meal and the place where you enjoyed it?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5860.HEIC",
+      "sha256": "6799554ab2918a8d719fd6fb1840fb74a168582700810d47983e593102a3a372",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:20:15.622582+00:00",
+      "attempts": 1,
+      "latency_ms": 11808,
+      "prompt_tokens": 2373,
+      "completion_tokens": 604,
+      "cost_usd": 0.0247825,
+      "generation_id": "gen-1786954804-CdpKNBTDfnLXZ3yEJxo8",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A partially eaten layered cocoa-topped dessert is plated with whipped cream, chocolate sauce, and a fork at a dining table.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.99,
+          "evidence": "The image centers on a plated layered dessert with whipped cream, chocolate sauce, and dining utensils."
+        },
+        "activity": {
+          "description": "Eating dessert during a restaurant meal.",
+          "confidence": 0.96,
+          "evidence": "A serving has been eaten from the plated dessert, and a fork rests against it on a set dining table."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.99,
+          "evidence": "No distinctive landmark or location-specific feature is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.97
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "fun",
+            "confidence": 0.72
+          },
+          {
+            "label": "calm",
+            "confidence": 0.55
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The intentional close-up preserves a specific dining experience and the enjoyment of a memorable dessert.",
+          "confidence": 0.84
+        },
+        "representative_quality": {
+          "score": 0.84,
+          "reasoning": "The dessert fills the frame, its partly eaten state conveys the moment in progress, and the surrounding table setting gives useful dining context."
+        },
+        "journaling_prompt": "What made this dessert—and the meal around it—stand out to you?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5944.HEIC",
+      "sha256": "32aa5659c58efe78f39b11c00db4a2228f035d8b751950c3e3b673751d3fdb73",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:20:16.425467+00:00",
+      "attempts": 1,
+      "latency_ms": 8583,
+      "prompt_tokens": 2373,
+      "completion_tokens": 502,
+      "cost_usd": 0.0217225,
+      "generation_id": "gen-1786954808-ZYn5FxjLxhdDpsMfwHBn",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A shaded waterfront dining table overlooks a marina, swimming area, boats, and a wooded island beneath a clear sky.",
+        "scene": {
+          "scene_type": "food_drink",
+          "confidence": 0.9,
+          "evidence": "The foreground contains a formally set dining table with plates, cutlery, napkins, bottled water, and flowers beside the waterfront."
+        },
+        "activity": {
+          "description": "Dining beside the marina while enjoying the waterfront view.",
+          "confidence": 0.91,
+          "evidence": "Place settings and cutlery are arranged on a table directly overlooking moored boats and a marked swimming area."
+        },
+        "landmark": {
+          "name": null,
+          "confidence": 0.0,
+          "evidence": null
+        },
+        "visible_text": {
+          "transcription": "studena",
+          "text_kind": "label",
+          "language": null,
+          "confidence": 0.92
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.99
+        },
+        "emotions": [
+          {
+            "label": "calm",
+            "confidence": 0.91
+          },
+          {
+            "label": "connection",
+            "confidence": 0.68
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The waterfront meal setting and scenic marina view capture a distinctive, relaxed travel moment.",
+          "confidence": 0.94
+        },
+        "representative_quality": {
+          "score": 0.9,
+          "reasoning": "The layered composition connects the table setting with the marina and island view, clearly conveying the atmosphere of a leisurely waterfront meal."
+        },
+        "journaling_prompt": "What did you eat here, and what do you remember most about sitting beside the water?"
+      },
+      "failure_detail": null
+    },
+    {
+      "dataset_id": "Glenn_Pictures_Cruise_2024",
+      "relative_path": "IMG_5972.HEIC",
+      "sha256": "cfecd578c6983b18479cbe2608970cb442c7838b71cf69d9e5c03eabc7d054a6",
+      "model": "openai/gpt-5.6-sol",
+      "prompt_version": "1",
+      "schema_version": "llm-eval-1",
+      "derivative_version": "derivative-1",
+      "evaluated_utc": "2026-08-17T08:20:26.588725+00:00",
+      "attempts": 1,
+      "latency_ms": 16913,
+      "prompt_tokens": 2373,
+      "completion_tokens": 880,
+      "cost_usd": 0.0330625,
+      "generation_id": "gen-1786954810-OPH3AEYy94V3p6hrfE84",
+      "validation_status": "valid",
+      "evaluation": {
+        "caption": "A close-up photograph shows a densely composed religious painting of martyrdom, crucifixion, and armed figures.",
+        "scene": {
+          "scene_type": "landmark",
+          "confidence": 0.79,
+          "evidence": "The image is filled by a detailed historical artwork with Renaissance-style clothing, religious imagery, and painted figures."
+        },
+        "activity": {
+          "description": "Viewing and photographing a historical religious artwork, likely during a museum or gallery visit.",
+          "confidence": 0.86,
+          "evidence": "The photograph closely documents the surface and composition of a large painting."
+        },
+        "landmark": {
+          "name": "The Martyrdom of the Ten Thousand by Vittore Carpaccio",
+          "confidence": 0.55,
+          "evidence": "The crowded Renaissance-style scene of crucifixions, torture, armed figures, and mounted figures resembles Carpaccio's depiction of the martyrdom on Mount Ararat, though no identifying label is visible."
+        },
+        "visible_text": {
+          "transcription": null,
+          "text_kind": null,
+          "language": null,
+          "confidence": 0.99
+        },
+        "screenshot": {
+          "is_screenshot_or_document": false,
+          "travel_relevance": "not_applicable",
+          "document_kind": null,
+          "confidence": 0.98
+        },
+        "emotions": [
+          {
+            "label": "awe",
+            "confidence": 0.79
+          },
+          {
+            "label": "meaningful",
+            "confidence": 0.66
+          }
+        ],
+        "memory": {
+          "keep_signal": "keep",
+          "reason": "The dramatic artwork is visually distinctive and could preserve the memory of a culturally significant museum visit.",
+          "confidence": 0.84
+        },
+        "representative_quality": {
+          "score": 0.78,
+          "reasoning": "The close framing captures intricate narrative details and expressive imagery, although it does not show the full artwork or its museum context."
+        },
+        "journaling_prompt": "What details in this dramatic painting held your attention, and what do you remember learning about it during your visit?"
+      },
+      "failure_detail": null
+    }
+  ]
+}
