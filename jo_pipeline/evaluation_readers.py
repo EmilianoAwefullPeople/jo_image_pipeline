@@ -5,6 +5,7 @@ LOGGER = logging.getLogger(__name__)
 
 SCHEMA_V1 = "llm-eval-1"
 SCHEMA_V2 = "llm-eval-2"
+SCHEMA_V3 = "llm-eval-3"
 SUMMARY_SEPARATOR = " | "
 IMAGE_EVALUATION_SOURCE = "image_evaluation"
 
@@ -55,6 +56,7 @@ class V1Reader(EvaluationReader):
             f"scene: {evaluation['scene']['scene_type']}",
             f"activity: {evaluation['activity']['description']}" if evaluation["activity"]["description"] else None,
             f"landmark: {landmark['name']} (confidence {landmark['confidence']})" if landmark["name"] else None,
+            f"why: {', '.join(emotion['label'] for emotion in evaluation['emotions'])}" if evaluation["emotions"] else None,
             f"keep: {evaluation['memory']['keep_signal']}",
             f"quality: {evaluation['representative_quality']['score']}",
         ]
@@ -81,23 +83,35 @@ class V2Reader(EvaluationReader):
         )
 
     def _summary(self, evaluation: dict) -> str:
+        return join_summary(self._parts(evaluation))
+
+    def _parts(self, evaluation: dict) -> list:
         landmark = evaluation["landmark"]
         environment = evaluation["environment"]
         activity = evaluation["activity"]["types"]
-        parts = [
+        subjects = evaluation["notable_subjects"]
+        return [
             evaluation["general_description"],
             f"setting: {', '.join(evaluation['scene_setting']['types'])}",
             f"activity: {', '.join(activity)}" if activity else None,
             f"landmark: {landmark['name']} ({landmark['confidence_tier']})" if landmark["name"] else None,
             f"environment: {environment['specific_style']}" if environment["specific_style"] else None,
+            f"subjects: {'; '.join(subjects)}" if subjects else None,
             f"tags: {', '.join(evaluation['keyword_tags'])}" if evaluation["keyword_tags"] else None,
             f"keep: {evaluation['memory']['keep_signal']}",
             f"quality: {evaluation['representative_quality']['score']}",
         ]
-        return join_summary(parts)
 
 
-READERS = {SCHEMA_V1: V1Reader(), SCHEMA_V2: V2Reader()}
+class V3Reader(V2Reader):
+    def _parts(self, evaluation: dict) -> list:
+        parts = super()._parts(evaluation)
+        why = evaluation["why_tags"]
+        parts.insert(len(parts) - 2, f"why: {', '.join(why)}" if why else None)
+        return parts
+
+
+READERS = {SCHEMA_V1: V1Reader(), SCHEMA_V2: V2Reader(), SCHEMA_V3: V3Reader()}
 
 
 def reader_for(schema_version: str) -> EvaluationReader:

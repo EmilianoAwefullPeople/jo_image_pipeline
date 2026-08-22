@@ -17,6 +17,7 @@ def build_payload(**overrides) -> dict:
         "weather": ["sunny_clear"],
         "keyword_tags": ["temple", "shanghai", "afternoon light", "pagoda"],
         "photographic_style": {"types": ["warm_toned", "vibrant_saturated"], "other_detail": None},
+        "why_tags": [],
         "screenshot": {"is_screenshot_or_document": False, "travel_relevance": "not_applicable", "document_kind": None, "confidence": 0.95},
         "memory": {"keep_signal": "keep", "reason": "A distinctive landmark scene with story value", "confidence": 0.7},
         "representative_quality": {"score": 0.8, "reasoning": "Clear subject and strong composition"},

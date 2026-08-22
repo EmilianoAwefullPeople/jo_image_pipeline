@@ -20,6 +20,8 @@ The field set is fixed by `resources/LLM_Data-Extraction_Categories.pdf`. Every 
 | 10 | `keyword_tags` | 3 to 6 short tags |
 | 11 | `photographic_style` | Multi-select treatment, distinct from OpenCV's raw colour palette |
 
+One field was added in Week 4 beyond the eleven, `why_tags`: up to three reasons the photo could matter to the traveler, from the closed list awe, excitement, meaningful, calm, fun, connection, the traveler's own vocabulary for why a memory matters. It exists for the grouping styles (`resources/explainers/moment_review.md`): Memories and Enjoyable moments need a per-photo why and the eleven fields carry none. It is read from the photo alone, so it is a hint for grouping rather than a fact, and empty is the expected answer for practical shots. This is prompt v3 and schema `llm-eval-3`; the v1 corpus already carried the same tags as `emotions`, so nothing was re-evaluated.
+
 Three further fields are pipeline decision signals rather than extraction categories, and the grouping stage is built on them: screenshot/document judgment with travel relevance (a plane ticket is relevant media, not something to drop), a keep/leave-out/unsure memory signal (exclusion is a product concept the rule-based pipeline does not model), and a representative-quality score based on composition and story rather than sharpness or file size.
 
 Closed lists are closed. `other` is only valid alongside an `other_detail` naming what it was, so a closed list never degrades into free text. A response that misses the bounds (word count, tag count, subject count, an unexplained `other`) fails validation and is retried once with the error before it is stored for review.

@@ -10,16 +10,17 @@ from jo_pipeline.cli import build_reliability, fan_out_evaluations
 from jo_pipeline.group import MomentGrouper
 from jo_pipeline.manifest import DatasetManifest, InventoryScanner
 from jo_pipeline.refine import ProposalRefiner, build_image_signals
-from jo_pipeline.regroup import Regrouper, SessionBuilder
+from jo_pipeline.regroup import Regrouper, SessionBuilder, unassigned_paths
 from jo_web.config import UPLOAD_DATASET_ID, WebConfig
 from jo_web.registry import EVALUATING, EXTRACTING, GROUPING, INVENTORYING, REFINING, REVIEWING, THUMBNAILING, RunRegistry
 from llm_pipeline.client import OpenRouterClient
 from llm_pipeline.discovery import discover_images
-from llm_pipeline.prompts import PromptSet, default_prompts, default_review_prompts
-from llm_pipeline.review import MomentReviewer, ReviewProgress, ReviewStore, parse_reviews, review_records_for
+from llm_pipeline.prompts import PromptSet, default_prompts
+from llm_pipeline.review import ReviewProgress, ReviewStore, parse_reviews, prompts_for, review_model_for, review_records_for, reviewer_for, schema_version_for
 from llm_pipeline.runner import EvaluationProgress, EvaluationRunner
 from llm_pipeline.schema import SCHEMA_VERSION
 from llm_pipeline.store import RunStore, run_name
+from llm_pipeline.styles import TOPIC_REVIEW, style_for
 
 LOGGER = logging.getLogger(__name__)
 
@@ -56,12 +57,13 @@ class PipelineService:
         self.registry.set_stage(run_id, GROUPING, 0, len(extracted))
         signals = [build_signals(asset) for asset in extracted]
         baseline = MomentGrouper().group(signals)
+        self.registry.set_signals(run_id, signals)
         self.registry.set_groups(run_id, baseline, baseline)
 
         self._evaluate(run_id, dataset_path)
-        self._refine(run_id, manifest, baseline, {signal.relative_path: signal for signal in signals})
+        self._refine(run_id, manifest, baseline)
 
-    def _refine(self, run_id: str, manifest: DatasetManifest, baseline: list, signals_by_path: dict):
+    def _refine(self, run_id: str, manifest: DatasetManifest, baseline: list):
         state = self.registry.get(run_id)
         if state is None or not state.llm_records:
             LOGGER.info(f"{run_id}: refinement skipped, no evaluation records for this run")
@@ -73,28 +75,40 @@ class PipelineService:
         refined = ProposalRefiner().refine(baseline, image_signals)
         self.registry.set_groups(run_id, refined, baseline)
         LOGGER.info(f"{run_id}: refinement produced {len(refined)} proposals from {len(baseline)} baseline proposals")
+        self.group_by_style(run_id)
 
+    def group_by_style(self, run_id: str):
+        state = self.registry.get(run_id)
+        if state is None or not state.llm_records:
+            LOGGER.info(f"{run_id}: grouping by style skipped, no evaluation records for this run")
+            return
+
+        style = style_for(state.style)
+        manifest = InventoryScanner(self.config.pipeline_config(run_id).dataset_root, self.config.pipeline_config(run_id).manifest_dir).load(UPLOAD_DATASET_ID, DATASET_VERSION)
+        evaluations = fan_out_evaluations(manifest, [asdict(record) for record in state.llm_records])
+        image_signals = build_image_signals(state.llm_records[0].schema_version, evaluations)
+        signals_by_path = {signal.relative_path: signal for signal in state.signals}
+        baseline = state.baseline_groups
         source_version = run_name(state.llm_summary.prompt_version, state.llm_summary.schema_version)
-        self._review(run_id, baseline, signals_by_path, image_signals, source_version)
-
-    def _review(self, run_id: str, baseline: list, signals_by_path: dict, image_signals: dict, source_version: str):
-        sessions = SessionBuilder().build(UPLOAD_DATASET_ID, source_version, baseline, signals_by_path, image_signals)
+        sessions = SessionBuilder.for_style(style).build(UPLOAD_DATASET_ID, source_version, prompts_for(style).version, schema_version_for(style), baseline, signals_by_path, image_signals)
         if not sessions:
-            LOGGER.info(f"{run_id}: moment review skipped, no outing holds more than one photo")
+            LOGGER.info(f"{run_id}: {style.id} review skipped, no outing holds more than one photo")
             return
 
         llm_config = self.config.llm_config(run_id)
-        store = ReviewStore(llm_config.llm_runs_dir, UPLOAD_DATASET_ID)
+        store = ReviewStore.for_style(llm_config.llm_runs_dir, UPLOAD_DATASET_ID, style)
         self.registry.set_stage(run_id, REVIEWING, 0, len(sessions))
         with OpenRouterClient(llm_config.openrouter_api_key, llm_config.openrouter_model, transport=self.transport) as client:
-            reviewer = MomentReviewer(client, store, UPLOAD_DATASET_ID, default_review_prompts(), concurrency=self.config.llm_concurrency)
+            reviewer = reviewer_for(client, store, UPLOAD_DATASET_ID, style, concurrency=self.config.llm_concurrency)
             run = reviewer.review(sessions, on_progress=lambda progress: self._on_review_progress(run_id, progress))
 
         records = review_records_for(store, sessions)
-        regrouped = Regrouper().regroup(baseline, signals_by_path, image_signals, sessions, parse_reviews(records))
-        self.registry.set_review(run_id, run.summary, records)
-        self.registry.set_groups(run_id, regrouped, baseline)
-        LOGGER.info(f"{run_id}: moment review produced {len(regrouped)} proposals from {len(baseline)} baseline proposals across {len(sessions)} sessions")
+        reviews = parse_reviews(records, review_model_for(style))
+        grouped = Regrouper().regroup(baseline, signals_by_path, image_signals, sessions, reviews, style)
+        unassigned = unassigned_paths(sessions, reviews) if style.kind == TOPIC_REVIEW else []
+        self.registry.set_review(run_id, run.summary, records, unassigned)
+        self.registry.set_groups(run_id, grouped, baseline)
+        LOGGER.info(f"{run_id}: {style.id} produced {len(grouped)} groups from {len(baseline)} baseline proposals across {len(sessions)} sessions")
 
     def _on_review_progress(self, run_id: str, progress: ReviewProgress):
         self.registry.set_stage(run_id, REVIEWING, progress.done, progress.total)

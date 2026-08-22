@@ -77,6 +77,32 @@ drops happen on the final moments. The result is stored as `method_version` `reg
 Sessions without a valid review pass their proposals through with `review.status: fallback`; the unanchored
 proposal passes through as `skipped`.
 
+## Grouping styles
+
+The moment review is one of a fixed list of **grouping styles**, each a different question put to the same
+text (`llm_pipeline/styles.py`). Moments reviews one outing at a time and every photo belongs somewhere; the
+others are *topic* styles: trip-wide, groups are sets of frames rather than ranges, and photos that do not
+fit stay unassigned.
+
+| Style | Question | Coverage |
+| --- | --- | --- |
+| Moments | what happened, in order | every photo, per outing |
+| Memories | which photos are one memory worth telling; title by what it was about; why from awe, excitement, meaningful, calm, fun, connection | trip-wide, photos may be left out |
+| Landmark tour | one group per named landmark or point of interest | trip-wide selection |
+| Foodie tour | every meal and food or drink stop, titled by what was eaten | trip-wide selection |
+| Location highlights | the best few photos of each place, one group per place | trip-wide selection |
+| Enjoyable moments | photos that read as fun, calm, awe, connection, excitement or meaningful, by mood | trip-wide selection |
+
+Topic styles use a shared system prompt (`topic_system_v1.txt`) with the style's instruction block inserted,
+the `topic-review-1` schema (`TopicGroup(frames, title, about, why)`, a frame in at most one group), and a
+cache directory per style. The applier builds one proposal per group with the grouper's own
+`ProposalBuilder`, stamps `topic-<style>-1`, and records `review.title/about/why/days`. `review-moments
+--style <id>` runs a style from the CLI; the demo page offers them in a drop-down.
+
+The per-image prompt was extended for these styles with one field, `why_tags` (prompt v3, `llm-eval-3`), so
+Memories and Enjoyable moments have a per-photo why to work from; the v1 corpus carries the same tags as
+`emotions` and its summary line includes them.
+
 ## Reading the records that exist
 
 `jo_pipeline` reads whichever evaluation run directory is named with `--llm-version` (default: the current
@@ -103,6 +129,11 @@ and the night skyline pair 13 minutes apart. The merge it added joins a street m
 12 minutes later that the traveler kept apart. It suggested no leave-outs, so the keep-signal recall and
 false-positive rate are unchanged at 0.29 and 0.00. The garden-walk split (pavilion read as part of the temple
 visit) and the university day split across 2h45 stayed as the rules drew them.
+
+Re-measured the same day after the v1 description line gained the `why:` tags (see Grouping styles): pair F1
+0.800, recall 0.870, precision 0.741, memories split 2, merges 2, one photo left out by the review. The model
+now joins the hike and the temple into one moment. The why-tags shift moments toward memories; the drop-down
+is where JO can compare the two readings.
 
 ## Commands
 

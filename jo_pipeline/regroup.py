@@ -6,13 +6,16 @@ from jo_pipeline.evaluation_readers import ImageSignal
 from jo_pipeline.group import BURST, DUPLICATE, MEMBER, REPRESENTATIVE, GroupProposal, MomentSequence, ProposalBuilder, haversine_metres, time_gap_seconds
 from jo_pipeline.refine import LEAVE_OUT, ProposalRefiner
 from llm_pipeline.review import ReviewFrame, ReviewSession, build_session
-from llm_pipeline.schema import MomentReview
+from llm_pipeline.schema import MomentReview, TopicReview
+from llm_pipeline.styles import MOMENT_REVIEW, OUTING, GroupingStyle
 
 LOGGER = logging.getLogger(__name__)
 
 REGROUP_VERSION = "regroup-1"
+TOPIC_VERSION = "1"
 SESSION_GAP_SECONDS = 8 * 60 * 60
 SESSION_MAX_FRAMES = 40
+TRIP_MAX_FRAMES = 200
 MIN_SESSION_FRAMES = 2
 PRIMARY_MEMBERSHIPS = (MEMBER, REPRESENTATIVE)
 ATTACHED_MEMBERSHIPS = (DUPLICATE, BURST)
@@ -38,7 +41,17 @@ class ProposalFrames:
 
 
 class SessionBuilder:
-    def build(self, dataset_id: str, source_version: str, proposals: list[GroupProposal], signals: dict, image_signals: dict) -> list[ReviewSession]:
+    def __init__(self, gap_seconds: float | None, max_frames: int):
+        self.gap_seconds = gap_seconds
+        self.max_frames = max_frames
+
+    @classmethod
+    def for_style(cls, style: GroupingStyle) -> "SessionBuilder":
+        if style.scope == OUTING:
+            return cls(SESSION_GAP_SECONDS, SESSION_MAX_FRAMES)
+        return cls(None, TRIP_MAX_FRAMES)
+
+    def build(self, dataset_id: str, source_version: str, review_version: str, schema_version: str, proposals: list[GroupProposal], signals: dict, image_signals: dict) -> list[ReviewSession]:
         if not image_signals:
             LOGGER.info(f"{dataset_id}: no per-image descriptions, nothing to review")
             return []
@@ -55,8 +68,8 @@ class SessionBuilder:
             if count < MIN_SESSION_FRAMES:
                 LOGGER.info(f"{dataset_id}: {chunk[0].proposal.label} holds {count} photo, nothing to review in it")
                 continue
-            sessions.append(build_session(dataset_id, source_version, self._review_frames(chunk, image_signals)))
-        LOGGER.info(f"{dataset_id}: {len(sessions)} review sessions built from {len(anchored)} proposals")
+            sessions.append(build_session(dataset_id, source_version, self._review_frames(chunk, image_signals), review_version, schema_version))
+        LOGGER.info(f"{dataset_id}: {len(sessions)} review sessions built from {len(anchored)} proposals for {review_version}")
         return sessions
 
     def _frames(self, proposal: GroupProposal, signals: dict) -> ProposalFrames:
@@ -64,19 +77,23 @@ class SessionBuilder:
         return ProposalFrames(proposal=proposal, assets=sorted(assets, key=lambda asset: asset.captured_utc))
 
     def _split_runs(self, anchored: list[ProposalFrames]) -> list[list[ProposalFrames]]:
+        if self.gap_seconds is None:
+            LOGGER.debug(f"trip scope, {len(anchored)} proposals reviewed as one run")
+            return [anchored] if anchored else []
+
         runs = []
         for frames in anchored:
-            if runs and time_gap_seconds(runs[-1][-1].assets[-1].captured_utc, frames.assets[0].captured_utc) <= SESSION_GAP_SECONDS:
+            if runs and time_gap_seconds(runs[-1][-1].assets[-1].captured_utc, frames.assets[0].captured_utc) <= self.gap_seconds:
                 runs[-1].append(frames)
             else:
                 if runs:
-                    LOGGER.debug(f"{frames.proposal.label}: opens a new review session after a gap beyond {SESSION_GAP_SECONDS}s")
+                    LOGGER.debug(f"{frames.proposal.label}: opens a new review session after a gap beyond {self.gap_seconds}s")
                 runs.append([frames])
         return runs
 
     def _cap(self, run: list[ProposalFrames]) -> list[list[ProposalFrames]]:
         count = sum(len(frames.assets) for frames in run)
-        if count <= SESSION_MAX_FRAMES or len(run) == 1:
+        if count <= self.max_frames or len(run) == 1:
             return [run]
 
         gaps = [time_gap_seconds(previous.assets[-1].captured_utc, current.assets[0].captured_utc) for previous, current in zip(run, run[1:])]
@@ -198,18 +215,76 @@ class RegroupApplier:
         return RESEGMENTED
 
 
+class TopicApplier:
+    def __init__(self):
+        self.builder = ProposalBuilder()
+
+    def apply(self, proposals: list[GroupProposal], signals: dict, sessions: list[ReviewSession], reviews: dict, style: GroupingStyle) -> list[GroupProposal]:
+        links = {member.relative_path: member for proposal in proposals for member in proposal.members if member.membership in ATTACHED_MEMBERSHIPS}
+        output = []
+        for session in sessions:
+            review = reviews.get(session.session_id)
+            if review is None:
+                LOGGER.info(f"{session.session_id}: no valid {style.id} review, its {len(session.frames)} photos are not grouped in this style")
+                continue
+            for group in review.groups:
+                frames = [session.frames[index] for index in sorted(group.frames)]
+                assets = sorted([signals[frame.relative_path] for frame in frames], key=lambda asset: asset.captured_utc)
+                proposal = self.builder.build(MomentSequence(assets=assets), links)
+                evidence = dict(proposal.evidence)
+                evidence["review"] = {
+                    "style": style.id,
+                    "session_id": session.session_id,
+                    "status": REVIEWED,
+                    "title": group.title,
+                    "about": group.about,
+                    "why": list(group.why),
+                    "frames": sorted(group.frames),
+                    "days": sorted({asset.captured_utc.strftime("%Y-%m-%d") for asset in assets}),
+                }
+                LOGGER.info(f"{proposal.label}: {style.id} group '{group.title}' holds {len(assets)} photos across {len(evidence['review']['days'])} day(s)")
+                output.append(replace(proposal, evidence=evidence))
+        LOGGER.info(f"{style.id}: {len(output)} groups from {len(sessions)} sessions")
+        return output
+
+
+def topic_version(style: GroupingStyle) -> str:
+    return f"topic-{style.id}-{TOPIC_VERSION}"
+
+
+def unassigned_paths(sessions: list[ReviewSession], reviews: dict) -> list[str]:
+    unassigned = []
+    for session in sessions:
+        review = reviews.get(session.session_id)
+        if review is None:
+            continue
+        used = review.frames_used()
+        unassigned.extend(frame.relative_path for frame in session.frames if frame.index not in used)
+    LOGGER.info(f"{len(unassigned)} photos left unassigned by the style")
+    return unassigned
+
+
 class Regrouper:
     def __init__(self):
         self.applier = RegroupApplier()
+        self.topics = TopicApplier()
         self.refiner = ProposalRefiner()
 
-    def regroup(self, proposals: list[GroupProposal], signals: dict, image_signals: dict, sessions: list[ReviewSession], reviews: dict) -> list[GroupProposal]:
-        regrouped = self.applier.apply(proposals, signals, sessions, reviews)
-        refined = self.refiner.refine(regrouped, self.review_signals(image_signals, sessions, reviews))
-        return [replace(proposal, method_version=REGROUP_VERSION) for proposal in refined]
+    def regroup(self, proposals: list[GroupProposal], signals: dict, image_signals: dict, sessions: list[ReviewSession], reviews: dict, style: GroupingStyle) -> list[GroupProposal]:
+        if style.kind == MOMENT_REVIEW:
+            regrouped = self.applier.apply(proposals, signals, sessions, reviews)
+            refined = self.refiner.refine(regrouped, self.review_signals(image_signals, sessions, reviews, style))
+            return [replace(proposal, method_version=REGROUP_VERSION) for proposal in refined]
 
-    def review_signals(self, image_signals: dict, sessions: list[ReviewSession], reviews: dict) -> dict:
+        grouped = self.topics.apply(proposals, signals, sessions, reviews, style)
+        refined = self.refiner.refine(grouped, image_signals)
+        return [replace(proposal, method_version=topic_version(style)) for proposal in refined]
+
+    def review_signals(self, image_signals: dict, sessions: list[ReviewSession], reviews: dict, style: GroupingStyle) -> dict:
         signals = dict(image_signals)
+        if style.kind != MOMENT_REVIEW:
+            LOGGER.debug(f"{style.id}: topic styles express leave-outs by not assigning, per-image signals unchanged")
+            return signals
         for session in sessions:
             review = reviews.get(session.session_id)
             if review is None:

@@ -137,3 +137,6 @@ a.button[hidden] { display: none; }
 .panel-head .muted { margin: 0; }
 .panel-head .button { margin-left: auto; }
 .panel-head .button + .button { margin-left: 0; }
+
+.style-pick { font-size: .9rem; display: inline-flex; align-items: center; gap: .4rem; }
+.style-pick select { font: inherit; padding: .3rem .5rem; }

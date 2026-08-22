@@ -47,6 +47,7 @@ def evaluation_payload(keep="keep", quality=0.8) -> dict:
         "weather": ["overcast"],
         "keyword_tags": ["street", "shopfronts", "late light"],
         "photographic_style": {"types": ["muted_desaturated"], "other_detail": None},
+        "why_tags": [],
         "screenshot": {"is_screenshot_or_document": False, "travel_relevance": "not_applicable", "document_kind": None, "confidence": 0.95},
         "memory": {"keep_signal": keep, "reason": "Distinctive scene", "confidence": 0.7},
         "representative_quality": {"score": quality, "reasoning": "Clear subject"},
@@ -61,15 +62,22 @@ def review_payload(frame_count: int, moments: list | None = None) -> dict:
     }
 
 
-def build_transport(requests: list, payloads: list | None = None, review_moments: list | None = None) -> httpx.MockTransport:
+def topic_payload(groups: list | None) -> dict:
+    return {"groups": [{"frames": frames, "title": title, "about": "Food on the street.", "why": why} for frames, title, why in (groups or [])]}
+
+
+def build_transport(requests: list, payloads: list | None = None, review_moments: list | None = None, topic_groups: list | None = None) -> httpx.MockTransport:
     evaluations = []
 
     def handler(request):
         body = json.loads(request.content.decode())
         requests.append(body)
-        if body["response_format"]["json_schema"]["name"] == "moment_review":
+        schema_name = body["response_format"]["json_schema"]["name"]
+        if schema_name == "moment_review":
             frame_count = int(re.search(r"Session of (\d+) photos", body["messages"][1]["content"]).group(1))
             payload = review_payload(frame_count, review_moments)
+        elif schema_name == "topic_review":
+            payload = topic_payload(topic_groups)
         else:
             evaluations.append(body)
             payload = payloads[len(evaluations) - 1] if payloads else evaluation_payload()
@@ -85,6 +93,10 @@ def build_transport(requests: list, payloads: list | None = None, review_moments
 
 def review_requests(requests: list) -> list:
     return [body for body in requests if body["response_format"]["json_schema"]["name"] == "moment_review"]
+
+
+def topic_requests(requests: list) -> list:
+    return [body for body in requests if body["response_format"]["json_schema"]["name"] == "topic_review"]
 
 
 def write_photo(target: Path, colour: tuple, minutes_offset: int, pattern: int = 0):
@@ -169,8 +181,8 @@ def test_a_run_with_no_readable_image_fails_the_run_without_killing_the_worker(t
     (config.upload_dir(broken.run_id) / "broken.jpg").write_bytes(b"not an image at all")
     healthy = seed_run(config, registry, [(90, 90, 90), (95, 95, 95)])
 
-    worker._process(broken.run_id)
-    worker._process(healthy)
+    worker._process(broken.run_id, service.execute)
+    worker._process(healthy, service.execute)
 
     assert registry.get(broken.run_id).images_analysed == 0
     assert registry.get(healthy).status == COMPLETE
@@ -281,3 +293,38 @@ def test_expired_runs_are_swept_and_recent_runs_are_kept(tmp_path):
     assert registry.get(stale.run_id) is None
     assert not config.run_dir(stale.run_id).exists()
     assert registry.get(fresh.run_id) is not None
+
+
+def test_a_completed_run_can_be_regrouped_by_a_style_from_its_cached_text_without_re_evaluating(tmp_path):
+    # The drop-down asks a different question of the same descriptions; the photos are never sent again
+    config = build_config(tmp_path)
+    registry = RunRegistry(config)
+    requests = []
+    service = PipelineService(config, registry, transport=build_transport(requests, topic_groups=[([0, 2], "Noodles and tea", ["fun"])]))
+    run_id = seed_run(config, registry, [(200, 40, 40), (40, 200, 40), (40, 40, 200)])
+    service.execute(run_id)
+    evaluations_before = len(requests) - len(review_requests(requests))
+
+    registry.set_style(run_id, "foodie_tour")
+    service.group_by_style(run_id)
+
+    state = registry.get(run_id)
+    assert len(topic_requests(requests)) == 1
+    assert len(requests) - len(review_requests(requests)) - len(topic_requests(requests)) == evaluations_before
+    assert "meals and food or drink stops" in topic_requests(requests)[0]["messages"][0]["content"]
+    assert [member.relative_path for member in state.groups[0].members] == ["IMG_0000.jpg", "IMG_0002.jpg"]
+    assert state.groups[0].evidence["review"]["title"] == "Noodles and tea"
+    assert state.groups[0].evidence["review"]["why"] == ["fun"]
+    assert state.groups[0].method_version == "topic-foodie_tour-1"
+    assert state.review_summary.style == "foodie_tour"
+    assert state.review_unassigned == ["IMG_0001.jpg"]
+    assert len(state.baseline_groups) == 1
+
+    service.group_by_style(run_id)
+    assert len(topic_requests(requests)) == 1
+
+    registry.set_style(run_id, "moments")
+    service.group_by_style(run_id)
+    assert len(review_requests(requests)) == 1
+    assert registry.get(run_id).groups[0].method_version == "regroup-1"
+    assert registry.get(run_id).review_unassigned == []

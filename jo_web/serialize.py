@@ -25,8 +25,10 @@ def run_state_payload(state: RunState, queue_depth: int) -> dict:
             "records": [asdict(record) for record in state.llm_records],
             "prompt_version": PROMPT_VERSION if state.prompts is None else state.prompts.version,
             "review": {
+                "style": state.style,
                 "summary": None if state.review_summary is None else asdict(state.review_summary),
                 "records": state.review_records,
+                "unassigned": state.review_unassigned,
             },
         },
         "failure_detail": state.failure_detail,

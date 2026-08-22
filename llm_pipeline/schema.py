@@ -2,10 +2,12 @@ from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-SCHEMA_VERSION = "llm-eval-2"
+SCHEMA_VERSION = "llm-eval-3"
 RESPONSE_SCHEMA_NAME = "image_evaluation"
 REVIEW_SCHEMA_VERSION = "moment-review-1"
 REVIEW_SCHEMA_NAME = "moment_review"
+TOPIC_SCHEMA_VERSION = "topic-review-1"
+TOPIC_SCHEMA_NAME = "topic_review"
 BOUND_KEYWORDS = ("minimum", "maximum", "exclusiveMinimum", "exclusiveMaximum", "minItems", "maxItems")
 
 OTHER = "other"
@@ -14,6 +16,7 @@ DESCRIPTION_MAX_WORDS = 17
 MAX_NOTABLE_SUBJECTS = 4
 MIN_KEYWORD_TAGS = 3
 MAX_KEYWORD_TAGS = 6
+MAX_WHY_TAGS = 3
 MAX_TITLE_WORDS = 8
 
 SceneSettingType = Literal[
@@ -77,6 +80,7 @@ PhotographicStyleType = Literal[
 ]
 TravelRelevance = Literal["travel_relevant", "not_travel_relevant", "not_applicable"]
 KeepSignal = Literal["keep", "leave_out", "unsure"]
+WhyTag = Literal["awe", "excitement", "meaningful", "calm", "fun", "connection"]
 
 
 def reject_unexplained_other(field_name: str, types: list[str], other_detail: str | None):
@@ -173,6 +177,7 @@ class ImageEvaluation(StrictModel):
     weather: list[WeatherCondition] = Field(min_length=1, description="Every visible weather condition, unclear_indoor when the sky is not readable")
     keyword_tags: list[str] = Field(min_length=MIN_KEYWORD_TAGS, max_length=MAX_KEYWORD_TAGS, description=f"{MIN_KEYWORD_TAGS} to {MAX_KEYWORD_TAGS} short tags or phrases")
     photographic_style: PhotographicStyle
+    why_tags: list[WhyTag] = Field(max_length=MAX_WHY_TAGS, description="Up to three reasons this photo could matter to the traveler, from the closed list, empty when nothing in the image supports one")
     screenshot: ScreenshotJudgment
     memory: MemoryAssessment
     representative_quality: RepresentativeQuality
@@ -234,12 +239,56 @@ class MomentReview(StrictModel):
             raise ValueError(f"moments cover {self.frame_count()} frames but the session has {frame_count}, every frame must belong to exactly one moment")
 
 
+class TopicGroup(StrictModel):
+    frames: list[int] = Field(min_length=1, description="Indices of the frames in this group, in any order, each frame in at most one group")
+    title: str = Field(description=f"At most {MAX_TITLE_WORDS} words naming the group as the style asks")
+    about: str = Field(description="One sentence on what these photos are about together")
+    why: list[WhyTag] = Field(max_length=MAX_WHY_TAGS, description="Why this group could matter to the traveler, from the closed list, empty when the style does not ask for it")
+
+    @model_validator(mode="after")
+    def _frames_and_title_hold(self) -> "TopicGroup":
+        if any(frame < 0 for frame in self.frames):
+            raise ValueError("frames must be non-negative indices")
+        if len(self.frames) != len(set(self.frames)):
+            raise ValueError("a group lists the same frame more than once")
+        words = len(self.title.split())
+        if words > MAX_TITLE_WORDS:
+            raise ValueError(f"title must be at most {MAX_TITLE_WORDS} words, it was {words}")
+        return self
+
+
+class TopicReview(StrictModel):
+    groups: list[TopicGroup] = Field(description="The groups this style found, empty when nothing in the set fits")
+
+    @model_validator(mode="after")
+    def _frames_belong_to_one_group(self) -> "TopicReview":
+        seen = set()
+        for group in self.groups:
+            shared = seen.intersection(group.frames)
+            if shared:
+                raise ValueError(f"frames {sorted(shared)} appear in more than one group, a frame belongs to at most one")
+            seen.update(group.frames)
+        return self
+
+    def frames_used(self) -> set:
+        return {frame for group in self.groups for frame in group.frames}
+
+    def within(self, frame_count: int):
+        outside = sorted(frame for frame in self.frames_used() if frame >= frame_count)
+        if outside:
+            raise ValueError(f"frames {outside} are outside the session of {frame_count} frames")
+
+
 def response_schema() -> dict:
     return strict_schema(ImageEvaluation)
 
 
 def review_schema() -> dict:
     return strict_schema(MomentReview)
+
+
+def topic_schema() -> dict:
+    return strict_schema(TopicReview)
 
 
 def strict_schema(model_class: type[BaseModel]) -> dict:

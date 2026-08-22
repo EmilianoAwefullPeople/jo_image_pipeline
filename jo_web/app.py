@@ -22,6 +22,7 @@ from jo_web.serialize import run_state_payload, run_summary_payload
 from jo_web.service import PipelineService
 from jo_web.worker import RunJanitor, RunWorker
 from llm_pipeline.prompts import CAPTURE_TIME_PLACEHOLDER, custom_prompts, default_prompts, template_reject_reason
+from llm_pipeline.styles import MOMENTS, STYLES, style_for
 
 LOGGER = logging.getLogger(__name__)
 
@@ -35,6 +36,10 @@ MAX_PROMPT_CHARS = 20000
 class PromptOverride(BaseModel):
     system: str
     user_template: str
+
+
+class StyleChoice(BaseModel):
+    style: str
 
 
 @dataclass(frozen=True)
@@ -112,6 +117,13 @@ def build_app(config: WebConfig | None = None, transport: httpx.BaseTransport | 
             "user_template": prompts.user_template,
             "placeholder": CAPTURE_TIME_PLACEHOLDER,
             "max_chars": MAX_PROMPT_CHARS,
+        }
+
+    @application.get("/api/styles")
+    async def list_styles() -> dict:
+        return {
+            "default": MOMENTS,
+            "styles": [{"id": style.id, "name": style.name, "description": style.description, "scope": style.scope, "coverage": style.coverage} for style in STYLES.values()],
         }
 
     @application.get("/api/runs")
@@ -196,8 +208,24 @@ def build_app(config: WebConfig | None = None, transport: httpx.BaseTransport | 
         if registry.claim_for_queue(run_id) is None:
             raise HTTPException(status_code=409, detail="this run has already started")
 
-        worker.submit(run_id)
+        worker.submit(run_id, service.execute)
         return {"run_id": run_id, "status": "queued", "queue_depth": worker.depth()}
+
+    @application.post("/api/runs/{run_id}/style", status_code=202)
+    async def regroup_run(run_id: str, choice: StyleChoice) -> dict:
+        state = require_run(run_id)
+        try:
+            style = style_for(choice.style)
+        except ValueError as error:
+            raise HTTPException(status_code=400, detail=str(error)) from error
+        if not state.llm_records:
+            raise HTTPException(status_code=409, detail="this run has no evaluations to group, the visual model did not run")
+        if registry.claim_for_regroup(run_id) is None:
+            raise HTTPException(status_code=409, detail="this run is not finished, or a regrouping is already in progress")
+
+        registry.set_style(run_id, style.id)
+        worker.submit(run_id, service.group_by_style)
+        return {"run_id": run_id, "status": "reviewing", "style": style.id, "queue_depth": worker.depth()}
 
     @application.get("/api/runs/{run_id}")
     async def read_run(run_id: str) -> dict:

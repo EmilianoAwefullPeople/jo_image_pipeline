@@ -1,8 +1,11 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-PROMPT_VERSION = "2"
+from llm_pipeline.styles import GroupingStyle
+
+PROMPT_VERSION = "3"
 REVIEW_PROMPT_VERSION = "1"
+TOPIC_PROMPT_VERSION = "1"
 CUSTOM_PROMPT_VERSION = "custom"
 PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
 UNKNOWN_CAPTURE_TIME = "unknown"
@@ -60,6 +63,30 @@ def default_review_prompts() -> ReviewPrompts:
         version=REVIEW_PROMPT_VERSION,
         system=(PROMPTS_DIR / f"review_system_v{REVIEW_PROMPT_VERSION}.txt").read_text(),
         user_template=(PROMPTS_DIR / f"review_user_v{REVIEW_PROMPT_VERSION}.txt").read_text(),
+    )
+
+
+@dataclass(frozen=True)
+class TopicPrompts:
+    version: str
+    style: GroupingStyle
+    system: str
+    user_template: str
+
+    def build_messages(self, session_text: str) -> list[dict]:
+        return [
+            {"role": "system", "content": self.system},
+            {"role": "user", "content": self.user_template.format(style_name=self.style.name, session=session_text).strip()},
+        ]
+
+
+def default_topic_prompts(style: GroupingStyle) -> TopicPrompts:
+    system = (PROMPTS_DIR / f"topic_system_v{TOPIC_PROMPT_VERSION}.txt").read_text().format(style_instructions=style.instructions)
+    return TopicPrompts(
+        version=f"topic-{style.id}-{TOPIC_PROMPT_VERSION}",
+        style=style,
+        system=system,
+        user_template=(PROMPTS_DIR / f"topic_user_v{TOPIC_PROMPT_VERSION}.txt").read_text(),
     )
 
 

@@ -6,7 +6,7 @@ from pathlib import Path
 
 from jo_pipeline.assets import AssetLoader, build_signals
 from jo_pipeline.config import PipelineConfig, load_config, resolve_path
-from jo_pipeline.evaluation_readers import SCHEMA_V2
+from jo_pipeline.evaluation_readers import SCHEMA_V3
 from jo_pipeline.group import BURST, DUPLICATE, MomentGrouper
 from jo_pipeline.keepscore import KeepSignalScore, KeepSignalScorer
 from jo_pipeline.logging_setup import configure_logging
@@ -14,15 +14,15 @@ from jo_pipeline.manifest import DatasetManifest, InventoryScanner, manifest_dig
 from jo_pipeline.persist import COMPLETE, OPENROUTER_PROVIDER, ModelCall, PipelineStore
 from jo_pipeline.reference import ReferenceGrouping, ReferenceReader
 from jo_pipeline.refine import ProposalRefiner, build_image_signals, build_llm_observations
-from jo_pipeline.regroup import Regrouper, SessionBuilder
+from jo_pipeline.regroup import Regrouper, SessionBuilder, unassigned_paths
 from jo_pipeline.reliability import ReliabilityReport
 from jo_pipeline.review import GroupingReviewer, ReviewComparison
 from llm_pipeline.client import PRICE_INPUT_USD_PER_MTOK, PRICE_OUTPUT_USD_PER_MTOK, OpenRouterClient
 from llm_pipeline.prompts import PROMPT_VERSION as LLM_PROMPT_VERSION
-from llm_pipeline.prompts import default_review_prompts
-from llm_pipeline.review import MomentReviewer, ReviewStore, ReviewSummary, parse_reviews, render_session, review_records_for
+from llm_pipeline.review import ReviewStore, ReviewSummary, parse_reviews, prompts_for, render_session, review_model_for, review_records_for, reviewer_for, schema_version_for
 from llm_pipeline.schema import SCHEMA_VERSION as LLM_SCHEMA_VERSION
 from llm_pipeline.store import RunStore, run_name
+from llm_pipeline.styles import MOMENTS, STYLES, TOPIC_REVIEW, GroupingStyle, style_for
 
 LOGGER = logging.getLogger(__name__)
 
@@ -82,6 +82,8 @@ class RunArtifacts:
     baseline: list
     refined: list
     regrouped: list
+    style: GroupingStyle
+    unassigned: list
     image_signals: dict
     review_signals: dict
     sessions: list
@@ -98,7 +100,13 @@ class ReviewInputs:
     baseline: list
     signals_by_path: dict
     image_signals: dict
+    style: GroupingStyle
     sessions: list
+
+
+def build_sessions(dataset_id: str, llm_version: str, style: GroupingStyle, baseline: list, signals_by_path: dict, image_signals: dict) -> list:
+    builder = SessionBuilder.for_style(style)
+    return builder.build(dataset_id, llm_version, prompts_for(style).version, schema_version_for(style), baseline, signals_by_path, image_signals)
 
 
 def load_llm_records(config: PipelineConfig, dataset_id: str, llm_version: str) -> list[dict]:
@@ -190,17 +198,19 @@ def build_run_artifacts(config: PipelineConfig, args: argparse.Namespace, manife
         image_signals = {}
     refined = ProposalRefiner().refine(baseline, image_signals)
 
-    sessions = SessionBuilder().build(args.dataset, args.llm_version, baseline, signals_by_path, image_signals)
-    review_records = review_records_for(ReviewStore(config.llm_runs_dir, args.dataset), sessions) if sessions else []
-    reviews = parse_reviews(review_records)
+    style = style_for(args.style)
+    sessions = build_sessions(args.dataset, args.llm_version, style, baseline, signals_by_path, image_signals)
+    review_records = review_records_for(ReviewStore.for_style(config.llm_runs_dir, args.dataset, style), sessions) if sessions else []
+    reviews = parse_reviews(review_records, review_model_for(style))
     regrouper = Regrouper()
-    regrouped = regrouper.regroup(baseline, signals_by_path, image_signals, sessions, reviews)
-    review_signals = regrouper.review_signals(image_signals, sessions, reviews)
+    regrouped = regrouper.regroup(baseline, signals_by_path, image_signals, sessions, reviews, style)
+    review_signals = regrouper.review_signals(image_signals, sessions, reviews, style)
+    unassigned = unassigned_paths(sessions, reviews) if style.kind == TOPIC_REVIEW else []
 
-    if schema_version == SCHEMA_V2:
+    if schema_version == SCHEMA_V3:
         llm_observations = build_llm_observation_rows(evaluations, model_id, llm_method_version)
     else:
-        LOGGER.info(f"{args.dataset}: fetched observation rows are only flattened for {SCHEMA_V2} records, none built from {schema_version}")
+        LOGGER.info(f"{args.dataset}: fetched observation rows are only flattened for {SCHEMA_V3} records, none built from {schema_version}")
         llm_observations = {}
 
     return RunArtifacts(
@@ -209,6 +219,8 @@ def build_run_artifacts(config: PipelineConfig, args: argparse.Namespace, manife
         baseline=baseline,
         refined=refined,
         regrouped=regrouped,
+        style=style,
+        unassigned=unassigned,
         image_signals=image_signals,
         review_signals=review_signals,
         sessions=sessions,
@@ -231,8 +243,9 @@ def build_review_inputs(config: PipelineConfig, args: argparse.Namespace) -> Rev
     if not records:
         raise SystemExit(f"no evaluation records under {args.llm_version} for {args.dataset}, run llm_pipeline first or pass --llm-version")
     image_signals = build_image_signals(records[0]["schema_version"], fan_out_evaluations(manifest, records))
-    sessions = SessionBuilder().build(args.dataset, args.llm_version, baseline, signals_by_path, image_signals)
-    return ReviewInputs(manifest=manifest, baseline=baseline, signals_by_path=signals_by_path, image_signals=image_signals, sessions=sessions)
+    style = style_for(args.style)
+    sessions = build_sessions(args.dataset, args.llm_version, style, baseline, signals_by_path, image_signals)
+    return ReviewInputs(manifest=manifest, baseline=baseline, signals_by_path=signals_by_path, image_signals=image_signals, style=style, sessions=sessions)
 
 
 def persist_run(config: PipelineConfig, artifacts: RunArtifacts) -> int:
@@ -301,20 +314,40 @@ def run_persist(config: PipelineConfig, args: argparse.Namespace):
 
 def run_review_moments(config: PipelineConfig, args: argparse.Namespace):
     inputs = build_review_inputs(config, args)
-    store = ReviewStore(config.llm_runs_dir, args.dataset)
-    print_review_estimate(args.dataset, inputs.sessions, store, config.openrouter_model)
+    store = ReviewStore.for_style(config.llm_runs_dir, args.dataset, inputs.style)
+    print_review_estimate(args.dataset, inputs.sessions, store, config.openrouter_model, inputs.style)
     if not config.openrouter_api_key:
         raise SystemExit("JO_OPENROUTER_API_KEY is not set, add it to .env before reviewing moments")
 
     with OpenRouterClient(config.openrouter_api_key, config.openrouter_model) as client:
-        run = MomentReviewer(client, store, args.dataset, default_review_prompts()).review(inputs.sessions, limit=args.limit)
+        run = reviewer_for(client, store, args.dataset, inputs.style).review(inputs.sessions, limit=args.limit)
     print_review_run(run.summary, store.run_dir)
+    print_style_groups(inputs, store)
 
 
-def print_review_estimate(dataset_id: str, sessions: list, store: ReviewStore, model: str):
-    system_tokens = len(default_review_prompts().system) // REVIEW_CHARS_PER_TOKEN + REVIEW_SCHEMA_TOKENS
+def print_style_groups(inputs: ReviewInputs, store: ReviewStore):
+    reviews = parse_reviews(review_records_for(store, inputs.sessions), review_model_for(inputs.style))
+    regrouper = Regrouper()
+    groups = regrouper.regroup(inputs.baseline, inputs.signals_by_path, inputs.image_signals, inputs.sessions, reviews, inputs.style)
+    print(f"{inputs.style.name}: {len(groups)} groups from {len(inputs.sessions)} sessions\n")
+    for index, proposal in enumerate(groups, start=1):
+        review = proposal.evidence.get("review", {})
+        title = review.get("title") or proposal.label
+        why = f"  why: {', '.join(review['why'])}" if review.get("why") else ""
+        print(f"  {index:>3}. {title:<44} {len(proposal.members):>3} photos  {proposal.label}{why}")
+        if review.get("about"):
+            print(f"       {review['about']}")
+        elif review.get("reason"):
+            print(f"       {review['reason']}")
+    if inputs.style.kind == TOPIC_REVIEW:
+        unassigned = unassigned_paths(inputs.sessions, reviews)
+        print(f"\n  {len(unassigned)} photos not in this view\n")
+
+
+def print_review_estimate(dataset_id: str, sessions: list, store: ReviewStore, model: str, style: GroupingStyle):
+    system_tokens = len(prompts_for(style).system) // REVIEW_CHARS_PER_TOKEN + REVIEW_SCHEMA_TOKENS
     pending = [session for session in sessions if not store.exists(session.session_id)]
-    print(f"\nMoment review for {dataset_id} with {model}\n")
+    print(f"\n{style.name} review for {dataset_id} with {model}\n")
     total = 0.0
     for session in pending:
         input_tokens = system_tokens + len(render_session(session)) // REVIEW_CHARS_PER_TOKEN
@@ -326,7 +359,7 @@ def print_review_estimate(dataset_id: str, sessions: list, store: ReviewStore, m
 
 
 def print_review_run(summary: ReviewSummary, run_dir: Path):
-    print(f"\n{summary.dataset_id}: moments reviewed with {summary.model}, review prompt v{summary.review_prompt_version}, schema {summary.review_schema_version}\n")
+    print(f"\n{summary.dataset_id}: {summary.style} reviewed with {summary.model}, review prompt {summary.review_prompt_version}, schema {summary.review_schema_version}\n")
     print(f"  sessions           {summary.sessions_total}")
     print(f"  skipped existing   {summary.sessions_skipped_existing}")
     print(f"  reviewed           {summary.sessions_reviewed}")
@@ -357,7 +390,7 @@ def run_benchmark(config: PipelineConfig, args: argparse.Namespace):
     signals = [build_signals(asset) for asset in artifacts.extracted]
     image_signals = artifacts.image_signals
 
-    print(f"\n{'=' * 78}\n{args.dataset}  benchmark  model {artifacts.model_id or 'none'}  records {args.llm_version}\n{'=' * 78}")
+    print(f"\n{'=' * 78}\n{args.dataset}  benchmark  model {artifacts.model_id or 'none'}  records {args.llm_version}  style {artifacts.style.id}\n{'=' * 78}")
     print(f"\n{len(image_signals)} of {len(signals)} extracted images carry a valid evaluation\n")
     print_refinement_effect(artifacts)
     print_review_effect(artifacts)
@@ -381,15 +414,16 @@ def print_review_effect(artifacts: RunArtifacts):
     reviewed = [proposal for proposal in artifacts.regrouped if proposal.evidence.get("review", {}).get("status") == "reviewed"]
     changes = {}
     for proposal in reviewed:
-        change = proposal.evidence["review"]["change"]
+        change = proposal.evidence["review"].get("change", "grouped")
         changes[change] = changes.get(change, 0) + 1
     valid = sum(1 for record in artifacts.review_records if record["validation_status"] == "valid")
     cost = sum(record["cost_usd"] for record in artifacts.review_records)
     left_out = sum(1 for proposal in artifacts.regrouped for entry in proposal.evidence.get("excluded_by_signal", []) if entry.get("source") == "moment_review")
-    print(f"Moment review: {len(artifacts.sessions)} sessions, {valid} valid reviews of {len(artifacts.review_records)} records, ${cost:.4f}\n")
+    print(f"{artifacts.style.name} review: {len(artifacts.sessions)} sessions, {valid} valid reviews of {len(artifacts.review_records)} records, ${cost:.4f}\n")
     print(f"  regrouped proposals           {len(artifacts.regrouped)} from {len(artifacts.baseline)} baseline")
     print(f"  moments reviewed              {len(reviewed)}  " + ", ".join(f"{count} {change}" for change, count in sorted(changes.items())))
-    print(f"  photos left out by the review {left_out}\n")
+    print(f"  photos left out by the review {left_out}")
+    print(f"  photos not in this view       {len(artifacts.unassigned)}\n")
 
 
 def print_refinement_effect(artifacts: RunArtifacts):
@@ -457,8 +491,10 @@ def write_benchmark_artifact(config: PipelineConfig, args: argparse.Namespace, a
         "keep_signal_score": keep.as_dict(),
         "review_keep_signal_score": review_keep.as_dict(),
         "review": {
+            "style": artifacts.style.id,
             "sessions": len(artifacts.sessions),
             "records": artifacts.review_records,
+            "unassigned": artifacts.unassigned,
             "cost_usd": round(sum(record["cost_usd"] for record in artifacts.review_records), 4),
         },
         "baseline_proposals": [asdict(proposal) for proposal in artifacts.baseline],
@@ -559,6 +595,7 @@ def add_dataset_arguments(parser: argparse.ArgumentParser):
     parser.add_argument("--dataset", required=True, help="Dataset folder name under the dataset root")
     parser.add_argument("--dataset-version", default="1", help="Manifest version")
     parser.add_argument("--llm-version", default=DEFAULT_LLM_VERSION, help=f"Evaluation run directory under data/llm_runs/<dataset>, such as p1-llm-eval-1 (default {DEFAULT_LLM_VERSION})")
+    parser.add_argument("--style", default=MOMENTS, choices=list(STYLES), help=f"Grouping style put to the model (default {MOMENTS})")
 
 
 def build_parser() -> argparse.ArgumentParser:

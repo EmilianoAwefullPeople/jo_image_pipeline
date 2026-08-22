@@ -12,6 +12,7 @@ from jo_web.config import WebConfig
 from llm_pipeline.prompts import PromptSet
 from llm_pipeline.review import ReviewSummary
 from llm_pipeline.store import ImageEvaluationRecord, RunSummary
+from llm_pipeline.styles import MOMENTS
 
 LOGGER = logging.getLogger(__name__)
 
@@ -66,6 +67,9 @@ class RunState:
     llm_records: list[ImageEvaluationRecord] = field(default_factory=list)
     review_summary: ReviewSummary | None = None
     review_records: list[dict] = field(default_factory=list)
+    review_unassigned: list[str] = field(default_factory=list)
+    signals: list = field(default_factory=list)
+    style: str = MOMENTS
     prompts: PromptSet | None = None
     failure_detail: str | None = None
 
@@ -158,14 +162,44 @@ class RunRegistry:
         LOGGER.info(f"{run_id}: evaluation recorded {len(records)} records at ${summary.total_cost_usd:.4f}")
         return state
 
-    def set_review(self, run_id: str, summary: ReviewSummary, records: list[dict]) -> RunState | None:
+    def set_review(self, run_id: str, summary: ReviewSummary, records: list[dict], unassigned: list[str]) -> RunState | None:
         with self._lock:
             state = self._runs.get(run_id)
             if state is None:
                 return None
             state.review_summary = summary
             state.review_records = records
-        LOGGER.info(f"{run_id}: moment review recorded {len(records)} session records at ${summary.total_cost_usd:.4f}")
+            state.review_unassigned = unassigned
+        LOGGER.info(f"{run_id}: {summary.style} review recorded {len(records)} session records at ${summary.total_cost_usd:.4f}, {len(unassigned)} photos unassigned")
+        return state
+
+    def set_signals(self, run_id: str, signals: list) -> RunState | None:
+        with self._lock:
+            state = self._runs.get(run_id)
+            if state is None:
+                return None
+            state.signals = signals
+        LOGGER.debug(f"{run_id}: {len(signals)} asset signals kept for regrouping")
+        return state
+
+    def set_style(self, run_id: str, style: str) -> RunState | None:
+        with self._lock:
+            state = self._runs.get(run_id)
+            if state is None:
+                return None
+            state.style = style
+        LOGGER.info(f"{run_id}: grouping style set to {style}")
+        return state
+
+    def claim_for_regroup(self, run_id: str) -> RunState | None:
+        with self._lock:
+            state = self._runs.get(run_id)
+            if state is None or state.status != COMPLETE or not state.llm_records:
+                LOGGER.info(f"{run_id}: not regrouped, status is {state.status if state else 'missing'} with {len(state.llm_records) if state else 0} evaluations")
+                return None
+            state.status = REVIEWING
+            state.stage = REVIEWING
+        LOGGER.info(f"{run_id}: claimed for regrouping")
         return state
 
     def set_failed(self, run_id: str, detail: str) -> RunState | None:

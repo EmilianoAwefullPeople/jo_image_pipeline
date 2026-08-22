@@ -34,13 +34,17 @@ const promptSystem = document.getElementById("prompt-system");
 const promptUser = document.getElementById("prompt-user");
 const promptReset = document.getElementById("prompt-reset");
 const promptState = document.getElementById("prompt-state");
+const styleSelect = document.getElementById("style-select");
+const regroupButton = document.getElementById("regroup");
 
 const defaultHint = dropzoneHint.textContent;
 
 let currentSet = null;
 let uploading = false;
 let processing = false;
+let regrouping = false;
 let defaultPrompt = null;
+let styles = [];
 
 pickButton.addEventListener("click", () => fileInput.click());
 fileInput.addEventListener("change", () => addFiles(Array.from(fileInput.files)));
@@ -56,6 +60,9 @@ promptReset.addEventListener("click", () => {
 });
 
 loadPrompt();
+loadStyles();
+styleSelect.addEventListener("change", renderStyleDescription);
+regroupButton.addEventListener("click", regroup);
 
 dropzone.addEventListener("dragover", (event) => {
   event.preventDefault();
@@ -91,6 +98,68 @@ async function loadPrompt() {
   promptSystem.value = defaultPrompt.system;
   promptUser.value = defaultPrompt.user_template;
   renderPromptState();
+}
+
+async function loadStyles() {
+  const response = await fetch("/api/styles");
+  if (!response.ok) {
+    text("style-detail", "The grouping styles could not be loaded.");
+    return;
+  }
+  const payload = await response.json();
+  styles = payload.styles;
+  styleSelect.innerHTML = styles.map((style) => `<option value="${escapeHtml(style.id)}">${escapeHtml(style.name)}</option>`).join("");
+  styleSelect.value = payload.default;
+  renderStyleDescription();
+}
+
+function styleById(id) {
+  return styles.find((style) => style.id === id) || null;
+}
+
+function renderStyleDescription() {
+  const style = styleById(styleSelect.value);
+  text("style-description", style ? style.description : "");
+}
+
+function renderStyleControls(state) {
+  const ready = state.status === "complete" && state.llm.summary && state.llm.records.length > 0;
+  regroupButton.disabled = !ready || regrouping;
+  styleSelect.disabled = !ready || regrouping;
+  if (state.llm.review.style && styleSelect.value !== state.llm.review.style && !regrouping) {
+    styleSelect.value = state.llm.review.style;
+    renderStyleDescription();
+  }
+  const current = styleById(state.llm.review.style);
+  text("groups-title", current ? current.name : "Moments");
+}
+
+async function regroup() {
+  if (regrouping || !currentSet || !currentSet.started) return;
+  regrouping = true;
+  regroupButton.disabled = true;
+  styleSelect.disabled = true;
+  const set = currentSet;
+  try {
+    const response = await fetch(`/api/runs/${set.runId}/style`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ style: styleSelect.value }),
+    });
+    if (!response.ok) {
+      const body = await response.json().catch(() => ({ detail: response.statusText }));
+      throw new Error(body.detail || "That grouping could not be started");
+    }
+    text("style-detail", `Regrouping as ${styleById(styleSelect.value).name}, the photos are not sent again.`);
+    show("progress-panel", true);
+    await poll(set);
+  } catch (error) {
+    if (!set.cleared) text("style-detail", error.message);
+  } finally {
+    regrouping = false;
+    regroupButton.disabled = false;
+    styleSelect.disabled = false;
+  }
 }
 
 function promptEdited() {
@@ -291,6 +360,7 @@ function renderProgress(state) {
 function render(runId, state) {
   renderSummary(state);
   renderGroups(runId, state);
+  renderStyleControls(state);
   renderEvaluations(runId, state);
   renderReliability(state);
 }
@@ -332,7 +402,11 @@ function renderGroups(runId, state) {
 
   renderRefinementDetail(state);
 
-  document.getElementById("groups").innerHTML = state.groups
+  const unassigned = state.llm.review.unassigned || [];
+  const unassignedNote = unassigned.length
+    ? `<p class="muted">${unassigned.length} photo(s) not in this view: ${unassigned.map(escapeHtml).join(", ")}</p>`
+    : "";
+  document.getElementById("groups").innerHTML = unassignedNote + state.groups
     .map((group) => {
       const located = group.evidence.located_members || 0;
       const unlocated = group.evidence.unlocated_members || 0;
@@ -416,6 +490,10 @@ function reviewReasons(evidence) {
   }
   if (review.status !== "reviewed") return [];
 
+  if (review.about !== undefined) {
+    const why = review.why && review.why.length ? ` Why: ${review.why.map(escapeHtml).join(", ")}.` : "";
+    return [`grouped as "${escapeHtml(review.title)}": ${escapeHtml(review.about)}${why}`, `${review.days.length} day(s): ${review.days.map(escapeHtml).join(", ")}`];
+  }
   const reasons = [`the moment review read this outing's photos as text and titled this moment "${escapeHtml(review.title)}": ${escapeHtml(review.reason)}`];
   if (review.change === "merged") {
     reasons.push(`merged from ${review.baseline_labels.length} rule-based moments: ${review.baseline_labels.map(escapeHtml).join("; ")}`);
@@ -512,12 +590,17 @@ function renderRefinementDetail(state) {
   const changes = { merged: 0, split: 0, resegmented: 0, unchanged: 0 };
   refined.forEach((group) => {
     const review = group.evidence.review;
-    if (review && review.status === "reviewed") changes[review.change] += 1;
+    if (review && review.status === "reviewed" && review.change) changes[review.change] += 1;
   });
   const reviewSummary = state.llm.review.summary;
+  const style = styleById(state.llm.review.style);
+  const topic = style && style.id !== "moments";
   const reviewNote = reviewSummary
-    ? ` The moment review read ${reviewSummary.sessions_total} outing(s) as text, at $${reviewSummary.total_cost_usd.toFixed(3)}, and ${changes.merged} moment(s) were merged, `
-      + `${changes.split} split, ${changes.resegmented} re-cut and ${changes.unchanged} confirmed as the rules drew them.`
+    ? (topic
+      ? ` Grouped as ${style.name}: ${refined.length} group(s) from ${reviewSummary.sessions_total} session(s) at $${reviewSummary.total_cost_usd.toFixed(3)}, `
+        + `${(state.llm.review.unassigned || []).length} photo(s) not in this view.`
+      : ` The moment review read ${reviewSummary.sessions_total} outing(s) as text, at $${reviewSummary.total_cost_usd.toFixed(3)}, and ${changes.merged} moment(s) were merged, `
+        + `${changes.split} split, ${changes.resegmented} re-cut and ${changes.unchanged} confirmed as the rules drew them.`)
     : "";
   text(
     "refinement-detail",

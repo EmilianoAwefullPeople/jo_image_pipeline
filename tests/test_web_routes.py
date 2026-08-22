@@ -206,3 +206,22 @@ def test_the_prompt_cannot_be_changed_once_the_run_has_started(tmp_path):
 def test_health_reports_ok(tmp_path):
     with build_client(tmp_path) as client:
         assert client.get("/api/health").json() == {"status": "ok"}
+
+
+def test_the_grouping_styles_are_served_for_the_drop_down(tmp_path):
+    with build_client(tmp_path) as client:
+        payload = client.get("/api/styles").json()
+
+        assert payload["default"] == "moments"
+        assert [style["id"] for style in payload["styles"]][:2] == ["moments", "memories"]
+        assert all(style["description"] for style in payload["styles"])
+
+
+def test_regrouping_is_refused_for_an_unknown_style_or_before_the_run_is_complete(tmp_path):
+    with build_client(tmp_path) as client:
+        run_id = client.post("/api/runs").json()["run_id"]
+        client.post(f"/api/runs/{run_id}/files", files={"file": ("IMG_0001.jpg", photo_bytes(), "image/jpeg")})
+
+        assert client.post(f"/api/runs/{run_id}/style", json={"style": "mystery"}).status_code == 400
+        assert client.post(f"/api/runs/{run_id}/style", json={"style": "foodie_tour"}).status_code == 409
+        assert client.get(f"/api/runs/{run_id}").json()["llm"]["review"]["style"] == "moments"

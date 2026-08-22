@@ -2,6 +2,7 @@ import logging
 import queue
 import shutil
 import threading
+from typing import Callable
 
 from jo_web.config import WebConfig
 from jo_web.registry import COMPLETE, RunRegistry, orphan_directories
@@ -31,31 +32,32 @@ class RunWorker:
         self._thread.join(timeout=JOIN_TIMEOUT_SECONDS)
         LOGGER.info("run worker stopped")
 
-    def submit(self, run_id: str):
-        self.queue.put(run_id)
-        LOGGER.info(f"{run_id}: submitted to the worker queue at depth {self.queue.qsize()}")
+    def submit(self, run_id: str, action: Callable[[str], None]):
+        self.queue.put((run_id, action))
+        LOGGER.info(f"{run_id}: {action.__name__} submitted to the worker queue at depth {self.queue.qsize()}")
 
     def depth(self) -> int:
         return self.queue.qsize()
 
     def _drain(self):
         while True:
-            run_id = self.queue.get()
-            if run_id is SHUTDOWN:
+            item = self.queue.get()
+            if item is SHUTDOWN:
                 LOGGER.info("run worker draining complete, thread exiting")
                 return
-            self._process(run_id)
+            run_id, action = item
+            self._process(run_id, action)
 
-    def _process(self, run_id: str):
+    def _process(self, run_id: str, action: Callable[[str], None]):
         if self.registry.get(run_id) is None:
             LOGGER.info(f"{run_id}: dropped from the queue, run no longer registered")
             return
 
         try:
-            self.service.execute(run_id)
+            action(run_id)
         except Exception as error:
             self.registry.set_failed(run_id, f"{type(error).__name__}: {error}")
-            LOGGER.exception(f"{run_id}: run failed during processing")
+            LOGGER.exception(f"{run_id}: {action.__name__} failed during processing")
             return
 
         state = self.registry.get(run_id)

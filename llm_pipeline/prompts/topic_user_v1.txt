@@ -1,0 +1,3 @@
+Group this trip's photos as {style_name}.
+
+{session}

@@ -1,13 +1,21 @@
 from jo_pipeline.group import GROUPER_VERSION, MomentGrouper
 from jo_pipeline.refine import build_image_signals
-from jo_pipeline.regroup import FALLBACK, MERGED, REGROUP_VERSION, REVIEW_SPLIT, SESSION_GAP_SECONDS, SESSION_MAX_FRAMES, SKIPPED, SPLIT, UNCHANGED, RegroupApplier, Regrouper, SessionBuilder
-from llm_pipeline.schema import MomentReview
+from jo_pipeline.regroup import FALLBACK, MERGED, REGROUP_VERSION, REVIEW_SPLIT, SESSION_GAP_SECONDS, SESSION_MAX_FRAMES, SKIPPED, SPLIT, UNCHANGED, RegroupApplier, Regrouper, SessionBuilder, TopicApplier, unassigned_paths
+from llm_pipeline.schema import MomentReview, TopicReview
+from llm_pipeline.styles import FOODIE_TOUR, MOMENTS, style_for
 from tests.test_group import FLAT_HASH, NEAR_HASH, signal
 from tests.test_refine import evaluation
+
+MOMENTS_STYLE = style_for(MOMENTS)
+FOODIE_STYLE = style_for(FOODIE_TOUR)
 
 
 def signals_by_path(assets):
     return {asset.relative_path: asset for asset in assets}
+
+
+def build_sessions(baseline, assets, image_signals, style=MOMENTS_STYLE):
+    return SessionBuilder.for_style(style).build("Trip", "p2-llm-eval-2", f"v-{style.id}", "schema", baseline, signals_by_path(assets), image_signals)
 
 
 def image_signals(paths, **overrides):
@@ -35,7 +43,7 @@ def test_sessions_follow_the_day_and_the_review_frames_carry_gaps_distances_and_
     next_day = [signal("d", 24 * 60), signal("e", 24 * 60 + 5)]
     baseline = MomentGrouper().group(assets + next_day)
 
-    sessions = SessionBuilder().build("Trip", "p2-llm-eval-2", baseline, signals_by_path(assets + next_day), image_signals(["a", "b", "c", "d", "e"]))
+    sessions = build_sessions(baseline, assets + next_day, image_signals(["a", "b", "c", "d", "e"]))
 
     assert [len(session.frames) for session in sessions] == [3, 2]
     frames = sessions[0].frames
@@ -55,7 +63,7 @@ def test_a_single_photo_outing_is_not_reviewed_and_an_oversize_outing_is_cut_bet
     everything = assets + crowded + late
     baseline = MomentGrouper().group(everything)
 
-    sessions = SessionBuilder().build("Trip", "p2-llm-eval-2", baseline, signals_by_path(everything), image_signals([asset.relative_path for asset in everything]))
+    sessions = build_sessions(baseline, everything, image_signals([asset.relative_path for asset in everything]))
 
     # The oversize outing is cut only at its one inter-proposal gap, which leaves the 46-photo proposal whole and the lone late photo unreviewed
     reviewed = {frame.relative_path for session in sessions for frame in session.frames}
@@ -70,14 +78,14 @@ def test_a_gap_beyond_the_session_ceiling_starts_a_new_session():
     assets = [signal("a", 0), signal("b", 5), signal("c", SESSION_GAP_SECONDS // 60 + 10), signal("d", SESSION_GAP_SECONDS // 60 + 12)]
     baseline = MomentGrouper().group(assets)
 
-    sessions = SessionBuilder().build("Trip", "p2-llm-eval-2", baseline, signals_by_path(assets), image_signals(["a", "b", "c", "d"]))
+    sessions = build_sessions(baseline, assets, image_signals(["a", "b", "c", "d"]))
 
     assert [[frame.relative_path for frame in session.frames] for session in sessions] == [["a", "b"], ["c", "d"]]
 
 
 def test_a_review_that_joins_two_baseline_proposals_yields_one_moment_with_the_bridged_boundary_recorded():
     assets, baseline = two_proposals_in_one_session()
-    sessions = SessionBuilder().build("Trip", "p2-llm-eval-2", baseline, signals_by_path(assets), image_signals(["a", "b", "c"]))
+    sessions = build_sessions(baseline, assets, image_signals(["a", "b", "c"]))
     reviews = {sessions[0].session_id: review([(0, 2)])}
 
     regrouped = RegroupApplier().apply(baseline, signals_by_path(assets), sessions, reviews)
@@ -98,7 +106,7 @@ def test_a_review_that_joins_two_baseline_proposals_yields_one_moment_with_the_b
 def test_a_review_that_splits_a_baseline_proposal_records_the_new_boundary_on_both_sides():
     assets = [signal("a", 0), signal("b", 2), signal("c", 4)]
     baseline = MomentGrouper().group(assets)
-    sessions = SessionBuilder().build("Trip", "p2-llm-eval-2", baseline, signals_by_path(assets), image_signals(["a", "b", "c"]))
+    sessions = build_sessions(baseline, assets, image_signals(["a", "b", "c"]))
     reviews = {sessions[0].session_id: review([(0, 0), (1, 2)])}
 
     regrouped = RegroupApplier().apply(baseline, signals_by_path(assets), sessions, reviews)
@@ -113,7 +121,7 @@ def test_a_review_that_splits_a_baseline_proposal_records_the_new_boundary_on_bo
 
 def test_an_unchanged_moment_is_marked_as_such_and_a_session_without_a_review_passes_through():
     assets, baseline = two_proposals_in_one_session()
-    sessions = SessionBuilder().build("Trip", "p2-llm-eval-2", baseline, signals_by_path(assets), image_signals(["a", "b", "c"]))
+    sessions = build_sessions(baseline, assets, image_signals(["a", "b", "c"]))
 
     confirmed = RegroupApplier().apply(baseline, signals_by_path(assets), sessions, {sessions[0].session_id: review([(0, 1), (2, 2)])})
     fallback = RegroupApplier().apply(baseline, signals_by_path(assets), sessions, {})
@@ -127,7 +135,7 @@ def test_an_unchanged_moment_is_marked_as_such_and_a_session_without_a_review_pa
 def test_attached_duplicates_follow_their_canonical_and_the_unanchored_proposal_is_untouched():
     assets = [signal("a", 0, hash_value=FLAT_HASH), signal("a_copy", 0, seconds=1, hash_value=NEAR_HASH), signal("b", 20), signal("nowhere", None)]
     baseline = MomentGrouper().group(assets)
-    sessions = SessionBuilder().build("Trip", "p2-llm-eval-2", baseline, signals_by_path(assets), image_signals(["a", "a_copy", "b", "nowhere"]))
+    sessions = build_sessions(baseline, assets, image_signals(["a", "a_copy", "b", "nowhere"]))
     assert [frame.relative_path for frame in sessions[0].frames] == ["a", "b"]
     reviews = {sessions[0].session_id: review([(0, 0), (1, 1)])}
 
@@ -143,11 +151,11 @@ def test_review_leave_outs_are_dropped_through_refinement_with_their_source_reco
     # A set-level exclusion uses the same reversible mechanism as the per-image one, so the traveller can put it back
     assets, baseline = two_proposals_in_one_session()
     signals = image_signals(["a", "b", "c"])
-    sessions = SessionBuilder().build("Trip", "p2-llm-eval-2", baseline, signals_by_path(assets), signals)
+    sessions = build_sessions(baseline, assets, signals)
     reviews = {sessions[0].session_id: review([(0, 2)], leave_out=(1,))}
 
-    regrouped = Regrouper().regroup(baseline, signals_by_path(assets), signals, sessions, reviews)
-    review_signals = Regrouper().review_signals(signals, sessions, reviews)
+    regrouped = Regrouper().regroup(baseline, signals_by_path(assets), signals, sessions, reviews, MOMENTS_STYLE)
+    review_signals = Regrouper().review_signals(signals, sessions, reviews, MOMENTS_STYLE)
 
     assert [member.relative_path for member in regrouped[0].members] == ["a", "c"]
     excluded = regrouped[0].evidence["excluded_by_signal"]
@@ -156,3 +164,55 @@ def test_review_leave_outs_are_dropped_through_refinement_with_their_source_reco
     assert regrouped[0].evidence["baseline_method_version"] == GROUPER_VERSION
     assert review_signals["b"].keep_signal == "leave_out"
     assert review_signals["a"].keep_signal == "keep"
+
+
+def topic_review(groups):
+    return TopicReview.model_validate({"groups": [{"frames": frames, "title": title, "about": "food on the way", "why": why} for frames, title, why in groups]})
+
+
+def test_a_trip_style_reviews_every_outing_in_one_session_and_groups_across_days():
+    # Topic styles ask about the whole trip, so a meal on day one and a meal on day two can be one view
+    assets = [signal("a", 0), signal("b", 5), signal("c", 24 * 60), signal("d", 24 * 60 + 5)]
+    baseline = MomentGrouper().group(assets)
+    sessions = build_sessions(baseline, assets, image_signals(["a", "b", "c", "d"]), FOODIE_STYLE)
+    assert [frame.relative_path for frame in sessions[0].frames] == ["a", "b", "c", "d"]
+    reviews = {sessions[0].session_id: topic_review([([3, 0], "Noodles twice", ["fun"])])}
+
+    grouped = TopicApplier().apply(baseline, signals_by_path(assets), sessions, reviews, FOODIE_STYLE)
+    unassigned = unassigned_paths(sessions, reviews)
+
+    assert len(sessions) == 1
+    assert len(grouped) == 1
+    assert [member.relative_path for member in grouped[0].members] == ["a", "d"]
+    assert grouped[0].evidence["review"]["title"] == "Noodles twice"
+    assert grouped[0].evidence["review"]["why"] == ["fun"]
+    assert grouped[0].evidence["review"]["style"] == FOODIE_TOUR
+    assert len(grouped[0].evidence["review"]["days"]) == 2
+    assert grouped[0].start_utc == baseline[0].start_utc
+    assert unassigned == ["b", "c"]
+
+
+def test_topic_groups_are_stamped_with_the_style_version_and_duplicates_follow_their_canonical():
+    assets = [signal("a", 0, hash_value=FLAT_HASH), signal("a_copy", 0, seconds=1, hash_value=NEAR_HASH), signal("b", 20)]
+    baseline = MomentGrouper().group(assets)
+    signals = image_signals(["a", "a_copy", "b"])
+    sessions = build_sessions(baseline, assets, signals, FOODIE_STYLE)
+    reviews = {sessions[0].session_id: topic_review([([0], "A coffee", [])])}
+
+    grouped = Regrouper().regroup(baseline, signals_by_path(assets), signals, sessions, reviews, FOODIE_STYLE)
+
+    assert len(grouped) == 1
+    assert grouped[0].method_version == "topic-foodie_tour-1"
+    assert {member.relative_path: member.membership for member in grouped[0].members}["a_copy"] == "burst"
+    assert unassigned_paths(sessions, reviews) == ["b"]
+
+
+def test_a_topic_session_without_a_valid_review_yields_no_groups_rather_than_guessing():
+    assets = [signal("a", 0), signal("b", 5)]
+    baseline = MomentGrouper().group(assets)
+    sessions = build_sessions(baseline, assets, image_signals(["a", "b"]), FOODIE_STYLE)
+
+    grouped = TopicApplier().apply(baseline, signals_by_path(assets), sessions, {}, FOODIE_STYLE)
+
+    assert grouped == []
+    assert unassigned_paths(sessions, {}) == []

@@ -8,12 +8,15 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Callable
 
+from pydantic import BaseModel
+
 from llm_pipeline.client import OpenRouterClient, OpenRouterError
 from llm_pipeline.evaluate import VALID, EvaluationOutcome, StructuredEvaluator
-from llm_pipeline.prompts import REVIEW_PROMPT_VERSION, ReviewPrompts
+from llm_pipeline.prompts import ReviewPrompts, TopicPrompts, default_review_prompts, default_topic_prompts
 from llm_pipeline.runner import call_with_retry
-from llm_pipeline.schema import REVIEW_SCHEMA_NAME, REVIEW_SCHEMA_VERSION, MomentReview, review_schema
+from llm_pipeline.schema import REVIEW_SCHEMA_NAME, REVIEW_SCHEMA_VERSION, TOPIC_SCHEMA_NAME, TOPIC_SCHEMA_VERSION, MomentReview, TopicReview, review_schema, topic_schema
 from llm_pipeline.store import SUMMARY_PREFIX, SUMMARY_STAMP_FORMAT
+from llm_pipeline.styles import MOMENT_REVIEW, GroupingStyle
 
 LOGGER = logging.getLogger(__name__)
 
@@ -47,6 +50,7 @@ class ReviewSession:
 class ReviewRecord:
     dataset_id: str
     session_id: str
+    style: str
     frame_paths: list[str]
     model: str
     review_prompt_version: str
@@ -67,6 +71,7 @@ class ReviewRecord:
 @dataclass(frozen=True)
 class ReviewSummary:
     dataset_id: str
+    style: str
     model: str
     review_prompt_version: str
     review_schema_version: str
@@ -104,15 +109,15 @@ class ReviewRun:
     records: list[ReviewRecord]
 
 
-def build_session(dataset_id: str, source_version: str, frames: list[ReviewFrame]) -> ReviewSession:
+def build_session(dataset_id: str, source_version: str, frames: list[ReviewFrame], review_version: str, schema_version: str) -> ReviewSession:
     digest = hashlib.sha256()
     digest.update(source_version.encode())
-    digest.update(REVIEW_PROMPT_VERSION.encode())
-    digest.update(REVIEW_SCHEMA_VERSION.encode())
+    digest.update(review_version.encode())
+    digest.update(schema_version.encode())
     for frame in frames:
         digest.update(json.dumps([frame.sha256, frame.captured_utc, frame.gap_seconds, frame.distance_metres, frame.boundary_before, frame.summary], sort_keys=True).encode())
     session_id = digest.hexdigest()[:SESSION_ID_LENGTH]
-    LOGGER.debug(f"{session_id}: session of {len(frames)} frames built from {source_version} descriptions")
+    LOGGER.debug(f"{session_id}: session of {len(frames)} frames built from {source_version} descriptions for {review_version}")
     return ReviewSession(session_id=session_id, dataset_id=dataset_id, source_version=source_version, frames=frames)
 
 
@@ -171,13 +176,43 @@ def review_parser(frame_count: int) -> Callable[[str], MomentReview]:
     return parse
 
 
-def review_run_name() -> str:
-    return f"review-r{REVIEW_PROMPT_VERSION}-{REVIEW_SCHEMA_VERSION}"
+def topic_parser(frame_count: int) -> Callable[[str], TopicReview]:
+    def parse(content: str) -> TopicReview:
+        review = TopicReview.model_validate(json.loads(content))
+        review.within(frame_count)
+        return review
+    return parse
+
+
+def prompts_for(style: GroupingStyle) -> ReviewPrompts | TopicPrompts:
+    if style.kind == MOMENT_REVIEW:
+        return default_review_prompts()
+    return default_topic_prompts(style)
+
+
+def schema_version_for(style: GroupingStyle) -> str:
+    if style.kind == MOMENT_REVIEW:
+        return REVIEW_SCHEMA_VERSION
+    return TOPIC_SCHEMA_VERSION
+
+
+def review_model_for(style: GroupingStyle) -> type[BaseModel]:
+    if style.kind == MOMENT_REVIEW:
+        return MomentReview
+    return TopicReview
+
+
+def review_run_name(review_version: str, schema_version: str) -> str:
+    return f"review-r{review_version}-{schema_version}"
 
 
 class ReviewStore:
-    def __init__(self, llm_runs_dir: Path, dataset_id: str):
-        self.run_dir = llm_runs_dir / dataset_id / review_run_name()
+    def __init__(self, llm_runs_dir: Path, dataset_id: str, review_version: str, schema_version: str):
+        self.run_dir = llm_runs_dir / dataset_id / review_run_name(review_version, schema_version)
+
+    @classmethod
+    def for_style(cls, llm_runs_dir: Path, dataset_id: str, style: GroupingStyle) -> "ReviewStore":
+        return cls(llm_runs_dir, dataset_id, prompts_for(style).version, schema_version_for(style))
 
     def record_path(self, session_id: str) -> Path:
         return self.run_dir / f"{session_id}.json"
@@ -240,29 +275,32 @@ def review_records_for(store: ReviewStore, sessions: list[ReviewSession]) -> lis
     return records
 
 
-def parse_reviews(records: list[dict]) -> dict:
+def parse_reviews(records: list[dict], model_class: type[BaseModel]) -> dict:
     reviews = {}
     for record in records:
         if record["validation_status"] == VALID and record["review"]:
-            reviews[record["session_id"]] = MomentReview.model_validate(record["review"])
+            reviews[record["session_id"]] = model_class.model_validate(record["review"])
         else:
             LOGGER.info(f"{record['session_id']}: review record is {record['validation_status']}, session falls back to the baseline")
     LOGGER.info(f"{len(reviews)} valid reviews parsed from {len(records)} records")
     return reviews
 
 
-def load_reviews(store: ReviewStore, sessions: list[ReviewSession]) -> dict:
-    return parse_reviews(review_records_for(store, sessions))
+def load_reviews(store: ReviewStore, sessions: list[ReviewSession], model_class: type[BaseModel]) -> dict:
+    return parse_reviews(review_records_for(store, sessions), model_class)
 
 
 class MomentReviewer:
-    def __init__(self, client: OpenRouterClient, store: ReviewStore, dataset_id: str, prompts: ReviewPrompts, concurrency: int = DEFAULT_REVIEW_CONCURRENCY):
+    def __init__(self, client: OpenRouterClient, store: ReviewStore, dataset_id: str, prompts: ReviewPrompts | TopicPrompts, style_id: str, schema_name: str, schema: dict, parser_for: Callable[[int], Callable[[str], BaseModel]], concurrency: int = DEFAULT_REVIEW_CONCURRENCY):
         self.client = client
         self.store = store
         self.dataset_id = dataset_id
         self.prompts = prompts
+        self.style_id = style_id
+        self.schema_name = schema_name
+        self.schema = schema
+        self.parser_for = parser_for
         self.concurrency = concurrency
-        self.schema = review_schema()
         self._lock = threading.Lock()
         self._done = 0
 
@@ -273,7 +311,7 @@ class MomentReviewer:
         if limit is not None:
             LOGGER.info(f"{self.dataset_id}: limit {limit} applied to {len(pending)} pending sessions")
             pending = pending[:limit]
-        LOGGER.info(f"{self.dataset_id}: reviewing {len(pending)} sessions, {skipped_existing} already stored")
+        LOGGER.info(f"{self.dataset_id}: reviewing {len(pending)} sessions as {self.style_id}, {skipped_existing} already stored")
 
         self._done = 0
         attempts = self._review_all(pending, on_progress)
@@ -283,9 +321,10 @@ class MomentReviewer:
 
         summary = ReviewSummary(
             dataset_id=self.dataset_id,
+            style=self.style_id,
             model=self.client.model,
             review_prompt_version=self.prompts.version,
-            review_schema_version=REVIEW_SCHEMA_VERSION,
+            review_schema_version=self._schema_version(),
             source_version=source_version,
             started_utc=started_utc,
             finished_utc=datetime.now(timezone.utc).isoformat(),
@@ -304,6 +343,9 @@ class MomentReviewer:
         else:
             LOGGER.info(f"{self.dataset_id}: no review requests sent, no summary written")
         return ReviewRun(summary=summary, records=records)
+
+    def _schema_version(self) -> str:
+        return REVIEW_SCHEMA_VERSION if self.schema_name == REVIEW_SCHEMA_NAME else TOPIC_SCHEMA_VERSION
 
     def _review_all(self, sessions: list[ReviewSession], on_progress: Callable[[ReviewProgress], None] | None) -> list[SessionAttempt]:
         if not sessions:
@@ -332,7 +374,7 @@ class MomentReviewer:
 
     def _review_one(self, session: ReviewSession) -> SessionAttempt:
         messages = self.prompts.build_messages(render_session(session))
-        evaluator = StructuredEvaluator(self.client, REVIEW_SCHEMA_NAME, self.schema, review_parser(len(session.frames)))
+        evaluator = StructuredEvaluator(self.client, self.schema_name, self.schema, self.parser_for(len(session.frames)))
         try:
             outcome = call_with_retry(session.session_id, lambda: evaluator.evaluate(session.session_id, messages))
         except OpenRouterError as error:
@@ -350,10 +392,11 @@ class MomentReviewer:
         return ReviewRecord(
             dataset_id=self.dataset_id,
             session_id=session.session_id,
+            style=self.style_id,
             frame_paths=[frame.relative_path for frame in session.frames],
             model=self.client.model,
             review_prompt_version=self.prompts.version,
-            review_schema_version=REVIEW_SCHEMA_VERSION,
+            review_schema_version=self._schema_version(),
             source_version=session.source_version,
             reviewed_utc=datetime.now(timezone.utc).isoformat(),
             attempts=outcome.attempts,
@@ -366,3 +409,10 @@ class MomentReviewer:
             review=review,
             failure_detail=outcome.failure_detail,
         )
+
+
+def reviewer_for(client: OpenRouterClient, store: ReviewStore, dataset_id: str, style: GroupingStyle, concurrency: int = DEFAULT_REVIEW_CONCURRENCY) -> MomentReviewer:
+    prompts = prompts_for(style)
+    if style.kind == MOMENT_REVIEW:
+        return MomentReviewer(client, store, dataset_id, prompts, style.id, REVIEW_SCHEMA_NAME, review_schema(), review_parser, concurrency)
+    return MomentReviewer(client, store, dataset_id, prompts, style.id, TOPIC_SCHEMA_NAME, topic_schema(), topic_parser, concurrency)

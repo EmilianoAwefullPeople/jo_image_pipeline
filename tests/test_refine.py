@@ -32,6 +32,7 @@ def evaluation(keep="keep", quality=0.5, screenshot=False, relevance="not_applic
         "weather": ["overcast"],
         "keyword_tags": ["street", "shopfronts", "afternoon"],
         "photographic_style": {"types": ["muted_desaturated"], "other_detail": None},
+        "why_tags": [],
         "screenshot": {"is_screenshot_or_document": screenshot, "travel_relevance": relevance, "document_kind": None, "confidence": 0.9},
         "memory": {"keep_signal": keep, "reason": reason, "confidence": 0.77},
         "representative_quality": {"score": quality, "reasoning": "composition and story"},
@@ -196,7 +197,7 @@ def test_an_unknown_schema_version_is_rejected_rather_than_guessed():
 
 def test_every_extraction_category_reaches_the_observation_rows():
     # The data-extraction categories document is the contract for what the model returns and what gets persisted
-    observations = build_llm_observations(evaluation(), "openai/gpt-5.6-sol", "p2/llm-eval-2")
+    observations = build_llm_observations(evaluation(), "openai/gpt-5.6-sol", "p3/llm-eval-3")
 
     fields = [observation.field for observation in observations]
     assert fields == [
@@ -212,6 +213,7 @@ def test_every_extraction_category_reaches_the_observation_rows():
         "weather_conditions",
         "keyword_tags",
         "photographic_style_types",
+        "why_tags",
         "is_screenshot_or_document",
         "memory_keep_signal",
         "representative_quality",

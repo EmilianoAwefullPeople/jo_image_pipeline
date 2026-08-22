@@ -62,6 +62,7 @@ def build_llm_observations(evaluation: dict, model_id: str, method_version: str)
         ("weather_conditions", evaluation["weather"] or None, None, {}),
         ("keyword_tags", evaluation["keyword_tags"] or None, None, {}),
         ("photographic_style_types", style["types"] or None, None, {"other_detail": style["other_detail"]}),
+        ("why_tags", evaluation["why_tags"] or None, None, {}),
         ("is_screenshot_or_document", screenshot["is_screenshot_or_document"], screenshot["confidence"], {"travel_relevance": screenshot["travel_relevance"], "document_kind": screenshot["document_kind"]}),
         ("memory_keep_signal", memory["keep_signal"], memory["confidence"], {"reason": memory["reason"]}),
         ("representative_quality", quality["score"], None, {"reasoning": quality["reasoning"]}),
