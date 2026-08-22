@@ -135,3 +135,4 @@ a.button[hidden] { display: none; }
 .panel-head h2 { margin: 0; }
 .panel-head .muted { margin: 0; }
 .panel-head .button { margin-left: auto; }
+.panel-head .button + .button { margin-left: 0; }

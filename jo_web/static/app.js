@@ -28,11 +28,14 @@ const uploadDetail = document.getElementById("upload-detail");
 const dropzoneHint = document.getElementById("dropzone-hint");
 const setGrid = document.getElementById("set-grid");
 const processButton = document.getElementById("process");
+const clearButton = document.getElementById("clear");
 const downloadLink = document.getElementById("download");
 const promptSystem = document.getElementById("prompt-system");
 const promptUser = document.getElementById("prompt-user");
 const promptReset = document.getElementById("prompt-reset");
 const promptState = document.getElementById("prompt-state");
+
+const defaultHint = dropzoneHint.textContent;
 
 let currentSet = null;
 let uploading = false;
@@ -42,6 +45,7 @@ let defaultPrompt = null;
 pickButton.addEventListener("click", () => fileInput.click());
 fileInput.addEventListener("change", () => addFiles(Array.from(fileInput.files)));
 processButton.addEventListener("click", process);
+clearButton.addEventListener("click", clearSet);
 promptSystem.addEventListener("input", renderPromptState);
 promptUser.addEventListener("input", renderPromptState);
 promptReset.addEventListener("click", () => {
@@ -119,7 +123,7 @@ async function addFiles(files) {
   if (uploading || processing || !files.length) return;
   uploading = true;
   pickButton.disabled = true;
-  renderProcessButton();
+  renderButtons();
 
   try {
     if (!currentSet || currentSet.started) await openSet();
@@ -134,18 +138,34 @@ async function addFiles(files) {
     uploading = false;
     pickButton.disabled = false;
     fileInput.value = "";
-    renderProcessButton();
+    renderButtons();
   }
 }
 
 async function openSet() {
   const created = await postJson("/api/runs");
-  currentSet = { runId: created.run_id, createdUtc: created.created_utc, limits: created.limits, accepted: 0, skipped: [], started: false };
+  resetPage();
+  currentSet = { runId: created.run_id, createdUtc: created.created_utc, limits: created.limits, accepted: 0, skipped: [], started: false, cleared: false };
   dropzoneHint.textContent = `Accepting up to ${created.limits.max_files} files`;
+  renderSetCount();
+}
+
+function resetPage() {
   setGrid.innerHTML = "";
   downloadLink.hidden = true;
+  dropzoneHint.textContent = defaultHint;
+  show("set-panel", false);
   RESULT_PANELS.forEach((id) => show(id, false));
+}
+
+function clearSet() {
+  if (uploading || !currentSet) return;
+  if (!window.confirm("Clear this set? The page goes back to its starting state.")) return;
+  currentSet.cleared = true;
+  currentSet = null;
+  resetPage();
   renderSetCount();
+  renderButtons();
 }
 
 async function uploadAll(files) {
@@ -184,15 +204,16 @@ function renderSetCount() {
   text("set-skipped", skipped.length ? `${skipped.length} file(s) not added: ${skipped.map((item) => `${item.filename} (${item.reason})`).join(", ")}` : "");
 }
 
-function renderProcessButton() {
+function renderButtons() {
   processButton.disabled = uploading || processing || !currentSet || currentSet.started || !currentSet.accepted;
+  clearButton.disabled = uploading || !currentSet;
 }
 
 async function process() {
   if (uploading || processing || !currentSet || currentSet.started || !currentSet.accepted) return;
   processing = true;
   pickButton.disabled = true;
-  renderProcessButton();
+  renderButtons();
   show("error-panel", false);
   const set = currentSet;
 
@@ -203,14 +224,16 @@ async function process() {
     show("progress-panel", true);
     text("run-id", set.runId.slice(0, 12));
     text("run-created", stamp(set.createdUtc));
-    await poll(set.runId);
+    await poll(set);
   } catch (error) {
-    show("error-panel", true);
-    text("error-detail", error.message);
+    if (!set.cleared) {
+      show("error-panel", true);
+      text("error-detail", error.message);
+    }
   } finally {
     processing = false;
     pickButton.disabled = false;
-    renderProcessButton();
+    renderButtons();
   }
 }
 
@@ -223,9 +246,10 @@ async function postJson(url) {
   return response.json();
 }
 
-async function poll(runId) {
+async function poll(set) {
   while (true) {
-    const response = await fetch(`/api/runs/${runId}`);
+    const response = await fetch(`/api/runs/${set.runId}`);
+    if (set.cleared) return;
     if (!response.ok) throw new Error("This run has expired or was removed.");
     const state = await response.json();
     renderProgress(state);
@@ -235,12 +259,13 @@ async function poll(runId) {
       return;
     }
     if (state.status === "complete") {
-      render(runId, state);
-      downloadLink.href = `/api/runs/${runId}/export`;
+      render(set.runId, state);
+      downloadLink.href = `/api/runs/${set.runId}/export`;
       downloadLink.hidden = false;
       return;
     }
     await new Promise((resolve) => setTimeout(resolve, POLL_INTERVAL_MS));
+    if (set.cleared) return;
   }
 }
 
