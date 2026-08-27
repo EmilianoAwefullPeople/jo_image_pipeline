@@ -110,6 +110,13 @@ main { max-width: 1080px; margin: 0 auto; display: flex; flex-direction: column;
 .member-reason { margin-top: .25rem; color: var(--ink-soft); font-size: .7rem; }
 .member-reason.link { color: var(--warn); }
 
+.more { margin-top: .35rem; }
+.more > summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; width: 1.15rem; height: 1.15rem; border: 1px solid var(--line); border-radius: 3px; background: var(--page); color: var(--ink-soft); font-size: .85rem; line-height: 1; }
+.more > summary::-webkit-details-marker { display: none; }
+.more > summary::before { content: "+"; }
+.more[open] > summary::before { content: "\2212"; }
+.more > summary:hover { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+
 .table-scroll { overflow-x: auto; margin-top: 1rem; }
 table { border-collapse: collapse; width: 100%; font-size: .84rem; }
 th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--line); white-space: nowrap; }

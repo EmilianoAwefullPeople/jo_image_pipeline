@@ -433,7 +433,12 @@ function shot(runId, state, evaluations, member) {
   const key = state.thumbnails[member.relative_path];
   const image = key ? `<img src="/api/runs/${runId}/thumbnails/${key}" alt="" loading="lazy">` : `<img alt="" loading="lazy">`;
   const badge = member.membership === "member" ? "" : `<span class="badge ${member.membership}">${member.membership}</span> `;
-  return `<div class="shot">${image}<div class="caption">${badge}${escapeHtml(member.relative_path)}${memberReason(member)}${renderEvaluation(evaluations[key])}</div></div>`;
+  return `<div class="shot">${image}<div class="caption">${badge}${escapeHtml(member.relative_path)}${more(memberReason(member) + renderEvaluation(evaluations[key]))}</div></div>`;
+}
+
+function more(content) {
+  if (!content) return "";
+  return `<details class="more"><summary aria-label="more detail"></summary>${content}</details>`;
 }
 
 function duration(seconds) {
@@ -538,7 +543,7 @@ function placeReason(evidence) {
 function groupReasons(group) {
   const evidence = group.evidence;
   if (evidence.span_seconds === undefined) {
-    return `<ul class="reasons"><li>${escapeHtml(evidence.reason || "no grouping evidence was recorded")}</li></ul>`;
+    return more(`<ul class="reasons"><li>${escapeHtml(evidence.reason || "no grouping evidence was recorded")}</li></ul>`);
   }
 
   const reasons = timeReasons(evidence);
@@ -549,7 +554,7 @@ function groupReasons(group) {
   reasons.push(evidence.opened_by ? `split from the moment before it by ${boundaryReason(evidence.opened_by)}` : "first moment in the set, nothing came before it");
   reasons.push(evidence.closed_by ? `closed by ${boundaryReason(evidence.closed_by)}` : "last moment in the set, nothing came after it");
   reasons.push(...reviewReasons(evidence));
-  return `<ul class="reasons">${reasons.map((reason) => `<li>${reason}</li>`).join("")}</ul>`;
+  return more(`<ul class="reasons">${reasons.map((reason) => `<li>${reason}</li>`).join("")}</ul>`);
 }
 
 function renderExcluded(runId, state, group) {
@@ -562,7 +567,7 @@ function renderExcluded(runId, state, group) {
     const image = key ? `<img src="/api/runs/${runId}/thumbnails/${key}" alt="" loading="lazy">` : `<img alt="" loading="lazy">`;
     const badge = entry.source === "moment_review" ? "left out by review" : "left out";
     return `<div class="shot">${image}<div class="caption"><span class="badge duplicate">${badge}</span> ${escapeHtml(entry.relative_path)}
-      <div class="evaluation"><p>${escapeHtml(entry.reason)}</p></div></div></div>`;
+      ${more(`<div class="evaluation"><p>${escapeHtml(entry.reason)}</p></div>`)}</div></div>`;
   }).join("");
 
   const flagNote = flagged.length
@@ -665,7 +670,8 @@ function reviewCard(runId, state, record) {
   const rows = EXTRACTION_FIELDS.map((field) =>
     `<div class="field"><div class="field-label">${escapeHtml(field.label)}</div><div class="field-value">${field.value(record.evaluation)}</div></div>`
   ).join("");
-  return `<div class="review">${image}<div class="review-body">${head}<div class="fields">${rows}</div></div></div>`;
+  const summary = `<p>${escapeHtml(record.evaluation.general_description)}</p>`;
+  return `<div class="review">${image}<div class="review-body">${head}${summary}${more(`<div class="fields">${rows}</div>`)}</div></div>`;
 }
 
 function renderReliability(state) {
