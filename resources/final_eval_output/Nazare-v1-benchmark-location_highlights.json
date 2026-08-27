@@ -1,0 +1,1874 @@
+{
+  "dataset_id": "Nazare",
+  "dataset_version": "1",
+  "model_id": "openai/gpt-5.6-sol",
+  "llm_method_version": "p3/llm-eval-3",
+  "baseline_comparison": {
+    "compared_assets": 19,
+    "reference_groups": 12,
+    "proposed_groups": 16,
+    "pair_precision": 0.25,
+    "pair_recall": 0.034,
+    "pair_f1": 0.061,
+    "split_groups": 7,
+    "merged_proposals": 6,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "refined_comparison": {
+    "compared_assets": 19,
+    "reference_groups": 12,
+    "proposed_groups": 16,
+    "pair_precision": 0.25,
+    "pair_recall": 0.034,
+    "pair_f1": 0.061,
+    "split_groups": 7,
+    "merged_proposals": 6,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "regrouped_comparison": {
+    "compared_assets": 9,
+    "reference_groups": 12,
+    "proposed_groups": 2,
+    "pair_precision": 0.438,
+    "pair_recall": 1.0,
+    "pair_f1": 0.609,
+    "split_groups": 0,
+    "merged_proposals": 2,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "keep_signal_score": {
+    "excluded_total": 0,
+    "excluded_with_signal": 0,
+    "excluded_caught": 0,
+    "grouped_total": 19,
+    "grouped_with_signal": 19,
+    "grouped_false_positives": 0,
+    "recall": 0.0,
+    "false_positive_rate": 0.0,
+    "method_version": "keepscore-1",
+    "caught": [],
+    "missed": [],
+    "false_positives": []
+  },
+  "review_keep_signal_score": {
+    "excluded_total": 0,
+    "excluded_with_signal": 0,
+    "excluded_caught": 0,
+    "grouped_total": 19,
+    "grouped_with_signal": 19,
+    "grouped_false_positives": 0,
+    "recall": 0.0,
+    "false_positive_rate": 0.0,
+    "method_version": "keepscore-1",
+    "caught": [],
+    "missed": [],
+    "false_positives": []
+  },
+  "review": {
+    "style": "location_highlights",
+    "sessions": 1,
+    "records": [
+      {
+        "dataset_id": "Nazare",
+        "session_id": "b1beea48af2c21d6",
+        "style": "location_highlights",
+        "frame_paths": [
+          "1EAA30EA-68E6-452F-96A5-BBAB40203AFC_1_105_c.jpeg",
+          "C9942E5A-BA8C-4CBB-B464-C008FF6A4C0A_1_105_c.jpeg",
+          "1958F392-13E1-4B13-9B00-CECCDF9A9A62_1_105_c.jpeg",
+          "9AE3090F-3A23-4805-A096-9803B9F9FCEC_1_105_c.jpeg",
+          "70DCCE51-3D43-4A95-9138-5FB69F84BB57_1_105_c.jpeg",
+          "648860E2-8AD0-48C0-8403-027A3EF5C2A2_1_105_c.jpeg",
+          "1270AF25-3793-4E1A-90C8-55A9B42487D9_1_105_c.jpeg",
+          "EB3D6E37-B075-4BFD-9F6F-16E9F74DDEAD_1_105_c.jpeg",
+          "6130D885-BE84-44D5-B683-BEEF29FD5A9D_1_105_c.jpeg",
+          "806AF03C-9190-4461-8054-8D8847E38656_1_105_c.jpeg",
+          "31CBE67B-3348-42A1-9B38-6BBF88994DAD_1_105_c.jpeg",
+          "33C8391D-8BDF-46CA-A14A-3F27683D569B_1_105_c.jpeg",
+          "FC61A42F-6EB8-4CD7-98E5-C0A0A8437887_1_105_c.jpeg",
+          "2A82C644-85BD-45A4-88B0-00D625697674_1_105_c.jpeg",
+          "E64B3B2B-3BF2-46BC-8CA1-ADA2575A1FF7_1_105_c.jpeg",
+          "2AD1433B-B056-4568-9D67-DED7E4A9CE92_1_105_c.jpeg",
+          "912ED873-A494-412A-9A00-417AB83F70A7_1_105_c.jpeg",
+          "7E67DB3F-49F3-4DAC-9DE6-21EE25FC9AD0_1_105_c.jpeg",
+          "19D0AC1C-FDAC-4560-8EEB-3BAFF64A291C_1_105_c.jpeg"
+        ],
+        "model": "openai/gpt-5.6-sol",
+        "review_prompt_version": "topic-location_highlights-1",
+        "review_schema_version": "topic-review-1",
+        "source_version": "p3-llm-eval-3",
+        "reviewed_utc": "2026-08-27T22:23:33.843170+00:00",
+        "attempts": 1,
+        "latency_ms": 16795,
+        "prompt_tokens": 3113,
+        "completion_tokens": 1047,
+        "cost_usd": 0.018251,
+        "generation_id": "gen-1787869397-TKJJysLGeZQjkJ71hhEy",
+        "validation_status": "valid",
+        "review": {
+          "groups": [
+            {
+              "frames": [
+                1,
+                3,
+                4,
+                5
+              ],
+              "title": "Lisbon",
+              "about": "Lisbon\u2019s highlights pair Pra\u00e7a do Com\u00e9rcio, a classic yellow tram, Portuguese pastries, and the tiled Miradouro de Santa Luzia viewpoint.",
+              "why": []
+            },
+            {
+              "frames": [
+                7,
+                8,
+                13,
+                16,
+                17
+              ],
+              "title": "Nazar\u00e9",
+              "about": "Nazar\u00e9\u2019s highlights capture its broad beach, dramatic cliffs, hillside town, coastal paths, and an Atlantic sunset.",
+              "why": []
+            }
+          ]
+        },
+        "failure_detail": null
+      }
+    ],
+    "unassigned": [
+      "1EAA30EA-68E6-452F-96A5-BBAB40203AFC_1_105_c.jpeg",
+      "1958F392-13E1-4B13-9B00-CECCDF9A9A62_1_105_c.jpeg",
+      "1270AF25-3793-4E1A-90C8-55A9B42487D9_1_105_c.jpeg",
+      "806AF03C-9190-4461-8054-8D8847E38656_1_105_c.jpeg",
+      "31CBE67B-3348-42A1-9B38-6BBF88994DAD_1_105_c.jpeg",
+      "33C8391D-8BDF-46CA-A14A-3F27683D569B_1_105_c.jpeg",
+      "FC61A42F-6EB8-4CD7-98E5-C0A0A8437887_1_105_c.jpeg",
+      "E64B3B2B-3BF2-46BC-8CA1-ADA2575A1FF7_1_105_c.jpeg",
+      "2AD1433B-B056-4568-9D67-DED7E4A9CE92_1_105_c.jpeg",
+      "19D0AC1C-FDAC-4560-8EEB-3BAFF64A291C_1_105_c.jpeg"
+    ],
+    "cost_usd": 0.0183
+  },
+  "baseline_proposals": [
+    {
+      "label": "2025-11-07 03:49 to 03:49 UTC",
+      "start_utc": "2025-11-07T03:49:53+00:00",
+      "end_utc": "2025-11-07T03:49:53+00:00",
+      "score": 0.738,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "1EAA30EA-68E6-452F-96A5-BBAB40203AFC_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 63.79399509717607
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "1EAA30EA-68E6-452F-96A5-BBAB40203AFC_1_105_c.jpeg",
+          "gap_seconds": 18753.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.128
+        }
+      }
+    },
+    {
+      "label": "2025-11-07 09:02 to 09:02 UTC",
+      "start_utc": "2025-11-07T09:02:26+00:00",
+      "end_utc": "2025-11-07T09:02:26+00:00",
+      "score": 0.857,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "C9942E5A-BA8C-4CBB-B464-C008FF6A4C0A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 262.50121547134285
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "1EAA30EA-68E6-452F-96A5-BBAB40203AFC_1_105_c.jpeg",
+          "gap_seconds": 18753.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "C9942E5A-BA8C-4CBB-B464-C008FF6A4C0A_1_105_c.jpeg",
+          "distance_metres": 345.5,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.525
+        }
+      }
+    },
+    {
+      "label": "2025-11-07 09:22 to 09:22 UTC",
+      "start_utc": "2025-11-07T09:22:58+00:00",
+      "end_utc": "2025-11-07T09:22:58+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "1958F392-13E1-4B13-9B00-CECCDF9A9A62_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 538.5700214289956
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "C9942E5A-BA8C-4CBB-B464-C008FF6A4C0A_1_105_c.jpeg",
+          "distance_metres": 345.5,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "1958F392-13E1-4B13-9B00-CECCDF9A9A62_1_105_c.jpeg",
+          "distance_metres": 162.2,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-11-07 10:02 to 10:02 UTC",
+      "start_utc": "2025-11-07T10:02:22+00:00",
+      "end_utc": "2025-11-07T10:02:22+00:00",
+      "score": 0.887,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "9AE3090F-3A23-4805-A096-9803B9F9FCEC_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 311.8808283672358
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "1958F392-13E1-4B13-9B00-CECCDF9A9A62_1_105_c.jpeg",
+          "distance_metres": 162.2,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "9AE3090F-3A23-4805-A096-9803B9F9FCEC_1_105_c.jpeg",
+          "distance_metres": 295.9,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.624
+        }
+      }
+    },
+    {
+      "label": "2025-11-07 10:12 to 10:12 UTC",
+      "start_utc": "2025-11-07T10:12:42+00:00",
+      "end_utc": "2025-11-07T10:12:42+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "70DCCE51-3D43-4A95-9138-5FB69F84BB57_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 830.0684112053519
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "9AE3090F-3A23-4805-A096-9803B9F9FCEC_1_105_c.jpeg",
+          "distance_metres": 295.9,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "70DCCE51-3D43-4A95-9138-5FB69F84BB57_1_105_c.jpeg",
+          "distance_metres": 435.7,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-11-07 10:31 to 10:32 UTC",
+      "start_utc": "2025-11-07T10:31:06+00:00",
+      "end_utc": "2025-11-07T10:32:02+00:00",
+      "score": 0.996,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "648860E2-8AD0-48C0-8403-027A3EF5C2A2_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 972.5266127683377
+          }
+        },
+        {
+          "relative_path": "1270AF25-3793-4E1A-90C8-55A9B42487D9_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 56.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 15.8,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 56.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "place_change",
+          "after": "70DCCE51-3D43-4A95-9138-5FB69F84BB57_1_105_c.jpeg",
+          "distance_metres": 435.7,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "1270AF25-3793-4E1A-90C8-55A9B42487D9_1_105_c.jpeg",
+          "gap_seconds": 25570.0,
+          "window_seconds": 900
+        },
+        "score_components": {
+          "cohesion": 0.99,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-11-07 17:38 to 17:38 UTC",
+      "start_utc": "2025-11-07T17:38:12+00:00",
+      "end_utc": "2025-11-07T17:38:12+00:00",
+      "score": 0.788,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "EB3D6E37-B075-4BFD-9F6F-16E9F74DDEAD_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 147.0354944665192
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "1270AF25-3793-4E1A-90C8-55A9B42487D9_1_105_c.jpeg",
+          "gap_seconds": 25570.0,
+          "window_seconds": 900
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "EB3D6E37-B075-4BFD-9F6F-16E9F74DDEAD_1_105_c.jpeg",
+          "gap_seconds": 76946.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.294
+        }
+      }
+    },
+    {
+      "label": "2025-11-08 15:00 to 15:00 UTC",
+      "start_utc": "2025-11-08T15:00:38+00:00",
+      "end_utc": "2025-11-08T15:00:38+00:00",
+      "score": 0.841,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "6130D885-BE84-44D5-B683-BEEF29FD5A9D_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 235.26752561289402
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "EB3D6E37-B075-4BFD-9F6F-16E9F74DDEAD_1_105_c.jpeg",
+          "gap_seconds": 76946.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "6130D885-BE84-44D5-B683-BEEF29FD5A9D_1_105_c.jpeg",
+          "distance_metres": 692.7,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.471
+        }
+      }
+    },
+    {
+      "label": "2025-11-08 15:31 to 15:31 UTC",
+      "start_utc": "2025-11-08T15:31:04+00:00",
+      "end_utc": "2025-11-08T15:31:04+00:00",
+      "score": 0.783,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "806AF03C-9190-4461-8054-8D8847E38656_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 138.75836690243645
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "6130D885-BE84-44D5-B683-BEEF29FD5A9D_1_105_c.jpeg",
+          "distance_metres": 692.7,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "806AF03C-9190-4461-8054-8D8847E38656_1_105_c.jpeg",
+          "gap_seconds": 3706.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.278
+        }
+      }
+    },
+    {
+      "label": "2025-11-08 16:32 to 17:10 UTC",
+      "start_utc": "2025-11-08T16:32:50+00:00",
+      "end_utc": "2025-11-08T17:10:44+00:00",
+      "score": 0.743,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "31CBE67B-3348-42A1-9B38-6BBF88994DAD_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "33C8391D-8BDF-46CA-A14A-3F27683D569B_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 644.9491219240913
+          }
+        },
+        {
+          "relative_path": "FC61A42F-6EB8-4CD7-98E5-C0A0A8437887_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 3,
+        "primary_count": 3,
+        "attached_count": 0,
+        "span_seconds": 2274.0,
+        "located_members": 3,
+        "unlocated_members": 0,
+        "max_distance_metres": 131.5,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1887.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "806AF03C-9190-4461-8054-8D8847E38656_1_105_c.jpeg",
+          "gap_seconds": 3706.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "FC61A42F-6EB8-4CD7-98E5-C0A0A8437887_1_105_c.jpeg",
+          "distance_metres": 376.8,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 0.719,
+          "location_support": 1.0,
+          "visual_quality": 0.517
+        }
+      }
+    },
+    {
+      "label": "2025-11-08 17:21 to 17:21 UTC",
+      "start_utc": "2025-11-08T17:21:00+00:00",
+      "end_utc": "2025-11-08T17:21:00+00:00",
+      "score": 0.741,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "2A82C644-85BD-45A4-88B0-00D625697674_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 69.15580026308696
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "FC61A42F-6EB8-4CD7-98E5-C0A0A8437887_1_105_c.jpeg",
+          "distance_metres": 376.8,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "2A82C644-85BD-45A4-88B0-00D625697674_1_105_c.jpeg",
+          "gap_seconds": 74270.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.138
+        }
+      }
+    },
+    {
+      "label": "2025-11-09 13:58 to 13:58 UTC",
+      "start_utc": "2025-11-09T13:58:50+00:00",
+      "end_utc": "2025-11-09T13:58:50+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "E64B3B2B-3BF2-46BC-8CA1-ADA2575A1FF7_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 518.9965477465497
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "2A82C644-85BD-45A4-88B0-00D625697674_1_105_c.jpeg",
+          "gap_seconds": 74270.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "E64B3B2B-3BF2-46BC-8CA1-ADA2575A1FF7_1_105_c.jpeg",
+          "gap_seconds": 3179.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-11-09 14:51 to 14:51 UTC",
+      "start_utc": "2025-11-09T14:51:49+00:00",
+      "end_utc": "2025-11-09T14:51:49+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "2AD1433B-B056-4568-9D67-DED7E4A9CE92_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 973.0065079128577
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "E64B3B2B-3BF2-46BC-8CA1-ADA2575A1FF7_1_105_c.jpeg",
+          "gap_seconds": 3179.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "2AD1433B-B056-4568-9D67-DED7E4A9CE92_1_105_c.jpeg",
+          "gap_seconds": 4566.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-11-09 16:07 to 16:07 UTC",
+      "start_utc": "2025-11-09T16:07:55+00:00",
+      "end_utc": "2025-11-09T16:07:55+00:00",
+      "score": 0.995,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "912ED873-A494-412A-9A00-417AB83F70A7_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 491.6766341625609
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "2AD1433B-B056-4568-9D67-DED7E4A9CE92_1_105_c.jpeg",
+          "gap_seconds": 4566.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "912ED873-A494-412A-9A00-417AB83F70A7_1_105_c.jpeg",
+          "gap_seconds": 4755.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.983
+        }
+      }
+    },
+    {
+      "label": "2025-11-09 17:27 to 17:27 UTC",
+      "start_utc": "2025-11-09T17:27:10+00:00",
+      "end_utc": "2025-11-09T17:27:10+00:00",
+      "score": 0.786,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "7E67DB3F-49F3-4DAC-9DE6-21EE25FC9AD0_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 143.57211753330193
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "912ED873-A494-412A-9A00-417AB83F70A7_1_105_c.jpeg",
+          "gap_seconds": 4755.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "7E67DB3F-49F3-4DAC-9DE6-21EE25FC9AD0_1_105_c.jpeg",
+          "distance_metres": 506.0,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.287
+        }
+      }
+    },
+    {
+      "label": "2025-11-09 18:04 to 18:04 UTC",
+      "start_utc": "2025-11-09T18:04:18+00:00",
+      "end_utc": "2025-11-09T18:04:18+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "19D0AC1C-FDAC-4560-8EEB-3BAFF64A291C_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 788.9849393818682
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "7E67DB3F-49F3-4DAC-9DE6-21EE25FC9AD0_1_105_c.jpeg",
+          "distance_metres": 506.0,
+          "threshold_metres": 150.0
+        },
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    }
+  ],
+  "refined_proposals": [
+    {
+      "label": "2025-11-07 03:49 to 03:49 UTC",
+      "start_utc": "2025-11-07T03:49:53+00:00",
+      "end_utc": "2025-11-07T03:49:53+00:00",
+      "score": 0.877,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "1EAA30EA-68E6-452F-96A5-BBAB40203AFC_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 63.79399509717607,
+            "representative_score": 0.59,
+            "previous_representative": "1EAA30EA-68E6-452F-96A5-BBAB40203AFC_1_105_c.jpeg",
+            "reasoning": "The vivid coach and nighttime atmosphere clearly convey transit, though the partial framing limits broader story context."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "1EAA30EA-68E6-452F-96A5-BBAB40203AFC_1_105_c.jpeg",
+          "gap_seconds": 18753.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.128,
+          "model_quality": 0.59
+        },
+        "baseline_score": 0.738,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-07 09:02 to 09:02 UTC",
+      "start_utc": "2025-11-07T09:02:26+00:00",
+      "end_utc": "2025-11-07T09:02:26+00:00",
+      "score": 0.97,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "C9942E5A-BA8C-4CBB-B464-C008FF6A4C0A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 262.50121547134285,
+            "representative_score": 0.9,
+            "previous_representative": "C9942E5A-BA8C-4CBB-B464-C008FF6A4C0A_1_105_c.jpeg",
+            "reasoning": "The expansive framing clearly establishes the landmark setting, while the dramatic sky and event signage add atmosphere and context."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "1EAA30EA-68E6-452F-96A5-BBAB40203AFC_1_105_c.jpeg",
+          "gap_seconds": 18753.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "C9942E5A-BA8C-4CBB-B464-C008FF6A4C0A_1_105_c.jpeg",
+          "distance_metres": 345.5,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.525,
+          "model_quality": 0.9
+        },
+        "baseline_score": 0.857,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-07 09:22 to 09:22 UTC",
+      "start_utc": "2025-11-07T09:22:58+00:00",
+      "end_utc": "2025-11-07T09:22:58+00:00",
+      "score": 0.928,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "1958F392-13E1-4B13-9B00-CECCDF9A9A62_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 538.5700214289956,
+            "representative_score": 0.76,
+            "previous_representative": "1958F392-13E1-4B13-9B00-CECCDF9A9A62_1_105_c.jpeg",
+            "reasoning": "Close tabletop framing clearly captures the meal and dining context, though the cropped person limits narrative depth."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "C9942E5A-BA8C-4CBB-B464-C008FF6A4C0A_1_105_c.jpeg",
+          "distance_metres": 345.5,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "1958F392-13E1-4B13-9B00-CECCDF9A9A62_1_105_c.jpeg",
+          "distance_metres": 162.2,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.76
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-07 10:02 to 10:02 UTC",
+      "start_utc": "2025-11-07T10:02:22+00:00",
+      "end_utc": "2025-11-07T10:02:22+00:00",
+      "score": 0.946,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "9AE3090F-3A23-4805-A096-9803B9F9FCEC_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 311.8808283672358,
+            "representative_score": 0.82,
+            "previous_representative": "9AE3090F-3A23-4805-A096-9803B9F9FCEC_1_105_c.jpeg",
+            "reasoning": "The prominently presented pastries, cinnamon shaker, and bakery setting clearly convey a memorable local food experience."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "1958F392-13E1-4B13-9B00-CECCDF9A9A62_1_105_c.jpeg",
+          "distance_metres": 162.2,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "9AE3090F-3A23-4805-A096-9803B9F9FCEC_1_105_c.jpeg",
+          "distance_metres": 295.9,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.624,
+          "model_quality": 0.82
+        },
+        "baseline_score": 0.887,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-07 10:12 to 10:12 UTC",
+      "start_utc": "2025-11-07T10:12:42+00:00",
+      "end_utc": "2025-11-07T10:12:42+00:00",
+      "score": 0.979,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "70DCCE51-3D43-4A95-9138-5FB69F84BB57_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 830.0684112053519,
+            "representative_score": 0.93,
+            "previous_representative": "70DCCE51-3D43-4A95-9138-5FB69F84BB57_1_105_c.jpeg",
+            "reasoning": "The tram, church fa\u00e7ade, tracks, and street context form a strong layered composition with clear destination character."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "9AE3090F-3A23-4805-A096-9803B9F9FCEC_1_105_c.jpeg",
+          "distance_metres": 295.9,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "70DCCE51-3D43-4A95-9138-5FB69F84BB57_1_105_c.jpeg",
+          "distance_metres": 435.7,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.93
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-07 10:31 to 10:32 UTC",
+      "start_utc": "2025-11-07T10:31:06+00:00",
+      "end_utc": "2025-11-07T10:32:02+00:00",
+      "score": 0.933,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "648860E2-8AD0-48C0-8403-027A3EF5C2A2_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 972.5266127683377,
+            "representative_score": 0.86,
+            "previous_representative": "648860E2-8AD0-48C0-8403-027A3EF5C2A2_1_105_c.jpeg",
+            "reasoning": "Natural architectural framing and layered scenery clearly convey the atmosphere of a scenic historic viewpoint."
+          }
+        },
+        {
+          "relative_path": "1270AF25-3793-4E1A-90C8-55A9B42487D9_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 56.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 15.8,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 56.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "place_change",
+          "after": "70DCCE51-3D43-4A95-9138-5FB69F84BB57_1_105_c.jpeg",
+          "distance_metres": 435.7,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "1270AF25-3793-4E1A-90C8-55A9B42487D9_1_105_c.jpeg",
+          "gap_seconds": 25570.0,
+          "window_seconds": 900
+        },
+        "score_components": {
+          "cohesion": 0.99,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.79
+        },
+        "baseline_score": 0.996,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-07 17:38 to 17:38 UTC",
+      "start_utc": "2025-11-07T17:38:12+00:00",
+      "end_utc": "2025-11-07T17:38:12+00:00",
+      "score": 0.958,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "EB3D6E37-B075-4BFD-9F6F-16E9F74DDEAD_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 147.0354944665192,
+            "representative_score": 0.86,
+            "previous_representative": "EB3D6E37-B075-4BFD-9F6F-16E9F74DDEAD_1_105_c.jpeg",
+            "reasoning": "The layered beach, breaking surf, cliffs, and luminous sky clearly convey the atmosphere of this coastal visit."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "1270AF25-3793-4E1A-90C8-55A9B42487D9_1_105_c.jpeg",
+          "gap_seconds": 25570.0,
+          "window_seconds": 900
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "EB3D6E37-B075-4BFD-9F6F-16E9F74DDEAD_1_105_c.jpeg",
+          "gap_seconds": 76946.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.294,
+          "model_quality": 0.86
+        },
+        "baseline_score": 0.788,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-08 15:00 to 15:00 UTC",
+      "start_utc": "2025-11-08T15:00:38+00:00",
+      "end_utc": "2025-11-08T15:00:38+00:00",
+      "score": 0.97,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "6130D885-BE84-44D5-B683-BEEF29FD5A9D_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 235.26752561289402,
+            "representative_score": 0.9,
+            "previous_representative": "6130D885-BE84-44D5-B683-BEEF29FD5A9D_1_105_c.jpeg",
+            "reasoning": "The lamppost and cliff edge create a distinctive foreground while the expansive beach and town clearly convey the sightseeing moment."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "EB3D6E37-B075-4BFD-9F6F-16E9F74DDEAD_1_105_c.jpeg",
+          "gap_seconds": 76946.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "6130D885-BE84-44D5-B683-BEEF29FD5A9D_1_105_c.jpeg",
+          "distance_metres": 692.7,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.471,
+          "model_quality": 0.9
+        },
+        "baseline_score": 0.841,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-08 15:31 to 15:31 UTC",
+      "start_utc": "2025-11-08T15:31:04+00:00",
+      "end_utc": "2025-11-08T15:31:04+00:00",
+      "score": 0.946,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "806AF03C-9190-4461-8054-8D8847E38656_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 138.75836690243645,
+            "representative_score": 0.82,
+            "previous_representative": "806AF03C-9190-4461-8054-8D8847E38656_1_105_c.jpeg",
+            "reasoning": "The expansive ocean, silhouetted visitors, and winding path communicate both place and experience effectively."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "6130D885-BE84-44D5-B683-BEEF29FD5A9D_1_105_c.jpeg",
+          "distance_metres": 692.7,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "806AF03C-9190-4461-8054-8D8847E38656_1_105_c.jpeg",
+          "gap_seconds": 3706.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.278,
+          "model_quality": 0.82
+        },
+        "baseline_score": 0.783,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-08 16:32 to 17:10 UTC",
+      "start_utc": "2025-11-08T16:32:50+00:00",
+      "end_utc": "2025-11-08T17:10:44+00:00",
+      "score": 0.843,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "31CBE67B-3348-42A1-9B38-6BBF88994DAD_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "33C8391D-8BDF-46CA-A14A-3F27683D569B_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 644.9491219240913,
+            "representative_score": 0.89,
+            "previous_representative": "33C8391D-8BDF-46CA-A14A-3F27683D569B_1_105_c.jpeg",
+            "reasoning": "The layered reeds, curving shoreline, townscape, and open sky create a strong sense of place and memorable scale."
+          }
+        },
+        {
+          "relative_path": "FC61A42F-6EB8-4CD7-98E5-C0A0A8437887_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 3,
+        "primary_count": 3,
+        "attached_count": 0,
+        "span_seconds": 2274.0,
+        "located_members": 3,
+        "unlocated_members": 0,
+        "max_distance_metres": 131.5,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1887.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "806AF03C-9190-4461-8054-8D8847E38656_1_105_c.jpeg",
+          "gap_seconds": 3706.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "FC61A42F-6EB8-4CD7-98E5-C0A0A8437887_1_105_c.jpeg",
+          "distance_metres": 376.8,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 0.719,
+          "location_support": 1.0,
+          "visual_quality": 0.517,
+          "model_quality": 0.85
+        },
+        "baseline_score": 0.743,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-08 17:21 to 17:21 UTC",
+      "start_utc": "2025-11-08T17:21:00+00:00",
+      "end_utc": "2025-11-08T17:21:00+00:00",
+      "score": 0.967,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "2A82C644-85BD-45A4-88B0-00D625697674_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 69.15580026308696,
+            "representative_score": 0.89,
+            "previous_representative": "2A82C644-85BD-45A4-88B0-00D625697674_1_105_c.jpeg",
+            "reasoning": "The elevated composition connects the gathering visitors, fortified overlook, ocean, and sunset into a strong sense of place."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "FC61A42F-6EB8-4CD7-98E5-C0A0A8437887_1_105_c.jpeg",
+          "distance_metres": 376.8,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "2A82C644-85BD-45A4-88B0-00D625697674_1_105_c.jpeg",
+          "gap_seconds": 74270.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.138,
+          "model_quality": 0.89
+        },
+        "baseline_score": 0.741,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-09 13:58 to 13:58 UTC",
+      "start_utc": "2025-11-09T13:58:50+00:00",
+      "end_utc": "2025-11-09T13:58:50+00:00",
+      "score": 0.952,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "E64B3B2B-3BF2-46BC-8CA1-ADA2575A1FF7_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 518.9965477465497,
+            "representative_score": 0.84,
+            "previous_representative": "E64B3B2B-3BF2-46BC-8CA1-ADA2575A1FF7_1_105_c.jpeg",
+            "reasoning": "The tabletop arrangement clearly communicates the caf\u00e9 experience, with street context adding a strong sense of place."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "2A82C644-85BD-45A4-88B0-00D625697674_1_105_c.jpeg",
+          "gap_seconds": 74270.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "E64B3B2B-3BF2-46BC-8CA1-ADA2575A1FF7_1_105_c.jpeg",
+          "gap_seconds": 3179.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.84
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-09 14:51 to 14:51 UTC",
+      "start_utc": "2025-11-09T14:51:49+00:00",
+      "end_utc": "2025-11-09T14:51:49+00:00",
+      "score": 0.952,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "2AD1433B-B056-4568-9D67-DED7E4A9CE92_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 973.0065079128577,
+            "representative_score": 0.84,
+            "previous_representative": "2AD1433B-B056-4568-9D67-DED7E4A9CE92_1_105_c.jpeg",
+            "reasoning": "Strong foreground-to-background layering combines a personal object with an expansive, expressive coastal setting."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "E64B3B2B-3BF2-46BC-8CA1-ADA2575A1FF7_1_105_c.jpeg",
+          "gap_seconds": 3179.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "2AD1433B-B056-4568-9D67-DED7E4A9CE92_1_105_c.jpeg",
+          "gap_seconds": 4566.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.84
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-09 16:07 to 16:07 UTC",
+      "start_utc": "2025-11-09T16:07:55+00:00",
+      "end_utc": "2025-11-09T16:07:55+00:00",
+      "score": 0.979,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "912ED873-A494-412A-9A00-417AB83F70A7_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 491.6766341625609,
+            "representative_score": 0.93,
+            "previous_representative": "912ED873-A494-412A-9A00-417AB83F70A7_1_105_c.jpeg",
+            "reasoning": "The expansive composition clearly captures the town, beach, hillside vegetation, and dramatic sky as a memorable scenic moment."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "2AD1433B-B056-4568-9D67-DED7E4A9CE92_1_105_c.jpeg",
+          "gap_seconds": 4566.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "912ED873-A494-412A-9A00-417AB83F70A7_1_105_c.jpeg",
+          "gap_seconds": 4755.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.983,
+          "model_quality": 0.93
+        },
+        "baseline_score": 0.995,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-09 17:27 to 17:27 UTC",
+      "start_utc": "2025-11-09T17:27:10+00:00",
+      "end_utc": "2025-11-09T17:27:10+00:00",
+      "score": 0.964,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "7E67DB3F-49F3-4DAC-9DE6-21EE25FC9AD0_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 143.57211753330193,
+            "representative_score": 0.88,
+            "previous_representative": "7E67DB3F-49F3-4DAC-9DE6-21EE25FC9AD0_1_105_c.jpeg",
+            "reasoning": "The layered path, walking figure, surf, horizon, and expressive sky clearly convey a memorable coastal outing."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "912ED873-A494-412A-9A00-417AB83F70A7_1_105_c.jpeg",
+          "gap_seconds": 4755.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "7E67DB3F-49F3-4DAC-9DE6-21EE25FC9AD0_1_105_c.jpeg",
+          "distance_metres": 506.0,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.287,
+          "model_quality": 0.88
+        },
+        "baseline_score": 0.786,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-09 18:04 to 18:04 UTC",
+      "start_utc": "2025-11-09T18:04:18+00:00",
+      "end_utc": "2025-11-09T18:04:18+00:00",
+      "score": 0.946,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "19D0AC1C-FDAC-4560-8EEB-3BAFF64A291C_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 788.9849393818682,
+            "representative_score": 0.82,
+            "previous_representative": "19D0AC1C-FDAC-4560-8EEB-3BAFF64A291C_1_105_c.jpeg",
+            "reasoning": "The food-centered framing clearly conveys the dining moment, with recognizable local drinks and an inviting spread."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "7E67DB3F-49F3-4DAC-9DE6-21EE25FC9AD0_1_105_c.jpeg",
+          "distance_metres": 506.0,
+          "threshold_metres": 150.0
+        },
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.82
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    }
+  ],
+  "regrouped_proposals": [
+    {
+      "label": "2025-11-07 09:02 to 10:31 UTC",
+      "start_utc": "2025-11-07T09:02:26+00:00",
+      "end_utc": "2025-11-07T10:31:06+00:00",
+      "score": 0.766,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "C9942E5A-BA8C-4CBB-B464-C008FF6A4C0A_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "9AE3090F-3A23-4805-A096-9803B9F9FCEC_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "70DCCE51-3D43-4A95-9138-5FB69F84BB57_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.93,
+            "previous_representative": "648860E2-8AD0-48C0-8403-027A3EF5C2A2_1_105_c.jpeg",
+            "reasoning": "The tram, church fa\u00e7ade, tracks, and street context form a strong layered composition with clear destination character."
+          }
+        },
+        {
+          "relative_path": "648860E2-8AD0-48C0-8403-027A3EF5C2A2_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 4,
+        "primary_count": 4,
+        "attached_count": 0,
+        "span_seconds": 5320.0,
+        "located_members": 4,
+        "unlocated_members": 0,
+        "max_distance_metres": 747.5,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.507,
+          "location_support": 1.0,
+          "visual_quality": 0.787,
+          "model_quality": 0.877
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "b1beea48af2c21d6",
+          "status": "reviewed",
+          "title": "Lisbon",
+          "about": "Lisbon\u2019s highlights pair Pra\u00e7a do Com\u00e9rcio, a classic yellow tram, Portuguese pastries, and the tiled Miradouro de Santa Luzia viewpoint.",
+          "why": [],
+          "frames": [
+            1,
+            3,
+            4,
+            5
+          ],
+          "days": [
+            "2025-11-07"
+          ]
+        },
+        "baseline_score": 0.739,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-11-07 17:38 to 17:27 UTC",
+      "start_utc": "2025-11-07T17:38:12+00:00",
+      "end_utc": "2025-11-09T17:27:10+00:00",
+      "score": 0.568,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "EB3D6E37-B075-4BFD-9F6F-16E9F74DDEAD_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "6130D885-BE84-44D5-B683-BEEF29FD5A9D_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "2A82C644-85BD-45A4-88B0-00D625697674_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "912ED873-A494-412A-9A00-417AB83F70A7_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 491.6766341625609,
+            "representative_score": 0.93,
+            "previous_representative": "912ED873-A494-412A-9A00-417AB83F70A7_1_105_c.jpeg",
+            "reasoning": "The expansive composition clearly captures the town, beach, hillside vegetation, and dramatic sky as a memorable scenic moment."
+          }
+        },
+        {
+          "relative_path": "7E67DB3F-49F3-4DAC-9DE6-21EE25FC9AD0_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 5,
+        "primary_count": 5,
+        "attached_count": 0,
+        "span_seconds": 172138.0,
+        "located_members": 5,
+        "unlocated_members": 0,
+        "max_distance_metres": 769.3,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.0,
+          "location_support": 1.0,
+          "visual_quality": 0.435,
+          "model_quality": 0.892
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "b1beea48af2c21d6",
+          "status": "reviewed",
+          "title": "Nazar\u00e9",
+          "about": "Nazar\u00e9\u2019s highlights capture its broad beach, dramatic cliffs, hillside town, coastal paths, and an Atlantic sunset.",
+          "why": [],
+          "frames": [
+            7,
+            8,
+            13,
+            16,
+            17
+          ],
+          "days": [
+            "2025-11-07",
+            "2025-11-08",
+            "2025-11-09"
+          ]
+        },
+        "baseline_score": 0.43,
+        "baseline_method_version": "group-1"
+      }
+    }
+  ]
+}

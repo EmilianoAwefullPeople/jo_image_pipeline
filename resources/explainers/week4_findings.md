@@ -220,8 +220,9 @@ Cathedral, London" x4, "The Great Hall, Winchester", "Selhurst Park", every name
   quiet one.
 - Task 7, near-complete field population, is not started.
 - Task 10, trip-context prompting, exists as a design (`resources/explainers/set_context.md`), not code.
-- Every grouping number still rests on Shanghai alone. The two-variant reference sets are the single biggest
-  lever on the evidence base.
+- The two-variant reference sets arrived 2026-08-27 and the five new sample sets were run and benchmarked the
+  same day: see `week4_eval_results.md` for the measured results and `grouping_strategies.md` for the styles
+  side by side. Grouping numbers no longer rest on Shanghai alone.
 
 ## Reproducing
 

@@ -1,0 +1,116 @@
+{
+  "dataset_id": "Berlin",
+  "llm_version": "p3-llm-eval-3",
+  "model": "openai/gpt-5.6-sol",
+  "evaluation": {
+    "records": 36,
+    "valid": 36,
+    "invalid": 0,
+    "retried": 5,
+    "prompt_tokens": 135613,
+    "completion_tokens": 32646,
+    "cost_usd": 0.4055,
+    "latency_ms_median": 13660,
+    "latency_ms_p95": 30505,
+    "field_population": {
+      "1. general_description": {
+        "populated": 36,
+        "of": 36,
+        "rate": 1.0
+      },
+      "2. scene_setting": {
+        "populated": 36,
+        "of": 36,
+        "rate": 1.0
+      },
+      "3. landmark": {
+        "populated": 1,
+        "of": 36,
+        "rate": 0.028
+      },
+      "4. notable_subjects": {
+        "populated": 36,
+        "of": 36,
+        "rate": 1.0
+      },
+      "5. focal_points": {
+        "populated": 36,
+        "of": 36,
+        "rate": 1.0
+      },
+      "6. activity": {
+        "populated": 25,
+        "of": 36,
+        "rate": 0.694
+      },
+      "7. environment": {
+        "populated": 36,
+        "of": 36,
+        "rate": 1.0
+      },
+      "8. composition": {
+        "populated": 36,
+        "of": 36,
+        "rate": 1.0
+      },
+      "9. weather": {
+        "populated": 36,
+        "of": 36,
+        "rate": 1.0
+      },
+      "10. keyword_tags": {
+        "populated": 36,
+        "of": 36,
+        "rate": 1.0
+      },
+      "11. photographic_style": {
+        "populated": 36,
+        "of": 36,
+        "rate": 1.0
+      },
+      "extra: why_tags": {
+        "populated": 33,
+        "of": 36,
+        "rate": 0.917
+      }
+    }
+  },
+  "reviews": {
+    "review-r1-moment-review-1": {
+      "records": 7,
+      "valid": 7,
+      "cost_usd": 0.0434,
+      "latency_ms_median": 5743
+    },
+    "review-rtopic-enjoyable_moments-1-topic-review-1": {
+      "records": 1,
+      "valid": 1,
+      "cost_usd": 0.026,
+      "latency_ms_median": 22641
+    },
+    "review-rtopic-foodie_tour-1-topic-review-1": {
+      "records": 1,
+      "valid": 1,
+      "cost_usd": 0.0369,
+      "latency_ms_median": 37820
+    },
+    "review-rtopic-landmark_tour-1-topic-review-1": {
+      "records": 1,
+      "valid": 1,
+      "cost_usd": 0.0139,
+      "latency_ms_median": 4280
+    },
+    "review-rtopic-location_highlights-1-topic-review-1": {
+      "records": 1,
+      "valid": 1,
+      "cost_usd": 0.0373,
+      "latency_ms_median": 37611
+    },
+    "review-rtopic-memories-1-topic-review-1": {
+      "records": 1,
+      "valid": 1,
+      "cost_usd": 0.0372,
+      "latency_ms_median": 41476
+    }
+  }
+}

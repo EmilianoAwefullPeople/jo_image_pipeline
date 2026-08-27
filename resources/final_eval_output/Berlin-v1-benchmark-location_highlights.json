@@ -1,0 +1,3439 @@
+{
+  "dataset_id": "Berlin",
+  "dataset_version": "1",
+  "model_id": "openai/gpt-5.6-sol",
+  "llm_method_version": "p3/llm-eval-3",
+  "baseline_comparison": {
+    "compared_assets": 34,
+    "reference_groups": 13,
+    "proposed_groups": 25,
+    "pair_precision": 0.176,
+    "pair_recall": 0.029,
+    "pair_f1": 0.05,
+    "split_groups": 7,
+    "merged_proposals": 10,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "refined_comparison": {
+    "compared_assets": 33,
+    "reference_groups": 13,
+    "proposed_groups": 25,
+    "pair_precision": 0.2,
+    "pair_recall": 0.031,
+    "pair_f1": 0.054,
+    "split_groups": 7,
+    "merged_proposals": 10,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "regrouped_comparison": {
+    "compared_assets": 13,
+    "reference_groups": 13,
+    "proposed_groups": 12,
+    "pair_precision": 0.0,
+    "pair_recall": 0.0,
+    "pair_f1": 0.0,
+    "split_groups": 4,
+    "merged_proposals": 6,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "keep_signal_score": {
+    "excluded_total": 0,
+    "excluded_with_signal": 0,
+    "excluded_caught": 0,
+    "grouped_total": 34,
+    "grouped_with_signal": 34,
+    "grouped_false_positives": 1,
+    "recall": 0.0,
+    "false_positive_rate": 0.029,
+    "method_version": "keepscore-1",
+    "caught": [],
+    "missed": [],
+    "false_positives": [
+      {
+        "relative_path": "37CA2DC6-217D-4CDA-B0CB-7B85941D79CB_4_5005_c.jpeg",
+        "keep_signal": "leave_out",
+        "reason": "The frame appears mainly practical, documenting personal gear without a distinctive place or expressive moment.",
+        "confidence": 0.74
+      }
+    ]
+  },
+  "review_keep_signal_score": {
+    "excluded_total": 0,
+    "excluded_with_signal": 0,
+    "excluded_caught": 0,
+    "grouped_total": 34,
+    "grouped_with_signal": 34,
+    "grouped_false_positives": 1,
+    "recall": 0.0,
+    "false_positive_rate": 0.029,
+    "method_version": "keepscore-1",
+    "caught": [],
+    "missed": [],
+    "false_positives": [
+      {
+        "relative_path": "37CA2DC6-217D-4CDA-B0CB-7B85941D79CB_4_5005_c.jpeg",
+        "keep_signal": "leave_out",
+        "reason": "The frame appears mainly practical, documenting personal gear without a distinctive place or expressive moment.",
+        "confidence": 0.74
+      }
+    ]
+  },
+  "review": {
+    "style": "location_highlights",
+    "sessions": 1,
+    "records": [
+      {
+        "dataset_id": "Berlin",
+        "session_id": "c8d4a56555b2352f",
+        "style": "location_highlights",
+        "frame_paths": [
+          "D127A733-A526-4B5B-A60E-142546A1A76B_4_5005_c.jpeg",
+          "CBD4BFE5-14E9-49D8-B3F6-095994AC5A13_4_5005_c.jpeg",
+          "D2FEBBAF-BABC-47DD-BA07-8D0E2E89F32F_1_105_c.jpeg",
+          "B37315AF-A216-4584-9046-DBDA0A91B0DE_4_5005_c.jpeg",
+          "DFF2F7C1-B22C-4CAD-B355-0F1CB51C06C1_4_5005_c.jpeg",
+          "2D15E2EE-EBD3-4227-8688-113BE16D9514_4_5005_c.jpeg",
+          "8D8B8499-EAB4-4E77-8C66-DAB3CCE03BBA_4_5005_c.jpeg",
+          "72098856-00AE-4FE0-8F91-22A4B8EC0E74_4_5005_c.jpeg",
+          "E710E459-2431-4998-9582-D5FCE9434BEA_4_5005_c.jpeg",
+          "C67F0FE2-2457-4F63-AA2D-2E24DA9B90D9_4_5005_c.jpeg",
+          "971B0D37-140D-4E95-A513-FB165BE3C343_4_5005_c.jpeg",
+          "3AD876AC-9F84-46F8-8214-C9605ECB5C33_1_105_c.jpeg",
+          "687F92E4-1609-4CA3-A13A-F5DF88CBC024_4_5005_c.jpeg",
+          "DE7F57B8-C7F3-45E4-B104-5A630A4AFF8E_1_105_c.jpeg",
+          "37F64823-AB1D-4D3F-B9D3-E5392C604F4E_1_105_c.jpeg",
+          "0C24800B-BE0B-44C6-A7A3-2D03D2A5BA83_1_105_c.jpeg",
+          "21527A9B-417D-4725-98CE-5E90866FE46D_1_105_c.jpeg",
+          "9EF25287-FF51-4C68-A248-8B460E292EF6_1_105_c.jpeg",
+          "3D26333B-82C1-4CC7-9A1D-B63809539D1C_1_105_c.jpeg",
+          "F1F0B2CF-8012-4C2D-8F71-45DDD642384A_1_105_c.jpeg",
+          "A7BBBF9C-176F-4DA2-949B-9D893BCDE705_1_105_c.jpeg",
+          "7AA04F31-5E7F-4168-996E-412AA28222F7_1_105_c.jpeg",
+          "4D3124F1-E7AA-440B-8CD9-EF856EC356C8_4_5005_c.jpeg",
+          "365D361F-590B-416E-B15F-33C06B24C3AC_4_5005_c.jpeg",
+          "D53B458D-C9DD-46D3-918A-1DFB3FE33325_4_5005_c.jpeg",
+          "EEAB5E56-D1A0-4158-AB0A-9F962E78CAEB_4_5005_c.jpeg",
+          "29FE293F-D04F-48C0-BEF5-54CAD351AD9F_4_5005_c.jpeg",
+          "7AE20A75-25AB-4C53-BB36-DE4CC05246A2_1_105_c.jpeg",
+          "13471ABB-F892-4ABD-AF5C-C5F60C23EBB6_1_105_c.jpeg",
+          "333B8F41-0FC8-449F-A704-D0667D4E23A3_1_105_c.jpeg",
+          "12A855D7-2632-4A98-9BAC-DAA6D492EAB5_1_105_c.jpeg",
+          "E571ED15-449B-413F-8386-A57A1BF16283_4_5005_c.jpeg",
+          "37CA2DC6-217D-4CDA-B0CB-7B85941D79CB_4_5005_c.jpeg",
+          "44E490A5-E765-4B93-B254-7EF660CECBF6_1_105_c.jpeg"
+        ],
+        "model": "openai/gpt-5.6-sol",
+        "review_prompt_version": "topic-location_highlights-1",
+        "review_schema_version": "topic-review-1",
+        "source_version": "p3-llm-eval-3",
+        "reviewed_utc": "2026-08-27T22:15:31.792020+00:00",
+        "attempts": 1,
+        "latency_ms": 37611,
+        "prompt_tokens": 4783,
+        "completion_tokens": 2537,
+        "cost_usd": 0.037326,
+        "generation_id": "gen-1787868894-l8oL2VUuda8Odw04Ntfk",
+        "validation_status": "valid",
+        "review": {
+          "groups": [
+            {
+              "frames": [
+                0
+              ],
+              "title": "Urban Railway Station",
+              "about": "The historic brick water tower, railway platform, and bright sky make this the strongest view of the station.",
+              "why": []
+            },
+            {
+              "frames": [
+                3
+              ],
+              "title": "Lush Formal Urban Garden",
+              "about": "Arched trellises, clipped foliage, flowers, and mature trees capture the garden at its sunniest and most inviting.",
+              "why": []
+            },
+            {
+              "frames": [
+                5,
+                8
+              ],
+              "title": "Leafy European Street",
+              "about": "Ornate historic facades and a relaxed espresso stop on patterned cobblestones highlight the character of this leafy street.",
+              "why": []
+            },
+            {
+              "frames": [
+                12
+              ],
+              "title": "Berlin Cathedral",
+              "about": "The monumental cathedral dome, riverside promenade, bicycles, and dramatic clouds create the standout Berlin Cathedral view.",
+              "why": []
+            },
+            {
+              "frames": [
+                13
+              ],
+              "title": "Tree-Lined European Street",
+              "about": "Colorful chalk drawings and hanging flags make this historic tree-lined street especially lively and distinctive.",
+              "why": []
+            },
+            {
+              "frames": [
+                14
+              ],
+              "title": "Ornate Historic Restaurant Streetscape",
+              "about": "The decorated restaurant facade and clear evening light provide the strongest sense of this quiet streetscape.",
+              "why": []
+            },
+            {
+              "frames": [
+                15
+              ],
+              "title": "Tree-Lined Urban River Park",
+              "about": "A curving river, weeping willows, expansive clouds, and a distant spire form the park\u2019s most tranquil view.",
+              "why": []
+            },
+            {
+              "frames": [
+                16
+              ],
+              "title": "Leafy City Boulevard",
+              "about": "Mature trees and a long fortress-like stone building give this boulevard its strongest architectural character.",
+              "why": []
+            },
+            {
+              "frames": [
+                18
+              ],
+              "title": "Leafy Residential Street",
+              "about": "Brick residences, mature street trees, and the bright evening sky best capture this neighborhood street.",
+              "why": []
+            },
+            {
+              "frames": [
+                19
+              ],
+              "title": "Wooded Outdoor Screening Venue",
+              "about": "The large screen and gathering beneath the trees capture the venue at its liveliest.",
+              "why": []
+            },
+            {
+              "frames": [
+                21
+              ],
+              "title": "Industrial-Style Bouldering Gym",
+              "about": "The colorful climbing wall and active indoor scene provide the clearest highlight of the bouldering gym.",
+              "why": []
+            },
+            {
+              "frames": [
+                28,
+                29
+              ],
+              "title": "Leafy European Neighborhood Street",
+              "about": "A sunny coffee walk and a peaceful canal-side pastry stop show two complementary highlights of the leafy neighborhood.",
+              "why": []
+            }
+          ]
+        },
+        "failure_detail": null
+      }
+    ],
+    "unassigned": [
+      "CBD4BFE5-14E9-49D8-B3F6-095994AC5A13_4_5005_c.jpeg",
+      "D2FEBBAF-BABC-47DD-BA07-8D0E2E89F32F_1_105_c.jpeg",
+      "DFF2F7C1-B22C-4CAD-B355-0F1CB51C06C1_4_5005_c.jpeg",
+      "8D8B8499-EAB4-4E77-8C66-DAB3CCE03BBA_4_5005_c.jpeg",
+      "72098856-00AE-4FE0-8F91-22A4B8EC0E74_4_5005_c.jpeg",
+      "C67F0FE2-2457-4F63-AA2D-2E24DA9B90D9_4_5005_c.jpeg",
+      "971B0D37-140D-4E95-A513-FB165BE3C343_4_5005_c.jpeg",
+      "3AD876AC-9F84-46F8-8214-C9605ECB5C33_1_105_c.jpeg",
+      "9EF25287-FF51-4C68-A248-8B460E292EF6_1_105_c.jpeg",
+      "A7BBBF9C-176F-4DA2-949B-9D893BCDE705_1_105_c.jpeg",
+      "4D3124F1-E7AA-440B-8CD9-EF856EC356C8_4_5005_c.jpeg",
+      "365D361F-590B-416E-B15F-33C06B24C3AC_4_5005_c.jpeg",
+      "D53B458D-C9DD-46D3-918A-1DFB3FE33325_4_5005_c.jpeg",
+      "EEAB5E56-D1A0-4158-AB0A-9F962E78CAEB_4_5005_c.jpeg",
+      "29FE293F-D04F-48C0-BEF5-54CAD351AD9F_4_5005_c.jpeg",
+      "7AE20A75-25AB-4C53-BB36-DE4CC05246A2_1_105_c.jpeg",
+      "12A855D7-2632-4A98-9BAC-DAA6D492EAB5_1_105_c.jpeg",
+      "E571ED15-449B-413F-8386-A57A1BF16283_4_5005_c.jpeg",
+      "37CA2DC6-217D-4CDA-B0CB-7B85941D79CB_4_5005_c.jpeg",
+      "44E490A5-E765-4B93-B254-7EF660CECBF6_1_105_c.jpeg"
+    ],
+    "cost_usd": 0.0373
+  },
+  "baseline_proposals": [
+    {
+      "label": "2026-06-17 14:49 to 14:49 UTC",
+      "start_utc": "2026-06-17T14:49:05+00:00",
+      "end_utc": "2026-06-17T14:49:05+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "D127A733-A526-4B5B-A60E-142546A1A76B_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1197.6694988163365
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "D127A733-A526-4B5B-A60E-142546A1A76B_4_5005_c.jpeg",
+          "gap_seconds": 3991.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-17 15:55 to 15:55 UTC",
+      "start_utc": "2026-06-17T15:55:36+00:00",
+      "end_utc": "2026-06-17T15:55:36+00:00",
+      "score": 0.82,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "CBD4BFE5-14E9-49D8-B3F6-095994AC5A13_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 200.66171796603732
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "D127A733-A526-4B5B-A60E-142546A1A76B_4_5005_c.jpeg",
+          "gap_seconds": 3991.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "CBD4BFE5-14E9-49D8-B3F6-095994AC5A13_4_5005_c.jpeg",
+          "gap_seconds": 12152.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.401
+        }
+      }
+    },
+    {
+      "label": "2026-06-17 19:18 to 19:18 UTC",
+      "start_utc": "2026-06-17T19:18:08+00:00",
+      "end_utc": "2026-06-17T19:18:08+00:00",
+      "score": 0.923,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "D2FEBBAF-BABC-47DD-BA07-8D0E2E89F32F_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 371.0647482555101
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "CBD4BFE5-14E9-49D8-B3F6-095994AC5A13_4_5005_c.jpeg",
+          "gap_seconds": 12152.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "D2FEBBAF-BABC-47DD-BA07-8D0E2E89F32F_1_105_c.jpeg",
+          "gap_seconds": 56755.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.742
+        }
+      }
+    },
+    {
+      "label": "2026-06-18 11:04 to 11:04 UTC",
+      "start_utc": "2026-06-18T11:04:03+00:00",
+      "end_utc": "2026-06-18T11:04:03+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "B37315AF-A216-4584-9046-DBDA0A91B0DE_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 2061.814396556579
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "D2FEBBAF-BABC-47DD-BA07-8D0E2E89F32F_1_105_c.jpeg",
+          "gap_seconds": 56755.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "B37315AF-A216-4584-9046-DBDA0A91B0DE_4_5005_c.jpeg",
+          "distance_metres": 460.8,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-18 11:15 to 11:35 UTC",
+      "start_utc": "2026-06-18T11:15:43+00:00",
+      "end_utc": "2026-06-18T11:35:11+00:00",
+      "score": 0.889,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "DFF2F7C1-B22C-4CAD-B355-0F1CB51C06C1_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "2D15E2EE-EBD3-4227-8688-113BE16D9514_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 3479.8913581050338
+          }
+        },
+        {
+          "relative_path": "8D8B8499-EAB4-4E77-8C66-DAB3CCE03BBA_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "72098856-00AE-4FE0-8F91-22A4B8EC0E74_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "E710E459-2431-4998-9582-D5FCE9434BEA_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 5,
+        "primary_count": 5,
+        "attached_count": 0,
+        "span_seconds": 1168.0,
+        "located_members": 5,
+        "unlocated_members": 0,
+        "max_distance_metres": 106.7,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 684.0,
+          "window_seconds": 1216.0
+        },
+        "opened_by": {
+          "kind": "place_change",
+          "after": "B37315AF-A216-4584-9046-DBDA0A91B0DE_4_5005_c.jpeg",
+          "distance_metres": 460.8,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "E710E459-2431-4998-9582-D5FCE9434BEA_4_5005_c.jpeg",
+          "gap_seconds": 3745.0,
+          "window_seconds": 1588.0
+        },
+        "score_components": {
+          "cohesion": 0.913,
+          "location_support": 1.0,
+          "visual_quality": 0.747
+        }
+      }
+    },
+    {
+      "label": "2026-06-18 12:37 to 12:37 UTC",
+      "start_utc": "2026-06-18T12:37:36+00:00",
+      "end_utc": "2026-06-18T12:37:36+00:00",
+      "score": 0.884,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "C67F0FE2-2457-4F63-AA2D-2E24DA9B90D9_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 306.47119961389615
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "E710E459-2431-4998-9582-D5FCE9434BEA_4_5005_c.jpeg",
+          "gap_seconds": 3745.0,
+          "window_seconds": 1588.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "C67F0FE2-2457-4F63-AA2D-2E24DA9B90D9_4_5005_c.jpeg",
+          "gap_seconds": 74045.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.613
+        }
+      }
+    },
+    {
+      "label": "2026-06-19 09:11 to 09:17 UTC",
+      "start_utc": "2026-06-19T09:11:41+00:00",
+      "end_utc": "2026-06-19T09:17:34+00:00",
+      "score": 0.901,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "971B0D37-140D-4E95-A513-FB165BE3C343_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 993.7224734371985
+          }
+        },
+        {
+          "relative_path": "3AD876AC-9F84-46F8-8214-C9605ECB5C33_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 353.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 9.2,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 353.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "C67F0FE2-2457-4F63-AA2D-2E24DA9B90D9_4_5005_c.jpeg",
+          "gap_seconds": 74045.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "3AD876AC-9F84-46F8-8214-C9605ECB5C33_1_105_c.jpeg",
+          "gap_seconds": 4540.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.935,
+          "location_support": 1.0,
+          "visual_quality": 0.756
+        }
+      }
+    },
+    {
+      "label": "2026-06-19 10:33 to 10:33 UTC",
+      "start_utc": "2026-06-19T10:33:14+00:00",
+      "end_utc": "2026-06-19T10:33:14+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "687F92E4-1609-4CA3-A13A-F5DF88CBC024_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 585.2070240719307
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "3AD876AC-9F84-46F8-8214-C9605ECB5C33_1_105_c.jpeg",
+          "gap_seconds": 4540.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "687F92E4-1609-4CA3-A13A-F5DF88CBC024_4_5005_c.jpeg",
+          "gap_seconds": 10120.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-19 13:21 to 13:21 UTC",
+      "start_utc": "2026-06-19T13:21:54+00:00",
+      "end_utc": "2026-06-19T13:21:54+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "DE7F57B8-C7F3-45E4-B104-5A630A4AFF8E_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1573.6463341504957
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "687F92E4-1609-4CA3-A13A-F5DF88CBC024_4_5005_c.jpeg",
+          "gap_seconds": 10120.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "DE7F57B8-C7F3-45E4-B104-5A630A4AFF8E_1_105_c.jpeg",
+          "gap_seconds": 23638.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-19 19:55 to 19:55 UTC",
+      "start_utc": "2026-06-19T19:55:52+00:00",
+      "end_utc": "2026-06-19T19:55:52+00:00",
+      "score": 0.852,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "37F64823-AB1D-4D3F-B9D3-E5392C604F4E_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 252.81542304838595
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "DE7F57B8-C7F3-45E4-B104-5A630A4AFF8E_1_105_c.jpeg",
+          "gap_seconds": 23638.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "37F64823-AB1D-4D3F-B9D3-E5392C604F4E_1_105_c.jpeg",
+          "gap_seconds": 75213.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.506
+        }
+      }
+    },
+    {
+      "label": "2026-06-20 16:49 to 16:49 UTC",
+      "start_utc": "2026-06-20T16:49:25+00:00",
+      "end_utc": "2026-06-20T16:49:25+00:00",
+      "score": 0.812,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "0C24800B-BE0B-44C6-A7A3-2D03D2A5BA83_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 187.30773608872872
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "37F64823-AB1D-4D3F-B9D3-E5392C604F4E_1_105_c.jpeg",
+          "gap_seconds": 75213.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "0C24800B-BE0B-44C6-A7A3-2D03D2A5BA83_1_105_c.jpeg",
+          "distance_metres": 1245.8,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.375
+        }
+      }
+    },
+    {
+      "label": "2026-06-20 17:11 to 17:11 UTC",
+      "start_utc": "2026-06-20T17:11:58+00:00",
+      "end_utc": "2026-06-20T17:11:58+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "21527A9B-417D-4725-98CE-5E90866FE46D_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1162.43682669931
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "0C24800B-BE0B-44C6-A7A3-2D03D2A5BA83_1_105_c.jpeg",
+          "distance_metres": 1245.8,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "21527A9B-417D-4725-98CE-5E90866FE46D_1_105_c.jpeg",
+          "distance_metres": 1418.6,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-20 17:39 to 17:39 UTC",
+      "start_utc": "2026-06-20T17:39:24+00:00",
+      "end_utc": "2026-06-20T17:39:24+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "9EF25287-FF51-4C68-A248-8B460E292EF6_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 931.052514328906
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "21527A9B-417D-4725-98CE-5E90866FE46D_1_105_c.jpeg",
+          "distance_metres": 1418.6,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "9EF25287-FF51-4C68-A248-8B460E292EF6_1_105_c.jpeg",
+          "gap_seconds": 4768.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-20 18:58 to 18:58 UTC",
+      "start_utc": "2026-06-20T18:58:52+00:00",
+      "end_utc": "2026-06-20T18:58:52+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "3D26333B-82C1-4CC7-9A1D-B63809539D1C_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 697.4519236816301
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "9EF25287-FF51-4C68-A248-8B460E292EF6_1_105_c.jpeg",
+          "gap_seconds": 4768.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "3D26333B-82C1-4CC7-9A1D-B63809539D1C_1_105_c.jpeg",
+          "gap_seconds": 3323.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-20 19:54 to 19:54 UTC",
+      "start_utc": "2026-06-20T19:54:15+00:00",
+      "end_utc": "2026-06-20T19:54:15+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "F1F0B2CF-8012-4C2D-8F71-45DDD642384A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 519.7677441543331
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "3D26333B-82C1-4CC7-9A1D-B63809539D1C_1_105_c.jpeg",
+          "gap_seconds": 3323.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "F1F0B2CF-8012-4C2D-8F71-45DDD642384A_1_105_c.jpeg",
+          "gap_seconds": 11902.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-20 23:12 to 23:12 UTC",
+      "start_utc": "2026-06-20T23:12:37+00:00",
+      "end_utc": "2026-06-20T23:12:37+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "A7BBBF9C-176F-4DA2-949B-9D893BCDE705_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 890.5823576137578
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "F1F0B2CF-8012-4C2D-8F71-45DDD642384A_1_105_c.jpeg",
+          "gap_seconds": 11902.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "A7BBBF9C-176F-4DA2-949B-9D893BCDE705_1_105_c.jpeg",
+          "gap_seconds": 40774.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-21 10:32 to 10:52 UTC",
+      "start_utc": "2026-06-21T10:32:11+00:00",
+      "end_utc": "2026-06-21T10:52:28+00:00",
+      "score": 0.808,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "7AA04F31-5E7F-4168-996E-412AA28222F7_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "4D3124F1-E7AA-440B-8CD9-EF856EC356C8_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 441.3491666661308
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 1217.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 3.1,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1217.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "A7BBBF9C-176F-4DA2-949B-9D893BCDE705_1_105_c.jpeg",
+          "gap_seconds": 40774.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "4D3124F1-E7AA-440B-8CD9-EF856EC356C8_4_5005_c.jpeg",
+          "gap_seconds": 5914.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.775,
+          "location_support": 1.0,
+          "visual_quality": 0.66
+        }
+      }
+    },
+    {
+      "label": "2026-06-21 12:31 to 12:47 UTC",
+      "start_utc": "2026-06-21T12:31:02+00:00",
+      "end_utc": "2026-06-21T12:47:52+00:00",
+      "score": 0.925,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "365D361F-590B-416E-B15F-33C06B24C3AC_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 848.9260455085827
+          }
+        },
+        {
+          "relative_path": "D53B458D-C9DD-46D3-918A-1DFB3FE33325_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 1010.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 7.7,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1010.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "4D3124F1-E7AA-440B-8CD9-EF856EC356C8_4_5005_c.jpeg",
+          "gap_seconds": 5914.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "D53B458D-C9DD-46D3-918A-1DFB3FE33325_4_5005_c.jpeg",
+          "gap_seconds": 6672.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.813,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-21 14:39 to 14:39 UTC",
+      "start_utc": "2026-06-21T14:39:04+00:00",
+      "end_utc": "2026-06-21T14:39:04+00:00",
+      "score": 0.846,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "EEAB5E56-D1A0-4158-AB0A-9F962E78CAEB_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 244.077217128424
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "D53B458D-C9DD-46D3-918A-1DFB3FE33325_4_5005_c.jpeg",
+          "gap_seconds": 6672.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "EEAB5E56-D1A0-4158-AB0A-9F962E78CAEB_4_5005_c.jpeg",
+          "gap_seconds": 87900.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.488
+        }
+      }
+    },
+    {
+      "label": "2026-06-22 15:04 to 15:04 UTC",
+      "start_utc": "2026-06-22T15:04:04+00:00",
+      "end_utc": "2026-06-22T15:04:04+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "29FE293F-D04F-48C0-BEF5-54CAD351AD9F_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 751.2647701822582
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "EEAB5E56-D1A0-4158-AB0A-9F962E78CAEB_4_5005_c.jpeg",
+          "gap_seconds": 87900.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "29FE293F-D04F-48C0-BEF5-54CAD351AD9F_4_5005_c.jpeg",
+          "gap_seconds": 73569.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-23 11:30 to 11:42 UTC",
+      "start_utc": "2026-06-23T11:30:13+00:00",
+      "end_utc": "2026-06-23T11:42:15+00:00",
+      "score": 0.946,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "7AE20A75-25AB-4C53-BB36-DE4CC05246A2_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "13471ABB-F892-4ABD-AF5C-C5F60C23EBB6_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1099.6744529465989
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 722.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 14.3,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 722.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "29FE293F-D04F-48C0-BEF5-54CAD351AD9F_4_5005_c.jpeg",
+          "gap_seconds": 73569.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "13471ABB-F892-4ABD-AF5C-C5F60C23EBB6_1_105_c.jpeg",
+          "distance_metres": 186.6,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 0.866,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-23 11:45 to 11:45 UTC",
+      "start_utc": "2026-06-23T11:45:29+00:00",
+      "end_utc": "2026-06-23T11:45:29+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "333B8F41-0FC8-449F-A704-D0667D4E23A3_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1501.3877228745775
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "13471ABB-F892-4ABD-AF5C-C5F60C23EBB6_1_105_c.jpeg",
+          "distance_metres": 186.6,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "333B8F41-0FC8-449F-A704-D0667D4E23A3_1_105_c.jpeg",
+          "gap_seconds": 9007.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-06-23 14:15 to 14:15 UTC",
+      "start_utc": "2026-06-23T14:15:36+00:00",
+      "end_utc": "2026-06-23T14:15:36+00:00",
+      "score": 0.914,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "12A855D7-2632-4A98-9BAC-DAA6D492EAB5_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 357.3601457516973
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "333B8F41-0FC8-449F-A704-D0667D4E23A3_1_105_c.jpeg",
+          "gap_seconds": 9007.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "12A855D7-2632-4A98-9BAC-DAA6D492EAB5_1_105_c.jpeg",
+          "gap_seconds": 73681.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.715
+        }
+      }
+    },
+    {
+      "label": "2026-06-24 10:43 to 11:25 UTC",
+      "start_utc": "2026-06-24T10:43:37+00:00",
+      "end_utc": "2026-06-24T11:25:35+00:00",
+      "score": 0.774,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "E571ED15-449B-413F-8386-A57A1BF16283_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "37CA2DC6-217D-4CDA-B0CB-7B85941D79CB_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 3748.5151600035033
+          }
+        },
+        {
+          "relative_path": "44E490A5-E765-4B93-B254-7EF660CECBF6_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 3,
+        "primary_count": 3,
+        "attached_count": 0,
+        "span_seconds": 2518.0,
+        "located_members": 3,
+        "unlocated_members": 0,
+        "max_distance_metres": 137.8,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1931.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "12A855D7-2632-4A98-9BAC-DAA6D492EAB5_1_105_c.jpeg",
+          "gap_seconds": 73681.0,
+          "window_seconds": 2700
+        },
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.689,
+          "location_support": 1.0,
+          "visual_quality": 0.662
+        }
+      }
+    },
+    {
+      "label": "Unanchored assets",
+      "start_utc": null,
+      "end_utc": null,
+      "score": 0.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "11D7C2A6-529C-4989-8172-561B5B016CC7_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "no capture timestamp"
+          }
+        },
+        {
+          "relative_path": "AC164177-8FC3-4A5D-87AE-1D5AC88136BB_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "no capture timestamp"
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "reason": "no capture timestamp and no coordinate to place these assets"
+      }
+    }
+  ],
+  "refined_proposals": [
+    {
+      "label": "2026-06-17 14:49 to 14:49 UTC",
+      "start_utc": "2026-06-17T14:49:05+00:00",
+      "end_utc": "2026-06-17T14:49:05+00:00",
+      "score": 0.91,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "D127A733-A526-4B5B-A60E-142546A1A76B_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1197.6694988163365,
+            "representative_score": 0.7,
+            "previous_representative": "D127A733-A526-4B5B-A60E-142546A1A76B_4_5005_c.jpeg",
+            "reasoning": "The historic tower and expansive sky provide a strong sense of place, while railway structures add travel context despite visual clutter."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "D127A733-A526-4B5B-A60E-142546A1A76B_4_5005_c.jpeg",
+          "gap_seconds": 3991.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.7
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-17 15:55 to 15:55 UTC",
+      "start_utc": "2026-06-17T15:55:36+00:00",
+      "end_utc": "2026-06-17T15:55:36+00:00",
+      "score": 0.916,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "CBD4BFE5-14E9-49D8-B3F6-095994AC5A13_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 200.66171796603732,
+            "representative_score": 0.72,
+            "previous_representative": "CBD4BFE5-14E9-49D8-B3F6-095994AC5A13_4_5005_c.jpeg",
+            "reasoning": "The overhead framing centers the expressive dog clearly while the balance board adds context and personality."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "D127A733-A526-4B5B-A60E-142546A1A76B_4_5005_c.jpeg",
+          "gap_seconds": 3991.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "CBD4BFE5-14E9-49D8-B3F6-095994AC5A13_4_5005_c.jpeg",
+          "gap_seconds": 12152.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.401,
+          "model_quality": 0.72
+        },
+        "baseline_score": 0.82,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-17 19:18 to 19:18 UTC",
+      "start_utc": "2026-06-17T19:18:08+00:00",
+      "end_utc": "2026-06-17T19:18:08+00:00",
+      "score": 0.886,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "D2FEBBAF-BABC-47DD-BA07-8D0E2E89F32F_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 371.0647482555101,
+            "representative_score": 0.62,
+            "previous_representative": "D2FEBBAF-BABC-47DD-BA07-8D0E2E89F32F_1_105_c.jpeg",
+            "reasoning": "The close framing clearly captures the snack and cobblestone setting, but provides limited broader travel context."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "CBD4BFE5-14E9-49D8-B3F6-095994AC5A13_4_5005_c.jpeg",
+          "gap_seconds": 12152.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "D2FEBBAF-BABC-47DD-BA07-8D0E2E89F32F_1_105_c.jpeg",
+          "gap_seconds": 56755.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.742,
+          "model_quality": 0.62
+        },
+        "baseline_score": 0.923,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-18 11:04 to 11:04 UTC",
+      "start_utc": "2026-06-18T11:04:03+00:00",
+      "end_utc": "2026-06-18T11:04:03+00:00",
+      "score": 0.928,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "B37315AF-A216-4584-9046-DBDA0A91B0DE_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 2061.814396556579,
+            "representative_score": 0.76,
+            "previous_representative": "B37315AF-A216-4584-9046-DBDA0A91B0DE_4_5005_c.jpeg",
+            "reasoning": "Layered greenery, the curved trellis, and bright sky create a pleasant sense of place and calm."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "D2FEBBAF-BABC-47DD-BA07-8D0E2E89F32F_1_105_c.jpeg",
+          "gap_seconds": 56755.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "B37315AF-A216-4584-9046-DBDA0A91B0DE_4_5005_c.jpeg",
+          "distance_metres": 460.8,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.76
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-18 11:15 to 11:35 UTC",
+      "start_utc": "2026-06-18T11:15:43+00:00",
+      "end_utc": "2026-06-18T11:35:11+00:00",
+      "score": 0.866,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "DFF2F7C1-B22C-4CAD-B355-0F1CB51C06C1_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "2D15E2EE-EBD3-4227-8688-113BE16D9514_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "8D8B8499-EAB4-4E77-8C66-DAB3CCE03BBA_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "72098856-00AE-4FE0-8F91-22A4B8EC0E74_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "E710E459-2431-4998-9582-D5FCE9434BEA_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.78,
+            "previous_representative": "2D15E2EE-EBD3-4227-8688-113BE16D9514_4_5005_c.jpeg",
+            "reasoning": "The centered espresso and surrounding travel details clearly convey a personal, relaxed caf\u00e9 moment."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 5,
+        "primary_count": 5,
+        "attached_count": 0,
+        "span_seconds": 1168.0,
+        "located_members": 5,
+        "unlocated_members": 0,
+        "max_distance_metres": 106.7,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 684.0,
+          "window_seconds": 1216.0
+        },
+        "opened_by": {
+          "kind": "place_change",
+          "after": "B37315AF-A216-4584-9046-DBDA0A91B0DE_4_5005_c.jpeg",
+          "distance_metres": 460.8,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "E710E459-2431-4998-9582-D5FCE9434BEA_4_5005_c.jpeg",
+          "gap_seconds": 3745.0,
+          "window_seconds": 1588.0
+        },
+        "score_components": {
+          "cohesion": 0.913,
+          "location_support": 1.0,
+          "visual_quality": 0.747,
+          "model_quality": 0.668
+        },
+        "baseline_score": 0.889,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-18 12:37 to 12:37 UTC",
+      "start_utc": "2026-06-18T12:37:36+00:00",
+      "end_utc": "2026-06-18T12:37:36+00:00",
+      "score": 0.928,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "C67F0FE2-2457-4F63-AA2D-2E24DA9B90D9_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 306.47119961389615,
+            "representative_score": 0.76,
+            "previous_representative": "C67F0FE2-2457-4F63-AA2D-2E24DA9B90D9_4_5005_c.jpeg",
+            "reasoning": "The close framing clearly captures the meal and dining atmosphere, though background clutter slightly competes with the food."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "E710E459-2431-4998-9582-D5FCE9434BEA_4_5005_c.jpeg",
+          "gap_seconds": 3745.0,
+          "window_seconds": 1588.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "C67F0FE2-2457-4F63-AA2D-2E24DA9B90D9_4_5005_c.jpeg",
+          "gap_seconds": 74045.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.613,
+          "model_quality": 0.76
+        },
+        "baseline_score": 0.884,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-19 09:11 to 09:17 UTC",
+      "start_utc": "2026-06-19T09:11:41+00:00",
+      "end_utc": "2026-06-19T09:17:34+00:00",
+      "score": 0.869,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "971B0D37-140D-4E95-A513-FB165BE3C343_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "3AD876AC-9F84-46F8-8214-C9605ECB5C33_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.74,
+            "previous_representative": "971B0D37-140D-4E95-A513-FB165BE3C343_4_5005_c.jpeg",
+            "reasoning": "The focused tabletop composition clearly conveys a relaxed caf\u00e9 stop and a distinct sense of place."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 353.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 9.2,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 353.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "C67F0FE2-2457-4F63-AA2D-2E24DA9B90D9_4_5005_c.jpeg",
+          "gap_seconds": 74045.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "3AD876AC-9F84-46F8-8214-C9605ECB5C33_1_105_c.jpeg",
+          "gap_seconds": 4540.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.935,
+          "location_support": 1.0,
+          "visual_quality": 0.756,
+          "model_quality": 0.65
+        },
+        "baseline_score": 0.901,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-19 10:33 to 10:33 UTC",
+      "start_utc": "2026-06-19T10:33:14+00:00",
+      "end_utc": "2026-06-19T10:33:14+00:00",
+      "score": 0.964,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "687F92E4-1609-4CA3-A13A-F5DF88CBC024_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 585.2070240719307,
+            "representative_score": 0.88,
+            "previous_representative": "687F92E4-1609-4CA3-A13A-F5DF88CBC024_4_5005_c.jpeg",
+            "reasoning": "The layered promenade, river, and monumental cathedral form a strong travel scene with atmosphere and recognizable context."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "3AD876AC-9F84-46F8-8214-C9605ECB5C33_1_105_c.jpeg",
+          "gap_seconds": 4540.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "687F92E4-1609-4CA3-A13A-F5DF88CBC024_4_5005_c.jpeg",
+          "gap_seconds": 10120.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.88
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-19 13:21 to 13:21 UTC",
+      "start_utc": "2026-06-19T13:21:54+00:00",
+      "end_utc": "2026-06-19T13:21:54+00:00",
+      "score": 0.958,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "DE7F57B8-C7F3-45E4-B104-5A630A4AFF8E_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1573.6463341504957,
+            "representative_score": 0.86,
+            "previous_representative": "DE7F57B8-C7F3-45E4-B104-5A630A4AFF8E_1_105_c.jpeg",
+            "reasoning": "The immersive street-level framing clearly conveys the communal activity, colorful artwork, and surrounding urban character."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "687F92E4-1609-4CA3-A13A-F5DF88CBC024_4_5005_c.jpeg",
+          "gap_seconds": 10120.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "DE7F57B8-C7F3-45E4-B104-5A630A4AFF8E_1_105_c.jpeg",
+          "gap_seconds": 23638.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.86
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-19 19:55 to 19:55 UTC",
+      "start_utc": "2026-06-19T19:55:52+00:00",
+      "end_utc": "2026-06-19T19:55:52+00:00",
+      "score": 0.919,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "37F64823-AB1D-4D3F-B9D3-E5392C604F4E_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 252.81542304838595,
+            "representative_score": 0.73,
+            "previous_representative": "37F64823-AB1D-4D3F-B9D3-E5392C604F4E_1_105_c.jpeg",
+            "reasoning": "The facade provides a strong sense of place and evening atmosphere, though street fixtures partially interrupt the architectural view."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "DE7F57B8-C7F3-45E4-B104-5A630A4AFF8E_1_105_c.jpeg",
+          "gap_seconds": 23638.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "37F64823-AB1D-4D3F-B9D3-E5392C604F4E_1_105_c.jpeg",
+          "gap_seconds": 75213.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.506,
+          "model_quality": 0.73
+        },
+        "baseline_score": 0.852,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-20 16:49 to 16:49 UTC",
+      "start_utc": "2026-06-20T16:49:25+00:00",
+      "end_utc": "2026-06-20T16:49:25+00:00",
+      "score": 0.946,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "0C24800B-BE0B-44C6-A7A3-2D03D2A5BA83_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 187.30773608872872,
+            "representative_score": 0.82,
+            "previous_representative": "0C24800B-BE0B-44C6-A7A3-2D03D2A5BA83_1_105_c.jpeg",
+            "reasoning": "The river forms a strong leading line through lush greenery toward the distant spire, while the expansive sky adds atmosphere."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "37F64823-AB1D-4D3F-B9D3-E5392C604F4E_1_105_c.jpeg",
+          "gap_seconds": 75213.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "0C24800B-BE0B-44C6-A7A3-2D03D2A5BA83_1_105_c.jpeg",
+          "distance_metres": 1245.8,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.375,
+          "model_quality": 0.82
+        },
+        "baseline_score": 0.812,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-20 17:11 to 17:11 UTC",
+      "start_utc": "2026-06-20T17:11:58+00:00",
+      "end_utc": "2026-06-20T17:11:58+00:00",
+      "score": 0.916,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "21527A9B-417D-4725-98CE-5E90866FE46D_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1162.43682669931,
+            "representative_score": 0.72,
+            "previous_representative": "21527A9B-417D-4725-98CE-5E90866FE46D_1_105_c.jpeg",
+            "reasoning": "Layered tree canopy, street, and sunlit architecture clearly convey the atmosphere of this boulevard."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "0C24800B-BE0B-44C6-A7A3-2D03D2A5BA83_1_105_c.jpeg",
+          "distance_metres": 1245.8,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "21527A9B-417D-4725-98CE-5E90866FE46D_1_105_c.jpeg",
+          "distance_metres": 1418.6,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.72
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-20 17:39 to 17:39 UTC",
+      "start_utc": "2026-06-20T17:39:24+00:00",
+      "end_utc": "2026-06-20T17:39:24+00:00",
+      "score": 0.886,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "9EF25287-FF51-4C68-A248-8B460E292EF6_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 931.052514328906,
+            "representative_score": 0.62,
+            "previous_representative": "9EF25287-FF51-4C68-A248-8B460E292EF6_1_105_c.jpeg",
+            "reasoning": "The overhead view clearly conveys an informal picnic moment, though scattered items and cropped participants make it less expressive alone."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "21527A9B-417D-4725-98CE-5E90866FE46D_1_105_c.jpeg",
+          "distance_metres": 1418.6,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "9EF25287-FF51-4C68-A248-8B460E292EF6_1_105_c.jpeg",
+          "gap_seconds": 4768.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.62
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-20 18:58 to 18:58 UTC",
+      "start_utc": "2026-06-20T18:58:52+00:00",
+      "end_utc": "2026-06-20T18:58:52+00:00",
+      "score": 0.934,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "3D26333B-82C1-4CC7-9A1D-B63809539D1C_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 697.4519236816301,
+            "representative_score": 0.78,
+            "previous_representative": "3D26333B-82C1-4CC7-9A1D-B63809539D1C_1_105_c.jpeg",
+            "reasoning": "The foreground activity and receding sidewalk clearly convey an on-foot neighborhood exploration."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "9EF25287-FF51-4C68-A248-8B460E292EF6_1_105_c.jpeg",
+          "gap_seconds": 4768.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "3D26333B-82C1-4CC7-9A1D-B63809539D1C_1_105_c.jpeg",
+          "gap_seconds": 3323.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.78
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-20 19:54 to 19:54 UTC",
+      "start_utc": "2026-06-20T19:54:15+00:00",
+      "end_utc": "2026-06-20T19:54:15+00:00",
+      "score": 0.946,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "F1F0B2CF-8012-4C2D-8F71-45DDD642384A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 519.7677441543331,
+            "representative_score": 0.82,
+            "previous_representative": "F1F0B2CF-8012-4C2D-8F71-45DDD642384A_1_105_c.jpeg",
+            "reasoning": "The crowd, screen, trees, and event lighting clearly communicate the gathering, though the tilted framing divides attention."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "3D26333B-82C1-4CC7-9A1D-B63809539D1C_1_105_c.jpeg",
+          "gap_seconds": 3323.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "F1F0B2CF-8012-4C2D-8F71-45DDD642384A_1_105_c.jpeg",
+          "gap_seconds": 11902.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.82
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-20 23:12 to 23:12 UTC",
+      "start_utc": "2026-06-20T23:12:37+00:00",
+      "end_utc": "2026-06-20T23:12:37+00:00",
+      "score": 0.844,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "A7BBBF9C-176F-4DA2-949B-9D893BCDE705_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 890.5823576137578,
+            "representative_score": 0.48,
+            "previous_representative": "A7BBBF9C-176F-4DA2-949B-9D893BCDE705_1_105_c.jpeg",
+            "reasoning": "The menu and counter clearly establish the meal-stop setting, though the frame feels practical rather than expressive."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "F1F0B2CF-8012-4C2D-8F71-45DDD642384A_1_105_c.jpeg",
+          "gap_seconds": 11902.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "A7BBBF9C-176F-4DA2-949B-9D893BCDE705_1_105_c.jpeg",
+          "gap_seconds": 40774.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.48
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-21 10:32 to 10:52 UTC",
+      "start_utc": "2026-06-21T10:32:11+00:00",
+      "end_utc": "2026-06-21T10:52:28+00:00",
+      "score": 0.832,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "7AA04F31-5E7F-4168-996E-412AA28222F7_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.86,
+            "previous_representative": "4D3124F1-E7AA-440B-8CD9-EF856EC356C8_4_5005_c.jpeg",
+            "reasoning": "The dynamic vertical framing, colorful wall, and active climbing clearly convey the shared experience."
+          }
+        },
+        {
+          "relative_path": "4D3124F1-E7AA-440B-8CD9-EF856EC356C8_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 1217.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 3.1,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1217.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "A7BBBF9C-176F-4DA2-949B-9D893BCDE705_1_105_c.jpeg",
+          "gap_seconds": 40774.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "4D3124F1-E7AA-440B-8CD9-EF856EC356C8_4_5005_c.jpeg",
+          "gap_seconds": 5914.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.775,
+          "location_support": 1.0,
+          "visual_quality": 0.66,
+          "model_quality": 0.74
+        },
+        "baseline_score": 0.808,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-21 12:31 to 12:47 UTC",
+      "start_utc": "2026-06-21T12:31:02+00:00",
+      "end_utc": "2026-06-21T12:47:52+00:00",
+      "score": 0.865,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "365D361F-590B-416E-B15F-33C06B24C3AC_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 848.9260455085827,
+            "representative_score": 0.84,
+            "previous_representative": "365D361F-590B-416E-B15F-33C06B24C3AC_4_5005_c.jpeg",
+            "reasoning": "The close framing, colorful garnishes, and visible restaurant context clearly represent a memorable dining moment."
+          }
+        },
+        {
+          "relative_path": "D53B458D-C9DD-46D3-918A-1DFB3FE33325_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 1010.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 7.7,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1010.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "4D3124F1-E7AA-440B-8CD9-EF856EC356C8_4_5005_c.jpeg",
+          "gap_seconds": 5914.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "D53B458D-C9DD-46D3-918A-1DFB3FE33325_4_5005_c.jpeg",
+          "gap_seconds": 6672.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.813,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.8
+        },
+        "baseline_score": 0.925,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-21 14:39 to 14:39 UTC",
+      "start_utc": "2026-06-21T14:39:04+00:00",
+      "end_utc": "2026-06-21T14:39:04+00:00",
+      "score": 0.895,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "EEAB5E56-D1A0-4158-AB0A-9F962E78CAEB_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 244.077217128424,
+            "representative_score": 0.65,
+            "previous_representative": "EEAB5E56-D1A0-4158-AB0A-9F962E78CAEB_4_5005_c.jpeg",
+            "reasoning": "The dessert-centered composition clearly records an informal caf\u00e9 moment, with surrounding seating adding useful social context."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "D53B458D-C9DD-46D3-918A-1DFB3FE33325_4_5005_c.jpeg",
+          "gap_seconds": 6672.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "EEAB5E56-D1A0-4158-AB0A-9F962E78CAEB_4_5005_c.jpeg",
+          "gap_seconds": 87900.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.488,
+          "model_quality": 0.65
+        },
+        "baseline_score": 0.846,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-22 15:04 to 15:04 UTC",
+      "start_utc": "2026-06-22T15:04:04+00:00",
+      "end_utc": "2026-06-22T15:04:04+00:00",
+      "score": 0.901,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "29FE293F-D04F-48C0-BEF5-54CAD351AD9F_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 751.2647701822582,
+            "representative_score": 0.67,
+            "previous_representative": "29FE293F-D04F-48C0-BEF5-54CAD351AD9F_4_5005_c.jpeg",
+            "reasoning": "The broad interior view captures the caf\u00e9's distinctive lighting, furnishings, and relaxed atmosphere with clear visual context."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "EEAB5E56-D1A0-4158-AB0A-9F962E78CAEB_4_5005_c.jpeg",
+          "gap_seconds": 87900.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "29FE293F-D04F-48C0-BEF5-54CAD351AD9F_4_5005_c.jpeg",
+          "gap_seconds": 73569.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.67
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-23 11:30 to 11:42 UTC",
+      "start_utc": "2026-06-23T11:30:13+00:00",
+      "end_utc": "2026-06-23T11:42:15+00:00",
+      "score": 0.861,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "7AE20A75-25AB-4C53-BB36-DE4CC05246A2_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "13471ABB-F892-4ABD-AF5C-C5F60C23EBB6_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1099.6744529465989,
+            "representative_score": 0.8,
+            "previous_representative": "13471ABB-F892-4ABD-AF5C-C5F60C23EBB6_1_105_c.jpeg",
+            "reasoning": "The foreground coffee and receding shaded sidewalk create a clear sense of place and lived travel experience."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 722.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 14.3,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 722.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "29FE293F-D04F-48C0-BEF5-54CAD351AD9F_4_5005_c.jpeg",
+          "gap_seconds": 73569.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "13471ABB-F892-4ABD-AF5C-C5F60C23EBB6_1_105_c.jpeg",
+          "distance_metres": 186.6,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 0.866,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.715
+        },
+        "baseline_score": 0.946,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-23 11:45 to 11:45 UTC",
+      "start_utc": "2026-06-23T11:45:29+00:00",
+      "end_utc": "2026-06-23T11:45:29+00:00",
+      "score": 0.934,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "333B8F41-0FC8-449F-A704-D0667D4E23A3_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1501.3877228745775,
+            "representative_score": 0.78,
+            "previous_representative": "333B8F41-0FC8-449F-A704-D0667D4E23A3_1_105_c.jpeg",
+            "reasoning": "The foreground snack and receding wall create a coherent scene that expresses a relaxed waterside break."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "13471ABB-F892-4ABD-AF5C-C5F60C23EBB6_1_105_c.jpeg",
+          "distance_metres": 186.6,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "333B8F41-0FC8-449F-A704-D0667D4E23A3_1_105_c.jpeg",
+          "gap_seconds": 9007.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.78
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-23 14:15 to 14:15 UTC",
+      "start_utc": "2026-06-23T14:15:36+00:00",
+      "end_utc": "2026-06-23T14:15:36+00:00",
+      "score": 0.946,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "12A855D7-2632-4A98-9BAC-DAA6D492EAB5_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 357.3601457516973,
+            "representative_score": 0.82,
+            "previous_representative": "12A855D7-2632-4A98-9BAC-DAA6D492EAB5_1_105_c.jpeg",
+            "reasoning": "The elevated close framing clearly presents the meal and its casual takeaway context."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "333B8F41-0FC8-449F-A704-D0667D4E23A3_1_105_c.jpeg",
+          "gap_seconds": 9007.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "12A855D7-2632-4A98-9BAC-DAA6D492EAB5_1_105_c.jpeg",
+          "gap_seconds": 73681.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.715,
+          "model_quality": 0.82
+        },
+        "baseline_score": 0.914,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-24 10:43 to 11:25 UTC",
+      "start_utc": "2026-06-24T10:43:37+00:00",
+      "end_utc": "2026-06-24T11:25:35+00:00",
+      "score": 0.774,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "E571ED15-449B-413F-8386-A57A1BF16283_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.7,
+            "previous_representative": null,
+            "reasoning": "The sculptural lighting creates a strong sense of place, while the candid social moment adds story despite a somewhat busy foreground."
+          }
+        },
+        {
+          "relative_path": "44E490A5-E765-4B93-B254-7EF660CECBF6_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 3,
+        "attached_count": 0,
+        "span_seconds": 2518.0,
+        "located_members": 3,
+        "unlocated_members": 0,
+        "max_distance_metres": 137.8,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1931.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "12A855D7-2632-4A98-9BAC-DAA6D492EAB5_1_105_c.jpeg",
+          "gap_seconds": 73681.0,
+          "window_seconds": 2700
+        },
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.689,
+          "location_support": 1.0,
+          "visual_quality": 0.662,
+          "model_quality": 0.66
+        },
+        "baseline_score": 0.774,
+        "baseline_method_version": "group-1",
+        "excluded_by_signal": [
+          {
+            "relative_path": "37CA2DC6-217D-4CDA-B0CB-7B85941D79CB_4_5005_c.jpeg",
+            "membership": "representative",
+            "reason": "The frame appears mainly practical, documenting personal gear without a distinctive place or expressive moment.",
+            "confidence": 0.74,
+            "source": "image_evaluation"
+          }
+        ]
+      }
+    },
+    {
+      "label": "Unanchored assets",
+      "start_utc": null,
+      "end_utc": null,
+      "score": 0.174,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "AC164177-8FC3-4A5D-87AE-1D5AC88136BB_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.58,
+            "previous_representative": null,
+            "reasoning": "The expansive sky and tree-framed park establish the setting well, though the scene lacks a distinct central subject or visible activity."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "reason": "no capture timestamp and no coordinate to place these assets",
+        "baseline_score": 0.0,
+        "baseline_method_version": "group-1",
+        "excluded_by_signal": [
+          {
+            "relative_path": "11D7C2A6-529C-4989-8172-561B5B016CC7_1_105_c.jpeg",
+            "membership": "member",
+            "reason": "This utility screenshot shows no visible travel context or meaningful trip moment.",
+            "confidence": 0.98,
+            "source": "image_evaluation"
+          }
+        ],
+        "score_components": {
+          "model_quality": 0.58
+        }
+      }
+    }
+  ],
+  "regrouped_proposals": [
+    {
+      "label": "2026-06-17 14:49 to 14:49 UTC",
+      "start_utc": "2026-06-17T14:49:05+00:00",
+      "end_utc": "2026-06-17T14:49:05+00:00",
+      "score": 0.91,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "D127A733-A526-4B5B-A60E-142546A1A76B_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1197.6694988163365,
+            "representative_score": 0.7,
+            "previous_representative": "D127A733-A526-4B5B-A60E-142546A1A76B_4_5005_c.jpeg",
+            "reasoning": "The historic tower and expansive sky provide a strong sense of place, while railway structures add travel context despite visual clutter."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.7
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Urban Railway Station",
+          "about": "The historic brick water tower, railway platform, and bright sky make this the strongest view of the station.",
+          "why": [],
+          "frames": [
+            0
+          ],
+          "days": [
+            "2026-06-17"
+          ]
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-18 11:04 to 11:04 UTC",
+      "start_utc": "2026-06-18T11:04:03+00:00",
+      "end_utc": "2026-06-18T11:04:03+00:00",
+      "score": 0.928,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "B37315AF-A216-4584-9046-DBDA0A91B0DE_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 2061.814396556579,
+            "representative_score": 0.76,
+            "previous_representative": "B37315AF-A216-4584-9046-DBDA0A91B0DE_4_5005_c.jpeg",
+            "reasoning": "Layered greenery, the curved trellis, and bright sky create a pleasant sense of place and calm."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.76
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Lush Formal Urban Garden",
+          "about": "Arched trellises, clipped foliage, flowers, and mature trees capture the garden at its sunniest and most inviting.",
+          "why": [],
+          "frames": [
+            3
+          ],
+          "days": [
+            "2026-06-18"
+          ]
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-18 11:17 to 11:35 UTC",
+      "start_utc": "2026-06-18T11:17:10+00:00",
+      "end_utc": "2026-06-18T11:35:11+00:00",
+      "score": 0.851,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "2D15E2EE-EBD3-4227-8688-113BE16D9514_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "E710E459-2431-4998-9582-D5FCE9434BEA_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.78,
+            "previous_representative": "2D15E2EE-EBD3-4227-8688-113BE16D9514_4_5005_c.jpeg",
+            "reasoning": "The centered espresso and surrounding travel details clearly convey a personal, relaxed caf\u00e9 moment."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 1081.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 23.7,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.8,
+          "location_support": 1.0,
+          "visual_quality": 0.771,
+          "model_quality": 0.77
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Leafy European Street",
+          "about": "Ornate historic facades and a relaxed espresso stop on patterned cobblestones highlight the character of this leafy street.",
+          "why": [],
+          "frames": [
+            5,
+            8
+          ],
+          "days": [
+            "2026-06-18"
+          ]
+        },
+        "baseline_score": 0.851,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-19 10:33 to 10:33 UTC",
+      "start_utc": "2026-06-19T10:33:14+00:00",
+      "end_utc": "2026-06-19T10:33:14+00:00",
+      "score": 0.964,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "687F92E4-1609-4CA3-A13A-F5DF88CBC024_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 585.2070240719307,
+            "representative_score": 0.88,
+            "previous_representative": "687F92E4-1609-4CA3-A13A-F5DF88CBC024_4_5005_c.jpeg",
+            "reasoning": "The layered promenade, river, and monumental cathedral form a strong travel scene with atmosphere and recognizable context."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.88
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Berlin Cathedral",
+          "about": "The monumental cathedral dome, riverside promenade, bicycles, and dramatic clouds create the standout Berlin Cathedral view.",
+          "why": [],
+          "frames": [
+            12
+          ],
+          "days": [
+            "2026-06-19"
+          ]
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-19 13:21 to 13:21 UTC",
+      "start_utc": "2026-06-19T13:21:54+00:00",
+      "end_utc": "2026-06-19T13:21:54+00:00",
+      "score": 0.958,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "DE7F57B8-C7F3-45E4-B104-5A630A4AFF8E_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1573.6463341504957,
+            "representative_score": 0.86,
+            "previous_representative": "DE7F57B8-C7F3-45E4-B104-5A630A4AFF8E_1_105_c.jpeg",
+            "reasoning": "The immersive street-level framing clearly conveys the communal activity, colorful artwork, and surrounding urban character."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.86
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Tree-Lined European Street",
+          "about": "Colorful chalk drawings and hanging flags make this historic tree-lined street especially lively and distinctive.",
+          "why": [],
+          "frames": [
+            13
+          ],
+          "days": [
+            "2026-06-19"
+          ]
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-19 19:55 to 19:55 UTC",
+      "start_utc": "2026-06-19T19:55:52+00:00",
+      "end_utc": "2026-06-19T19:55:52+00:00",
+      "score": 0.919,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "37F64823-AB1D-4D3F-B9D3-E5392C604F4E_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 252.81542304838595,
+            "representative_score": 0.73,
+            "previous_representative": "37F64823-AB1D-4D3F-B9D3-E5392C604F4E_1_105_c.jpeg",
+            "reasoning": "The facade provides a strong sense of place and evening atmosphere, though street fixtures partially interrupt the architectural view."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.506,
+          "model_quality": 0.73
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Ornate Historic Restaurant Streetscape",
+          "about": "The decorated restaurant facade and clear evening light provide the strongest sense of this quiet streetscape.",
+          "why": [],
+          "frames": [
+            14
+          ],
+          "days": [
+            "2026-06-19"
+          ]
+        },
+        "baseline_score": 0.852,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-20 16:49 to 16:49 UTC",
+      "start_utc": "2026-06-20T16:49:25+00:00",
+      "end_utc": "2026-06-20T16:49:25+00:00",
+      "score": 0.946,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "0C24800B-BE0B-44C6-A7A3-2D03D2A5BA83_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 187.30773608872872,
+            "representative_score": 0.82,
+            "previous_representative": "0C24800B-BE0B-44C6-A7A3-2D03D2A5BA83_1_105_c.jpeg",
+            "reasoning": "The river forms a strong leading line through lush greenery toward the distant spire, while the expansive sky adds atmosphere."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.375,
+          "model_quality": 0.82
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Tree-Lined Urban River Park",
+          "about": "A curving river, weeping willows, expansive clouds, and a distant spire form the park\u2019s most tranquil view.",
+          "why": [],
+          "frames": [
+            15
+          ],
+          "days": [
+            "2026-06-20"
+          ]
+        },
+        "baseline_score": 0.812,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-20 17:11 to 17:11 UTC",
+      "start_utc": "2026-06-20T17:11:58+00:00",
+      "end_utc": "2026-06-20T17:11:58+00:00",
+      "score": 0.916,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "21527A9B-417D-4725-98CE-5E90866FE46D_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1162.43682669931,
+            "representative_score": 0.72,
+            "previous_representative": "21527A9B-417D-4725-98CE-5E90866FE46D_1_105_c.jpeg",
+            "reasoning": "Layered tree canopy, street, and sunlit architecture clearly convey the atmosphere of this boulevard."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.72
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Leafy City Boulevard",
+          "about": "Mature trees and a long fortress-like stone building give this boulevard its strongest architectural character.",
+          "why": [],
+          "frames": [
+            16
+          ],
+          "days": [
+            "2026-06-20"
+          ]
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-20 18:58 to 18:58 UTC",
+      "start_utc": "2026-06-20T18:58:52+00:00",
+      "end_utc": "2026-06-20T18:58:52+00:00",
+      "score": 0.934,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "3D26333B-82C1-4CC7-9A1D-B63809539D1C_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 697.4519236816301,
+            "representative_score": 0.78,
+            "previous_representative": "3D26333B-82C1-4CC7-9A1D-B63809539D1C_1_105_c.jpeg",
+            "reasoning": "The foreground activity and receding sidewalk clearly convey an on-foot neighborhood exploration."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.78
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Leafy Residential Street",
+          "about": "Brick residences, mature street trees, and the bright evening sky best capture this neighborhood street.",
+          "why": [],
+          "frames": [
+            18
+          ],
+          "days": [
+            "2026-06-20"
+          ]
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-20 19:54 to 19:54 UTC",
+      "start_utc": "2026-06-20T19:54:15+00:00",
+      "end_utc": "2026-06-20T19:54:15+00:00",
+      "score": 0.946,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "F1F0B2CF-8012-4C2D-8F71-45DDD642384A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 519.7677441543331,
+            "representative_score": 0.82,
+            "previous_representative": "F1F0B2CF-8012-4C2D-8F71-45DDD642384A_1_105_c.jpeg",
+            "reasoning": "The crowd, screen, trees, and event lighting clearly communicate the gathering, though the tilted framing divides attention."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.82
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Wooded Outdoor Screening Venue",
+          "about": "The large screen and gathering beneath the trees capture the venue at its liveliest.",
+          "why": [],
+          "frames": [
+            19
+          ],
+          "days": [
+            "2026-06-20"
+          ]
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-21 10:32 to 10:32 UTC",
+      "start_utc": "2026-06-21T10:32:11+00:00",
+      "end_utc": "2026-06-21T10:32:11+00:00",
+      "score": 0.958,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "7AA04F31-5E7F-4168-996E-412AA28222F7_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 218.27419530535636,
+            "representative_score": 0.86,
+            "previous_representative": "7AA04F31-5E7F-4168-996E-412AA28222F7_1_105_c.jpeg",
+            "reasoning": "The dynamic vertical framing, colorful wall, and active climbing clearly convey the shared experience."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.437,
+          "model_quality": 0.86
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Industrial-Style Bouldering Gym",
+          "about": "The colorful climbing wall and active indoor scene provide the clearest highlight of the bouldering gym.",
+          "why": [],
+          "frames": [
+            21
+          ],
+          "days": [
+            "2026-06-21"
+          ]
+        },
+        "baseline_score": 0.831,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-06-23 11:42 to 11:45 UTC",
+      "start_utc": "2026-06-23T11:42:15+00:00",
+      "end_utc": "2026-06-23T11:45:29+00:00",
+      "score": 0.923,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "13471ABB-F892-4ABD-AF5C-C5F60C23EBB6_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.8,
+            "previous_representative": "333B8F41-0FC8-449F-A704-D0667D4E23A3_1_105_c.jpeg",
+            "reasoning": "The foreground coffee and receding shaded sidewalk create a clear sense of place and lived travel experience."
+          }
+        },
+        {
+          "relative_path": "333B8F41-0FC8-449F-A704-D0667D4E23A3_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 194.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 186.6,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.964,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.79
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "c8d4a56555b2352f",
+          "status": "reviewed",
+          "title": "Leafy European Neighborhood Street",
+          "about": "A sunny coffee walk and a peaceful canal-side pastry stop show two complementary highlights of the leafy neighborhood.",
+          "why": [],
+          "frames": [
+            28,
+            29
+          ],
+          "days": [
+            "2026-06-23"
+          ]
+        },
+        "baseline_score": 0.986,
+        "baseline_method_version": "group-1"
+      }
+    }
+  ]
+}

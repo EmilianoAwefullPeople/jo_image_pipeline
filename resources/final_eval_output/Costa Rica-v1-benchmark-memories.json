@@ -1,0 +1,3812 @@
+{
+  "dataset_id": "Costa Rica",
+  "dataset_version": "1",
+  "model_id": "openai/gpt-5.6-sol",
+  "llm_method_version": "p3/llm-eval-3",
+  "baseline_comparison": {
+    "compared_assets": 31,
+    "reference_groups": 14,
+    "proposed_groups": 30,
+    "pair_precision": 1.0,
+    "pair_recall": 0.024,
+    "pair_f1": 0.048,
+    "split_groups": 9,
+    "merged_proposals": 10,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "refined_comparison": {
+    "compared_assets": 31,
+    "reference_groups": 14,
+    "proposed_groups": 29,
+    "pair_precision": 1.0,
+    "pair_recall": 0.024,
+    "pair_f1": 0.048,
+    "split_groups": 9,
+    "merged_proposals": 10,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "regrouped_comparison": {
+    "compared_assets": 23,
+    "reference_groups": 14,
+    "proposed_groups": 10,
+    "pair_precision": 0.545,
+    "pair_recall": 0.226,
+    "pair_f1": 0.32,
+    "split_groups": 5,
+    "merged_proposals": 8,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "keep_signal_score": {
+    "excluded_total": 0,
+    "excluded_with_signal": 0,
+    "excluded_caught": 0,
+    "grouped_total": 31,
+    "grouped_with_signal": 31,
+    "grouped_false_positives": 0,
+    "recall": 0.0,
+    "false_positive_rate": 0.0,
+    "method_version": "keepscore-1",
+    "caught": [],
+    "missed": [],
+    "false_positives": []
+  },
+  "review_keep_signal_score": {
+    "excluded_total": 0,
+    "excluded_with_signal": 0,
+    "excluded_caught": 0,
+    "grouped_total": 31,
+    "grouped_with_signal": 31,
+    "grouped_false_positives": 0,
+    "recall": 0.0,
+    "false_positive_rate": 0.0,
+    "method_version": "keepscore-1",
+    "caught": [],
+    "missed": [],
+    "false_positives": []
+  },
+  "review": {
+    "style": "memories",
+    "sessions": 1,
+    "records": [
+      {
+        "dataset_id": "Costa Rica",
+        "session_id": "7b6cc35178c377f0",
+        "style": "memories",
+        "frame_paths": [
+          "E8CE9C3A-D9E1-4EE0-ABAA-4CDA0D0E9476_1_105_c.jpeg",
+          "B3596FB2-8E57-433B-A909-BC59EB509924_1_105_c.jpeg",
+          "E9235B62-CB83-450D-B353-7806F80334D1_1_105_c.jpeg",
+          "296F899A-DB34-45DC-9BDC-C8E78C808CAF_1_105_c.jpeg",
+          "DA06EBDD-3CE1-4ABF-BE49-4EC6463E6777_1_105_c.jpeg",
+          "81B9590F-440C-4445-B7CE-BEEFBC78B132_1_105_c.jpeg",
+          "25B4D9F5-3FFC-481F-BAAE-577496CABCD9_1_105_c.jpeg",
+          "0B798E67-5EB1-4ABC-AD0F-B7732A0AB554_1_105_c.jpeg",
+          "8282F5F5-2D54-461A-B75B-A4ED3EE50788_1_105_c.jpeg",
+          "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+          "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg",
+          "E35E4E25-00E0-4960-8F60-5CA0DC078C15_1_105_c.jpeg",
+          "C030FC16-728F-44FF-8EFB-D9B40DC93F52_1_105_c.jpeg",
+          "A305D098-6C39-4D9C-89FA-C5CDF96DC9AA_1_105_c.jpeg",
+          "8346E6F5-CAF4-4883-B46F-2DA951714A1F_1_105_c.jpeg",
+          "2E007C3F-0049-4068-BA85-20F37263A4AE_1_105_c.jpeg",
+          "4B3B9FBF-3884-4B1A-BCD5-A4F9A5AC8B2F_1_105_c.jpeg",
+          "AE738585-98EE-457C-A707-3D783E5B6310_1_105_c.jpeg",
+          "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg",
+          "9D035CAF-5766-4F25-92F4-227F67DEE6FA_1_105_c.jpeg",
+          "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg",
+          "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg",
+          "90B4C004-6804-4B71-AD49-83F8F331044A_1_105_c.jpeg",
+          "03D1CE54-8A49-4AF3-BF3C-7E1D1FFE480A_1_105_c.jpeg",
+          "0A38093E-08A3-48C3-8D06-7B56079EC11D_1_105_c.jpeg",
+          "7BB65BF4-07A6-4A00-AF3E-3C9C7FD90E90_1_105_c.jpeg",
+          "A2D6195B-17D6-40CA-AB00-454A53FFD191_1_105_c.jpeg",
+          "B3E29643-7301-48CA-93E0-E6B261FE2AD8_1_105_c.jpeg",
+          "9A6DD1EF-FDF9-470C-8F67-E983432E5D2D_1_105_c.jpeg",
+          "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg",
+          "A410E8F2-9F53-4354-B331-EBF9F785B478_1_105_c.jpeg",
+          "BF7A90F3-2927-450D-AF6C-287F2682B43F_1_105_c.jpeg",
+          "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg",
+          "52AE5BE5-AFC8-4507-B02B-6408791CDED4_1_105_c.jpeg"
+        ],
+        "model": "openai/gpt-5.6-sol",
+        "review_prompt_version": "topic-memories-1",
+        "review_schema_version": "topic-review-1",
+        "source_version": "p3-llm-eval-3",
+        "reviewed_utc": "2026-08-27T22:19:27.274212+00:00",
+        "attempts": 1,
+        "latency_ms": 33033,
+        "prompt_tokens": 5072,
+        "completion_tokens": 2058,
+        "cost_usd": 0.0332585,
+        "generation_id": "gen-1787869134-uSCSRMiPx39R3VNvsfNM",
+        "validation_status": "valid",
+        "review": {
+          "groups": [
+            {
+              "frames": [
+                0,
+                1,
+                2,
+                4
+              ],
+              "title": "Flying in and hitting the road",
+              "about": "Mountain and cloud views from the flight gave way to an airport toast and a car ride through tropical greenery.",
+              "why": [
+                "excitement",
+                "awe",
+                "connection"
+              ]
+            },
+            {
+              "frames": [
+                5,
+                7,
+                10,
+                11,
+                12
+              ],
+              "title": "Life around the tropical garden",
+              "about": "Days around the tropical garden included an open-air kitchen, quiet paths, work on a geodesic dome, rain on the porch, and a nighttime frog encounter.",
+              "why": [
+                "calm",
+                "meaningful",
+                "connection"
+              ]
+            },
+            {
+              "frames": [
+                8,
+                9
+              ],
+              "title": "A sunny tropical beach day",
+              "about": "The traveler relaxed and explored along a palm-lined beach with turquoise surf, offshore islets, and distant parasailing.",
+              "why": [
+                "fun",
+                "calm",
+                "awe"
+              ]
+            },
+            {
+              "frames": [
+                13,
+                14
+              ],
+              "title": "Storm light over dark sand",
+              "about": "Young palms and dark sand were photographed beneath imposing storm clouds and a distant golden horizon.",
+              "why": [
+                "awe",
+                "calm"
+              ]
+            },
+            {
+              "frames": [
+                18
+              ],
+              "title": "Discovering a rugged coastal cove",
+              "about": "Turquoise surf rolled between dark rocks beneath a forested headland and expansive sky.",
+              "why": [
+                "awe",
+                "calm"
+              ]
+            },
+            {
+              "frames": [
+                19,
+                20
+              ],
+              "title": "Finding sea turtle hatchlings",
+              "about": "A calm harbor visit led to the sight of sea turtle hatchlings crossing a dark sandy beach.",
+              "why": [
+                "awe",
+                "meaningful",
+                "connection"
+              ]
+            },
+            {
+              "frames": [
+                21,
+                22
+              ],
+              "title": "Exploring a rainforest retreat",
+              "about": "The traveler explored a shallow rainforest stream near a small lodge in a tropical forest clearing.",
+              "why": [
+                "calm",
+                "fun",
+                "connection"
+              ]
+            },
+            {
+              "frames": [
+                23,
+                24
+              ],
+              "title": "Chasing coastal views",
+              "about": "An elevated view across lush coastline was followed by a quiet dark-sand beach framed by a lone palm.",
+              "why": [
+                "awe",
+                "calm"
+              ]
+            },
+            {
+              "frames": [
+                29,
+                30
+              ],
+              "title": "Surf and sailboats by the shore",
+              "about": "A surfboard, beachgoers, rolling waves, and distant sailboats captured an active afternoon beside the ocean.",
+              "why": [
+                "fun",
+                "excitement",
+                "calm"
+              ]
+            },
+            {
+              "frames": [
+                31,
+                32
+              ],
+              "title": "From ocean sunset to nightlife",
+              "about": "A fiery sailboat-dotted sunset was followed hours later by a lively night out in a crowded blue-lit nightclub.",
+              "why": [
+                "fun",
+                "excitement",
+                "connection"
+              ]
+            }
+          ]
+        },
+        "failure_detail": null
+      }
+    ],
+    "unassigned": [
+      "296F899A-DB34-45DC-9BDC-C8E78C808CAF_1_105_c.jpeg",
+      "25B4D9F5-3FFC-481F-BAAE-577496CABCD9_1_105_c.jpeg",
+      "2E007C3F-0049-4068-BA85-20F37263A4AE_1_105_c.jpeg",
+      "4B3B9FBF-3884-4B1A-BCD5-A4F9A5AC8B2F_1_105_c.jpeg",
+      "AE738585-98EE-457C-A707-3D783E5B6310_1_105_c.jpeg",
+      "7BB65BF4-07A6-4A00-AF3E-3C9C7FD90E90_1_105_c.jpeg",
+      "A2D6195B-17D6-40CA-AB00-454A53FFD191_1_105_c.jpeg",
+      "B3E29643-7301-48CA-93E0-E6B261FE2AD8_1_105_c.jpeg",
+      "9A6DD1EF-FDF9-470C-8F67-E983432E5D2D_1_105_c.jpeg",
+      "52AE5BE5-AFC8-4507-B02B-6408791CDED4_1_105_c.jpeg"
+    ],
+    "cost_usd": 0.0333
+  },
+  "baseline_proposals": [
+    {
+      "label": "2025-04-23 10:27 to 10:32 UTC",
+      "start_utc": "2025-04-23T10:27:19+00:00",
+      "end_utc": "2025-04-23T10:32:26+00:00",
+      "score": 0.708,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "E8CE9C3A-D9E1-4EE0-ABAA-4CDA0D0E9476_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 60.24056463996465
+          }
+        },
+        {
+          "relative_path": "B3596FB2-8E57-433B-A909-BC59EB509924_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 307.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 0.0,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 307.0,
+          "window_seconds": 2700
+        },
+        "opened_by": null,
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "B3596FB2-8E57-433B-A909-BC59EB509924_1_105_c.jpeg",
+          "gap_seconds": 5791.0,
+          "window_seconds": 2456.0
+        },
+        "score_components": {
+          "cohesion": 0.943,
+          "location_support": 1.0,
+          "visual_quality": 0.101
+        }
+      }
+    },
+    {
+      "label": "2025-04-23 12:08 to 12:08 UTC",
+      "start_utc": "2025-04-23T12:08:57+00:00",
+      "end_utc": "2025-04-23T12:08:57+00:00",
+      "score": 0.871,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "E9235B62-CB83-450D-B353-7806F80334D1_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 284.9989973018722
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "B3596FB2-8E57-433B-A909-BC59EB509924_1_105_c.jpeg",
+          "gap_seconds": 5791.0,
+          "window_seconds": 2456.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "E9235B62-CB83-450D-B353-7806F80334D1_1_105_c.jpeg",
+          "gap_seconds": 30957.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.57
+        }
+      }
+    },
+    {
+      "label": "2025-04-23 20:44 to 20:44 UTC",
+      "start_utc": "2025-04-23T20:44:54+00:00",
+      "end_utc": "2025-04-23T20:44:54+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "296F899A-DB34-45DC-9BDC-C8E78C808CAF_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1263.2225845777948
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "E9235B62-CB83-450D-B353-7806F80334D1_1_105_c.jpeg",
+          "gap_seconds": 30957.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "296F899A-DB34-45DC-9BDC-C8E78C808CAF_1_105_c.jpeg",
+          "gap_seconds": 5576.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-04-23 22:17 to 22:17 UTC",
+      "start_utc": "2025-04-23T22:17:50+00:00",
+      "end_utc": "2025-04-23T22:17:50+00:00",
+      "score": 0.834,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "DA06EBDD-3CE1-4ABF-BE49-4EC6463E6777_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 223.80072606704198
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "296F899A-DB34-45DC-9BDC-C8E78C808CAF_1_105_c.jpeg",
+          "gap_seconds": 5576.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "DA06EBDD-3CE1-4ABF-BE49-4EC6463E6777_1_105_c.jpeg",
+          "gap_seconds": 57170.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.448
+        }
+      }
+    },
+    {
+      "label": "2025-04-24 14:10 to 14:10 UTC",
+      "start_utc": "2025-04-24T14:10:40+00:00",
+      "end_utc": "2025-04-24T14:10:40+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "81B9590F-440C-4445-B7CE-BEEFBC78B132_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 676.4124998018766
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "DA06EBDD-3CE1-4ABF-BE49-4EC6463E6777_1_105_c.jpeg",
+          "gap_seconds": 57170.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "81B9590F-440C-4445-B7CE-BEEFBC78B132_1_105_c.jpeg",
+          "gap_seconds": 45874.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-04-25 02:55 to 02:55 UTC",
+      "start_utc": "2025-04-25T02:55:14+00:00",
+      "end_utc": "2025-04-25T02:55:14+00:00",
+      "score": 0.842,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "25B4D9F5-3FFC-481F-BAAE-577496CABCD9_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 236.63562329444622
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "81B9590F-440C-4445-B7CE-BEEFBC78B132_1_105_c.jpeg",
+          "gap_seconds": 45874.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "25B4D9F5-3FFC-481F-BAAE-577496CABCD9_1_105_c.jpeg",
+          "gap_seconds": 72507.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.473
+        }
+      }
+    },
+    {
+      "label": "2025-04-25 23:03 to 23:03 UTC",
+      "start_utc": "2025-04-25T23:03:41+00:00",
+      "end_utc": "2025-04-25T23:03:41+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "0B798E67-5EB1-4ABC-AD0F-B7732A0AB554_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 501.66568642169136
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "25B4D9F5-3FFC-481F-BAAE-577496CABCD9_1_105_c.jpeg",
+          "gap_seconds": 72507.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "0B798E67-5EB1-4ABC-AD0F-B7732A0AB554_1_105_c.jpeg",
+          "gap_seconds": 64319.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-04-26 16:55 to 16:55 UTC",
+      "start_utc": "2025-04-26T16:55:40+00:00",
+      "end_utc": "2025-04-26T16:55:40+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "8282F5F5-2D54-461A-B75B-A4ED3EE50788_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 608.0761588065781
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "0B798E67-5EB1-4ABC-AD0F-B7732A0AB554_1_105_c.jpeg",
+          "gap_seconds": 64319.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "8282F5F5-2D54-461A-B75B-A4ED3EE50788_1_105_c.jpeg",
+          "gap_seconds": 9954.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-04-26 19:41 to 19:41 UTC",
+      "start_utc": "2025-04-26T19:41:34+00:00",
+      "end_utc": "2025-04-26T19:41:34+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 986.620707332674
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "8282F5F5-2D54-461A-B75B-A4ED3EE50788_1_105_c.jpeg",
+          "gap_seconds": 9954.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+          "gap_seconds": 30412.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-04-27 04:08 to 04:08 UTC",
+      "start_utc": "2025-04-27T04:08:26+00:00",
+      "end_utc": "2025-04-27T04:08:26+00:00",
+      "score": 0.647,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 411.61423188134927
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 0,
+        "unlocated_members": 1,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+          "gap_seconds": 30412.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg",
+          "gap_seconds": 57283.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 0.0,
+          "visual_quality": 0.823
+        }
+      }
+    },
+    {
+      "label": "2025-04-27 20:03 to 20:03 UTC",
+      "start_utc": "2025-04-27T20:03:09+00:00",
+      "end_utc": "2025-04-27T20:03:09+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "E35E4E25-00E0-4960-8F60-5CA0DC078C15_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1257.249452467982
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg",
+          "gap_seconds": 57283.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "E35E4E25-00E0-4960-8F60-5CA0DC078C15_1_105_c.jpeg",
+          "gap_seconds": 25717.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-04-28 03:11 to 03:11 UTC",
+      "start_utc": "2025-04-28T03:11:46+00:00",
+      "end_utc": "2025-04-28T03:11:46+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "C030FC16-728F-44FF-8EFB-D9B40DC93F52_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 572.4541202050945
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "E35E4E25-00E0-4960-8F60-5CA0DC078C15_1_105_c.jpeg",
+          "gap_seconds": 25717.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "C030FC16-728F-44FF-8EFB-D9B40DC93F52_1_105_c.jpeg",
+          "gap_seconds": 158139.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-04-29 23:07 to 23:49 UTC",
+      "start_utc": "2025-04-29T23:07:25+00:00",
+      "end_utc": "2025-04-29T23:49:36+00:00",
+      "score": 0.879,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "A305D098-6C39-4D9C-89FA-C5CDF96DC9AA_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 936.2149148582379
+          }
+        },
+        {
+          "relative_path": "8346E6F5-CAF4-4883-B46F-2DA951714A1F_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "2E007C3F-0049-4068-BA85-20F37263A4AE_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "4B3B9FBF-3884-4B1A-BCD5-A4F9A5AC8B2F_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "AE738585-98EE-457C-A707-3D783E5B6310_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 5,
+        "primary_count": 5,
+        "attached_count": 0,
+        "span_seconds": 2531.0,
+        "located_members": 5,
+        "unlocated_members": 0,
+        "max_distance_metres": 5.5,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 2495.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "C030FC16-728F-44FF-8EFB-D9B40DC93F52_1_105_c.jpeg",
+          "gap_seconds": 158139.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "AE738585-98EE-457C-A707-3D783E5B6310_1_105_c.jpeg",
+          "gap_seconds": 153495.0,
+          "window_seconds": 900
+        },
+        "score_components": {
+          "cohesion": 0.813,
+          "location_support": 1.0,
+          "visual_quality": 0.846
+        }
+      }
+    },
+    {
+      "label": "2025-05-01 18:27 to 18:27 UTC",
+      "start_utc": "2025-05-01T18:27:51+00:00",
+      "end_utc": "2025-05-01T18:27:51+00:00",
+      "score": 0.987,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 478.1016184445212
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "AE738585-98EE-457C-A707-3D783E5B6310_1_105_c.jpeg",
+          "gap_seconds": 153495.0,
+          "window_seconds": 900
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg",
+          "gap_seconds": 250529.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.956
+        }
+      }
+    },
+    {
+      "label": "2025-05-04 16:03 to 16:03 UTC",
+      "start_utc": "2025-05-04T16:03:20+00:00",
+      "end_utc": "2025-05-04T16:03:20+00:00",
+      "score": 0.873,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "9D035CAF-5766-4F25-92F4-227F67DEE6FA_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 288.29211951254143
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg",
+          "gap_seconds": 250529.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "9D035CAF-5766-4F25-92F4-227F67DEE6FA_1_105_c.jpeg",
+          "gap_seconds": 3214.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.577
+        }
+      }
+    },
+    {
+      "label": "2025-05-04 16:56 to 16:56 UTC",
+      "start_utc": "2025-05-04T16:56:54+00:00",
+      "end_utc": "2025-05-04T16:56:54+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1997.488837092468
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "9D035CAF-5766-4F25-92F4-227F67DEE6FA_1_105_c.jpeg",
+          "gap_seconds": 3214.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg",
+          "gap_seconds": 107744.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-05-05 22:52 to 22:52 UTC",
+      "start_utc": "2025-05-05T22:52:38+00:00",
+      "end_utc": "2025-05-05T22:52:38+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 2050.8923267796376
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg",
+          "gap_seconds": 107744.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg",
+          "gap_seconds": 73917.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-05-06 19:24 to 19:24 UTC",
+      "start_utc": "2025-05-06T19:24:35+00:00",
+      "end_utc": "2025-05-06T19:24:35+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "90B4C004-6804-4B71-AD49-83F8F331044A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 951.3755079640282
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg",
+          "gap_seconds": 73917.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "90B4C004-6804-4B71-AD49-83F8F331044A_1_105_c.jpeg",
+          "gap_seconds": 167684.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-05-08 17:59 to 17:59 UTC",
+      "start_utc": "2025-05-08T17:59:19+00:00",
+      "end_utc": "2025-05-08T17:59:19+00:00",
+      "score": 0.859,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "03D1CE54-8A49-4AF3-BF3C-7E1D1FFE480A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 264.72994482142127
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "90B4C004-6804-4B71-AD49-83F8F331044A_1_105_c.jpeg",
+          "gap_seconds": 167684.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "03D1CE54-8A49-4AF3-BF3C-7E1D1FFE480A_1_105_c.jpeg",
+          "gap_seconds": 10148.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.529
+        }
+      }
+    },
+    {
+      "label": "2025-05-08 20:48 to 20:48 UTC",
+      "start_utc": "2025-05-08T20:48:27+00:00",
+      "end_utc": "2025-05-08T20:48:27+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "0A38093E-08A3-48C3-8D06-7B56079EC11D_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 862.534233727389
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "03D1CE54-8A49-4AF3-BF3C-7E1D1FFE480A_1_105_c.jpeg",
+          "gap_seconds": 10148.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "0A38093E-08A3-48C3-8D06-7B56079EC11D_1_105_c.jpeg",
+          "gap_seconds": 3890.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-05-08 21:53 to 21:53 UTC",
+      "start_utc": "2025-05-08T21:53:17+00:00",
+      "end_utc": "2025-05-08T21:53:17+00:00",
+      "score": 0.709,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "7BB65BF4-07A6-4A00-AF3E-3C9C7FD90E90_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 14.784791088947614
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "0A38093E-08A3-48C3-8D06-7B56079EC11D_1_105_c.jpeg",
+          "gap_seconds": 3890.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "7BB65BF4-07A6-4A00-AF3E-3C9C7FD90E90_1_105_c.jpeg",
+          "gap_seconds": 321163.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.03
+        }
+      }
+    },
+    {
+      "label": "2025-05-12 15:06 to 15:06 UTC",
+      "start_utc": "2025-05-12T15:06:00+00:00",
+      "end_utc": "2025-05-12T15:06:00+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "A2D6195B-17D6-40CA-AB00-454A53FFD191_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 617.7851900644342
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "7BB65BF4-07A6-4A00-AF3E-3C9C7FD90E90_1_105_c.jpeg",
+          "gap_seconds": 321163.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "A2D6195B-17D6-40CA-AB00-454A53FFD191_1_105_c.jpeg",
+          "gap_seconds": 26214.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-05-12 22:22 to 22:22 UTC",
+      "start_utc": "2025-05-12T22:22:54+00:00",
+      "end_utc": "2025-05-12T22:22:54+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "B3E29643-7301-48CA-93E0-E6B261FE2AD8_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 839.6086768451819
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "A2D6195B-17D6-40CA-AB00-454A53FFD191_1_105_c.jpeg",
+          "gap_seconds": 26214.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "B3E29643-7301-48CA-93E0-E6B261FE2AD8_1_105_c.jpeg",
+          "gap_seconds": 73648.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-05-13 18:50 to 18:50 UTC",
+      "start_utc": "2025-05-13T18:50:22+00:00",
+      "end_utc": "2025-05-13T18:50:22+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "9A6DD1EF-FDF9-470C-8F67-E983432E5D2D_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1237.8465409212642
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "B3E29643-7301-48CA-93E0-E6B261FE2AD8_1_105_c.jpeg",
+          "gap_seconds": 73648.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "9A6DD1EF-FDF9-470C-8F67-E983432E5D2D_1_105_c.jpeg",
+          "gap_seconds": 271512.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-05-16 22:15 to 22:15 UTC",
+      "start_utc": "2025-05-16T22:15:34+00:00",
+      "end_utc": "2025-05-16T22:15:34+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1138.4946073069912
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "9A6DD1EF-FDF9-470C-8F67-E983432E5D2D_1_105_c.jpeg",
+          "gap_seconds": 271512.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg",
+          "gap_seconds": 3051.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2025-05-16 23:06 to 23:06 UTC",
+      "start_utc": "2025-05-16T23:06:25+00:00",
+      "end_utc": "2025-05-16T23:06:25+00:00",
+      "score": 0.709,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "A410E8F2-9F53-4354-B331-EBF9F785B478_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 15.208827419801514
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg",
+          "gap_seconds": 3051.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "A410E8F2-9F53-4354-B331-EBF9F785B478_1_105_c.jpeg",
+          "gap_seconds": 89401.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.03
+        }
+      }
+    },
+    {
+      "label": "2025-05-17 23:56 to 23:56 UTC",
+      "start_utc": "2025-05-17T23:56:26+00:00",
+      "end_utc": "2025-05-17T23:56:26+00:00",
+      "score": 0.732,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "BF7A90F3-2927-450D-AF6C-287F2682B43F_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 53.18774669490651
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "A410E8F2-9F53-4354-B331-EBF9F785B478_1_105_c.jpeg",
+          "gap_seconds": 89401.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "BF7A90F3-2927-450D-AF6C-287F2682B43F_1_105_c.jpeg",
+          "gap_seconds": 22455.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.106
+        }
+      }
+    },
+    {
+      "label": "2025-05-18 06:10 to 06:10 UTC",
+      "start_utc": "2025-05-18T06:10:41+00:00",
+      "end_utc": "2025-05-18T06:10:41+00:00",
+      "score": 0.468,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 113.2554926238954
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 0,
+        "unlocated_members": 1,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "BF7A90F3-2927-450D-AF6C-287F2682B43F_1_105_c.jpeg",
+          "gap_seconds": 22455.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg",
+          "gap_seconds": 32368.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 0.0,
+          "visual_quality": 0.227
+        }
+      }
+    },
+    {
+      "label": "2025-05-18 15:10 to 15:10 UTC",
+      "start_utc": "2025-05-18T15:10:09+00:00",
+      "end_utc": "2025-05-18T15:10:09+00:00",
+      "score": 0.879,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "52AE5BE5-AFC8-4507-B02B-6408791CDED4_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 299.0259396247307
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg",
+          "gap_seconds": 32368.0,
+          "window_seconds": 2700
+        },
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.598
+        }
+      }
+    },
+    {
+      "label": "Unanchored assets",
+      "start_utc": null,
+      "end_utc": null,
+      "score": 0.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "D6FBCF23-F6A2-4F7A-A159-9E8EC4EE078A_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "no capture timestamp"
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "reason": "no capture timestamp and no coordinate to place these assets"
+      }
+    }
+  ],
+  "refined_proposals": [
+    {
+      "label": "2025-04-23 10:27 to 10:32 UTC",
+      "start_utc": "2025-04-23T10:27:19+00:00",
+      "end_utc": "2025-04-23T10:32:26+00:00",
+      "score": 0.929,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "E8CE9C3A-D9E1-4EE0-ABAA-4CDA0D0E9476_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "B3596FB2-8E57-433B-A909-BC59EB509924_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.86,
+            "previous_representative": "E8CE9C3A-D9E1-4EE0-ABAA-4CDA0D0E9476_1_105_c.jpeg",
+            "reasoning": "Strong window framing and layered clouds clearly express the quiet experience of air travel."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 307.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 0.0,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 307.0,
+          "window_seconds": 2700
+        },
+        "opened_by": null,
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "B3596FB2-8E57-433B-A909-BC59EB509924_1_105_c.jpeg",
+          "gap_seconds": 5791.0,
+          "window_seconds": 2456.0
+        },
+        "score_components": {
+          "cohesion": 0.943,
+          "location_support": 1.0,
+          "visual_quality": 0.101,
+          "model_quality": 0.84
+        },
+        "baseline_score": 0.708,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-23 12:08 to 12:08 UTC",
+      "start_utc": "2025-04-23T12:08:57+00:00",
+      "end_utc": "2025-04-23T12:08:57+00:00",
+      "score": 0.952,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "E9235B62-CB83-450D-B353-7806F80334D1_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 284.9989973018722,
+            "representative_score": 0.84,
+            "previous_representative": "E9235B62-CB83-450D-B353-7806F80334D1_1_105_c.jpeg",
+            "reasoning": "The prominent drinks and aircraft backdrop clearly capture a sociable departure-gate experience."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "B3596FB2-8E57-433B-A909-BC59EB509924_1_105_c.jpeg",
+          "gap_seconds": 5791.0,
+          "window_seconds": 2456.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "E9235B62-CB83-450D-B353-7806F80334D1_1_105_c.jpeg",
+          "gap_seconds": 30957.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.57,
+          "model_quality": 0.84
+        },
+        "baseline_score": 0.871,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-23 20:44 to 20:44 UTC",
+      "start_utc": "2025-04-23T20:44:54+00:00",
+      "end_utc": "2025-04-23T20:44:54+00:00",
+      "score": 0.868,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "296F899A-DB34-45DC-9BDC-C8E78C808CAF_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1263.2225845777948,
+            "representative_score": 0.56,
+            "previous_representative": "296F899A-DB34-45DC-9BDC-C8E78C808CAF_1_105_c.jpeg",
+            "reasoning": "The lush vegetation conveys a tropical travel setting, though utility cables and roadside barriers weaken the composition and narrative focus."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "E9235B62-CB83-450D-B353-7806F80334D1_1_105_c.jpeg",
+          "gap_seconds": 30957.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "296F899A-DB34-45DC-9BDC-C8E78C808CAF_1_105_c.jpeg",
+          "gap_seconds": 5576.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.56
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-23 22:17 to 22:17 UTC",
+      "start_utc": "2025-04-23T22:17:50+00:00",
+      "end_utc": "2025-04-23T22:17:50+00:00",
+      "score": 0.892,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "DA06EBDD-3CE1-4ABF-BE49-4EC6463E6777_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 223.80072606704198,
+            "representative_score": 0.64,
+            "previous_representative": "DA06EBDD-3CE1-4ABF-BE49-4EC6463E6777_1_105_c.jpeg",
+            "reasoning": "The interior viewpoint and visible surroundings communicate a shared journey, though seatbacks dominate the composition."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "296F899A-DB34-45DC-9BDC-C8E78C808CAF_1_105_c.jpeg",
+          "gap_seconds": 5576.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "DA06EBDD-3CE1-4ABF-BE49-4EC6463E6777_1_105_c.jpeg",
+          "gap_seconds": 57170.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.448,
+          "model_quality": 0.64
+        },
+        "baseline_score": 0.834,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-24 14:10 to 14:10 UTC",
+      "start_utc": "2025-04-24T14:10:40+00:00",
+      "end_utc": "2025-04-24T14:10:40+00:00",
+      "score": 0.874,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "81B9590F-440C-4445-B7CE-BEEFBC78B132_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 676.4124998018766,
+            "representative_score": 0.58,
+            "previous_representative": "81B9590F-440C-4445-B7CE-BEEFBC78B132_1_105_c.jpeg",
+            "reasoning": "The broad view clearly conveys the kitchen and surrounding greenery, though visual attention is divided among many objects."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "DA06EBDD-3CE1-4ABF-BE49-4EC6463E6777_1_105_c.jpeg",
+          "gap_seconds": 57170.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "81B9590F-440C-4445-B7CE-BEEFBC78B132_1_105_c.jpeg",
+          "gap_seconds": 45874.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.58
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-25 02:55 to 02:55 UTC",
+      "start_utc": "2025-04-25T02:55:14+00:00",
+      "end_utc": "2025-04-25T02:55:14+00:00",
+      "score": 0.934,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "25B4D9F5-3FFC-481F-BAAE-577496CABCD9_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 236.63562329444622,
+            "representative_score": 0.78,
+            "previous_representative": "25B4D9F5-3FFC-481F-BAAE-577496CABCD9_1_105_c.jpeg",
+            "reasoning": "The foreground meal clearly anchors the dining moment, while the surrounding place setting adds social context despite busy framing."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "81B9590F-440C-4445-B7CE-BEEFBC78B132_1_105_c.jpeg",
+          "gap_seconds": 45874.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "25B4D9F5-3FFC-481F-BAAE-577496CABCD9_1_105_c.jpeg",
+          "gap_seconds": 72507.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.473,
+          "model_quality": 0.78
+        },
+        "baseline_score": 0.842,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-25 23:03 to 23:03 UTC",
+      "start_utc": "2025-04-25T23:03:41+00:00",
+      "end_utc": "2025-04-25T23:03:41+00:00",
+      "score": 0.91,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "0B798E67-5EB1-4ABC-AD0F-B7732A0AB554_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 501.66568642169136,
+            "representative_score": 0.7,
+            "previous_representative": "0B798E67-5EB1-4ABC-AD0F-B7732A0AB554_1_105_c.jpeg",
+            "reasoning": "The path provides a clear visual lead through the tropical landscape, though the large cloudy sky reduces emphasis on the garden."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "25B4D9F5-3FFC-481F-BAAE-577496CABCD9_1_105_c.jpeg",
+          "gap_seconds": 72507.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "0B798E67-5EB1-4ABC-AD0F-B7732A0AB554_1_105_c.jpeg",
+          "gap_seconds": 64319.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.7
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-26 16:55 to 16:55 UTC",
+      "start_utc": "2025-04-26T16:55:40+00:00",
+      "end_utc": "2025-04-26T16:55:40+00:00",
+      "score": 0.925,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "8282F5F5-2D54-461A-B75B-A4ED3EE50788_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 608.0761588065781,
+            "representative_score": 0.75,
+            "previous_representative": "8282F5F5-2D54-461A-B75B-A4ED3EE50788_1_105_c.jpeg",
+            "reasoning": "The central flag, palms, beach furnishings, and canopies clearly represent a relaxed coastal outing, though the scene lacks a dominant personal subject."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "0B798E67-5EB1-4ABC-AD0F-B7732A0AB554_1_105_c.jpeg",
+          "gap_seconds": 64319.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "8282F5F5-2D54-461A-B75B-A4ED3EE50788_1_105_c.jpeg",
+          "gap_seconds": 9954.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.75
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-26 19:41 to 19:41 UTC",
+      "start_utc": "2025-04-26T19:41:34+00:00",
+      "end_utc": "2025-04-26T19:41:34+00:00",
+      "score": 0.964,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 986.620707332674,
+            "representative_score": 0.88,
+            "previous_representative": "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+            "reasoning": "Strong natural framing, layered coastline scenery, and visible recreation clearly convey the atmosphere of the beach visit."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "8282F5F5-2D54-461A-B75B-A4ED3EE50788_1_105_c.jpeg",
+          "gap_seconds": 9954.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+          "gap_seconds": 30412.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.88
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-27 04:08 to 04:08 UTC",
+      "start_utc": "2025-04-27T04:08:26+00:00",
+      "end_utc": "2025-04-27T04:08:26+00:00",
+      "score": 0.616,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 411.61423188134927,
+            "representative_score": 0.72,
+            "previous_representative": "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg",
+            "reasoning": "The upward framing clearly conveys the collaborative work and distinctive geometry of the structure."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 0,
+        "unlocated_members": 1,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+          "gap_seconds": 30412.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg",
+          "gap_seconds": 57283.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 0.0,
+          "visual_quality": 0.823,
+          "model_quality": 0.72
+        },
+        "baseline_score": 0.647,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-27 20:03 to 20:03 UTC",
+      "start_utc": "2025-04-27T20:03:09+00:00",
+      "end_utc": "2025-04-27T20:03:09+00:00",
+      "score": 0.886,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "E35E4E25-00E0-4960-8F60-5CA0DC078C15_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1257.249452467982,
+            "representative_score": 0.62,
+            "previous_representative": "E35E4E25-00E0-4960-8F60-5CA0DC078C15_1_105_c.jpeg",
+            "reasoning": "The layered porch view captures distinctive rainy-day atmosphere and local details, though the composition is visually cluttered."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg",
+          "gap_seconds": 57283.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "E35E4E25-00E0-4960-8F60-5CA0DC078C15_1_105_c.jpeg",
+          "gap_seconds": 25717.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.62
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-28 03:11 to 03:11 UTC",
+      "start_utc": "2025-04-28T03:11:46+00:00",
+      "end_utc": "2025-04-28T03:11:46+00:00",
+      "score": 0.904,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "C030FC16-728F-44FF-8EFB-D9B40DC93F52_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 572.4541202050945,
+            "representative_score": 0.68,
+            "previous_representative": "C030FC16-728F-44FF-8EFB-D9B40DC93F52_1_105_c.jpeg",
+            "reasoning": "The frog and nighttime surroundings communicate a distinctive wildlife encounter, though the cluttered framing weakens visual focus."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "E35E4E25-00E0-4960-8F60-5CA0DC078C15_1_105_c.jpeg",
+          "gap_seconds": 25717.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "C030FC16-728F-44FF-8EFB-D9B40DC93F52_1_105_c.jpeg",
+          "gap_seconds": 158139.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.68
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-29 23:07 to 23:49 UTC",
+      "start_utc": "2025-04-29T23:07:25+00:00",
+      "end_utc": "2025-04-29T23:49:36+00:00",
+      "score": 0.868,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "A305D098-6C39-4D9C-89FA-C5CDF96DC9AA_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "8346E6F5-CAF4-4883-B46F-2DA951714A1F_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.86,
+            "previous_representative": "A305D098-6C39-4D9C-89FA-C5CDF96DC9AA_1_105_c.jpeg",
+            "reasoning": "Layered palms, shoreline, ocean, and expressive clouds form a strong composition with clear destination atmosphere."
+          }
+        },
+        {
+          "relative_path": "2E007C3F-0049-4068-BA85-20F37263A4AE_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "4B3B9FBF-3884-4B1A-BCD5-A4F9A5AC8B2F_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "AE738585-98EE-457C-A707-3D783E5B6310_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 5,
+        "primary_count": 5,
+        "attached_count": 0,
+        "span_seconds": 2531.0,
+        "located_members": 5,
+        "unlocated_members": 0,
+        "max_distance_metres": 5.5,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 2495.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "C030FC16-728F-44FF-8EFB-D9B40DC93F52_1_105_c.jpeg",
+          "gap_seconds": 158139.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "AE738585-98EE-457C-A707-3D783E5B6310_1_105_c.jpeg",
+          "gap_seconds": 153495.0,
+          "window_seconds": 900
+        },
+        "score_components": {
+          "cohesion": 0.813,
+          "location_support": 1.0,
+          "visual_quality": 0.846,
+          "model_quality": 0.808
+        },
+        "baseline_score": 0.879,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-01 18:27 to 18:27 UTC",
+      "start_utc": "2025-05-01T18:27:51+00:00",
+      "end_utc": "2025-05-01T18:27:51+00:00",
+      "score": 0.97,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 478.1016184445212,
+            "representative_score": 0.9,
+            "previous_representative": "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg",
+            "reasoning": "Layered rocks, breaking waves, forest, and expansive sky create a strong sense of place and visual scale."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "AE738585-98EE-457C-A707-3D783E5B6310_1_105_c.jpeg",
+          "gap_seconds": 153495.0,
+          "window_seconds": 900
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg",
+          "gap_seconds": 250529.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.956,
+          "model_quality": 0.9
+        },
+        "baseline_score": 0.987,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-04 16:03 to 16:03 UTC",
+      "start_utc": "2025-05-04T16:03:20+00:00",
+      "end_utc": "2025-05-04T16:03:20+00:00",
+      "score": 0.937,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "9D035CAF-5766-4F25-92F4-227F67DEE6FA_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 288.29211951254143,
+            "representative_score": 0.79,
+            "previous_representative": "9D035CAF-5766-4F25-92F4-227F67DEE6FA_1_105_c.jpeg",
+            "reasoning": "The layered boats, shoreline, and expressive sky clearly convey the quiet atmosphere of a tropical harbor."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg",
+          "gap_seconds": 250529.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "9D035CAF-5766-4F25-92F4-227F67DEE6FA_1_105_c.jpeg",
+          "gap_seconds": 3214.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.577,
+          "model_quality": 0.79
+        },
+        "baseline_score": 0.873,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-04 16:56 to 16:56 UTC",
+      "start_utc": "2025-05-04T16:56:54+00:00",
+      "end_utc": "2025-05-04T16:56:54+00:00",
+      "score": 0.97,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1997.488837092468,
+            "representative_score": 0.9,
+            "previous_representative": "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg",
+            "reasoning": "The foreground hatchling creates a strong focal point, while the background adds context and a sense of movement."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "9D035CAF-5766-4F25-92F4-227F67DEE6FA_1_105_c.jpeg",
+          "gap_seconds": 3214.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg",
+          "gap_seconds": 107744.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.9
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-05 22:52 to 22:52 UTC",
+      "start_utc": "2025-05-05T22:52:38+00:00",
+      "end_utc": "2025-05-05T22:52:38+00:00",
+      "score": 0.946,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 2050.8923267796376,
+            "representative_score": 0.82,
+            "previous_representative": "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg",
+            "reasoning": "The active foreground stream, surrounding rainforest, and visible interaction create a strong sense of place and experience."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg",
+          "gap_seconds": 107744.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg",
+          "gap_seconds": 73917.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.82
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-06 19:24 to 19:24 UTC",
+      "start_utc": "2025-05-06T19:24:35+00:00",
+      "end_utc": "2025-05-06T19:24:35+00:00",
+      "score": 0.907,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "90B4C004-6804-4B71-AD49-83F8F331044A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 951.3755079640282,
+            "representative_score": 0.69,
+            "previous_representative": "90B4C004-6804-4B71-AD49-83F8F331044A_1_105_c.jpeg",
+            "reasoning": "The path provides a natural lead toward the lodge, while the expansive sky and forest clearly convey the setting."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg",
+          "gap_seconds": 73917.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "90B4C004-6804-4B71-AD49-83F8F331044A_1_105_c.jpeg",
+          "gap_seconds": 167684.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.69
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-08 17:59 to 17:59 UTC",
+      "start_utc": "2025-05-08T17:59:19+00:00",
+      "end_utc": "2025-05-08T17:59:19+00:00",
+      "score": 0.946,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "03D1CE54-8A49-4AF3-BF3C-7E1D1FFE480A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 264.72994482142127,
+            "representative_score": 0.82,
+            "previous_representative": "03D1CE54-8A49-4AF3-BF3C-7E1D1FFE480A_1_105_c.jpeg",
+            "reasoning": "The elevated framing conveys the coastline's scale and tropical setting, though the large sky reduces foreground prominence."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "90B4C004-6804-4B71-AD49-83F8F331044A_1_105_c.jpeg",
+          "gap_seconds": 167684.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "03D1CE54-8A49-4AF3-BF3C-7E1D1FFE480A_1_105_c.jpeg",
+          "gap_seconds": 10148.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.529,
+          "model_quality": 0.82
+        },
+        "baseline_score": 0.859,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-08 20:48 to 20:48 UTC",
+      "start_utc": "2025-05-08T20:48:27+00:00",
+      "end_utc": "2025-05-08T20:48:27+00:00",
+      "score": 0.952,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "0A38093E-08A3-48C3-8D06-7B56079EC11D_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 862.534233727389,
+            "representative_score": 0.84,
+            "previous_representative": "0A38093E-08A3-48C3-8D06-7B56079EC11D_1_105_c.jpeg",
+            "reasoning": "The prominent palm, layered surf, and expansive sky create a clear, expressive sense of place."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "03D1CE54-8A49-4AF3-BF3C-7E1D1FFE480A_1_105_c.jpeg",
+          "gap_seconds": 10148.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "0A38093E-08A3-48C3-8D06-7B56079EC11D_1_105_c.jpeg",
+          "gap_seconds": 3890.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.84
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-08 21:53 to 21:53 UTC",
+      "start_utc": "2025-05-08T21:53:17+00:00",
+      "end_utc": "2025-05-08T21:53:17+00:00",
+      "score": 0.844,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "7BB65BF4-07A6-4A00-AF3E-3C9C7FD90E90_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 14.784791088947614,
+            "representative_score": 0.48,
+            "previous_representative": "7BB65BF4-07A6-4A00-AF3E-3C9C7FD90E90_1_105_c.jpeg",
+            "reasoning": "The layered field, hills, and cloudscape convey the route's rural atmosphere, though utility lines weaken the scenic composition."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "0A38093E-08A3-48C3-8D06-7B56079EC11D_1_105_c.jpeg",
+          "gap_seconds": 3890.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "7BB65BF4-07A6-4A00-AF3E-3C9C7FD90E90_1_105_c.jpeg",
+          "gap_seconds": 321163.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.03,
+          "model_quality": 0.48
+        },
+        "baseline_score": 0.709,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-12 15:06 to 15:06 UTC",
+      "start_utc": "2025-05-12T15:06:00+00:00",
+      "end_utc": "2025-05-12T15:06:00+00:00",
+      "score": 0.952,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "A2D6195B-17D6-40CA-AB00-454A53FFD191_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 617.7851900644342,
+            "representative_score": 0.84,
+            "previous_representative": "A2D6195B-17D6-40CA-AB00-454A53FFD191_1_105_c.jpeg",
+            "reasoning": "Layered foreground objects, a strong central path, and the church backdrop clearly convey a personal sightseeing moment."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "7BB65BF4-07A6-4A00-AF3E-3C9C7FD90E90_1_105_c.jpeg",
+          "gap_seconds": 321163.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "A2D6195B-17D6-40CA-AB00-454A53FFD191_1_105_c.jpeg",
+          "gap_seconds": 26214.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.84
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-12 22:22 to 22:22 UTC",
+      "start_utc": "2025-05-12T22:22:54+00:00",
+      "end_utc": "2025-05-12T22:22:54+00:00",
+      "score": 0.916,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "B3E29643-7301-48CA-93E0-E6B261FE2AD8_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 839.6086768451819,
+            "representative_score": 0.72,
+            "previous_representative": "B3E29643-7301-48CA-93E0-E6B261FE2AD8_1_105_c.jpeg",
+            "reasoning": "The meal is prominent and contextual details establish relaxed patio dining, though surrounding packaging adds visual clutter."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "A2D6195B-17D6-40CA-AB00-454A53FFD191_1_105_c.jpeg",
+          "gap_seconds": 26214.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "B3E29643-7301-48CA-93E0-E6B261FE2AD8_1_105_c.jpeg",
+          "gap_seconds": 73648.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.72
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-13 18:50 to 18:50 UTC",
+      "start_utc": "2025-05-13T18:50:22+00:00",
+      "end_utc": "2025-05-13T18:50:22+00:00",
+      "score": 0.856,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "9A6DD1EF-FDF9-470C-8F67-E983432E5D2D_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1237.8465409212642,
+            "representative_score": 0.52,
+            "previous_representative": "9A6DD1EF-FDF9-470C-8F67-E983432E5D2D_1_105_c.jpeg",
+            "reasoning": "The curving road and layered greenery establish a peaceful travel setting, though the scene lacks a distinctive focal subject."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "B3E29643-7301-48CA-93E0-E6B261FE2AD8_1_105_c.jpeg",
+          "gap_seconds": 73648.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "9A6DD1EF-FDF9-470C-8F67-E983432E5D2D_1_105_c.jpeg",
+          "gap_seconds": 271512.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.52
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-16 22:15 to 22:15 UTC",
+      "start_utc": "2025-05-16T22:15:34+00:00",
+      "end_utc": "2025-05-16T22:15:34+00:00",
+      "score": 0.958,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1138.4946073069912,
+            "representative_score": 0.86,
+            "previous_representative": "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg",
+            "reasoning": "The foreground surfboard creates a strong anchor while the shoreline activity and ocean provide clear context and story."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "9A6DD1EF-FDF9-470C-8F67-E983432E5D2D_1_105_c.jpeg",
+          "gap_seconds": 271512.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg",
+          "gap_seconds": 3051.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.86
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-16 23:06 to 23:06 UTC",
+      "start_utc": "2025-05-16T23:06:25+00:00",
+      "end_utc": "2025-05-16T23:06:25+00:00",
+      "score": 0.931,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "A410E8F2-9F53-4354-B331-EBF9F785B478_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 15.208827419801514,
+            "representative_score": 0.77,
+            "previous_representative": "A410E8F2-9F53-4354-B331-EBF9F785B478_1_105_c.jpeg",
+            "reasoning": "The dramatic light, layered clouds, reflective surf, and distant boats create an expressive coastal scene."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg",
+          "gap_seconds": 3051.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "A410E8F2-9F53-4354-B331-EBF9F785B478_1_105_c.jpeg",
+          "gap_seconds": 89401.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.03,
+          "model_quality": 0.77
+        },
+        "baseline_score": 0.709,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-17 23:56 to 23:56 UTC",
+      "start_utc": "2025-05-17T23:56:26+00:00",
+      "end_utc": "2025-05-17T23:56:26+00:00",
+      "score": 0.964,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "BF7A90F3-2927-450D-AF6C-287F2682B43F_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 53.18774669490651,
+            "representative_score": 0.88,
+            "previous_representative": "BF7A90F3-2927-450D-AF6C-287F2682B43F_1_105_c.jpeg",
+            "reasoning": "The layered clouds, glowing horizon, and silhouetted sailboats create a strong sense of place and mood."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "A410E8F2-9F53-4354-B331-EBF9F785B478_1_105_c.jpeg",
+          "gap_seconds": 89401.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "BF7A90F3-2927-450D-AF6C-287F2682B43F_1_105_c.jpeg",
+          "gap_seconds": 22455.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.106,
+          "model_quality": 0.88
+        },
+        "baseline_score": 0.732,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-18 06:10 to 06:10 UTC",
+      "start_utc": "2025-05-18T06:10:41+00:00",
+      "end_utc": "2025-05-18T06:10:41+00:00",
+      "score": 0.661,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 113.2554926238954,
+            "representative_score": 0.87,
+            "previous_representative": "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg",
+            "reasoning": "Close portrait framing, expressive faces, and colorful club lighting clearly convey the night\u2019s energy."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 0,
+        "unlocated_members": 1,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "BF7A90F3-2927-450D-AF6C-287F2682B43F_1_105_c.jpeg",
+          "gap_seconds": 22455.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg",
+          "gap_seconds": 32368.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 0.0,
+          "visual_quality": 0.227,
+          "model_quality": 0.87
+        },
+        "baseline_score": 0.468,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-18 15:10 to 15:10 UTC",
+      "start_utc": "2025-05-18T15:10:09+00:00",
+      "end_utc": "2025-05-18T15:10:09+00:00",
+      "score": 0.934,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "52AE5BE5-AFC8-4507-B02B-6408791CDED4_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 299.0259396247307,
+            "representative_score": 0.78,
+            "previous_representative": "52AE5BE5-AFC8-4507-B02B-6408791CDED4_1_105_c.jpeg",
+            "reasoning": "The prominently presented food and drink, transit seating, and passing greenery clearly convey an on-the-road breakfast moment."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg",
+          "gap_seconds": 32368.0,
+          "window_seconds": 2700
+        },
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.598,
+          "model_quality": 0.78
+        },
+        "baseline_score": 0.879,
+        "baseline_method_version": "group-1"
+      }
+    }
+  ],
+  "regrouped_proposals": [
+    {
+      "label": "2025-04-23 10:27 to 22:17 UTC",
+      "start_utc": "2025-04-23T10:27:19+00:00",
+      "end_utc": "2025-04-23T22:17:50+00:00",
+      "score": 0.537,
+      "method_version": "topic-memories-1",
+      "members": [
+        {
+          "relative_path": "E8CE9C3A-D9E1-4EE0-ABAA-4CDA0D0E9476_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "B3596FB2-8E57-433B-A909-BC59EB509924_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.86,
+            "previous_representative": "E9235B62-CB83-450D-B353-7806F80334D1_1_105_c.jpeg",
+            "reasoning": "Strong window framing and layered clouds clearly express the quiet experience of air travel."
+          }
+        },
+        {
+          "relative_path": "E9235B62-CB83-450D-B353-7806F80334D1_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "DA06EBDD-3CE1-4ABF-BE49-4EC6463E6777_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 4,
+        "primary_count": 4,
+        "attached_count": 0,
+        "span_seconds": 42631.0,
+        "located_members": 4,
+        "unlocated_members": 0,
+        "max_distance_metres": 3160375.4,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.0,
+          "location_support": 1.0,
+          "visual_quality": 0.305,
+          "model_quality": 0.79
+        },
+        "review": {
+          "style": "memories",
+          "session_id": "7b6cc35178c377f0",
+          "status": "reviewed",
+          "title": "Flying in and hitting the road",
+          "about": "Mountain and cloud views from the flight gave way to an airport toast and a car ride through tropical greenery.",
+          "why": [
+            "excitement",
+            "awe",
+            "connection"
+          ],
+          "frames": [
+            0,
+            1,
+            2,
+            4
+          ],
+          "days": [
+            "2025-04-23"
+          ]
+        },
+        "baseline_score": 0.391,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-24 14:10 to 03:11 UTC",
+      "start_utc": "2025-04-24T14:10:40+00:00",
+      "end_utc": "2025-04-28T03:11:46+00:00",
+      "score": 0.438,
+      "method_version": "topic-memories-1",
+      "members": [
+        {
+          "relative_path": "81B9590F-440C-4445-B7CE-BEEFBC78B132_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "0B798E67-5EB1-4ABC-AD0F-B7732A0AB554_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.72,
+            "previous_representative": "E35E4E25-00E0-4960-8F60-5CA0DC078C15_1_105_c.jpeg",
+            "reasoning": "The upward framing clearly conveys the collaborative work and distinctive geometry of the structure."
+          }
+        },
+        {
+          "relative_path": "E35E4E25-00E0-4960-8F60-5CA0DC078C15_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "C030FC16-728F-44FF-8EFB-D9B40DC93F52_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 5,
+        "primary_count": 5,
+        "attached_count": 0,
+        "span_seconds": 306066.0,
+        "located_members": 4,
+        "unlocated_members": 1,
+        "max_distance_metres": 21.7,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.0,
+          "location_support": 0.8,
+          "visual_quality": 0.965,
+          "model_quality": 0.66
+        },
+        "review": {
+          "style": "memories",
+          "session_id": "7b6cc35178c377f0",
+          "status": "reviewed",
+          "title": "Life around the tropical garden",
+          "about": "Days around the tropical garden included an open-air kitchen, quiet paths, work on a geodesic dome, rain on the porch, and a nighttime frog encounter.",
+          "why": [
+            "calm",
+            "meaningful",
+            "connection"
+          ],
+          "frames": [
+            5,
+            7,
+            10,
+            11,
+            12
+          ],
+          "days": [
+            "2025-04-24",
+            "2025-04-25",
+            "2025-04-27",
+            "2025-04-28"
+          ]
+        },
+        "baseline_score": 0.529,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-26 16:55 to 19:41 UTC",
+      "start_utc": "2025-04-26T16:55:40+00:00",
+      "end_utc": "2025-04-26T19:41:34+00:00",
+      "score": 0.544,
+      "method_version": "topic-memories-1",
+      "members": [
+        {
+          "relative_path": "8282F5F5-2D54-461A-B75B-A4ED3EE50788_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 986.620707332674,
+            "representative_score": 0.88,
+            "previous_representative": "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+            "reasoning": "Strong natural framing, layered coastline scenery, and visible recreation clearly convey the atmosphere of the beach visit."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 9954.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 173.0,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.815
+        },
+        "review": {
+          "style": "memories",
+          "session_id": "7b6cc35178c377f0",
+          "status": "reviewed",
+          "title": "A sunny tropical beach day",
+          "about": "The traveler relaxed and explored along a palm-lined beach with turquoise surf, offshore islets, and distant parasailing.",
+          "why": [
+            "fun",
+            "calm",
+            "awe"
+          ],
+          "frames": [
+            8,
+            9
+          ],
+          "days": [
+            "2025-04-26"
+          ]
+        },
+        "baseline_score": 0.6,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-04-29 23:07 to 23:49 UTC",
+      "start_utc": "2025-04-29T23:07:25+00:00",
+      "end_utc": "2025-04-29T23:49:00+00:00",
+      "score": 0.77,
+      "method_version": "topic-memories-1",
+      "members": [
+        {
+          "relative_path": "A305D098-6C39-4D9C-89FA-C5CDF96DC9AA_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "8346E6F5-CAF4-4883-B46F-2DA951714A1F_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.86,
+            "previous_representative": "A305D098-6C39-4D9C-89FA-C5CDF96DC9AA_1_105_c.jpeg",
+            "reasoning": "Layered palms, shoreline, ocean, and expressive clouds form a strong composition with clear destination atmosphere."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 2495.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 5.0,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.538,
+          "location_support": 1.0,
+          "visual_quality": 0.882,
+          "model_quality": 0.85
+        },
+        "review": {
+          "style": "memories",
+          "session_id": "7b6cc35178c377f0",
+          "status": "reviewed",
+          "title": "Storm light over dark sand",
+          "about": "Young palms and dark sand were photographed beneath imposing storm clouds and a distant golden horizon.",
+          "why": [
+            "awe",
+            "calm"
+          ],
+          "frames": [
+            13,
+            14
+          ],
+          "days": [
+            "2025-04-29"
+          ]
+        },
+        "baseline_score": 0.78,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-01 18:27 to 18:27 UTC",
+      "start_utc": "2025-05-01T18:27:51+00:00",
+      "end_utc": "2025-05-01T18:27:51+00:00",
+      "score": 0.97,
+      "method_version": "topic-memories-1",
+      "members": [
+        {
+          "relative_path": "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 478.1016184445212,
+            "representative_score": 0.9,
+            "previous_representative": "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg",
+            "reasoning": "Layered rocks, breaking waves, forest, and expansive sky create a strong sense of place and visual scale."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.956,
+          "model_quality": 0.9
+        },
+        "review": {
+          "style": "memories",
+          "session_id": "7b6cc35178c377f0",
+          "status": "reviewed",
+          "title": "Discovering a rugged coastal cove",
+          "about": "Turquoise surf rolled between dark rocks beneath a forested headland and expansive sky.",
+          "why": [
+            "awe",
+            "calm"
+          ],
+          "frames": [
+            18
+          ],
+          "days": [
+            "2025-05-01"
+          ]
+        },
+        "baseline_score": 0.987,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-04 16:03 to 16:56 UTC",
+      "start_utc": "2025-05-04T16:03:20+00:00",
+      "end_utc": "2025-05-04T16:56:54+00:00",
+      "score": 0.716,
+      "method_version": "topic-memories-1",
+      "members": [
+        {
+          "relative_path": "9D035CAF-5766-4F25-92F4-227F67DEE6FA_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1997.488837092468,
+            "representative_score": 0.9,
+            "previous_representative": "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg",
+            "reasoning": "The foreground hatchling creates a strong focal point, while the background adds context and a sense of movement."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 3214.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 3632.6,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.405,
+          "location_support": 1.0,
+          "visual_quality": 0.788,
+          "model_quality": 0.845
+        },
+        "review": {
+          "style": "memories",
+          "session_id": "7b6cc35178c377f0",
+          "status": "reviewed",
+          "title": "Finding sea turtle hatchlings",
+          "about": "A calm harbor visit led to the sight of sea turtle hatchlings crossing a dark sandy beach.",
+          "why": [
+            "awe",
+            "meaningful",
+            "connection"
+          ],
+          "frames": [
+            19,
+            20
+          ],
+          "days": [
+            "2025-05-04"
+          ]
+        },
+        "baseline_score": 0.698,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-05 22:52 to 19:24 UTC",
+      "start_utc": "2025-05-05T22:52:38+00:00",
+      "end_utc": "2025-05-06T19:24:35+00:00",
+      "score": 0.526,
+      "method_version": "topic-memories-1",
+      "members": [
+        {
+          "relative_path": "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 2050.8923267796376,
+            "representative_score": 0.82,
+            "previous_representative": "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg",
+            "reasoning": "The active foreground stream, surrounding rainforest, and visible interaction create a strong sense of place and experience."
+          }
+        },
+        {
+          "relative_path": "90B4C004-6804-4B71-AD49-83F8F331044A_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 73917.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 1444.2,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.755
+        },
+        "review": {
+          "style": "memories",
+          "session_id": "7b6cc35178c377f0",
+          "status": "reviewed",
+          "title": "Exploring a rainforest retreat",
+          "about": "The traveler explored a shallow rainforest stream near a small lodge in a tropical forest clearing.",
+          "why": [
+            "calm",
+            "fun",
+            "connection"
+          ],
+          "frames": [
+            21,
+            22
+          ],
+          "days": [
+            "2025-05-05",
+            "2025-05-06"
+          ]
+        },
+        "baseline_score": 0.6,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-08 17:59 to 20:48 UTC",
+      "start_utc": "2025-05-08T17:59:19+00:00",
+      "end_utc": "2025-05-08T20:48:27+00:00",
+      "score": 0.549,
+      "method_version": "topic-memories-1",
+      "members": [
+        {
+          "relative_path": "03D1CE54-8A49-4AF3-BF3C-7E1D1FFE480A_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "0A38093E-08A3-48C3-8D06-7B56079EC11D_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 862.534233727389,
+            "representative_score": 0.84,
+            "previous_representative": "0A38093E-08A3-48C3-8D06-7B56079EC11D_1_105_c.jpeg",
+            "reasoning": "The prominent palm, layered surf, and expansive sky create a clear, expressive sense of place."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 10148.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 56441.1,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.0,
+          "location_support": 1.0,
+          "visual_quality": 0.765,
+          "model_quality": 0.83
+        },
+        "review": {
+          "style": "memories",
+          "session_id": "7b6cc35178c377f0",
+          "status": "reviewed",
+          "title": "Chasing coastal views",
+          "about": "An elevated view across lush coastline was followed by a quiet dark-sand beach framed by a lone palm.",
+          "why": [
+            "awe",
+            "calm"
+          ],
+          "frames": [
+            23,
+            24
+          ],
+          "days": [
+            "2025-05-08"
+          ]
+        },
+        "baseline_score": 0.529,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-16 22:15 to 23:06 UTC",
+      "start_utc": "2025-05-16T22:15:34+00:00",
+      "end_utc": "2025-05-16T23:06:25+00:00",
+      "score": 0.718,
+      "method_version": "topic-memories-1",
+      "members": [
+        {
+          "relative_path": "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1138.4946073069912,
+            "representative_score": 0.86,
+            "previous_representative": "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg",
+            "reasoning": "The foreground surfboard creates a strong anchor while the shoreline activity and ocean provide clear context and story."
+          }
+        },
+        {
+          "relative_path": "A410E8F2-9F53-4354-B331-EBF9F785B478_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 3051.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 78.8,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.435,
+          "location_support": 1.0,
+          "visual_quality": 0.515,
+          "model_quality": 0.815
+        },
+        "review": {
+          "style": "memories",
+          "session_id": "7b6cc35178c377f0",
+          "status": "reviewed",
+          "title": "Surf and sailboats by the shore",
+          "about": "A surfboard, beachgoers, rolling waves, and distant sailboats captured an active afternoon beside the ocean.",
+          "why": [
+            "fun",
+            "excitement",
+            "calm"
+          ],
+          "frames": [
+            29,
+            30
+          ],
+          "days": [
+            "2025-05-16"
+          ]
+        },
+        "baseline_score": 0.628,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2025-05-17 23:56 to 06:10 UTC",
+      "start_utc": "2025-05-17T23:56:26+00:00",
+      "end_utc": "2025-05-18T06:10:41+00:00",
+      "score": 0.412,
+      "method_version": "topic-memories-1",
+      "members": [
+        {
+          "relative_path": "BF7A90F3-2927-450D-AF6C-287F2682B43F_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.88,
+            "previous_representative": "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg",
+            "reasoning": "The layered clouds, glowing horizon, and silhouetted sailboats create a strong sense of place and mood."
+          }
+        },
+        {
+          "relative_path": "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 22455.0,
+        "located_members": 1,
+        "unlocated_members": 1,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.0,
+          "location_support": 0.5,
+          "visual_quality": 0.166,
+          "model_quality": 0.875
+        },
+        "review": {
+          "style": "memories",
+          "session_id": "7b6cc35178c377f0",
+          "status": "reviewed",
+          "title": "From ocean sunset to nightlife",
+          "about": "A fiery sailboat-dotted sunset was followed hours later by a lively night out in a crowded blue-lit nightclub.",
+          "why": [
+            "fun",
+            "excitement",
+            "connection"
+          ],
+          "frames": [
+            31,
+            32
+          ],
+          "days": [
+            "2025-05-17",
+            "2025-05-18"
+          ]
+        },
+        "baseline_score": 0.2,
+        "baseline_method_version": "group-1"
+      }
+    }
+  ]
+}

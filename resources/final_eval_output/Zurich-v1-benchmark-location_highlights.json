@@ -1,0 +1,2484 @@
+{
+  "dataset_id": "Zurich",
+  "dataset_version": "1",
+  "model_id": "openai/gpt-5.6-sol",
+  "llm_method_version": "p3/llm-eval-3",
+  "baseline_comparison": {
+    "compared_assets": 26,
+    "reference_groups": 13,
+    "proposed_groups": 18,
+    "pair_precision": 0.7,
+    "pair_recall": 0.119,
+    "pair_f1": 0.203,
+    "split_groups": 9,
+    "merged_proposals": 11,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "refined_comparison": {
+    "compared_assets": 26,
+    "reference_groups": 13,
+    "proposed_groups": 18,
+    "pair_precision": 0.7,
+    "pair_recall": 0.119,
+    "pair_f1": 0.203,
+    "split_groups": 9,
+    "merged_proposals": 11,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "regrouped_comparison": {
+    "compared_assets": 12,
+    "reference_groups": 13,
+    "proposed_groups": 6,
+    "pair_precision": 0.625,
+    "pair_recall": 0.238,
+    "pair_f1": 0.345,
+    "split_groups": 4,
+    "merged_proposals": 4,
+    "excluded_assets_grouped": 0,
+    "method_version": "review-1"
+  },
+  "keep_signal_score": {
+    "excluded_total": 0,
+    "excluded_with_signal": 0,
+    "excluded_caught": 0,
+    "grouped_total": 26,
+    "grouped_with_signal": 26,
+    "grouped_false_positives": 0,
+    "recall": 0.0,
+    "false_positive_rate": 0.0,
+    "method_version": "keepscore-1",
+    "caught": [],
+    "missed": [],
+    "false_positives": []
+  },
+  "review_keep_signal_score": {
+    "excluded_total": 0,
+    "excluded_with_signal": 0,
+    "excluded_caught": 0,
+    "grouped_total": 26,
+    "grouped_with_signal": 26,
+    "grouped_false_positives": 0,
+    "recall": 0.0,
+    "false_positive_rate": 0.0,
+    "method_version": "keepscore-1",
+    "caught": [],
+    "missed": [],
+    "false_positives": []
+  },
+  "review": {
+    "style": "location_highlights",
+    "sessions": 1,
+    "records": [
+      {
+        "dataset_id": "Zurich",
+        "session_id": "400071bf48a6672a",
+        "style": "location_highlights",
+        "frame_paths": [
+          "FF1788C0-3669-4ABF-899F-E9273172EFA9_1_105_c.jpeg",
+          "BF3A7C4D-8F4E-4633-9EC4-9DC2CA5963D1_1_105_c.jpeg",
+          "CBF9FF4F-8E31-4840-BD32-07D68CD4953A_1_105_c.jpeg",
+          "2B3AB0CA-AC28-4C42-ABF5-00A988DC58A5_1_105_c.jpeg",
+          "62703390-043E-4CA1-A9BA-42014F73C3B4_1_105_c.jpeg",
+          "BA4A2C05-6EE6-440C-95E5-F0650B88CE46_1_105_c.jpeg",
+          "3655830F-8042-409F-A7AC-58DE910C491F_1_105_c.jpeg",
+          "6E3C91B2-FE68-4113-8E59-165F1D0E5984_1_105_c.jpeg",
+          "6749C1E3-3496-4820-BAEE-DDD741A1E3ED_1_105_c.jpeg",
+          "5C04ACC2-761D-40C5-9DC0-1C733FD4EAF6_1_105_c.jpeg",
+          "663D57DB-A88F-425B-9EED-6D3092B7FBEB_1_105_c.jpeg",
+          "899F7401-90A7-4C9C-8FC8-F83EABA12ECA_1_105_c.jpeg",
+          "5539FBDC-DC6F-4453-B923-2020F6F19150_1_105_c.jpeg",
+          "251C2E86-2554-4FBE-81D0-64C7B5E6D68C_4_5005_c.jpeg",
+          "0BEB16DC-20AE-4BBE-9C0D-F00BA0DFBDB4_4_5005_c.jpeg",
+          "0FF07EF2-BB63-499D-8AEF-E4CEF597BF84_4_5005_c.jpeg",
+          "68992A52-3493-4446-8D20-460844BA66C8_1_105_c.jpeg",
+          "F087D312-AC55-490D-B885-6472B5102312_1_105_c.jpeg",
+          "9E228423-83A5-459E-8EEA-A8A8A9868762_1_105_c.jpeg",
+          "2287B35E-A98D-4998-8A07-221D5028BD13_1_105_c.jpeg",
+          "A990B733-4E18-4C28-BEC1-899950C842AB_1_105_c.jpeg",
+          "DC6AF3C9-5F96-4929-BA6C-474F62B5BE07_1_105_c.jpeg",
+          "EA1BE83F-7785-40DA-AD12-FC0D2ACF9D86_1_105_c.jpeg",
+          "368BCCEC-E86C-43CC-9E3A-1A91AC056CF6_4_5005_c.jpeg",
+          "F97F7590-0F30-432C-BEDE-A2F6268B988A_4_5005_c.jpeg",
+          "2BEC5571-35F1-412C-A7E6-C63A6135003C_1_105_c.jpeg",
+          "35464AA0-DF38-4D72-8C67-008C78564E89_1_105_c.jpeg"
+        ],
+        "model": "openai/gpt-5.6-sol",
+        "review_prompt_version": "topic-location_highlights-1",
+        "review_schema_version": "topic-review-1",
+        "source_version": "p3-llm-eval-3",
+        "reviewed_utc": "2026-08-27T22:27:57.889732+00:00",
+        "attempts": 1,
+        "latency_ms": 20682,
+        "prompt_tokens": 4133,
+        "completion_tokens": 1288,
+        "cost_usd": 0.023211,
+        "generation_id": "gen-1787869657-ZcNLpCj1dR3SUJhzbvw8",
+        "validation_status": "valid",
+        "review": {
+          "groups": [
+            {
+              "frames": [
+                2,
+                3,
+                4
+              ],
+              "title": "Lake Z\u00fcrich",
+              "about": "These highlights pair the Alpine waterfront panorama with snowy parkland and moored sailboats along Lake Z\u00fcrich.",
+              "why": []
+            },
+            {
+              "frames": [
+                6
+              ],
+              "title": "Zurich Opera House",
+              "about": "The strongest view captures Zurich Opera House and its historic square in crisp winter light.",
+              "why": []
+            },
+            {
+              "frames": [
+                7,
+                11
+              ],
+              "title": "Z\u00fcrich Old Town Riverfront",
+              "about": "These highlights show the old town riverfront through Fraum\u00fcnster and M\u00fcnsterbr\u00fccke, reflective water, historic fa\u00e7ades, and a quiet espresso view.",
+              "why": []
+            },
+            {
+              "frames": [
+                14,
+                15
+              ],
+              "title": "Snowy Woodland",
+              "about": "These highlights combine a playful fallen-log view with a quiet snow-covered path through winter trees.",
+              "why": []
+            },
+            {
+              "frames": [
+                16,
+                17,
+                18
+              ],
+              "title": "Alpine Lake Overlook",
+              "about": "These highlights present the snowy mountain-and-lake panorama through a picnic, a warm drink, and a wide scenic vista.",
+              "why": []
+            },
+            {
+              "frames": [
+                20
+              ],
+              "title": "ETH Zurich Main Building",
+              "about": "The standout view frames the domed neoclassical building around its open courtyard beneath a clear sky.",
+              "why": []
+            }
+          ]
+        },
+        "failure_detail": null
+      }
+    ],
+    "unassigned": [
+      "FF1788C0-3669-4ABF-899F-E9273172EFA9_1_105_c.jpeg",
+      "BF3A7C4D-8F4E-4633-9EC4-9DC2CA5963D1_1_105_c.jpeg",
+      "BA4A2C05-6EE6-440C-95E5-F0650B88CE46_1_105_c.jpeg",
+      "6749C1E3-3496-4820-BAEE-DDD741A1E3ED_1_105_c.jpeg",
+      "5C04ACC2-761D-40C5-9DC0-1C733FD4EAF6_1_105_c.jpeg",
+      "663D57DB-A88F-425B-9EED-6D3092B7FBEB_1_105_c.jpeg",
+      "5539FBDC-DC6F-4453-B923-2020F6F19150_1_105_c.jpeg",
+      "251C2E86-2554-4FBE-81D0-64C7B5E6D68C_4_5005_c.jpeg",
+      "2287B35E-A98D-4998-8A07-221D5028BD13_1_105_c.jpeg",
+      "DC6AF3C9-5F96-4929-BA6C-474F62B5BE07_1_105_c.jpeg",
+      "EA1BE83F-7785-40DA-AD12-FC0D2ACF9D86_1_105_c.jpeg",
+      "368BCCEC-E86C-43CC-9E3A-1A91AC056CF6_4_5005_c.jpeg",
+      "F97F7590-0F30-432C-BEDE-A2F6268B988A_4_5005_c.jpeg",
+      "2BEC5571-35F1-412C-A7E6-C63A6135003C_1_105_c.jpeg",
+      "35464AA0-DF38-4D72-8C67-008C78564E89_1_105_c.jpeg"
+    ],
+    "cost_usd": 0.0232
+  },
+  "baseline_proposals": [
+    {
+      "label": "2026-01-14 08:18 to 08:18 UTC",
+      "start_utc": "2026-01-14T08:18:03+00:00",
+      "end_utc": "2026-01-14T08:18:03+00:00",
+      "score": 0.727,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "FF1788C0-3669-4ABF-899F-E9273172EFA9_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 44.734769012779
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "FF1788C0-3669-4ABF-899F-E9273172EFA9_1_105_c.jpeg",
+          "gap_seconds": 5030.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.089
+        }
+      }
+    },
+    {
+      "label": "2026-01-14 09:41 to 09:41 UTC",
+      "start_utc": "2026-01-14T09:41:53+00:00",
+      "end_utc": "2026-01-14T09:41:53+00:00",
+      "score": 0.797,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "BF3A7C4D-8F4E-4633-9EC4-9DC2CA5963D1_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 161.93908442794864
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "FF1788C0-3669-4ABF-899F-E9273172EFA9_1_105_c.jpeg",
+          "gap_seconds": 5030.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "BF3A7C4D-8F4E-4633-9EC4-9DC2CA5963D1_1_105_c.jpeg",
+          "gap_seconds": 11125.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.324
+        }
+      }
+    },
+    {
+      "label": "2026-01-14 12:47 to 12:47 UTC",
+      "start_utc": "2026-01-14T12:47:18+00:00",
+      "end_utc": "2026-01-14T12:47:18+00:00",
+      "score": 0.758,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "CBF9FF4F-8E31-4840-BD32-07D68CD4953A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 95.81880357820127
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "BF3A7C4D-8F4E-4633-9EC4-9DC2CA5963D1_1_105_c.jpeg",
+          "gap_seconds": 11125.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "CBF9FF4F-8E31-4840-BD32-07D68CD4953A_1_105_c.jpeg",
+          "gap_seconds": 3537.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.192
+        }
+      }
+    },
+    {
+      "label": "2026-01-14 13:46 to 13:56 UTC",
+      "start_utc": "2026-01-14T13:46:15+00:00",
+      "end_utc": "2026-01-14T13:56:00+00:00",
+      "score": 0.871,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "2B3AB0CA-AC28-4C42-ABF5-00A988DC58A5_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "62703390-043E-4CA1-A9BA-42014F73C3B4_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "BA4A2C05-6EE6-440C-95E5-F0650B88CE46_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1792.582494192607
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 3,
+        "primary_count": 3,
+        "attached_count": 0,
+        "span_seconds": 585.0,
+        "located_members": 2,
+        "unlocated_members": 1,
+        "max_distance_metres": 101.3,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 438.0,
+          "window_seconds": 1176.0
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "CBF9FF4F-8E31-4840-BD32-07D68CD4953A_1_105_c.jpeg",
+          "gap_seconds": 3537.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "BA4A2C05-6EE6-440C-95E5-F0650B88CE46_1_105_c.jpeg",
+          "gap_seconds": 2469.0,
+          "window_seconds": 2340.0
+        },
+        "score_components": {
+          "cohesion": 0.928,
+          "location_support": 0.667,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-01-14 14:37 to 14:37 UTC",
+      "start_utc": "2026-01-14T14:37:09+00:00",
+      "end_utc": "2026-01-14T14:37:09+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "3655830F-8042-409F-A7AC-58DE910C491F_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 640.8229532843818
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "BA4A2C05-6EE6-440C-95E5-F0650B88CE46_1_105_c.jpeg",
+          "gap_seconds": 2469.0,
+          "window_seconds": 2340.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "3655830F-8042-409F-A7AC-58DE910C491F_1_105_c.jpeg",
+          "distance_metres": 562.6,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-01-14 15:10 to 15:10 UTC",
+      "start_utc": "2026-01-14T15:10:35+00:00",
+      "end_utc": "2026-01-14T15:10:35+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "6E3C91B2-FE68-4113-8E59-165F1D0E5984_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 652.6080869763003
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "3655830F-8042-409F-A7AC-58DE910C491F_1_105_c.jpeg",
+          "distance_metres": 562.6,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "6E3C91B2-FE68-4113-8E59-165F1D0E5984_1_105_c.jpeg",
+          "distance_metres": 463.5,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-01-14 15:20 to 15:20 UTC",
+      "start_utc": "2026-01-14T15:20:07+00:00",
+      "end_utc": "2026-01-14T15:20:07+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "6749C1E3-3496-4820-BAEE-DDD741A1E3ED_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 727.9747675592856
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "6E3C91B2-FE68-4113-8E59-165F1D0E5984_1_105_c.jpeg",
+          "distance_metres": 463.5,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "6749C1E3-3496-4820-BAEE-DDD741A1E3ED_1_105_c.jpeg",
+          "gap_seconds": 4099.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-01-14 16:28 to 16:52 UTC",
+      "start_utc": "2026-01-14T16:28:26+00:00",
+      "end_utc": "2026-01-14T16:52:43+00:00",
+      "score": 0.686,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "5C04ACC2-761D-40C5-9DC0-1C733FD4EAF6_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "663D57DB-A88F-425B-9EED-6D3092B7FBEB_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 691.3698977029158
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 1457.0,
+        "located_members": 1,
+        "unlocated_members": 1,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1457.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "6749C1E3-3496-4820-BAEE-DDD741A1E3ED_1_105_c.jpeg",
+          "gap_seconds": 4099.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "663D57DB-A88F-425B-9EED-6D3092B7FBEB_1_105_c.jpeg",
+          "gap_seconds": 62259.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.73,
+          "location_support": 0.5,
+          "visual_quality": 0.815
+        }
+      }
+    },
+    {
+      "label": "2026-01-15 10:10 to 10:16 UTC",
+      "start_utc": "2026-01-15T10:10:22+00:00",
+      "end_utc": "2026-01-15T10:16:02+00:00",
+      "score": 0.88,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "899F7401-90A7-4C9C-8FC8-F83EABA12ECA_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "5539FBDC-DC6F-4453-B923-2020F6F19150_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 496.77082824394
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 340.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 4.0,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 340.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "663D57DB-A88F-425B-9EED-6D3092B7FBEB_1_105_c.jpeg",
+          "gap_seconds": 62259.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "5539FBDC-DC6F-4453-B923-2020F6F19150_1_105_c.jpeg",
+          "gap_seconds": 6283.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.937,
+          "location_support": 1.0,
+          "visual_quality": 0.684
+        }
+      }
+    },
+    {
+      "label": "2026-01-15 12:00 to 12:00 UTC",
+      "start_utc": "2026-01-15T12:00:45+00:00",
+      "end_utc": "2026-01-15T12:00:45+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "251C2E86-2554-4FBE-81D0-64C7B5E6D68C_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 941.200465602997
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "5539FBDC-DC6F-4453-B923-2020F6F19150_1_105_c.jpeg",
+          "gap_seconds": 6283.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "251C2E86-2554-4FBE-81D0-64C7B5E6D68C_4_5005_c.jpeg",
+          "distance_metres": 622.5,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-01-15 12:17 to 12:20 UTC",
+      "start_utc": "2026-01-15T12:17:17+00:00",
+      "end_utc": "2026-01-15T12:20:17+00:00",
+      "score": 0.987,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "0BEB16DC-20AE-4BBE-9C0D-F00BA0DFBDB4_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "0FF07EF2-BB63-499D-8AEF-E4CEF597BF84_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1266.6765009918004
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 180.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 31.6,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 180.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "place_change",
+          "after": "251C2E86-2554-4FBE-81D0-64C7B5E6D68C_4_5005_c.jpeg",
+          "distance_metres": 622.5,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "0FF07EF2-BB63-499D-8AEF-E4CEF597BF84_4_5005_c.jpeg",
+          "gap_seconds": 3646.0,
+          "window_seconds": 1440.0
+        },
+        "score_components": {
+          "cohesion": 0.967,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-01-15 13:21 to 14:00 UTC",
+      "start_utc": "2026-01-15T13:21:03+00:00",
+      "end_utc": "2026-01-15T14:00:55+00:00",
+      "score": 0.856,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "68992A52-3493-4446-8D20-460844BA66C8_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "F087D312-AC55-490D-B885-6472B5102312_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1147.9527234235363
+          }
+        },
+        {
+          "relative_path": "9E228423-83A5-459E-8EEA-A8A8A9868762_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "2287B35E-A98D-4998-8A07-221D5028BD13_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "A4568ABE-E7F8-4C92-A347-5BF037D76581_1_105_c.jpeg",
+          "membership": "burst",
+          "evidence": {
+            "canonical": "9E228423-83A5-459E-8EEA-A8A8A9868762_1_105_c.jpeg",
+            "hash_distance": 3,
+            "gap_seconds": 3.0
+          }
+        },
+        {
+          "relative_path": "AD477ED0-87EE-47D4-AB88-C93391D04400_1_105_c.jpeg",
+          "membership": "burst",
+          "evidence": {
+            "canonical": "9E228423-83A5-459E-8EEA-A8A8A9868762_1_105_c.jpeg",
+            "hash_distance": 0,
+            "gap_seconds": 0.0
+          }
+        },
+        {
+          "relative_path": "B9AA4928-3816-4FD2-ABDD-FB26E398983A_1_105_c.jpeg",
+          "membership": "burst",
+          "evidence": {
+            "canonical": "2287B35E-A98D-4998-8A07-221D5028BD13_1_105_c.jpeg",
+            "hash_distance": 0,
+            "gap_seconds": 0.0
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 7,
+        "primary_count": 4,
+        "attached_count": 3,
+        "span_seconds": 2392.0,
+        "located_members": 4,
+        "unlocated_members": 0,
+        "max_distance_metres": 6.9,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1552.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "0FF07EF2-BB63-499D-8AEF-E4CEF597BF84_4_5005_c.jpeg",
+          "gap_seconds": 3646.0,
+          "window_seconds": 1440.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "2287B35E-A98D-4998-8A07-221D5028BD13_1_105_c.jpeg",
+          "gap_seconds": 8496.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.779,
+          "location_support": 1.0,
+          "visual_quality": 0.816
+        }
+      }
+    },
+    {
+      "label": "2026-01-15 16:22 to 16:22 UTC",
+      "start_utc": "2026-01-15T16:22:31+00:00",
+      "end_utc": "2026-01-15T16:22:31+00:00",
+      "score": 0.927,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "A990B733-4E18-4C28-BEC1-899950C842AB_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 379.1601742460237
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "2287B35E-A98D-4998-8A07-221D5028BD13_1_105_c.jpeg",
+          "gap_seconds": 8496.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "A990B733-4E18-4C28-BEC1-899950C842AB_1_105_c.jpeg",
+          "gap_seconds": 56630.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.758
+        }
+      }
+    },
+    {
+      "label": "2026-01-16 08:06 to 08:22 UTC",
+      "start_utc": "2026-01-16T08:06:21+00:00",
+      "end_utc": "2026-01-16T08:22:20+00:00",
+      "score": 0.801,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "DC6AF3C9-5F96-4929-BA6C-474F62B5BE07_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "EA1BE83F-7785-40DA-AD12-FC0D2ACF9D86_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 486.05637385189124
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 959.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 2.3,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 959.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "A990B733-4E18-4C28-BEC1-899950C842AB_1_105_c.jpeg",
+          "gap_seconds": 56630.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "EA1BE83F-7785-40DA-AD12-FC0D2ACF9D86_1_105_c.jpeg",
+          "gap_seconds": 15942.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.822,
+          "location_support": 1.0,
+          "visual_quality": 0.574
+        }
+      }
+    },
+    {
+      "label": "2026-01-16 12:48 to 12:48 UTC",
+      "start_utc": "2026-01-16T12:48:02+00:00",
+      "end_utc": "2026-01-16T12:48:02+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "368BCCEC-E86C-43CC-9E3A-1A91AC056CF6_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 1559.9135023509505
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "EA1BE83F-7785-40DA-AD12-FC0D2ACF9D86_1_105_c.jpeg",
+          "gap_seconds": 15942.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "368BCCEC-E86C-43CC-9E3A-1A91AC056CF6_4_5005_c.jpeg",
+          "gap_seconds": 15544.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-01-16 17:07 to 17:07 UTC",
+      "start_utc": "2026-01-16T17:07:06+00:00",
+      "end_utc": "2026-01-16T17:07:06+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "F97F7590-0F30-432C-BEDE-A2F6268B988A_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 900.6613292159636
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "368BCCEC-E86C-43CC-9E3A-1A91AC056CF6_4_5005_c.jpeg",
+          "gap_seconds": 15544.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "F97F7590-0F30-432C-BEDE-A2F6268B988A_4_5005_c.jpeg",
+          "gap_seconds": 66128.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-01-17 11:29 to 11:29 UTC",
+      "start_utc": "2026-01-17T11:29:14+00:00",
+      "end_utc": "2026-01-17T11:29:14+00:00",
+      "score": 1.0,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "2BEC5571-35F1-412C-A7E6-C63A6135003C_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 942.8033491588043
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "F97F7590-0F30-432C-BEDE-A2F6268B988A_4_5005_c.jpeg",
+          "gap_seconds": 66128.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "2BEC5571-35F1-412C-A7E6-C63A6135003C_1_105_c.jpeg",
+          "gap_seconds": 9447.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0
+        }
+      }
+    },
+    {
+      "label": "2026-01-17 14:06 to 14:06 UTC",
+      "start_utc": "2026-01-17T14:06:41+00:00",
+      "end_utc": "2026-01-17T14:06:41+00:00",
+      "score": 0.73,
+      "method_version": "group-1",
+      "members": [
+        {
+          "relative_path": "35464AA0-DF38-4D72-8C67-008C78564E89_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "sharpest member",
+            "blur_score": 49.43826786426103
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "2BEC5571-35F1-412C-A7E6-C63A6135003C_1_105_c.jpeg",
+          "gap_seconds": 9447.0,
+          "window_seconds": 2700
+        },
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.099
+        }
+      }
+    }
+  ],
+  "refined_proposals": [
+    {
+      "label": "2026-01-14 08:18 to 08:18 UTC",
+      "start_utc": "2026-01-14T08:18:03+00:00",
+      "end_utc": "2026-01-14T08:18:03+00:00",
+      "score": 0.961,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "FF1788C0-3669-4ABF-899F-E9273172EFA9_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 44.734769012779,
+            "representative_score": 0.87,
+            "previous_representative": "FF1788C0-3669-4ABF-899F-E9273172EFA9_1_105_c.jpeg",
+            "reasoning": "The strong wing perspective, layered clouds, and distant mountains create a clear and expressive sense of travel."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "FF1788C0-3669-4ABF-899F-E9273172EFA9_1_105_c.jpeg",
+          "gap_seconds": 5030.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.089,
+          "model_quality": 0.87
+        },
+        "baseline_score": 0.727,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-14 09:41 to 09:41 UTC",
+      "start_utc": "2026-01-14T09:41:53+00:00",
+      "end_utc": "2026-01-14T09:41:53+00:00",
+      "score": 0.961,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "BF3A7C4D-8F4E-4633-9EC4-9DC2CA5963D1_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 161.93908442794864,
+            "representative_score": 0.87,
+            "previous_representative": "BF3A7C4D-8F4E-4633-9EC4-9DC2CA5963D1_1_105_c.jpeg",
+            "reasoning": "The wing anchors the travel context while the broad snowy landscape conveys scale, atmosphere, and a memorable in-transit moment."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "FF1788C0-3669-4ABF-899F-E9273172EFA9_1_105_c.jpeg",
+          "gap_seconds": 5030.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "BF3A7C4D-8F4E-4633-9EC4-9DC2CA5963D1_1_105_c.jpeg",
+          "gap_seconds": 11125.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.324,
+          "model_quality": 0.87
+        },
+        "baseline_score": 0.797,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-14 12:47 to 12:47 UTC",
+      "start_utc": "2026-01-14T12:47:18+00:00",
+      "end_utc": "2026-01-14T12:47:18+00:00",
+      "score": 0.946,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "CBF9FF4F-8E31-4840-BD32-07D68CD4953A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 95.81880357820127,
+            "representative_score": 0.82,
+            "previous_representative": "CBF9FF4F-8E31-4840-BD32-07D68CD4953A_1_105_c.jpeg",
+            "reasoning": "The layered water, city shoreline, mountains, and dramatic sky create a strong sense of place and atmosphere."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "BF3A7C4D-8F4E-4633-9EC4-9DC2CA5963D1_1_105_c.jpeg",
+          "gap_seconds": 11125.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "CBF9FF4F-8E31-4840-BD32-07D68CD4953A_1_105_c.jpeg",
+          "gap_seconds": 3537.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.192,
+          "model_quality": 0.82
+        },
+        "baseline_score": 0.758,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-14 13:46 to 13:56 UTC",
+      "start_utc": "2026-01-14T13:46:15+00:00",
+      "end_utc": "2026-01-14T13:56:00+00:00",
+      "score": 0.799,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "2B3AB0CA-AC28-4C42-ABF5-00A988DC58A5_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.82,
+            "previous_representative": "BA4A2C05-6EE6-440C-95E5-F0650B88CE46_1_105_c.jpeg",
+            "reasoning": "Layered snow, lawn, trees, lake, and sky establish the setting clearly, while the dogs add lively narrative interest."
+          }
+        },
+        {
+          "relative_path": "62703390-043E-4CA1-A9BA-42014F73C3B4_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "BA4A2C05-6EE6-440C-95E5-F0650B88CE46_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 3,
+        "primary_count": 3,
+        "attached_count": 0,
+        "span_seconds": 585.0,
+        "located_members": 2,
+        "unlocated_members": 1,
+        "max_distance_metres": 101.3,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 438.0,
+          "window_seconds": 1176.0
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "CBF9FF4F-8E31-4840-BD32-07D68CD4953A_1_105_c.jpeg",
+          "gap_seconds": 3537.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "BA4A2C05-6EE6-440C-95E5-F0650B88CE46_1_105_c.jpeg",
+          "gap_seconds": 2469.0,
+          "window_seconds": 2340.0
+        },
+        "score_components": {
+          "cohesion": 0.928,
+          "location_support": 0.667,
+          "visual_quality": 1.0,
+          "model_quality": 0.76
+        },
+        "baseline_score": 0.871,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-14 14:37 to 14:37 UTC",
+      "start_utc": "2026-01-14T14:37:09+00:00",
+      "end_utc": "2026-01-14T14:37:09+00:00",
+      "score": 0.946,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "3655830F-8042-409F-A7AC-58DE910C491F_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 640.8229532843818,
+            "representative_score": 0.82,
+            "previous_representative": "3655830F-8042-409F-A7AC-58DE910C491F_1_105_c.jpeg",
+            "reasoning": "The broad architectural context, seasonal details, and prominent opera house make the moment visually expressive and recognizable."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "BA4A2C05-6EE6-440C-95E5-F0650B88CE46_1_105_c.jpeg",
+          "gap_seconds": 2469.0,
+          "window_seconds": 2340.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "3655830F-8042-409F-A7AC-58DE910C491F_1_105_c.jpeg",
+          "distance_metres": 562.6,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.82
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-14 15:10 to 15:10 UTC",
+      "start_utc": "2026-01-14T15:10:35+00:00",
+      "end_utc": "2026-01-14T15:10:35+00:00",
+      "score": 0.952,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "6E3C91B2-FE68-4113-8E59-165F1D0E5984_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 652.6080869763003,
+            "representative_score": 0.84,
+            "previous_representative": "6E3C91B2-FE68-4113-8E59-165F1D0E5984_1_105_c.jpeg",
+            "reasoning": "The prominent church spire, historic streetscape, and passing pedestrians clearly convey an atmospheric Z\u00fcrich city moment."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "3655830F-8042-409F-A7AC-58DE910C491F_1_105_c.jpeg",
+          "distance_metres": 562.6,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "6E3C91B2-FE68-4113-8E59-165F1D0E5984_1_105_c.jpeg",
+          "distance_metres": 463.5,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.84
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-14 15:20 to 15:20 UTC",
+      "start_utc": "2026-01-14T15:20:07+00:00",
+      "end_utc": "2026-01-14T15:20:07+00:00",
+      "score": 0.904,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "6749C1E3-3496-4820-BAEE-DDD741A1E3ED_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 727.9747675592856,
+            "representative_score": 0.68,
+            "previous_representative": "6749C1E3-3496-4820-BAEE-DDD741A1E3ED_1_105_c.jpeg",
+            "reasoning": "The broad streetscape clearly conveys local urban character, with strong architectural contrast and transit context."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "place_change",
+          "after": "6E3C91B2-FE68-4113-8E59-165F1D0E5984_1_105_c.jpeg",
+          "distance_metres": 463.5,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "6749C1E3-3496-4820-BAEE-DDD741A1E3ED_1_105_c.jpeg",
+          "gap_seconds": 4099.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.68
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-14 16:28 to 16:52 UTC",
+      "start_utc": "2026-01-14T16:28:26+00:00",
+      "end_utc": "2026-01-14T16:52:43+00:00",
+      "score": 0.673,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "5C04ACC2-761D-40C5-9DC0-1C733FD4EAF6_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "663D57DB-A88F-425B-9EED-6D3092B7FBEB_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 691.3698977029158,
+            "representative_score": 0.82,
+            "previous_representative": "663D57DB-A88F-425B-9EED-6D3092B7FBEB_1_105_c.jpeg",
+            "reasoning": "The elevated framing clearly emphasizes the meal and surrounding social context, making the moment expressive and easy to recognize."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 1457.0,
+        "located_members": 1,
+        "unlocated_members": 1,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1457.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "6749C1E3-3496-4820-BAEE-DDD741A1E3ED_1_105_c.jpeg",
+          "gap_seconds": 4099.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "663D57DB-A88F-425B-9EED-6D3092B7FBEB_1_105_c.jpeg",
+          "gap_seconds": 62259.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.73,
+          "location_support": 0.5,
+          "visual_quality": 0.815,
+          "model_quality": 0.77
+        },
+        "baseline_score": 0.686,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-15 10:10 to 10:16 UTC",
+      "start_utc": "2026-01-15T10:10:22+00:00",
+      "end_utc": "2026-01-15T10:16:02+00:00",
+      "score": 0.919,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "899F7401-90A7-4C9C-8FC8-F83EABA12ECA_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.87,
+            "previous_representative": "5539FBDC-DC6F-4453-B923-2020F6F19150_1_105_c.jpeg",
+            "reasoning": "The layered composition combines a tangible travel ritual with a scenic riverfront and recognizable historic atmosphere."
+          }
+        },
+        {
+          "relative_path": "5539FBDC-DC6F-4453-B923-2020F6F19150_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 340.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 4.0,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 340.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "663D57DB-A88F-425B-9EED-6D3092B7FBEB_1_105_c.jpeg",
+          "gap_seconds": 62259.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "5539FBDC-DC6F-4453-B923-2020F6F19150_1_105_c.jpeg",
+          "gap_seconds": 6283.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.937,
+          "location_support": 1.0,
+          "visual_quality": 0.684,
+          "model_quality": 0.815
+        },
+        "baseline_score": 0.88,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-15 12:00 to 12:00 UTC",
+      "start_utc": "2026-01-15T12:00:45+00:00",
+      "end_utc": "2026-01-15T12:00:45+00:00",
+      "score": 0.928,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "251C2E86-2554-4FBE-81D0-64C7B5E6D68C_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 941.200465602997,
+            "representative_score": 0.76,
+            "previous_representative": "251C2E86-2554-4FBE-81D0-64C7B5E6D68C_4_5005_c.jpeg",
+            "reasoning": "The tram, snowy street, and tower create a layered scene with strong local and seasonal character."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "5539FBDC-DC6F-4453-B923-2020F6F19150_1_105_c.jpeg",
+          "gap_seconds": 6283.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "place_change",
+          "after": "251C2E86-2554-4FBE-81D0-64C7B5E6D68C_4_5005_c.jpeg",
+          "distance_metres": 622.5,
+          "threshold_metres": 150.0
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.76
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-15 12:17 to 12:20 UTC",
+      "start_utc": "2026-01-15T12:17:17+00:00",
+      "end_utc": "2026-01-15T12:20:17+00:00",
+      "score": 0.909,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "0BEB16DC-20AE-4BBE-9C0D-F00BA0DFBDB4_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "0FF07EF2-BB63-499D-8AEF-E4CEF597BF84_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1266.6765009918004,
+            "representative_score": 0.78,
+            "previous_representative": "0FF07EF2-BB63-499D-8AEF-E4CEF597BF84_4_5005_c.jpeg",
+            "reasoning": "The path provides a strong visual lead through the winter landscape, while the bench adds atmosphere and a sense of place."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 180.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 31.6,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 180.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "place_change",
+          "after": "251C2E86-2554-4FBE-81D0-64C7B5E6D68C_4_5005_c.jpeg",
+          "distance_metres": 622.5,
+          "threshold_metres": 150.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "0FF07EF2-BB63-499D-8AEF-E4CEF597BF84_4_5005_c.jpeg",
+          "gap_seconds": 3646.0,
+          "window_seconds": 1440.0
+        },
+        "score_components": {
+          "cohesion": 0.967,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.74
+        },
+        "baseline_score": 0.987,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-15 13:21 to 14:00 UTC",
+      "start_utc": "2026-01-15T13:21:03+00:00",
+      "end_utc": "2026-01-15T14:00:55+00:00",
+      "score": 0.885,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "68992A52-3493-4446-8D20-460844BA66C8_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "F087D312-AC55-490D-B885-6472B5102312_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "9E228423-83A5-459E-8EEA-A8A8A9868762_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.93,
+            "previous_representative": "F087D312-AC55-490D-B885-6472B5102312_1_105_c.jpeg",
+            "reasoning": "The foreground figure anchors an expansive layered landscape, clearly conveying the experience of pausing at a scenic overlook."
+          }
+        },
+        {
+          "relative_path": "2287B35E-A98D-4998-8A07-221D5028BD13_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "A4568ABE-E7F8-4C92-A347-5BF037D76581_1_105_c.jpeg",
+          "membership": "burst",
+          "evidence": {
+            "canonical": "9E228423-83A5-459E-8EEA-A8A8A9868762_1_105_c.jpeg",
+            "hash_distance": 3,
+            "gap_seconds": 3.0
+          }
+        },
+        {
+          "relative_path": "AD477ED0-87EE-47D4-AB88-C93391D04400_1_105_c.jpeg",
+          "membership": "burst",
+          "evidence": {
+            "canonical": "9E228423-83A5-459E-8EEA-A8A8A9868762_1_105_c.jpeg",
+            "hash_distance": 0,
+            "gap_seconds": 0.0
+          }
+        },
+        {
+          "relative_path": "B9AA4928-3816-4FD2-ABDD-FB26E398983A_1_105_c.jpeg",
+          "membership": "burst",
+          "evidence": {
+            "canonical": "2287B35E-A98D-4998-8A07-221D5028BD13_1_105_c.jpeg",
+            "hash_distance": 0,
+            "gap_seconds": 0.0
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 7,
+        "primary_count": 4,
+        "attached_count": 3,
+        "span_seconds": 2392.0,
+        "located_members": 4,
+        "unlocated_members": 0,
+        "max_distance_metres": 6.9,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 1552.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "0FF07EF2-BB63-499D-8AEF-E4CEF597BF84_4_5005_c.jpeg",
+          "gap_seconds": 3646.0,
+          "window_seconds": 1440.0
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "2287B35E-A98D-4998-8A07-221D5028BD13_1_105_c.jpeg",
+          "gap_seconds": 8496.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.779,
+          "location_support": 1.0,
+          "visual_quality": 0.816,
+          "model_quality": 0.91
+        },
+        "baseline_score": 0.856,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-15 16:22 to 16:22 UTC",
+      "start_utc": "2026-01-15T16:22:31+00:00",
+      "end_utc": "2026-01-15T16:22:31+00:00",
+      "score": 0.958,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "A990B733-4E18-4C28-BEC1-899950C842AB_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 379.1601742460237,
+            "representative_score": 0.86,
+            "previous_representative": "A990B733-4E18-4C28-BEC1-899950C842AB_1_105_c.jpeg",
+            "reasoning": "The dramatic dome, illuminated windows, and surrounding courtyard strongly establish the setting, while passing people add scale and lived experience."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "2287B35E-A98D-4998-8A07-221D5028BD13_1_105_c.jpeg",
+          "gap_seconds": 8496.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "A990B733-4E18-4C28-BEC1-899950C842AB_1_105_c.jpeg",
+          "gap_seconds": 56630.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.758,
+          "model_quality": 0.86
+        },
+        "baseline_score": 0.927,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-16 08:06 to 08:22 UTC",
+      "start_utc": "2026-01-16T08:06:21+00:00",
+      "end_utc": "2026-01-16T08:22:20+00:00",
+      "score": 0.816,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "DC6AF3C9-5F96-4929-BA6C-474F62B5BE07_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "EA1BE83F-7785-40DA-AD12-FC0D2ACF9D86_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 486.05637385189124,
+            "representative_score": 0.82,
+            "previous_representative": "EA1BE83F-7785-40DA-AD12-FC0D2ACF9D86_1_105_c.jpeg",
+            "reasoning": "The elevated tabletop view clearly centers the colorful meal and conveys an inviting breakfast moment, though peripheral items compete slightly for attention."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 959.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 2.3,
+        "place_threshold_metres": 150.0,
+        "closest_call": {
+          "gap_seconds": 959.0,
+          "window_seconds": 2700
+        },
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "A990B733-4E18-4C28-BEC1-899950C842AB_1_105_c.jpeg",
+          "gap_seconds": 56630.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "EA1BE83F-7785-40DA-AD12-FC0D2ACF9D86_1_105_c.jpeg",
+          "gap_seconds": 15942.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 0.822,
+          "location_support": 1.0,
+          "visual_quality": 0.574,
+          "model_quality": 0.625
+        },
+        "baseline_score": 0.801,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-16 12:48 to 12:48 UTC",
+      "start_utc": "2026-01-16T12:48:02+00:00",
+      "end_utc": "2026-01-16T12:48:02+00:00",
+      "score": 0.952,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "368BCCEC-E86C-43CC-9E3A-1A91AC056CF6_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1559.9135023509505,
+            "representative_score": 0.84,
+            "previous_representative": "368BCCEC-E86C-43CC-9E3A-1A91AC056CF6_4_5005_c.jpeg",
+            "reasoning": "The prominent coffee cup and passing tram combine personal routine with a strong sense of urban place."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "EA1BE83F-7785-40DA-AD12-FC0D2ACF9D86_1_105_c.jpeg",
+          "gap_seconds": 15942.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "368BCCEC-E86C-43CC-9E3A-1A91AC056CF6_4_5005_c.jpeg",
+          "gap_seconds": 15544.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.84
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-16 17:07 to 17:07 UTC",
+      "start_utc": "2026-01-16T17:07:06+00:00",
+      "end_utc": "2026-01-16T17:07:06+00:00",
+      "score": 0.946,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "F97F7590-0F30-432C-BEDE-A2F6268B988A_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 900.6613292159636,
+            "representative_score": 0.82,
+            "previous_representative": "F97F7590-0F30-432C-BEDE-A2F6268B988A_4_5005_c.jpeg",
+            "reasoning": "The elevated framing clearly presents the meal and tavern atmosphere, giving the moment strong culinary and social context."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "368BCCEC-E86C-43CC-9E3A-1A91AC056CF6_4_5005_c.jpeg",
+          "gap_seconds": 15544.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "F97F7590-0F30-432C-BEDE-A2F6268B988A_4_5005_c.jpeg",
+          "gap_seconds": 66128.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.82
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-17 11:29 to 11:29 UTC",
+      "start_utc": "2026-01-17T11:29:14+00:00",
+      "end_utc": "2026-01-17T11:29:14+00:00",
+      "score": 0.928,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "2BEC5571-35F1-412C-A7E6-C63A6135003C_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 942.8033491588043,
+            "representative_score": 0.76,
+            "previous_representative": "2BEC5571-35F1-412C-A7E6-C63A6135003C_1_105_c.jpeg",
+            "reasoning": "Strong first-person framing and bold road markings make an ordinary food stop visually memorable."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "F97F7590-0F30-432C-BEDE-A2F6268B988A_4_5005_c.jpeg",
+          "gap_seconds": 66128.0,
+          "window_seconds": 2700
+        },
+        "closed_by": {
+          "kind": "time_gap",
+          "after": "2BEC5571-35F1-412C-A7E6-C63A6135003C_1_105_c.jpeg",
+          "gap_seconds": 9447.0,
+          "window_seconds": 2700
+        },
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.76
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-17 14:06 to 14:06 UTC",
+      "start_utc": "2026-01-17T14:06:41+00:00",
+      "end_utc": "2026-01-17T14:06:41+00:00",
+      "score": 0.922,
+      "method_version": "refine-1",
+      "members": [
+        {
+          "relative_path": "35464AA0-DF38-4D72-8C67-008C78564E89_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 49.43826786426103,
+            "representative_score": 0.74,
+            "previous_representative": "35464AA0-DF38-4D72-8C67-008C78564E89_1_105_c.jpeg",
+            "reasoning": "The prominent wing, runway context, and expansive sky clearly convey the journey's airport transit moment."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": {
+          "kind": "time_gap",
+          "after": "2BEC5571-35F1-412C-A7E6-C63A6135003C_1_105_c.jpeg",
+          "gap_seconds": 9447.0,
+          "window_seconds": 2700
+        },
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.099,
+          "model_quality": 0.74
+        },
+        "baseline_score": 0.73,
+        "baseline_method_version": "group-1"
+      }
+    }
+  ],
+  "regrouped_proposals": [
+    {
+      "label": "2026-01-14 12:47 to 13:48 UTC",
+      "start_utc": "2026-01-14T12:47:18+00:00",
+      "end_utc": "2026-01-14T13:48:42+00:00",
+      "score": 0.764,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "CBF9FF4F-8E31-4840-BD32-07D68CD4953A_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.82,
+            "previous_representative": "2B3AB0CA-AC28-4C42-ABF5-00A988DC58A5_1_105_c.jpeg",
+            "reasoning": "The layered water, city shoreline, mountains, and dramatic sky create a strong sense of place and atmosphere."
+          }
+        },
+        {
+          "relative_path": "2B3AB0CA-AC28-4C42-ABF5-00A988DC58A5_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "62703390-043E-4CA1-A9BA-42014F73C3B4_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        }
+      ],
+      "evidence": {
+        "member_count": 3,
+        "primary_count": 3,
+        "attached_count": 0,
+        "span_seconds": 3684.0,
+        "located_members": 3,
+        "unlocated_members": 0,
+        "max_distance_metres": 1565.0,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.545,
+          "location_support": 1.0,
+          "visual_quality": 0.731,
+          "model_quality": 0.82
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "400071bf48a6672a",
+          "status": "reviewed",
+          "title": "Lake Z\u00fcrich",
+          "about": "These highlights pair the Alpine waterfront panorama with snowy parkland and moored sailboats along Lake Z\u00fcrich.",
+          "why": [],
+          "frames": [
+            2,
+            3,
+            4
+          ],
+          "days": [
+            "2026-01-14"
+          ]
+        },
+        "baseline_score": 0.737,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-14 14:37 to 14:37 UTC",
+      "start_utc": "2026-01-14T14:37:09+00:00",
+      "end_utc": "2026-01-14T14:37:09+00:00",
+      "score": 0.946,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "3655830F-8042-409F-A7AC-58DE910C491F_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 640.8229532843818,
+            "representative_score": 0.82,
+            "previous_representative": "3655830F-8042-409F-A7AC-58DE910C491F_1_105_c.jpeg",
+            "reasoning": "The broad architectural context, seasonal details, and prominent opera house make the moment visually expressive and recognizable."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.82
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "400071bf48a6672a",
+          "status": "reviewed",
+          "title": "Zurich Opera House",
+          "about": "The strongest view captures Zurich Opera House and its historic square in crisp winter light.",
+          "why": [],
+          "frames": [
+            6
+          ],
+          "days": [
+            "2026-01-14"
+          ]
+        },
+        "baseline_score": 1.0,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-14 15:10 to 10:10 UTC",
+      "start_utc": "2026-01-14T15:10:35+00:00",
+      "end_utc": "2026-01-15T10:10:22+00:00",
+      "score": 0.556,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "6E3C91B2-FE68-4113-8E59-165F1D0E5984_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "899F7401-90A7-4C9C-8FC8-F83EABA12ECA_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.87,
+            "previous_representative": "6E3C91B2-FE68-4113-8E59-165F1D0E5984_1_105_c.jpeg",
+            "reasoning": "The layered composition combines a tangible travel ritual with a scenic riverfront and recognizable historic atmosphere."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 68387.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 96.7,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.0,
+          "location_support": 1.0,
+          "visual_quality": 0.687,
+          "model_quality": 0.855
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "400071bf48a6672a",
+          "status": "reviewed",
+          "title": "Z\u00fcrich Old Town Riverfront",
+          "about": "These highlights show the old town riverfront through Fraum\u00fcnster and M\u00fcnsterbr\u00fccke, reflective water, historic fa\u00e7ades, and a quiet espresso view.",
+          "why": [],
+          "frames": [
+            7,
+            11
+          ],
+          "days": [
+            "2026-01-14",
+            "2026-01-15"
+          ]
+        },
+        "baseline_score": 0.506,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-15 12:17 to 12:20 UTC",
+      "start_utc": "2026-01-15T12:17:17+00:00",
+      "end_utc": "2026-01-15T12:20:17+00:00",
+      "score": 0.909,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "0BEB16DC-20AE-4BBE-9C0D-F00BA0DFBDB4_4_5005_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "0FF07EF2-BB63-499D-8AEF-E4CEF597BF84_4_5005_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 1266.6765009918004,
+            "representative_score": 0.78,
+            "previous_representative": "0FF07EF2-BB63-499D-8AEF-E4CEF597BF84_4_5005_c.jpeg",
+            "reasoning": "The path provides a strong visual lead through the winter landscape, while the bench adds atmosphere and a sense of place."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 2,
+        "primary_count": 2,
+        "attached_count": 0,
+        "span_seconds": 180.0,
+        "located_members": 2,
+        "unlocated_members": 0,
+        "max_distance_metres": 31.6,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.967,
+          "location_support": 1.0,
+          "visual_quality": 1.0,
+          "model_quality": 0.74
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "400071bf48a6672a",
+          "status": "reviewed",
+          "title": "Snowy Woodland",
+          "about": "These highlights combine a playful fallen-log view with a quiet snow-covered path through winter trees.",
+          "why": [],
+          "frames": [
+            14,
+            15
+          ],
+          "days": [
+            "2026-01-15"
+          ]
+        },
+        "baseline_score": 0.987,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-15 13:21 to 14:00 UTC",
+      "start_utc": "2026-01-15T13:21:03+00:00",
+      "end_utc": "2026-01-15T14:00:50+00:00",
+      "score": 0.853,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "68992A52-3493-4446-8D20-460844BA66C8_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {}
+        },
+        {
+          "relative_path": "F087D312-AC55-490D-B885-6472B5102312_1_105_c.jpeg",
+          "membership": "member",
+          "evidence": {
+            "reason": "superseded as representative by model quality"
+          }
+        },
+        {
+          "relative_path": "9E228423-83A5-459E-8EEA-A8A8A9868762_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "representative_score": 0.93,
+            "previous_representative": "F087D312-AC55-490D-B885-6472B5102312_1_105_c.jpeg",
+            "reasoning": "The foreground figure anchors an expansive layered landscape, clearly conveying the experience of pausing at a scenic overlook."
+          }
+        },
+        {
+          "relative_path": "A4568ABE-E7F8-4C92-A347-5BF037D76581_1_105_c.jpeg",
+          "membership": "burst",
+          "evidence": {
+            "canonical": "9E228423-83A5-459E-8EEA-A8A8A9868762_1_105_c.jpeg",
+            "hash_distance": 3,
+            "gap_seconds": 3.0
+          }
+        },
+        {
+          "relative_path": "AD477ED0-87EE-47D4-AB88-C93391D04400_1_105_c.jpeg",
+          "membership": "burst",
+          "evidence": {
+            "canonical": "9E228423-83A5-459E-8EEA-A8A8A9868762_1_105_c.jpeg",
+            "hash_distance": 0,
+            "gap_seconds": 0.0
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 5,
+        "primary_count": 3,
+        "attached_count": 2,
+        "span_seconds": 2387.0,
+        "located_members": 3,
+        "unlocated_members": 0,
+        "max_distance_metres": 6.9,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 0.705,
+          "location_support": 1.0,
+          "visual_quality": 0.865,
+          "model_quality": 0.904
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "400071bf48a6672a",
+          "status": "reviewed",
+          "title": "Alpine Lake Overlook",
+          "about": "These highlights present the snowy mountain-and-lake panorama through a picnic, a warm drink, and a wide scenic vista.",
+          "why": [],
+          "frames": [
+            16,
+            17,
+            18
+          ],
+          "days": [
+            "2026-01-15"
+          ]
+        },
+        "baseline_score": 0.841,
+        "baseline_method_version": "group-1"
+      }
+    },
+    {
+      "label": "2026-01-15 16:22 to 16:22 UTC",
+      "start_utc": "2026-01-15T16:22:31+00:00",
+      "end_utc": "2026-01-15T16:22:31+00:00",
+      "score": 0.958,
+      "method_version": "topic-location_highlights-1",
+      "members": [
+        {
+          "relative_path": "A990B733-4E18-4C28-BEC1-899950C842AB_1_105_c.jpeg",
+          "membership": "representative",
+          "evidence": {
+            "reason": "highest model representative quality",
+            "blur_score": 379.1601742460237,
+            "representative_score": 0.86,
+            "previous_representative": "A990B733-4E18-4C28-BEC1-899950C842AB_1_105_c.jpeg",
+            "reasoning": "The dramatic dome, illuminated windows, and surrounding courtyard strongly establish the setting, while passing people add scale and lived experience."
+          }
+        }
+      ],
+      "evidence": {
+        "member_count": 1,
+        "primary_count": 1,
+        "attached_count": 0,
+        "span_seconds": 0.0,
+        "located_members": 1,
+        "unlocated_members": 0,
+        "max_distance_metres": null,
+        "place_threshold_metres": 150.0,
+        "closest_call": null,
+        "opened_by": null,
+        "closed_by": null,
+        "score_components": {
+          "cohesion": 1.0,
+          "location_support": 1.0,
+          "visual_quality": 0.758,
+          "model_quality": 0.86
+        },
+        "review": {
+          "style": "location_highlights",
+          "session_id": "400071bf48a6672a",
+          "status": "reviewed",
+          "title": "ETH Zurich Main Building",
+          "about": "The standout view frames the domed neoclassical building around its open courtyard beneath a clear sky.",
+          "why": [],
+          "frames": [
+            20
+          ],
+          "days": [
+            "2026-01-15"
+          ]
+        },
+        "baseline_score": 0.927,
+        "baseline_method_version": "group-1"
+      }
+    }
+  ]
+}
