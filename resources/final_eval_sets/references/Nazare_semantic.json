@@ -1,0 +1,115 @@
+{
+  "dataset_id": "Nazare",
+  "variant": "semantic",
+  "source": "JO_Semantic_Content_Groups.pdf",
+  "groups": [
+    {
+      "index": 1,
+      "title": "Pasteis de Nata / Bakery Treats",
+      "asset_paths": [
+        "E64B3B2B-3BF2-46BC-8CA1-ADA2575A1FF7_1_105_c.jpeg",
+        "9AE3090F-3A23-4805-A096-9803B9F9FCEC_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Beach, Coast & Surf",
+      "asset_paths": [
+        "EB3D6E37-B075-4BFD-9F6F-16E9F74DDEAD_1_105_c.jpeg",
+        "806AF03C-9190-4461-8054-8D8847E38656_1_105_c.jpeg",
+        "31CBE67B-3348-42A1-9B38-6BBF88994DAD_1_105_c.jpeg",
+        "2AD1433B-B056-4568-9D67-DED7E4A9CE92_1_105_c.jpeg",
+        "7E67DB3F-49F3-4DAC-9DE6-21EE25FC9AD0_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Landmarks & Architecture",
+      "asset_paths": [
+        "C9942E5A-BA8C-4CBB-B464-C008FF6A4C0A_1_105_c.jpeg",
+        "70DCCE51-3D43-4A95-9138-5FB69F84BB57_1_105_c.jpeg",
+        "648860E2-8AD0-48C0-8403-027A3EF5C2A2_1_105_c.jpeg",
+        "1270AF25-3793-4E1A-90C8-55A9B42487D9_1_105_c.jpeg",
+        "33C8391D-8BDF-46CA-A14A-3F27683D569B_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Sunset & Scenic Views",
+      "asset_paths": [
+        "2A82C644-85BD-45A4-88B0-00D625697674_1_105_c.jpeg",
+        "6130D885-BE84-44D5-B683-BEEF29FD5A9D_1_105_c.jpeg",
+        "912ED873-A494-412A-9A00-417AB83F70A7_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 5,
+      "title": "Food & Drinks (Meals)",
+      "asset_paths": [
+        "E64B3B2B-3BF2-46BC-8CA1-ADA2575A1FF7_1_105_c.jpeg",
+        "1958F392-13E1-4B13-9B00-CECCDF9A9A62_1_105_c.jpeg",
+        "19D0AC1C-FDAC-4560-8EEB-3BAFF64A291C_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 6,
+      "title": "Transit & Vehicles",
+      "asset_paths": [
+        "1EAA30EA-68E6-452F-96A5-BBAB40203AFC_1_105_c.jpeg",
+        "31CBE67B-3348-42A1-9B38-6BBF88994DAD_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 7,
+      "title": "Misc / Statues",
+      "asset_paths": [
+        "FC61A42F-6EB8-4CD7-98E5-C0A0A8437887_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 8,
+      "title": "Specific Landmark: Pra\u00e7a do Com\u00e9rcio, Lisbon",
+      "asset_paths": [
+        "C9942E5A-BA8C-4CBB-B464-C008FF6A4C0A_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 9,
+      "title": "Specific Landmark: Nazar\u00e9 S\u00edtio Clifftop Viewpoint",
+      "asset_paths": [
+        "33C8391D-8BDF-46CA-A14A-3F27683D569B_1_105_c.jpeg",
+        "806AF03C-9190-4461-8054-8D8847E38656_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 10,
+      "title": "Big Wave Surf Spot (Praia do Norte)",
+      "asset_paths": [
+        "7E67DB3F-49F3-4DAC-9DE6-21EE25FC9AD0_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 11,
+      "title": "Azulejo Tile Details (Portuguese Ceramic Tiles)",
+      "asset_paths": [
+        "648860E2-8AD0-48C0-8403-027A3EF5C2A2_1_105_c.jpeg",
+        "1270AF25-3793-4E1A-90C8-55A9B42487D9_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 12,
+      "title": "Emergency / Lifeguard Vehicle Detail",
+      "asset_paths": [
+        "31CBE67B-3348-42A1-9B38-6BBF88994DAD_1_105_c.jpeg"
+      ]
+    }
+  ],
+  "excluded_paths": [],
+  "match_report": {
+    "placements": 28,
+    "matched_by_pixels": 28,
+    "via_override": 0,
+    "max_difference": 11.99,
+    "unreferenced_files": []
+  }
+}

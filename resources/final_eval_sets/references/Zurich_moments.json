@@ -1,0 +1,136 @@
+{
+  "dataset_id": "Zurich",
+  "variant": "moments",
+  "source": "JO_Manual_Grouping_Reference.pdf",
+  "groups": [
+    {
+      "index": 1,
+      "title": "Trip 3, Group 1",
+      "asset_paths": [
+        "FF1788C0-3669-4ABF-899F-E9273172EFA9_1_105_c.jpeg",
+        "BF3A7C4D-8F4E-4633-9EC4-9DC2CA5963D1_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Trip 3, Group 2",
+      "asset_paths": [
+        "251C2E86-2554-4FBE-81D0-64C7B5E6D68C_4_5005_c.jpeg",
+        "0BEB16DC-20AE-4BBE-9C0D-F00BA0DFBDB4_4_5005_c.jpeg"
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Trip 3, Group 3",
+      "asset_paths": [
+        "368BCCEC-E86C-43CC-9E3A-1A91AC056CF6_4_5005_c.jpeg"
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Trip 3, Group 4",
+      "asset_paths": [
+        "CBF9FF4F-8E31-4840-BD32-07D68CD4953A_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 5,
+      "title": "Trip 3, Group 5",
+      "asset_paths": [
+        "5C04ACC2-761D-40C5-9DC0-1C733FD4EAF6_1_105_c.jpeg",
+        "663D57DB-A88F-425B-9EED-6D3092B7FBEB_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 6,
+      "title": "Trip 3, Group 6",
+      "asset_paths": [
+        "2B3AB0CA-AC28-4C42-ABF5-00A988DC58A5_1_105_c.jpeg",
+        "62703390-043E-4CA1-A9BA-42014F73C3B4_1_105_c.jpeg",
+        "BA4A2C05-6EE6-440C-95E5-F0650B88CE46_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 7,
+      "title": "Trip 3, Group 7",
+      "asset_paths": [
+        "3655830F-8042-409F-A7AC-58DE910C491F_1_105_c.jpeg",
+        "6E3C91B2-FE68-4113-8E59-165F1D0E5984_1_105_c.jpeg",
+        "6749C1E3-3496-4820-BAEE-DDD741A1E3ED_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 8,
+      "title": "Trip 3, Group 8",
+      "asset_paths": [
+        "899F7401-90A7-4C9C-8FC8-F83EABA12ECA_1_105_c.jpeg",
+        "5539FBDC-DC6F-4453-B923-2020F6F19150_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 9,
+      "title": "Trip 3, Group 9",
+      "asset_paths": [
+        "AD477ED0-87EE-47D4-AB88-C93391D04400_1_105_c.jpeg",
+        "68992A52-3493-4446-8D20-460844BA66C8_1_105_c.jpeg",
+        "F087D312-AC55-490D-B885-6472B5102312_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 10,
+      "title": "Trip 3, Group 10",
+      "asset_paths": [
+        "35464AA0-DF38-4D72-8C67-008C78564E89_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 11,
+      "title": "Trip 3, Group 11",
+      "asset_paths": [
+        "0FF07EF2-BB63-499D-8AEF-E4CEF597BF84_4_5005_c.jpeg"
+      ]
+    },
+    {
+      "index": 12,
+      "title": "Trip 3, Group 12",
+      "asset_paths": [
+        "DC6AF3C9-5F96-4929-BA6C-474F62B5BE07_1_105_c.jpeg",
+        "EA1BE83F-7785-40DA-AD12-FC0D2ACF9D86_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 13,
+      "title": "Trip 3, Group 13",
+      "asset_paths": [
+        "F97F7590-0F30-432C-BEDE-A2F6268B988A_4_5005_c.jpeg"
+      ]
+    },
+    {
+      "index": 14,
+      "title": "Trip 3, Group 14",
+      "asset_paths": [
+        "2BEC5571-35F1-412C-A7E6-C63A6135003C_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 15,
+      "title": "Trip 3, Untagged / No Mark",
+      "asset_paths": [
+        "A990B733-4E18-4C28-BEC1-899950C842AB_1_105_c.jpeg"
+      ]
+    }
+  ],
+  "excluded_paths": [
+    "9E228423-83A5-459E-8EEA-A8A8A9868762_1_105_c.jpeg",
+    "A4568ABE-E7F8-4C92-A347-5BF037D76581_1_105_c.jpeg",
+    "B9AA4928-3816-4FD2-ABDD-FB26E398983A_1_105_c.jpeg",
+    "2287B35E-A98D-4998-8A07-221D5028BD13_1_105_c.jpeg"
+  ],
+  "match_report": {
+    "placements": 30,
+    "matched_by_pixels": 30,
+    "via_override": 0,
+    "max_difference": 10.95,
+    "unreferenced_files": []
+  }
+}

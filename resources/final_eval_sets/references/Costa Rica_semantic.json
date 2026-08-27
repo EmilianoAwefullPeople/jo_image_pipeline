@@ -1,0 +1,146 @@
+{
+  "dataset_id": "Costa Rica",
+  "variant": "semantic",
+  "source": "JO_Semantic_Content_Groups.pdf",
+  "groups": [
+    {
+      "index": 1,
+      "title": "Beach & Coast Scenes",
+      "asset_paths": [
+        "8282F5F5-2D54-461A-B75B-A4ED3EE50788_1_105_c.jpeg",
+        "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+        "A305D098-6C39-4D9C-89FA-C5CDF96DC9AA_1_105_c.jpeg",
+        "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg",
+        "2E007C3F-0049-4068-BA85-20F37263A4AE_1_105_c.jpeg",
+        "03D1CE54-8A49-4AF3-BF3C-7E1D1FFE480A_1_105_c.jpeg",
+        "0A38093E-08A3-48C3-8D06-7B56079EC11D_1_105_c.jpeg",
+        "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg",
+        "A410E8F2-9F53-4354-B331-EBF9F785B478_1_105_c.jpeg",
+        "BF7A90F3-2927-450D-AF6C-287F2682B43F_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 2,
+      "title": "Wildlife",
+      "asset_paths": [
+        "C030FC16-728F-44FF-8EFB-D9B40DC93F52_1_105_c.jpeg",
+        "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 3,
+      "title": "Food & Drinks",
+      "asset_paths": [
+        "E9235B62-CB83-450D-B353-7806F80334D1_1_105_c.jpeg",
+        "25B4D9F5-3FFC-481F-BAAE-577496CABCD9_1_105_c.jpeg",
+        "A2D6195B-17D6-40CA-AB00-454A53FFD191_1_105_c.jpeg",
+        "B3E29643-7301-48CA-93E0-E6B261FE2AD8_1_105_c.jpeg",
+        "52AE5BE5-AFC8-4507-B02B-6408791CDED4_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 4,
+      "title": "Accommodation / Eco-Lodge",
+      "asset_paths": [
+        "81B9590F-440C-4445-B7CE-BEEFBC78B132_1_105_c.jpeg",
+        "0B798E67-5EB1-4ABC-AD0F-B7732A0AB554_1_105_c.jpeg",
+        "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg",
+        "E35E4E25-00E0-4960-8F60-5CA0DC078C15_1_105_c.jpeg",
+        "90B4C004-6804-4B71-AD49-83F8F331044A_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 5,
+      "title": "Nature & Scenic (Inland)",
+      "asset_paths": [
+        "296F899A-DB34-45DC-9BDC-C8E78C808CAF_1_105_c.jpeg",
+        "9D035CAF-5766-4F25-92F4-227F67DEE6FA_1_105_c.jpeg",
+        "7BB65BF4-07A6-4A00-AF3E-3C9C7FD90E90_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 6,
+      "title": "Activities (Swimming, Painting, Nightlife)",
+      "asset_paths": [
+        "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg",
+        "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg",
+        "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 7,
+      "title": "Transit & Travel",
+      "asset_paths": [
+        "E8CE9C3A-D9E1-4EE0-ABAA-4CDA0D0E9476_1_105_c.jpeg",
+        "B3596FB2-8E57-433B-A909-BC59EB509924_1_105_c.jpeg",
+        "DA06EBDD-3CE1-4ABF-BE49-4EC6463E6777_1_105_c.jpeg",
+        "9A6DD1EF-FDF9-470C-8F67-E983432E5D2D_1_105_c.jpeg",
+        "52AE5BE5-AFC8-4507-B02B-6408791CDED4_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 8,
+      "title": "Surfing / Big Wave",
+      "asset_paths": [
+        "AD152D3E-4531-463D-9682-A4E09C73FB65_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 9,
+      "title": "Specific Wildlife: Sea Turtle Hatchlings",
+      "asset_paths": [
+        "A05E8CA0-9DF5-4580-ABFB-8FEF86E875C9_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 10,
+      "title": "Specific Wildlife: Tree Frog",
+      "asset_paths": [
+        "C030FC16-728F-44FF-8EFB-D9B40DC93F52_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 11,
+      "title": "Eco-Dome Structure (Geodesic Architecture)",
+      "asset_paths": [
+        "0B798E67-5EB1-4ABC-AD0F-B7732A0AB554_1_105_c.jpeg",
+        "83B058DB-8189-4DC4-B546-11EBCF1BDA10_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 12,
+      "title": "Activity: River Swimming",
+      "asset_paths": [
+        "BBB9F13A-A27C-46F4-93F2-7C218A7D66C7_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 13,
+      "title": "Rocky Sea Stacks / Islets",
+      "asset_paths": [
+        "11E787BD-A3C8-41AE-8713-8CE43973BAF4_1_105_c.jpeg",
+        "60791BEC-83F9-4E75-98FB-0BB310B4A8C8_1_105_c.jpeg"
+      ]
+    },
+    {
+      "index": 14,
+      "title": "Night Photography: Bonfire / Party Lighting",
+      "asset_paths": [
+        "F3A2F4D2-68C2-481B-8E8D-4EDC19633C7E_1_105_c.jpeg"
+      ]
+    }
+  ],
+  "excluded_paths": [],
+  "match_report": {
+    "placements": 42,
+    "matched_by_pixels": 42,
+    "via_override": 0,
+    "max_difference": 13.43,
+    "unreferenced_files": [
+      "4B3B9FBF-3884-4B1A-BCD5-A4F9A5AC8B2F_1_105_c.jpeg",
+      "8346E6F5-CAF4-4883-B46F-2DA951714A1F_1_105_c.jpeg",
+      "AE738585-98EE-457C-A707-3D783E5B6310_1_105_c.jpeg",
+      "D6FBCF23-F6A2-4F7A-A159-9E8EC4EE078A_4_5005_c.jpeg"
+    ]
+  }
+}

@@ -479,7 +479,8 @@ def print_keep_score(title: str, keep: KeepSignalScore):
 def write_benchmark_artifact(config: PipelineConfig, args: argparse.Namespace, artifacts: RunArtifacts, comparisons: list[ReviewComparison], keep: KeepSignalScore, review_keep: KeepSignalScore) -> Path:
     baseline, refined, regrouped = comparisons
     config.runs_dir.mkdir(parents=True, exist_ok=True)
-    artifact = config.runs_dir / f"{args.dataset}-v{args.dataset_version}-benchmark.json"
+    suffix = "" if artifacts.style.id == MOMENTS else f"-{artifacts.style.id}"
+    artifact = config.runs_dir / f"{args.dataset}-v{args.dataset_version}-benchmark{suffix}.json"
     artifact.write_text(json.dumps({
         "dataset_id": args.dataset,
         "dataset_version": args.dataset_version,
