@@ -12,7 +12,7 @@ from jo_pipeline.keepscore import KeepSignalScore, KeepSignalScorer
 from jo_pipeline.logging_setup import configure_logging
 from jo_pipeline.manifest import DatasetManifest, InventoryScanner, manifest_digest
 from jo_pipeline.persist import COMPLETE, OPENROUTER_PROVIDER, ModelCall, PipelineStore
-from jo_pipeline.reference import ReferenceGrouping, ReferenceReader
+from jo_pipeline.reference import ReferenceGrouping, reference_reader
 from jo_pipeline.refine import ProposalRefiner, build_image_signals, build_llm_observations
 from jo_pipeline.regroup import Regrouper, SessionBuilder, unassigned_paths
 from jo_pipeline.reliability import ReliabilityReport
@@ -378,7 +378,7 @@ def run_review(config: PipelineConfig, args: argparse.Namespace):
     if not document:
         raise FileNotFoundError(f"no reference document found under {config.dataset_path(args.dataset)}, pass --reference with a path")
 
-    reference = ReferenceReader(document).read(args.dataset, signals)
+    reference = reference_reader(document).read(args.dataset, signals)
     comparison = GroupingReviewer().compare(proposals, reference)
     artifact = write_review_artifact(config, args, proposals, reference, comparison)
     print_review(args.dataset, reference, comparison, artifact)
@@ -400,7 +400,7 @@ def run_benchmark(config: PipelineConfig, args: argparse.Namespace):
         print("Reference: no reference grouping supplied for this dataset, accuracy not scored\n")
         return
 
-    reference = ReferenceReader(document).read(args.dataset, signals)
+    reference = reference_reader(document).read(args.dataset, signals)
     comparisons = [GroupingReviewer().compare(proposals, reference) for proposals in (artifacts.baseline, artifacts.refined, artifacts.regrouped)]
     keep = KeepSignalScorer().score(reference, image_signals)
     review_keep = KeepSignalScorer().score(reference, artifacts.review_signals)
@@ -548,7 +548,7 @@ def print_pipeline_review(config: PipelineConfig, args: argparse.Namespace, prop
         print("\nReview: no reference grouping supplied for this dataset\n")
         return
 
-    reference = ReferenceReader(document).read(args.dataset, signals)
+    reference = reference_reader(document).read(args.dataset, signals)
     comparison = GroupingReviewer().compare(proposals, reference)
     artifact = write_review_artifact(config, args, proposals, reference, comparison)
     print_review(args.dataset, reference, comparison, artifact)

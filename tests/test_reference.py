@@ -1,3 +1,4 @@
+import json
 import zipfile
 from io import BytesIO
 
@@ -6,7 +7,7 @@ from PIL import Image
 
 from jo_pipeline.assets import AssetSignals
 from jo_pipeline.extract import image_difference_hash
-from jo_pipeline.reference import ReferenceReader
+from jo_pipeline.reference import JsonReferenceReader, ReferenceReader, reference_reader
 
 RELATIONSHIP_TEMPLATE = '<Relationship Id="{identifier}" Type="http://image" Target="media/{media}"/>'
 DRAWING_TEMPLATE = '<w:drawing><a:blip r:embed="{identifier}"/></w:drawing>'
@@ -109,3 +110,45 @@ def test_an_image_with_no_close_match_is_recorded_as_unmatched(tmp_path):
 
     assert grouping.groups[0].asset_paths == ["only.jpeg"]
     assert grouping.unmatched_media == ["rId2.png"]
+
+
+def write_reference_json(path, groups, excluded):
+    payload = {
+        "dataset_id": "sample",
+        "variant": "moments",
+        "source": "reference.pdf",
+        "groups": [{"index": index, "title": f"Group {index}", "asset_paths": paths} for index, paths in enumerate(groups, start=1)],
+        "excluded_paths": excluded,
+    }
+    path.write_text(json.dumps(payload))
+
+
+def test_json_reference_yields_groups_and_excluded_paths(tmp_path):
+    # A converted PDF reference lists asset file names directly; groups and exclusions must round-trip
+    document = tmp_path / "sample_moments.json"
+    write_reference_json(document, [["a.jpeg", "b.jpeg"], ["c.jpeg"]], ["d.jpeg"])
+    signals = [signal_for(name, make_image(seed)) for seed, name in enumerate(["a.jpeg", "b.jpeg", "c.jpeg", "d.jpeg"])]
+
+    grouping = JsonReferenceReader(document).read("sample", signals)
+
+    assert [group.asset_paths for group in grouping.groups] == [["a.jpeg", "b.jpeg"], ["c.jpeg"]]
+    assert grouping.excluded_paths == ["d.jpeg"]
+    assert grouping.unmatched_media == []
+
+
+def test_json_reference_flags_files_missing_from_the_dataset(tmp_path):
+    # A reference naming a file the dataset does not hold must surface it as unmatched, not fail
+    document = tmp_path / "sample_moments.json"
+    write_reference_json(document, [["a.jpeg", "gone.jpeg"]], [])
+    signals = [signal_for("a.jpeg", make_image(1))]
+
+    grouping = JsonReferenceReader(document).read("sample", signals)
+
+    assert grouping.groups[0].asset_paths == ["a.jpeg"]
+    assert grouping.unmatched_media == ["gone.jpeg"]
+
+
+def test_reference_reader_dispatches_on_file_suffix(tmp_path):
+    # benchmark --reference accepts either the docx reference or a converted JSON one
+    assert isinstance(reference_reader(tmp_path / "ref.json"), JsonReferenceReader)
+    assert isinstance(reference_reader(tmp_path / "ref.docx"), ReferenceReader)

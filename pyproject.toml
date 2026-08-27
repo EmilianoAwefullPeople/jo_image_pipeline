@@ -19,6 +19,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "pdfminer-six>=20260107",
     "pytest>=8.3",
     "pytest-asyncio>=0.24",
 ]

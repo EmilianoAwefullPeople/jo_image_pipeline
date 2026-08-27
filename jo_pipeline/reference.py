@@ -1,3 +1,4 @@
+import json
 import logging
 import re
 import zipfile
@@ -115,3 +116,37 @@ class ReferenceReader:
 
         LOGGER.debug(f"{media_name}: matched {best} at {distances[best]} bits")
         return best
+
+
+class JsonReferenceReader:
+    def __init__(self, document_path: Path):
+        self.document_path = document_path
+
+    def read(self, dataset_id: str, signals: list[AssetSignals]) -> ReferenceGrouping:
+        payload = json.loads(self.document_path.read_text())
+        known_paths = {asset.relative_path for asset in signals}
+
+        groups = []
+        unmatched = []
+        for entry in payload["groups"]:
+            resolved = [path for path in entry["asset_paths"] if path in known_paths]
+            missing = [path for path in entry["asset_paths"] if path not in known_paths]
+            unmatched.extend(missing)
+            groups.append(ReferenceGroup(index=len(groups) + 1, asset_paths=resolved, unmatched_media=missing))
+
+        excluded = [path for path in payload["excluded_paths"] if path in known_paths]
+        unmatched.extend(path for path in payload["excluded_paths"] if path not in known_paths)
+        LOGGER.info(f"{dataset_id}: reference file yielded {len(groups)} groups, {len(excluded)} excluded and {len(unmatched)} unmatched images")
+        return ReferenceGrouping(
+            dataset_id=dataset_id,
+            method_version=REFERENCE_VERSION,
+            groups=groups,
+            excluded_paths=excluded,
+            unmatched_media=unmatched,
+        )
+
+
+def reference_reader(document_path: Path) -> ReferenceReader | JsonReferenceReader:
+    if document_path.suffix.lower() == ".json":
+        return JsonReferenceReader(document_path)
+    return ReferenceReader(document_path)
