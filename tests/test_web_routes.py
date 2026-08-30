@@ -89,7 +89,7 @@ def test_uploads_keep_joining_the_set_until_it_is_started(tmp_path):
 
 
 def test_the_run_can_be_downloaded_as_a_json_attachment(tmp_path):
-    # The export is the same payload the page renders from, served as a file rather than an API response
+    # The export is the page payload plus export-only sections, served as a file rather than an API response
     with build_client(tmp_path) as client:
         run_id = client.post("/api/runs").json()["run_id"]
         client.post(f"/api/runs/{run_id}/files", files={"file": ("IMG_0001.jpg", photo_bytes(), "image/jpeg")})
@@ -101,6 +101,15 @@ def test_the_run_can_be_downloaded_as_a_json_attachment(tmp_path):
         assert response.headers["content-type"] == "application/json"
         assert response.json()["run_id"] == run_id
         assert response.json()["files"][0]["filename"] == "IMG_0001.jpg"
+        # The export-only sections are always present, empty on a run that has not been processed
+        assert response.json()["aggregate"] == {"images_analysed": 0, "evaluations": 0, "coverage": {}}
+        assert response.json()["images"] == {}
+        assert response.json()["styles"] == {}
+        # The polling payload stays lean; the sections belong to the export alone
+        poll = client.get(f"/api/runs/{run_id}").json()
+        assert "aggregate" not in poll
+        assert "images" not in poll
+        assert "styles" not in poll
         assert client.get(f"/api/runs/{'0' * 32}/export").status_code == 404
 
 

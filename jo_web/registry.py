@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+from jo_pipeline.assets import LoadedAsset
 from jo_pipeline.group import GroupProposal
 from jo_pipeline.reliability import FieldReliability
 from jo_web.config import WebConfig
@@ -46,6 +47,15 @@ class SkippedFile:
     reason: str
 
 
+@dataclass(frozen=True)
+class StyleResult:
+    style: str
+    groups: list[GroupProposal]
+    summary: ReviewSummary
+    records: list[dict]
+    unassigned: list[str]
+
+
 @dataclass
 class RunState:
     run_id: str
@@ -69,6 +79,8 @@ class RunState:
     review_records: list[dict] = field(default_factory=list)
     review_unassigned: list[str] = field(default_factory=list)
     signals: list = field(default_factory=list)
+    assets: list[LoadedAsset] = field(default_factory=list)
+    style_results: dict = field(default_factory=dict)
     style: str = MOMENTS
     prompts: PromptSet | None = None
     failure_detail: str | None = None
@@ -180,6 +192,28 @@ class RunRegistry:
                 return None
             state.signals = signals
         LOGGER.debug(f"{run_id}: {len(signals)} asset signals kept for regrouping")
+        return state
+
+    def set_assets(self, run_id: str, assets: list[LoadedAsset]) -> RunState | None:
+        with self._lock:
+            state = self._runs.get(run_id)
+            if state is None:
+                return None
+            state.assets = assets
+        LOGGER.debug(f"{run_id}: {len(assets)} loaded assets kept for export")
+        return state
+
+    def set_style_result(self, run_id: str, result: StyleResult) -> RunState | None:
+        with self._lock:
+            state = self._runs.get(run_id)
+            if state is None:
+                return None
+            replaced = result.style in state.style_results
+            state.style_results = {**state.style_results, result.style: result}
+        if replaced:
+            LOGGER.info(f"{run_id}: {result.style} style result replaced with {len(result.groups)} groups")
+        else:
+            LOGGER.info(f"{run_id}: {result.style} style result recorded with {len(result.groups)} groups")
         return state
 
     def set_style(self, run_id: str, style: str) -> RunState | None:

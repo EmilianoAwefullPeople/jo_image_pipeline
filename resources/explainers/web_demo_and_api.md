@@ -37,7 +37,13 @@ Reporting the *closest* gap rather than the widest is deliberate: the window nar
 
 Thumbnails are pre-built rather than transcoded per request. A full HEIC decode peaks near 250 MB — a gallery of them loading in parallel would exhaust the container. Serving pre-built JPEGs keyed by content hash also means the thumbnail route never builds a path from client input.
 
-`GET /api/runs/{id}/export` returns the same payload as `GET /api/runs/{id}`, pretty printed and served as an attachment named `jo-run-<id>.json`, so a finished run can be taken away and read or diffed outside the page. The run box on the page offers it as a Download JSON button once the run is complete.
+`GET /api/runs/{id}/export` returns the page payload plus three export-only sections, pretty printed and served as an attachment named `jo-run-<id>.json`, so a finished run can be taken away and read or diffed outside the page. The run box on the page offers it as a Download JSON button once the run is complete. The extra sections, always present:
+
+- `aggregate` — friendly-labelled coverage counts, such as `"GPS Location": "30/30"`. Extraction fields count over the images analysed (the two GPS coordinate rows are folded into one entry that requires both), and LLM fields count over valid evaluations.
+- `images` — everything about each image in one place, keyed by relative path: manifest facts (size, content hash, media type), every extraction observation with its source and evidence, and the full model evaluation, matched by content hash so byte-identical files share one record.
+- `styles` — every grouping style applied to the run, keyed by style id, each with its groups (titles, members, review evidence) and its review summary, records and unassigned photos. The top-level `groups` still shows only the style currently on the page; style results accumulate in memory as they are applied, with the initial moments run as the first.
+
+The polling payload is unchanged — the sections belong to the export alone, so the 1.2 s poll stays lean.
 
 ## One run at a time
 

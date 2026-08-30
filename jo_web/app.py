@@ -18,7 +18,7 @@ from pydantic import BaseModel
 from jo_pipeline.logging_setup import configure_logging
 from jo_web.config import ACCEPTED_EXTENSIONS, WebConfig, load_web_config
 from jo_web.registry import CREATED, SkippedFile, RunRegistry, UploadedFile
-from jo_web.serialize import run_state_payload, run_summary_payload
+from jo_web.serialize import export_payload, run_state_payload, run_summary_payload
 from jo_web.service import PipelineService
 from jo_web.worker import RunJanitor, RunWorker
 from llm_pipeline.prompts import CAPTURE_TIME_PLACEHOLDER, custom_prompts, default_prompts, template_reject_reason
@@ -233,7 +233,7 @@ def build_app(config: WebConfig | None = None, transport: httpx.BaseTransport | 
 
     @application.get("/api/runs/{run_id}/export")
     async def export_run(run_id: str) -> Response:
-        payload = jsonable_encoder(run_state_payload(require_run(run_id), worker.depth()))
+        payload = jsonable_encoder(export_payload(require_run(run_id), worker.depth()))
         headers = {"Content-Disposition": f'attachment; filename="jo-run-{run_id}.json"'}
         return Response(content=json.dumps(payload, indent=2), media_type="application/json", headers=headers)
 

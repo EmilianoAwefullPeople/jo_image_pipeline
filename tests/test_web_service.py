@@ -5,10 +5,12 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import httpx
+from fastapi.encoders import jsonable_encoder
 from PIL import Image, ImageDraw
 
 from jo_web.config import WebConfig
 from jo_web.registry import COMPLETE, RunRegistry
+from jo_web.serialize import export_payload
 from jo_web.service import PipelineService
 from jo_web.worker import RunWorker
 from llm_pipeline.prompts import PROMPT_VERSION, custom_prompts, default_prompts
@@ -276,6 +278,68 @@ def test_a_run_with_no_attached_prompt_uses_the_stored_default(tmp_path):
 
     assert requests[0]["messages"][0]["content"] == default_prompts().system
     assert registry.get(run_id).llm_summary.prompt_version == PROMPT_VERSION
+
+
+def test_the_export_carries_aggregates_every_image_and_every_applied_style(tmp_path):
+    # The download must stand alone: coverage counts, everything about each image, and every style applied to the run
+    config = build_config(tmp_path)
+    registry = RunRegistry(config)
+    requests = []
+    service = PipelineService(config, registry, transport=build_transport(requests, topic_groups=[([0, 2], "Noodles and tea", ["fun"])]))
+    run_id = seed_run(config, registry, [(200, 40, 40), (40, 200, 40), (40, 40, 200)])
+    service.execute(run_id)
+    registry.set_style(run_id, "foodie_tour")
+    service.group_by_style(run_id)
+
+    payload = export_payload(registry.get(run_id), 0)
+
+    coverage = payload["aggregate"]["coverage"]
+    assert payload["aggregate"]["images_analysed"] == 3
+    assert payload["aggregate"]["evaluations"] == 3
+    # Extraction fields count over analysed images, with the two gps rows folded into one labelled entry
+    assert coverage["Capture Time (local)"] == "3/3"
+    assert coverage["GPS Location"] == "0/3"
+    assert "gps_latitude" not in coverage
+    # LLM fields count over valid evaluations; the mock evaluation has no landmark and no activity
+    assert coverage["Description"] == "3/3"
+    assert coverage["Landmark"] == "0/3"
+    assert coverage["Activity"] == "0/3"
+
+    image = payload["images"]["IMG_0000.jpg"]
+    assert image["sha256"]
+    assert image["size_bytes"] > 0
+    assert image["observations"]
+    assert image["evaluation"]["general_description"] == evaluation_payload()["general_description"]
+
+    # Both applied styles are present with their groups; the top-level groups still show only the latest style
+    assert set(payload["styles"]) == {"moments", "foodie_tour"}
+    assert payload["styles"]["moments"]["groups"][0]["method_version"] == "regroup-1"
+    assert payload["styles"]["foodie_tour"]["groups"][0]["method_version"] == "topic-foodie_tour-1"
+    assert payload["styles"]["foodie_tour"]["groups"][0]["evidence"]["review"]["title"] == "Noodles and tea"
+    assert payload["styles"]["foodie_tour"]["review"]["unassigned"] == ["IMG_0001.jpg"]
+    assert payload["groups"][0]["method_version"] == "topic-foodie_tour-1"
+
+    # The whole export, real EXIF observations included, must survive JSON encoding
+    json.dumps(jsonable_encoder(payload))
+
+
+def test_reapplying_a_style_overwrites_only_that_styles_result(tmp_path):
+    # A rerun of one style must not multiply entries or disturb the other styles' saved results
+    config = build_config(tmp_path)
+    registry = RunRegistry(config)
+    service = PipelineService(config, registry, transport=build_transport([], topic_groups=[([0, 1], "Noodles and tea", ["fun"])]))
+    run_id = seed_run(config, registry, [(200, 40, 40), (40, 200, 40), (40, 40, 200)])
+    service.execute(run_id)
+    registry.set_style(run_id, "foodie_tour")
+    service.group_by_style(run_id)
+
+    registry.set_style(run_id, "moments")
+    service.group_by_style(run_id)
+
+    state = registry.get(run_id)
+    assert set(state.style_results) == {"moments", "foodie_tour"}
+    assert state.style_results["moments"].groups[0].method_version == "regroup-1"
+    assert state.style_results["foodie_tour"].groups[0].method_version == "topic-foodie_tour-1"
 
 
 def test_expired_runs_are_swept_and_recent_runs_are_kept(tmp_path):

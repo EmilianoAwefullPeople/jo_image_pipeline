@@ -12,7 +12,7 @@ from jo_pipeline.manifest import DatasetManifest, InventoryScanner
 from jo_pipeline.refine import ProposalRefiner, build_image_signals
 from jo_pipeline.regroup import Regrouper, SessionBuilder, unassigned_paths
 from jo_web.config import UPLOAD_DATASET_ID, WebConfig
-from jo_web.registry import EVALUATING, EXTRACTING, GROUPING, INVENTORYING, REFINING, REVIEWING, THUMBNAILING, RunRegistry
+from jo_web.registry import EVALUATING, EXTRACTING, GROUPING, INVENTORYING, REFINING, REVIEWING, THUMBNAILING, RunRegistry, StyleResult
 from llm_pipeline.client import OpenRouterClient
 from llm_pipeline.discovery import discover_images
 from llm_pipeline.prompts import PromptSet, default_prompts
@@ -50,6 +50,7 @@ class PipelineService:
         extracted = [asset for asset in assets if not asset.failure]
         report = build_reliability(assets)
         self.registry.set_extraction(run_id, report.rows(), report.failures, report.assets)
+        self.registry.set_assets(run_id, assets)
 
         self.registry.set_stage(run_id, THUMBNAILING, 0, len(extracted))
         self.registry.set_thumbnails(run_id, self._build_thumbnails(run_id, dataset_path, manifest))
@@ -108,6 +109,7 @@ class PipelineService:
         unassigned = unassigned_paths(sessions, reviews) if style.kind == TOPIC_REVIEW else []
         self.registry.set_review(run_id, run.summary, records, unassigned)
         self.registry.set_groups(run_id, grouped, baseline)
+        self.registry.set_style_result(run_id, StyleResult(style=style.id, groups=grouped, summary=run.summary, records=records, unassigned=unassigned))
         LOGGER.info(f"{run_id}: {style.id} produced {len(grouped)} groups from {len(baseline)} baseline proposals across {len(sessions)} sessions")
 
     def _on_review_progress(self, run_id: str, progress: ReviewProgress):
